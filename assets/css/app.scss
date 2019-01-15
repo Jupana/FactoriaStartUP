@@ -1,0 +1,48 @@
+@import '~bootstrap/scss/bootstrap';
+
+$verde:#90EE90;
+
+/*---NavBar--*/
+.banner{
+    padding-bottom:5px;
+}
+.nav-item{
+    padding: 5px;
+    width: 160px;
+    text-align: center;
+}
+
+
+/*---Home--*/
+.home{
+    height: 400px;
+}
+ #contiene_texto{
+        background-color: $verde;
+        padding: 15% 5% ;
+        height: 400px;
+    }
+    .grupo{
+        height: 100px;
+        padding-top: 15%;
+        padding-bottom: 5%;
+    }
+
+
+
+/*---Media queries--*/
+
+@media screen and(max-width: 992px){
+  
+
+}
+
+@media(max-width: 768px){ 
+  
+}
+
+@media (max-width: 578px){
+  
+
+}
+
