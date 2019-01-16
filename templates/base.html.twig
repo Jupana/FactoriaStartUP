@@ -6,11 +6,17 @@
          <link rel="stylesheet" href="{{ asset('build/css/app.css') }}">
         {% block stylesheets %}{% endblock %}
     </head>
-    <body> 
-        {% include 'nav_bar/nav_bar.html.twig' %}
-           
-        {% block body %}{% endblock %} 
-            
+    <body>  
+		<header>
+		    {% include 'nav_bar/nav_bar.html.twig' %}          
+		</header>
+		{% block content %}{% endblock %} 
+        <div id="content_right">           
+            <div class="banner border text-center">Banner</div>
+            <div class="banner border text-center">Banner</div>
+            <div class="banner border text-center">Banner</div>
+            <div class="banner border text-center">Calendario</div>          
+        </div>                       
         <script src="{{ asset('build/js/app.js') }}"></script>      
         {% block javascripts %}{% endblock %}
     </body>

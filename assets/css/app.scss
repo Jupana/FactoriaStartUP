@@ -1,48 +1,112 @@
 @import '~bootstrap/scss/bootstrap';
 
-$verde:#90EE90;
+$color1:#F5F5DC;
+$color2:#20B2AA;
+$contenthight:800px;
+
+body{
+    font-family:'Lato',sans-serif;
+    background:#ffffff;    
+    position: relative;
+    font-size: 17px;
+    overflow-x: hidden; 
+    font-weight: 400;
+    line-height: 1.5;
+    color:#212529;
+    text-align: left;
+    display: block;
+    margin-right:10%;
+    margin-left: 10%;
+    position: absolute;
+}
+#content{
+    width: 70%;
+    float: left;
+    height:$contenthight;
+    background-color: $color1; 
+    position: relative;
+}
+#content_right{
+    width: 28%;
+    float: right;
+    height:$contenthight;
+    position: relative;
+ } 
 
 /*---NavBar--*/
-.banner{
-    padding-bottom:5px;
+
+#navegaccion{
+    height: 82px;
+}
+.navbar-dark {
+    width: 98.5%;
+    background-color:$color1!important;
 }
 .nav-item{
-    padding: 5px;
-    width: 160px;
     text-align: center;
+    padding-right:1px;
 }
-
 
 /*---Home--*/
-.home{
-    height: 400px;
-}
- #contiene_texto{
-        background-color: $verde;
-        padding: 15% 5% ;
-        height: 400px;
-    }
-    .grupo{
-        height: 100px;
-        padding-top: 15%;
-        padding-bottom: 5%;
-    }
 
+#content1 {
+    padding: 25% 5% 15% 5%;  
+    background-color: $color2;
+    height:$contenthight;
+} 
+ .banner{
+    height:25%;
+    padding: 25%;
+    background-color: $color1;
+    
+ }  
+/*---Proyectos--*/
+#buscar{
+    width: 90%;
+     
+}
+.blog-grid {
+    background: #fff;
+    box-shadow: 2px 2px 35px 0 rgba(51, 51, 51, 0.4);
+    position: relative;
+
+}
+
+.blog-grid-text {
+    position: relative;
+    margin-bottom: 15px;
+}
+.padding-25px-all {
+    padding: 25px;
+}
+.border {
+    border: 1px solid #cfcaff!important;
+}
 
 
 /*---Media queries--*/
 
-@media screen and(max-width: 992px){
-  
+@media screen and(max-width: 1020px){
+    .imgbanner {
+        width: 105%;
+    }
+
+}
+@media (max-width: 992px){
+    .imgbanner {
+        width: 111%;
+    }
 
 }
 
 @media(max-width: 768px){ 
-  
+    .imgbanner {
+        width: 111%;
+    }
 }
-
 @media (max-width: 578px){
-  
+  .imgbanner {
+      width: 111%;
+  }
 
 }
-
