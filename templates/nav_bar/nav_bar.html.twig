@@ -1,42 +1,39 @@
 {% block header %}
 <!--Seccion BANNER/logo-->
-<section id="headerimg" > 
-    <div class="container">
+<div class="container">
         <div class="row">
-            <div class="col-lg-3 col-md-2 col-sm-1"> 
+            <div class="col-lg-3 col-md-2 col-sm-1 bgWhite"> 
                 <img src="{{ asset('logo.png','imagenlogo') }}" alt="Symfony!"/>
             </div>
-            <div class="col-lg-9 col-md-10 col-sm-11 ">              
+            <div class="col-lg-9 col-md-10 col-sm-11 bgWhite">              
                 <img  class="imgbanner" src="{{ asset('banner.png','banner') }}" alt="Symfony!"/>
             </div>
         </div>
-    </div>
-</section>
-<!--Seccion Navegaccion-->
-<section id="navegaccion" > 
-    <div class="row">
-        <div class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="col-lg-2 col-md-2 col-sm-6 nav-item active ">
-                <a class="nav-link btn-success" href="#">Proyectos <span class="sr-only">(current)</span></a>
+    <!--Seccion Navegaccion-->
+    <section id="navegaccion" > 
+        <div class="row">
+            <div class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div class="col-lg-2 col-md-2 col-sm-6 nav-item active ">
+                    <a class="nav-link btn-success" href="#">Proyectos <span class="sr-only">(current)</span></a>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-6 nav-item ">
+                    <a class="nav-link btn-warning text-white" href="#">Perfiles <span class="sr-only">(current)</span></a>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-6 nav-item ">
+                    <a class="nav-link  btn-info" href="#">Noticias</a>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-6 nav-item ">
+                    <a class="nav-link  btn-info" href="#">Foro</a>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-6 nav-item ">
+                    <a class="nav-link btn-info" href="#">Heramientas</a>
+                </div>  
+                <div class="col-lg-2 col-md-2 col-sm-6 nav-item float-right">
+                    <a class="nav-link btn text-black border"href="#">Registro</a>
+                </div>                                 
+            </div>         
             </div>
-            <div class="col-lg-2 col-md-2 col-sm-6 nav-item ">
-                <a class="nav-link btn-warning text-white" href="#">Perfiles <span class="sr-only">(current)</span></a>
-            </div>
-            <div class="col-lg-2 col-md-2 col-sm-6 nav-item ">
-                <a class="nav-link  btn-info" href="#">Noticias</a>
-            </div>
-            <div class="col-lg-2 col-md-2 col-sm-6 nav-item ">
-                <a class="nav-link  btn-info" href="#">Foro</a>
-            </div>
-            <div class="col-lg-2 col-md-2 col-sm-6 nav-item ">
-                <a class="nav-link btn-info" href="#">Heramientas</a>
-            </div>  
-            <div class="col-lg-2 col-md-2 col-sm-6 nav-item float-right">
-                <a class="nav-link btn text-black border"href="#">Registro</a>
-            </div>                                 
-        </div>         
-        </div>
-    </div>    
-</section>  
-
+        </div>    
+    </section>  
+</div>
 {% endblock %}

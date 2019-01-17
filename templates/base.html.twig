@@ -10,12 +10,11 @@
 		<header>
 		    {% include 'nav_bar/nav_bar.html.twig' %}          
 		</header>
-		{% block content %}{% endblock %} 
-        <div id="content_right">           
-            <div class="banner border text-center">Banner</div>
-            <div class="banner border text-center">Banner</div>
-            <div class="banner border text-center">Banner</div>
-            <div class="banner border text-center">Calendario</div>          
+        <div class="container">
+            <div class="row">
+		        {% block content %}{% endblock %} 
+                {% include 'right-side/rightSide.html.twig' %}  
+            </div>
         </div>                       
         <script src="{{ asset('build/js/app.js') }}"></script>      
         {% block javascripts %}{% endblock %}
