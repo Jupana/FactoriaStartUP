@@ -1,13 +1,17 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-<!--Seccion HOME-->
-<div id="content">
-    <div id="content1">
-        <a style="float:left;text-decoration:none;color:white;font-size:30px" href="{{ path('proyectos_equipos') }}">Busco equipo</a>  
-        <a style="float:right;text-decoration:none;color:white;font-size:30px"href="{{ path('proyectos_equipos') }}">Busco Proyecto</a>                                            
-    </div>
-</div>  
+<!--Contenido HOME-->
+ <div class="col-sm-8 home">
+    <div class="row">
+		<div class="home-item col-sm-4">
+            <a style="float:left" href="{{ path('proyectos_equipos') }}">Busco equipo</a>  
+        </div>
+        <div class="home-item col-sm-4">
+            <a style="float:right"href="{{ path('proyectos_equipos') }}">Busco Proyecto</a>                                            
+        </div>               
+    </div> 
+</div>
 {% endblock %}
 
 
