@@ -4,7 +4,7 @@
 
 {% block content %}
 <!--Contenido Proyectos-->
-<div class="row col-12 col-md-8 content  bgWhite">
+<div class="row col-md-8 content  bgWhite">
     <h1 class="col text-center">Factoria StartUp</h1>
     <div class="row" id="buscar">
         <div class="form-group row">
@@ -24,7 +24,7 @@
         </div>
     </div> 
     <div class="row">       
-        <div class="col-12 col-md-4">
+        <div class=" col-md-4">
             <div class="blog-grid">                          
                 <div class="blog-grid-img position-relative">  
                     <img src="{{ asset('logo.png','imagenlogo') }}" alt="Symfony!"/>
@@ -35,11 +35,11 @@
                         <p>Aportacion:</br>Programacion,Ventas..</strong></p>
                     </div>  
                     <p>Descripcion Proyecto</p>  
-                    <a href="#">Ver Mass..</a>  
+                        <a href="{{ path('detalle_proyecto') }}">Ver Mass..</a>   
                 </div>                                                   
             </div>                    
         </div>
-        <div class="col-12 col-md-4">
+        <div class="col-md-4">
             <div class="blog-grid">                          
                 <div class="blog-grid-img position-relative">  
                     <img src="{{ asset('logo.png','imagenlogo') }}" alt="Symfony!"/>
@@ -50,13 +50,26 @@
                         <p>Aportacion:</br>Programacion,Ventas..</strong></p>
                     </div>  
                     <p>Descripcion Proyecto</p>  
-                    <a href="#">Ver Mass..</a>  
+                    <a href="{{ path('detalle_proyecto') }}">Ver Mass..</a>  
+                </div>                                                   
+            </div>                    
+        </div> 
+        <div class="col-md-4">
+            <div class="blog-grid">                          
+                <div class="blog-grid-img position-relative">  
+                    <img src="{{ asset('logo.png','imagenlogo') }}" alt="Symfony!"/>
+                </div>
+                <div class="blog-grid-text padding-25px-all md-padding-20px  ">     
+                    <h5><strong>Necesidades:</br>Marketing,Diseño..</strong></h4>
+                    <div class="no-margin">    
+                        <p>Aportacion:</br>Programacion,Ventas..</strong></p>
+                    </div>  
+                    <p>Descripcion Proyecto</p>  
+                    <a href="{{ path('detalle_proyecto') }}">Ver Mass..</a>    
                 </div>                                                   
             </div>                    
         </div>
-    
-      
-        <div class="col-12 col-md-4">
+        <div class="col-md-4">
             <div class="blog-grid">                          
                 <div class="blog-grid-img position-relative">  
                     <img src="{{ asset('logo.png','imagenlogo') }}" alt="Symfony!"/>
@@ -67,22 +80,7 @@
                         <p>Aportacion:</br>Programacion,Ventas..</strong></p>
                     </div>  
                     <p>Descripcion Proyecto</p>  
-                    <a href="#">Ver Mass..</a>  
-                </div>                                                   
-            </div>                    
-        </div>
-        <div class="col-12 col-md-4">
-            <div class="blog-grid">                          
-                <div class="blog-grid-img position-relative">  
-                    <img src="{{ asset('logo.png','imagenlogo') }}" alt="Symfony!"/>
-                </div>
-                <div class="blog-grid-text padding-25px-all md-padding-20px  ">     
-                    <h5><strong>Necesidades:</br>Marketing,Diseño..</strong></h4>
-                    <div class="no-margin">    
-                        <p>Aportacion:</br>Programacion,Ventas..</strong></p>
-                    </div>  
-                    <p>Descripcion Proyecto</p>  
-                    <a href="#">Ver Mass..</a>  
+                        <a href="{{ path('detalle_proyecto') }}">Ver Mass..</a>  
                 </div>                                                   
             </div>                    
         </div>

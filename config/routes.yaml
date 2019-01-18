@@ -9,3 +9,6 @@ logout:
 proyectos_equipos:
     path: /proyectos_equipos
     controller: App\Controller\ProyectosController::index    
+detalle_proyecto:
+    path: /detalle_proyecto
+    controller: App\Controller\DetalleProyectoController::index  
