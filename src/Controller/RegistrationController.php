@@ -11,7 +11,7 @@ use App\Repository\UsersRepository;
 
 
 class RegistrationController extends Controller
-{
+{   
     /**
      * @Route("/registration", name="registration")Re
      */
