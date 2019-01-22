@@ -4,8 +4,10 @@ $colorWhite:#fff;
 $colorbg:#f5f5f5;
 $color1:#2a479e;
 $color2:#20B2AA;
+$color3:#17a2b8;
 $colorBorder1:#e7ebf3;
 $colortext: #828282;
+$colorbox:#5f5e6141;
 $shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.2), 0 1px 5px 0 rgba(0,0,0,0.12);
 
 
@@ -40,12 +42,13 @@ a:hover {
     border-color: $color1;
 }
 .container{
-    background: $colorbg;
+	background: $colorbg;
 }
 
 .bgWhite{
     background: $colorWhite;
-    box-shadow: $shadow;
+	box-shadow: $shadow;
+	
 }
 
 
@@ -96,9 +99,11 @@ a:hover {
     margin:0px 10px 10px 10px;
     min-height:15%;
     padding: 25%;
-    background-color: $colorWhite;
+	background-color: $colorWhite;
+	
     
  } 
+
 /*---Proyectos--*/
 .content{ 
     box-shadow:$shadow;
@@ -544,9 +549,21 @@ iframe {
   }
 
 
+  /*---Datos_Personales--*/
+
+  .separator{
+	  background-color: $color3;
+
+  }
+
+  .box1,.box2{
+	  background-color:$colorbox ;
+  }
+
+
 /*---Media queries--*/
 /*---lg--*/
-@media (min-width: 992px)and (max-width:1200px){
+@media screen and (max-width:1200px){
   .imgbanner{
       width: 102%;
   }
@@ -555,14 +572,12 @@ iframe {
     }
     #buscar{
         margin-left:0px;
-        width:99%;
-         
-    }
-  
-
+        width:99%;       
+	}
+	
 }
 /*---md--*/
-@media(min-width: 768px)and (max-width:992px){ 
+@media (max-width:992px){ 
     .imgbanner{
         width: 102%;
     }
@@ -597,7 +612,7 @@ iframe {
   
 }
 /*---sm--*/
-@media (min-width: 576) and (max-width:768px){
+@media (max-width:768px){
     .imgbanner{
         width: 102%;
     }
@@ -2921,13 +2936,6 @@ iframe {
 .lh-2-8 {line-height: 2.8;}
 .lh-2-9 {line-height: 2.9;}
 
-
-
-
-
-/*[ SHAPE ]
-///////////////////////////////////////////////////////////
-*/
 
 /*[ Display ]
 -----------------------------------------------------------

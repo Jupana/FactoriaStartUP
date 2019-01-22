@@ -14,4 +14,19 @@ detalle_proyecto:
     controller: App\Controller\DetalleProyectoController::index  
 vista_usuario:
     path: /vista_usuario
-    controller: App\Controller\VistaUsuarioController::index 
+    controller: App\Controller\VistaUsuarioController::index_vista
+datos_personales:
+    path: /vista_usuario/datos_personales
+    controller: App\Controller\VistaUsuarioController::datos_personales 
+datos_profesionales:
+    path: /vista_usuario/datos_profesionales
+    controller: App\Controller\VistaUsuarioController::datos_profesionales
+datos_proyectos:
+    path: /vista_usuario/datos_proyectos
+    controller: App\Controller\VistaUsuarioController::datos_proyectos
+datos_propuestas:
+    path: /vista_usuario/datos_propuestas
+    controller: App\Controller\VistaUsuarioController::datos_propuestas  
+datos_cuenta:
+    path: /vista_usuario/datos_cuenta
+    controller: App\Controller\VistaUsuarioController::datos_cuenta      
