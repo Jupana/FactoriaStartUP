@@ -1,3 +1,91 @@
 {% extends 'vista_usuario/index_vista.html.twig' %}
 
-{% block vista %}{% endblock %}  
+{% block vista %}
+<div class="content-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h4 class="page-head-line">Montar Pagina desde 0</h4>
+
+                </div>
+
+            </div>
+		<div id="ContenedorInicial">
+            <div class="row">
+                <div class="col-md-6" style="width:80%;margin-left:10%">
+					<div class="notice-board">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+											  Información profesional
+								<div class="pull-right">
+
+								</div>
+							</div>
+							<div class="panel-body">
+
+								<ul>
+
+								 <li style="padding: 0;"><p style="font-weight:bold;font-size:17px;">¿Buscas Socio, Equipo o Colaboradores para llevar a cabo tus proyectos?</p> </li>
+                                                   <form name="PersonalForm" id="FormProject" method="post" action="https://factoriastartups.com/index.php/Projects/InsertSearchTeam">
+								 <p><input type="checkbox" class="su2" onchange="checkteam()" checked="1" value="1" name="equipo"> <span style="margin-left:1%;">Busco equipo</span></p>
+                 </form>
+                 <li style="padding: 0;"><p style="font-weight:bold;font-size:17px;">¿Buscas participar en proyectos interesantes donde aportar tu experiencia, contactos y demás?</p></li>
+                 <form id="ProfesionalForm" method="post" name="ProfesionalForm" action="Profesional/UpdateDescription" role="form">
+                 <p><input type="checkbox" class="su" name="Proyecto" value="1"> <span style="margin-left:1%;">Busco proyectos</span></p>
+                 <li style="padding: 0;"><p style="font-weight:bold;font-size:17px;">¿Quien eres? Defínete como persona, como compañero y en general, como todas las facetas posibles</p></li>
+								 <textarea style="width:70%" name="Description" class="form-control" rows="3" required="" maxlength="300" placeholder="Descríbete con un máximo de 300 caracteres...">dfgdfgdgf</textarea>
+								 <div class="panel-footer" style="margin-top:25px;">
+							<a onclick="NewProfile()" id="botonPerfil" class="btn btn-default btn-block">Añadir perfil</a>
+								</div>
+
+								 <li style="padding: 0;margin-top:20px;"><p style="font-weight:bold;font-size:17px;">¿Cómo eres de bueno? Cuéntanos en qué destacas</p></li>
+								  <table class="table">
+                                    <thead>
+                                        <tr>
+
+                                            <th>Perfil</th>
+                                            <th>Sector</th>
+                                            <th>Descripción</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                      <!-- success info warning -->
+                                                                            <tr class="warning">
+                                        <td>
+                                          <p>Marketing</p><p>Programacion</p><p>Diseño</p><p>Legal</p>                                        </td>
+                                        <td>
+                                          <p>Educacion</p><p>Distribucion y Venta</p><p>Sanidad</p><p>Servicios</p>                                        </td>
+                                        <td>
+                                                                                      <a href="JAVASCRIPT:ShowDes('43')"><p>ver</p></a>
+                                                                                        <a href="JAVASCRIPT:ShowDes('46')"><p>ver</p></a>
+                                                                                        <a href="JAVASCRIPT:ShowDes('60')"><p>ver</p></a>
+                                                                                        <a href="JAVASCRIPT:ShowDes('61')"><p>ver</p></a>
+                                                                                    </td>
+                                      </tr>
+                                    </tbody>
+                                </table>
+
+							<div class="panel-footer">
+                <input type="submit" class="btn btn-default btn-block" value="Guardar datos profesionales">
+              
+                        </div></form>
+							
+						</ul>
+					</div>
+					</div>
+					</div>
+
+
+
+                 </div>
+             </div>
+
+
+
+
+
+                                </div>
+                            </div>
+                            </div>
+
+{% endblock %}  
