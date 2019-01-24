@@ -10,7 +10,7 @@
 		<div class="container-login100" >
 			<div class="wrap-login100 p-l-110 p-r-110 p-t-62 p-b-33">
 				<form action="{{ path('login_check') }}" method="post" class="login100-form validate-form flex-sb flex-w">
-					<span class="login100-form-title p-b-53">
+					<span class="login100-form-title p-b-53  par">
 						Ingresa
 					</span>
 					<a href="{{ path('vista_usuario') }}" class="btn-face m-b-20">
@@ -22,7 +22,7 @@
 						Google
 					</a>					
 					<div class="p-t-31 p-b-9">
-						<span class="txt1">
+						<span class="txt1 par1">
 							Usuario/E-mail
 						</span>
 					</div>
@@ -32,11 +32,11 @@
 					</div>
 					
 					<div class="p-t-13 p-b-9">
-						<span class="txt1">
+						<span class="txt1 par1">
 							Contraseña
 						</span>
 
-						<a href="#" class="txt2 bo1 m-l-5">
+						<a href="#" class="txt2 bo1 m-l-5 par1">
 							Olvidaste tu contraseña?
 						</a>
 					</div>
@@ -46,17 +46,17 @@
 					</div>
 					<div class="container-login100-form-btn m-t-17">
                         <input type="hidden" name="_target_path" value="proyectos_equipos" /> 
-						<button class="login100-form-btn" type="submit" name="login"/>
+						<button class="login100-form-btn par" type="submit" name="login"/>
 							Ingresa
 						</button>
 					</div>
 
 					<div class="w-full text-center p-t-55">
-						<span class="txt2">
+						<span class="txt2 par1">
 							No estas dado de alta?
 						</span>
 
-						<a href="#registro" class="txt2 bo1" value="Mostrar" onclick="mostrar()">
+						<a href="#registro" class="txt2 bo1 par1" value="Mostrar" onclick="mostrar()">
 							Registrate ahora
 						</a>
 					</div>
@@ -65,12 +65,12 @@
 				<hr>
 				<div  id='registro' style='display:none;'>
 					<form  class="login100-form validate-form flex-sb flex-w">
-						<span class="login100-form-title p-b-53">
+						<span class="login100-form-title p-b-53 par">
 							Registrate
 						</span>
 										
 						<div class="p-t-31 p-b-9">
-							<span class="txt1">
+							<span class="txt1 par1">
 								Usuario
 							</span>
 						</div>
@@ -79,7 +79,7 @@
 							<span class="focus-input100"></span>
 						</div>
 						<div class="p-t-31 p-b-9">
-							<span class="txt1">
+							<span class="txt1 par1">
 								E-mail
 							</span>
 						</div>
@@ -88,10 +88,10 @@
 							<span class="focus-input100"></span>
 						</div>			
 						<div class="p-t-13 p-b-9">
-							<span class="txt1">
+							<span class="txt1 par1">
 								Contraseña
 							</span>
-							<a href="#" class="txt2 bo1 m-l-5">
+							<a href="#" class="txt2 bo1 m-l-5 par1">
 								Minim 6 caracteres con numeros y mayusculas
 							</a>
 						</div>
@@ -101,16 +101,16 @@
 						</div>
 						<div class="container-login100-form-btn m-t-17">
 							<input type="hidden" name="_target_path" value="proyectos_equipos" /> 
-							<button class="login100-form-btn" type="submit" name="login"/>
+							<button class="login100-form-btn par1" type="submit" name="login"/>
 								Registrate
 							</button>
 						</div>
 								<div class="w-full text-center p-t-55">
-							<span class="txt2">
+							<span class="txt2 par1">
 								Ya estas dado de alta?
 							</span>
 
-							<a href="{{ path('login') }}" class="txt2 bo1">
+							<a href="{{ path('login') }}" class="txt2 bo1 par1">
 								Ingresa ahora
 							</a>
 						</div>

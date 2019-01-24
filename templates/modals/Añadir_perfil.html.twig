@@ -1,0 +1,117 @@
+<!--Ventana Pop-Up -->  
+    <div class="modal fade" id="modalForm" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span class="modal-close" aria-hidden="true">×</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                </div>
+                <div class="col-md-12 text-center m-t-10  modal-title">
+                    <h4 id="myModalLabel">Nuevo Perfil</h4>  
+                </div>    
+                <!-- Modal Body -->
+                <div class="modal-body">
+                    <form role="form">
+                        <!-- Selección de Perfil -->
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" for="perfil">Perfil</label>
+                            <div class="col-sm-10">
+                                <select type="text" id="perfil" required="" name="selPerfil" class="form-control">
+                                    <option value="">Selecciona un perfil</option>
+                                    <option value="Marketing">Marketing</option>
+                                    <option value="Diseño">Diseño</option>
+                                    <option value="Programacion">programacion</option>
+                                    <option value="Legal">Legal</option>
+                                    <option value="Comercial">Comercial/Contactos</option>
+                                    <option value="Financiero">Finaciero</option>
+                                    <option value="Espacio Físico">Espacio Físico</option>
+                                    <option value="Financiacion">Financiacion</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- Selección de Sector -->
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" for="sector">Sector</label>
+                            <div class="col-sm-10">
+                                <select required="" id="sector" name="selProfesiones" class="form-control">
+                                    <option value="">Selecciona un sector</option>
+                                    <option value="Educacion">Educación</option>
+                                    <option value="Investigación y Ciencia">Investigación y Ciencia</option>
+                                    <option value="Gestion y Administración">Gestión y Administración</option>
+                                    <option value="Sanidad">Sanidad</option>
+                                    <option value="Servicios">Servicios</option>
+                                    <option value="Ocio y Entretenimiento">Ocio y Entretenimiento</option>
+                                    <option value="Distribucion y Venta">Distribución y Venta</option>
+                                    <option value="Sector Inmoviliario">Sector Inmoviliario</option>
+                                    <option value="Finanzas">Finanzas</option>
+                                    <option value="Turismo">Turismo</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- Descripción Experiencia -->
+                        <div class="form-group">
+                            <label class="col-sm-10" for="perfilDesc">Describe tu Experencia</label>
+                            <div class="col-sm-12">
+                                <textarea id="perfilDesc" name="PDescription" class="form-control" required="" maxlength="300" placeholder="maximo 300 caracteres" cols="90" rows="5"></textarea>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!-- Modal Footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-success submitBtn" onclick="submitContactForm()">SUBMIT</button>
+                </div>
+            </div>
+        </div>
+    </div>
+      <script type="text/javascript">
+        function submitContactForm(){
+            var reg = /^[A-Z0-9._%+-]+@([A-Z0-9-]+.)+[A-Z]{2,4}$/i;
+            var perfil = $('#perfil').val();
+            var sector = $('#sector').val();
+            var perfilDesc = $('#perfilDesc').val();
+            if(name.trim() == '' ){
+                alert('Please enter your perfil.');
+                $('#perfil').focus();
+                return false;
+            }else if(email.trim() == '' ){
+                alert('Please enter your sector.');
+                $('#sector').focus();
+                return false;
+            }else if(email.trim() != '' && !reg.test(email)){
+                alert('Please enter valid email.');
+                $('#sector').focus();
+                return false;
+            }else if(message.trim() == '' ){
+                alert('Please enter your description.');
+                $('#perfilDesc').focus();
+                return false;
+            }else{
+                $.ajax({
+                    type:'POST',
+                    url:'submit_form.php',
+                    data:'contactFrmSubmit=1&perfil='+perfil+'&sector='+sector+'&perfilDesc='+perfilDesc,
+                    beforeSend: function () {
+                        $('.submitBtn').attr("disabled","disabled");
+                        $('.modal-body').css('opacity', '.5');
+                    },
+                    success:function(msg){
+                        if(msg == 'ok'){
+                            $('#perfil').val('');
+                            $('#sector').val('');
+                            $('#perfilDesc').val('');
+                            $('.statusMsg').html('<span style="color:green;">Thanks for contacting us, well get back to you soon.</p>');
+                        }else{
+                            $('.statusMsg').html('<span style="color:red;">Some problem occurred, please try again.</span>');
+                        }
+                        $('.submitBtn').removeAttr("disabled");
+                        $('.modal-body').css('opacity', '');
+                    }
+                });
+            }
+        }
+    </script>

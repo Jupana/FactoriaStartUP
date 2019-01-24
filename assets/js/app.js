@@ -62,8 +62,6 @@ $(document).ready(function() {
 
         $(thisAlert).removeClass('alert-validate');
     }
+})(jQuery);    
     
-    
-
-})(jQuery);
-
+   

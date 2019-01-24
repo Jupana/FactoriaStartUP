@@ -1,91 +1,91 @@
 {% extends 'vista_usuario/index_vista.html.twig' %}
 
 {% block vista %}
-<div class="content-wrapper">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <h4 class="page-head-line">Montar Pagina desde 0</h4>
-
-                </div>
-
+    <script type="text/javascript">
+        window.onload = function() {
+            document.getElementById("op1").style.background="green";
+        }
+    </script> 
+    <div class="row">
+        <div class="col-md-12 m-t-10">
+            <h4 class="page-head-line">Actualiza tus datos profesionales</h4>
+        </div>
+    </div> 
+    <div class="content_header m-l-20 m-r-20">  
+        <div class="row p-r-80"> 
+            <div class="col-md-12 fs-17 m-b-10"> 
+                <p class="par"><b>¿Buscas Socio, Equipo o Colaboradores para llevar a cabo tus proyectos?</b></p> 
             </div>
-		<div id="ContenedorInicial">
-            <div class="row">
-                <div class="col-md-6" style="width:80%;margin-left:10%">
-					<div class="notice-board">
-						<div class="panel panel-default">
-							<div class="panel-heading">
-											  Información profesional
-								<div class="pull-right">
-
-								</div>
-							</div>
-							<div class="panel-body">
-
-								<ul>
-
-								 <li style="padding: 0;"><p style="font-weight:bold;font-size:17px;">¿Buscas Socio, Equipo o Colaboradores para llevar a cabo tus proyectos?</p> </li>
-                                                   <form name="PersonalForm" id="FormProject" method="post" action="https://factoriastartups.com/index.php/Projects/InsertSearchTeam">
-								 <p><input type="checkbox" class="su2" onchange="checkteam()" checked="1" value="1" name="equipo"> <span style="margin-left:1%;">Busco equipo</span></p>
-                 </form>
-                 <li style="padding: 0;"><p style="font-weight:bold;font-size:17px;">¿Buscas participar en proyectos interesantes donde aportar tu experiencia, contactos y demás?</p></li>
-                 <form id="ProfesionalForm" method="post" name="ProfesionalForm" action="Profesional/UpdateDescription" role="form">
-                 <p><input type="checkbox" class="su" name="Proyecto" value="1"> <span style="margin-left:1%;">Busco proyectos</span></p>
-                 <li style="padding: 0;"><p style="font-weight:bold;font-size:17px;">¿Quien eres? Defínete como persona, como compañero y en general, como todas las facetas posibles</p></li>
-								 <textarea style="width:70%" name="Description" class="form-control" rows="3" required="" maxlength="300" placeholder="Descríbete con un máximo de 300 caracteres...">dfgdfgdgf</textarea>
-								 <div class="panel-footer" style="margin-top:25px;">
-							<a onclick="NewProfile()" id="botonPerfil" class="btn btn-default btn-block">Añadir perfil</a>
-								</div>
-
-								 <li style="padding: 0;margin-top:20px;"><p style="font-weight:bold;font-size:17px;">¿Cómo eres de bueno? Cuéntanos en qué destacas</p></li>
-								  <table class="table">
-                                    <thead>
-                                        <tr>
-
-                                            <th>Perfil</th>
-                                            <th>Sector</th>
-                                            <th>Descripción</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                      <!-- success info warning -->
-                                                                            <tr class="warning">
-                                        <td>
-                                          <p>Marketing</p><p>Programacion</p><p>Diseño</p><p>Legal</p>                                        </td>
-                                        <td>
-                                          <p>Educacion</p><p>Distribucion y Venta</p><p>Sanidad</p><p>Servicios</p>                                        </td>
-                                        <td>
-                                                                                      <a href="JAVASCRIPT:ShowDes('43')"><p>ver</p></a>
-                                                                                        <a href="JAVASCRIPT:ShowDes('46')"><p>ver</p></a>
-                                                                                        <a href="JAVASCRIPT:ShowDes('60')"><p>ver</p></a>
-                                                                                        <a href="JAVASCRIPT:ShowDes('61')"><p>ver</p></a>
-                                                                                    </td>
-                                      </tr>
-                                    </tbody>
-                                </table>
-
-							<div class="panel-footer">
-                <input type="submit" class="btn btn-default btn-block" value="Guardar datos profesionales">
-              
-                        </div></form>
-							
-						</ul>
-					</div>
-					</div>
-					</div>
-
-
-
-                 </div>
-             </div>
-
-
-
-
-
-                                </div>
-                            </div>
-                            </div>
-
+            <div class="col-md-5  ver_color">
+                <div class="form-check form-check-inline cuadro border p-l-15 p-r-15">
+                    <label class="form-check-label par1 p-r-10 fs-20" for="inlineCheckbox1">Busco Proyecto</label>
+                    <input class="form-check-input"  type="checkbox" id="" value="">
+                </div> 
+            </div> 
+            <div class="parafos col-md-7 m-l-0  fs-15">
+                <p class="par1">¿Buscas participar en proyectos interesantes donde aportar tu experiencia, contactos y demás?</p>
+            </div>
+            <div class="col-md-5 ver_color">
+                <div class="form-check form-check-inline cuadro border p-l-15 p-r-15">
+                    <label class="form-check-label par1 p-r-25 fs-20" for="inlineCheckbox1">Busco Equipo</label>
+                    <input class="form-check-input" type="checkbox" id="" value="">
+                </div> 
+             </div> 
+            <div class="parafos col-md-7 m-l-0  fs-15">
+                <p class="par1">¿Buscas Socio, Equipo o Colaboradores para llevar a cabo tus proyectos?</p>
+            </div>
+        </div>            
+    </div>
+    <div class="content_descripcion m-l-20">  
+        <div class="row p-r-80"> 
+            <div class="col-md-12 fs-17 m-b-20"> 
+                <p class="par"><b>¿Quien eres? Defínete como persona, como compañero y en general, como todas las facetas posibles</b></p> 
+            </div>
+            <div class="col-md-12 m-l-0  fs-15">
+                <textarea  name="Description" class="form-control par1" rows="3" required="" maxlength="300" placeholder="Descríbete con un máximo de 300 caracteres..."></textarea>
+            </div>
+        </div>        
+    </div>
+    <div class="content_sector m-l-20 ">  
+        <div class="row p-r-80"> 
+            <div class="col-md-12 fs-17 m-b-20"> 
+                <p class="par"><b>¿Cómo de bueno eres en tu trabajo? Cuéntanos en qué destacas,tus hitos,tus exitos y que sector es el que mejor conoces.</b></p> 
+            </div>
+            <div class="col-md-2">
+               <button class="btn btn-success btn-lg" data-toggle="modal" data-target="#modalForm">
+                    Añadir Perfil
+                </button>
+            </div> 
+            <div class="col-md-10 m-l-0  fs-15">
+                <table class="table border par1">
+                    <thead>
+                        <tr>
+                            <th>Perfil</th>
+                            <th>Sector</th>
+                            <th>Descripción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="warning">
+                            <td>
+                                <p>Marketing</p><p>Programacion</p><p>Diseño</p><p>Legal</p>                                        </td>
+                            <td>
+                                <p>Educacion</p><p>Distribucion y Venta</p><p>Sanidad</p><p>Servicios</p>                                        </td>
+                            <td>
+                                <a class="ver_color par1" href="#"><p>ver</p></a>
+                                <a class="ver_color par1" href="#"><p>ver</p></a>
+                                <a class="ver_color par1" href="#"><p>ver</p></a>
+                                <a class="ver_color par1" href="#"><p>ver</p></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+               
+    </div>
+    <div class="col-md-12 ">
+        <buton type="submit" class="btn btn-info btn-block m-b-20 par1">Guardar datos profesionales</button>
+    </div>		
+     {% include 'modals/Añadir_perfil.html.twig' %}  
 {% endblock %}  

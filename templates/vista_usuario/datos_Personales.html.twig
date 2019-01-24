@@ -1,72 +1,82 @@
 {% extends 'vista_usuario/index_vista.html.twig' %}
 
 {% block vista %}
-    <div class="box m-t-20  m-l-20 m-r-20 ">
+    <script type="text/javascript">
+        window.onload = function() {
+            document.getElementById("op0").style.background="green";
+        }
+    </script> 
+    <div class="row">
+        <div class="col-md-12">
+            <h4 class="page-head-line">Actualiza tus datos personales</h4>
+        </div>
+    </div>   
+    <div class="box m-l-20 m-r-20 par1 ">
         <div class="row p-l-10 p-r-10 ">
             <div class="col-md-3 col-sm-12 ">
-                <div class="img_usuario border" style="min-height:80%;width:105%;">
-                    <span>Foto</span>
+                <div class="img_usuario border" style="min-height:80%;width:100%;">
+                    <span class="par1">Foto</span>
                 </div>    
                 <form class="p-b-0">
                     <div class="form-group">
-                        <input type="file" class="form-control p-t-0 p-l-0 p-b-0 "style="height:10%;width:105%;" >
+                        <input type="file" class="form-control img_select p-t-0 p-l-0 p-b-0 par1 "style="height:10%;width:100%;" >
                     </div>
                 </form>
             </div>   
             <div class="col-md-5 col-sm-12">
-                <form>
+                <form class="formulario">
                     <div class="form-group row">
-                        <label for="inputUsername" class="col-4 col-form-label">Usuario*</label>
+                        <label for="inputUsername" class="col-4 col-form-label par1">Usuario*</label>
                         <div class="col-8 p-l-0 p-b-5">
                             <input type="username" class="form-control" id="inputUsername" >
                         </div>
-                        <label for="inputName" class="col-4 col-form-label">Nombre*</label>
+                        <label for="inputName" class="col-4 col-form-label par1">Nombre*</label>
                         <div class="col-8 p-l-0 p-b-5">
                             <input type="name" class="form-control" id="inputName" >
                         </div>
-                        <label for="inputSurname1" class="col-4 col-form-label">Appellido1* </label>
+                        <label for="inputSurname1" class="col-4 col-form-label par1">Appellido1* </label>
                         <div class="col-8 p-l-0 p-b-5">
                             <input type="surname1" class="form-control" id="inputSurname1" >
                         </div>
-                        <label for="inputSurname2" class="col-4 col-form-label">Apellido2</label>
+                        <label for="inputSurname2" class="col-4 col-form-label par1">Apellido2</label>
                         <div class="col-8 p-l-0 p-b-5">
                             <input type="surname2" class="form-control" id="inputSurname2">
                         </div>
                     </div>
                 </form>
             </div>
-            <div class="col-md-4 col-sm-12  p-t-10">
+            <div class="col-md-4 col-sm-12  p-t-10 par1">
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                    <label class="form-check-label" for="inlineCheckbox1">Hombre</label>
+                    <label class="form-check-label" for="inlineCheckbox1 par1">Hombre</label>
                 </div>
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                    <label class="form-check-label" for="inlineCheckbox2">Mujer</label>
+                    <label class="form-check-label" for="inlineCheckbox2 par1">Mujer</label>
                 </div> 
                 <div class="form-group row">
-                    <label for="inputEdad" class="col-3 col-form-label">Edad</label>
+                    <label for="inputEdad" class="col-3 col-form-label par1">Edad</label>
                     <div class="col-9">
-                        <input type="edad" class="form-control" id="inputEdad" placeholder=" dd/mm/aaaa">
+                        <input type="edad" class="form-control par1" id="inputEdad" placeholder=" dd/mm/aaaa">
                     </div>
                 </div>    
             </div> 
         </div>
     </div> 
-    <div class="col-12">
+    <div class="col-12 ">
         <div class="separator m-t-10">
-            <span class="text-white p-t-10 p-l-10 p-r-10 ">Datos de Contacto</span>
+            <span class="text-white p-t-10 p-l-10 p-r-10 par1">Datos de Contacto</span>
         </div> 
     </div>   
-    <div class="box1 m-t-20 m-l-20 m-r-20 ">
+    <div class="box1 m-t-20 m-l-20 m-r-20 par1 ">
         <div class="row  p-t-10 p-l-10 p-r-10 ">
             <div class="col-md-8 col-sm-12 ">
                 <div class="form-group row">
-                    <label for="inputEmail" class="col-3 col-form-label">Email*</label>
+                    <label for="inputEmail" class="col-3 col-form-label par1">Email*</label>
                     <div class="col-9 p-b-5">
                         <input type="email" class="form-control" id="inputEmail" >
                     </div>
-                    <label for="inputTelefono" class="col-3 col-form-label">Telefono</label>
+                    <label for="inputTelefono" class="col-3 col-form-label par1">Telefono</label>
                     <div class="col-9">
                         <input type="telefono" class="form-control" id="inputTelefono" >
                     </div>
@@ -74,7 +84,7 @@
             </div>
             <div class="col-md-4 col-sm-12">
                 <div class="p-t-10">
-                    <span >Estos datos son necesarios para </br>que puedan contactar contigo</span>
+                    <span class="par1">Estos datos son necesarios para </br>que puedan contactar contigo</span>
                 </div> 
             </div>
         </div>
@@ -83,7 +93,7 @@
         <div class="row p-t-10 p-l-10 p-r-10">
             <div class="col-md-6 col-sm-8">
                 <div class="form-group row">
-                    <label for="inputVia" class="col-3 col-form-label">Via*</label>
+                    <label for="inputVia" class="col-3 col-form-label par1">Via*</label>
                     <div class="col-9">
                         <input type="edad" class="form-control" id="inputEdad" >
                     </div>
@@ -99,12 +109,12 @@
             </div>
             <div class="col-md-4 col-sm-12">
                 <div class="p-t-10">
-                    <span >Estos datos son necesarios para buscar</br>por proximidad,pero nunca seran </br>publicos</span>
+                    <span class="par1" >Estos datos son necesarios para buscar</br>por proximidad,pero nunca seran </br>publicos</span>
                 </div> 
             </div>
             <div class="col-8">
                 <div class="form-group row">
-                    <label for="inputCodigoPostal" class="col-3 col-form-label">Codigo Postal</label>
+                    <label for="inputCodigoPostal" class="col-3 col-form-label par1">Codigo Postal</label>
                     <div class="col-9">
                         <input type="codigopostal" class="form-control" id="inputCodigoPostal" >
                     </div>
@@ -112,7 +122,7 @@
             </div>
             <div class="col-md-6 col-sm-12">
                 <div class="form-group row">
-                    <label for="inputCodigoPostal" class="col-3 col-form-label">Poblacion</label>
+                    <label for="inputCodigoPostal" class="col-3 col-form-label par1">Poblacion</label>
                     <div class="col-9">
                         <input type="codigopostal" class="form-control" id="inputCodigoPostal" >
                     </div>
@@ -120,12 +130,15 @@
             </div>
             <div class="col-md-6 col-sm-12">
                 <div class="form-group row">
-                    <label for="inputCodigoPostal" class="col-3 col-form-label">Provincia</label>
+                    <label for="inputCodigoPostal" class="col-3 col-form-label par1">Provincia</label>
                     <div class="col-9">
                         <input type="codigopostal" class="form-control" id="inputCodigoPostal" >
                     </div>
                 </div>
             </div>  
         </div>
+    </div> 
+    <div class="col-md-12 ">
+        <buton type="submit" class="btn btn-info btn-block par1">Guardar datos personales</button>
     </div> 
 {% endblock %}  
