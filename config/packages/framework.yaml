@@ -21,4 +21,17 @@ framework:
                 base_path: 'img'
             banner:
                 base_path: 'img'
+            img:
+                base_path: 'img'    
+            circulo:
+                base_path: 'img' 
+            bumb:
+                base_path: 'img'
+            caja:
+                base_path: 'img'
+            cuaderno:
+                base_path: 'img'
+            final:
+                base_path: 'img'                
+                    
           

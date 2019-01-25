@@ -24,6 +24,9 @@ datos_profesionales:
 datos_proyectos:
     path: /vista_usuario/datos_proyectos
     controller: App\Controller\VistaUsuarioController::datos_proyectos
+añadir_proyecto:
+    path: /vista_usuario/añadir_proyecto
+    controller: App\Controller\VistaUsuarioController::añadir_proyecto  
 datos_propuestas:
     path: /vista_usuario/datos_propuestas
     controller: App\Controller\VistaUsuarioController::datos_propuestas  

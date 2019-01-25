@@ -6,4 +6,116 @@
             document.getElementById("op2").style.background="green";
         }
     </script> 
+    <div class="row">
+        <div class="col-md-12 m-t-10">
+            <h4 class="page-head-line">Actualiza tus proyectos</h4>
+        </div>
+    </div> 
+    <div class="content_header m-l-20 m-r-20">  
+        <div class="row ">
+            <div class="col-md-12 fs-17"> 
+                <p class="par"><b>¿Quieres empezar a desarollar tus ideas?</b></p> 
+            </div>
+          <div class="col-md-5  ver_color">
+                <div class="form-check form-check-inline cuadro border p-l-15 p-r-15">
+                    <label class="form-check-label par1 p-r-10 fs-20" for="inlineCheckbox1">Busco Equipo</label>
+                    <input class="form-check-input"  type="checkbox" id="" value="">
+                </div> 
+            </div> 
+            <div class="parafos col-md-7 m-l-0  fs-15">
+                <p class="par">¿Buscas Socio, Equipo o Colaboradores para llevar a cabo tus proyectos?</p>
+            </div>
+        </div>            
+    </div>
+    <div class="proyectos_publicados m-l-20 m-r-20">
+        <div class="row">
+            <div class="col-md-12 par">
+               <p>Tienes X proyectos publicados:</p> 
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-11 par">
+                <p>&#9679; Es hora de publicar tus proyectos, te orientaremos para que puedas rellenar los campos.</p> 
+                <p>&#9679; Podrás cambiar y completar en cualquier momento la información que publiques</p>
+                <p>&#9679; No muestres todas tus cartas, deja algo para cuando os conozcais</p> 
+            </div>
+            <div class="col-md-4 ">
+               <a href="{{ path('añadir_proyecto') }}" class=" btn btn-default border par">Añadir Proyecto</a> 
+            </div>
+        </div>
+    </div>
+    <div class="proyect_box m-l-20 m-r-20 ">
+        <div class="row ">
+            <div class="col-md-3 p-t-10 ">
+                <h5 class="par">Proyecto X</h5>
+                <img class="img p-t-10" src="{{ asset('img.png','img') }}" alt="Symfony!"/>
+            </div>
+            <div class="col-md-9">
+                <table class="table par ">
+                    <thead class="bgAzul text-white">
+                        <tr>
+                            <th>Informe</th>
+                            <th>Fase</th>
+                            <th>Aporto</th>
+                            <th>Necesito/Ofrezo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border">
+                            <td>
+                                <a class="ver_color par" href="#"><p>Ver</p></a>                                       </td>
+                            <td>
+                                <a class="ver_color par" href="#"><p>Idea</p></a>                                       </td>
+                            <td>
+                                <p>Diseño</p><p>Legal</p> 
+                                <a class="ver_color par" href="#"><p>Nuevo</p></a>
+                            </td>
+                            <td>
+                                <p>Marketing 3 /Obra y Servicio</p><p>Legal 3% Ventas</p>
+                                <a class="ver_color par" href="#"><p>Nuevo</p></a>
+                            </td>
+                        </tr>
+                    </tbody>     
+                </table> 
+            </div>
+        </div>
+    </div>
+        <div class="proyect_box m-l-20 m-r-20 ">
+        <div class="row ">
+            <div class="col-md-3 m-t-10 ">
+                <h5 class="par">Proyecto X</h5>
+                <img class="img p-t-10 " src="{{ asset('img.png','img') }}" alt="Symfony!"/>
+            </div>
+            <div class="col-md-9">
+                <table class="table par ">
+                    <thead class="bgAzul text-white">
+                        <tr>
+                            <th>Informe</th>
+                            <th>Fase</th>
+                            <th>Aporto</th>
+                            <th>Necesito/Ofrezo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border">
+                            <td>
+                                <a class="ver_color par" href="#"><p>Ver</p></a>                                       </td>
+                            <td>
+                                <a class="ver_color par" href="#"><p>Idea</p></a>                                       </td>
+                            <td>
+                                <p>Diseño</p><p>Legal</p> 
+                                <a class="ver_color par" href="#"><p>Nuevo</p></a>
+                            </td>
+                            <td>
+                                <p>Marketing 3 /Obra y Servicio</p><p>Legal 3% Ventas</p>
+                                <a class="ver_color par" href="#"><p>Nuevo</p></a>
+                            </td>
+                        </tr>
+                    </tbody>     
+                </table> 
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">   
+        <buton type="submit" class="btn btn-info btn-block m-b-20 par">Guardar tus actualizaciones</button>
+    </div> 
 {% endblock %} 

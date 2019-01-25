@@ -32,6 +32,11 @@ class VistaUsuarioController extends Controller
         $em = $this->getDoctrine()->getManager();
         return $this->render('vista_usuario/datos_Proyectos.html.twig');
     }
+    public function añadir_proyecto(Request $request): Response
+    {
+        $em = $this->getDoctrine()->getManager();
+        return $this->render('vista_usuario/añadir_proyecto.html.twig');
+    }
     public function datos_propuestas(Request $request): Response
     {
         $em = $this->getDoctrine()->getManager();
