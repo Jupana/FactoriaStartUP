@@ -26,6 +26,21 @@ body {
   color:$colortext;  
 }
 
+.wrapper {
+	width: 80%;
+	margin: auto;
+	overflow:hidden;
+  }
+  header {
+	width: 100%;
+	position: fixed;
+	z-index: 10;
+  }
+  .contenido {
+	padding-top: 170px;
+	
+  }
+
 a,
 a:hover,
 a:focus,
@@ -42,7 +57,12 @@ a {
 	
   }
 
-
+  .navbar-fixed-top{
+	position: fixed;
+	z-index: 1030;
+	top: 180px;
+    border-width: 0 0 1px;
+  }
 
 
 .bgWhite{
@@ -55,6 +75,14 @@ a {
 	box-shadow: $shadow;
 	
 }
+.shadow_box{
+	box-shadow: $shadow;
+}
+.modal-dialog {
+    min-width: 70%;
+    min-height: 600px;
+}
+
 
 
 /*---NavBar--*/
@@ -62,24 +90,18 @@ a {
 #navegaccion{
     min-height: 180px;
     position: relative;
-    margin-left: -14px; 
+    margin-left: 0px; 
     margin-right: 24px;
      
 }
 .navbar-dark {
     background-color:$colorWhite!important;
     width: 100%;
-    margin-right: -15px;
     margin-left:-15px;
     margin-top: 0;
     box-shadow:$shadow;
 }
 
-.nav-item{
-    text-align: center;
-    padding-right:10px;
-   
-}
 
  img{
     margin-top: -10px;
@@ -102,7 +124,7 @@ a {
 }
 .banner{
     margin:0px 10px 10px 10px;
-    min-height:15%;
+    min-height:10%;
     padding: 25%;
 	background-color: $colorWhite;
 	
@@ -112,7 +134,9 @@ a {
 /*---Proyectos--*/
 .content{ 
 	box-shadow:$shadow;
+	
 }
+
 #buscar{
     margin-left:25px;
     width:100%;
@@ -624,7 +648,8 @@ iframe {
     }
     #navegaccion{
         min-height: 160px;
-        margin-right:8px;
+		margin-right:8px;
+		margin-left:-15px;
 
       
     }
@@ -636,7 +661,12 @@ iframe {
     .col-md-8 {
         flex: 0 0 97.66667%;
         max-width: 97.66667%;
-    }
+	}
+	.mobil{
+        flex: 0 0 97.66667%;
+		max-width: 97.66667%;
+		
+	}
     .info {
         max-width: 104.66667%;
         flex: 1 0 104.66667%;
@@ -657,8 +687,9 @@ iframe {
 		font-size:20px !important;
 	}
 	.page-head-line{
-		margin-top:20px;
+		margin-top:200px;
 		margin-bottom:20px;
+		font-size:30px;
 	}
 	.img_usuario {
 		width:86%!important;
@@ -674,9 +705,7 @@ iframe {
 	.formulario{
 		margin-top:30px;
 	}
-	.page-head-line{
-		font-size:30px;
-	}
+
 	.par{
 		font-size: 35px !important;
 	}
@@ -698,6 +727,16 @@ iframe {
 		width:273px;
 		height:76px;
 	}
+	.wrapper {
+		width: 100%;
+	}
+	.content{
+		margin-top:30px;
+	}
+	.navbar-fixed-top {
+		top: 267px;
+	}
+
 	
 	
 }
@@ -742,7 +781,7 @@ iframe {
 		font-size:20px !important;
 	}
 	.page-head-line{
-		margin-top:20px;
+		margin-top:200px;
 		margin-bottom:20px;
 	}
 	.img_usuario {
@@ -750,6 +789,15 @@ iframe {
 	}
 	.img_select{
 		width:77%!important;
+	}
+	.wrapper {
+		width: 100%;
+	}
+	.content{
+		margin-top:30px;
+	}
+	.navbar-fixed-top {
+		top: 267px;
 	}
 	
 }
@@ -801,7 +849,7 @@ iframe {
 		font-size:20px !important;
 	}
 	.page-head-line{
-		margin-top:20px;
+		margin-top:200px;
 		margin-bottom:20px;
 	}
 	.img_usuario {
@@ -810,10 +858,16 @@ iframe {
 	.img_select{
 		width:77%!important;
 	}
+	.wrapper {
+		width: 100%;
+	}
 
-	
-  
-
+	.content{
+		margin-top:30px;
+	}
+	.navbar-fixed-top {
+		top: 267px;
+	}
   
 } 
 /*[ FONT SIZE ]

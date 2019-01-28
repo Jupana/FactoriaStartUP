@@ -7,7 +7,7 @@
         }
     </script> 
     <div class="row">
-        <div class="col-md-12 m-t-10">
+        <div class="col-md-12 m-l-20 m-t-60 m-b-20 ">
             <h4 class="page-head-line">Actualiza tus proyectos</h4>
         </div>
     </div> 
@@ -38,8 +38,8 @@
                 <p>&#9679; Podrás cambiar y completar en cualquier momento la información que publiques</p>
                 <p>&#9679; No muestres todas tus cartas, deja algo para cuando os conozcais</p> 
             </div>
-            <div class="col-md-4 ">
-               <a href="{{ path('añadir_proyecto') }}" class=" btn btn-default border par">Añadir Proyecto</a> 
+            <div class="col-md-4 m-t-10 m-b-10">
+               <a href="{{ path('añadir_proyecto') }}" class=" btn-success p-t-10 p-b-10 p-r-10 p-l-10 par">Añadir Proyecto</a> 
             </div>
         </div>
     </div>
@@ -62,16 +62,16 @@
                     <tbody>
                         <tr class="border">
                             <td>
-                                <a class="ver_color par" href="#"><p>Ver</p></a>                                       </td>
+                                <a data-toggle="modal" data-target="#modalForm_info_proyecto" class="ver_color par" href="#"><p>Ver</p></a>                                       </td>
                             <td>
-                                <a class="ver_color par" href="#"><p>Idea</p></a>                                       </td>
+                                <a data-toggle="modal" data-target="#modalForm_fase_proyecto" class="ver_color par" href="#"><p>Idea</p></a>                                       </td>
                             <td>
                                 <p>Diseño</p><p>Legal</p> 
-                                <a class="ver_color par" href="#"><p>Nuevo</p></a>
+                                <a data-toggle="modal" data-target="#modalForm_aporto_proyecto" class="ver_color par" href="#"><p>Nuevo</p></a>
                             </td>
                             <td>
                                 <p>Marketing 3 /Obra y Servicio</p><p>Legal 3% Ventas</p>
-                                <a class="ver_color par" href="#"><p>Nuevo</p></a>
+                                <a data-toggle="modal" data-target="#modalForm_necesito_proyecto"class="ver_color par" href="#"><p>Nuevo</p></a>
                             </td>
                         </tr>
                     </tbody>     
@@ -79,11 +79,11 @@
             </div>
         </div>
     </div>
-        <div class="proyect_box m-l-20 m-r-20 ">
+     <div class="proyect_box m-l-20 m-r-20 ">
         <div class="row ">
-            <div class="col-md-3 m-t-10 ">
+            <div class="col-md-3 p-t-10 ">
                 <h5 class="par">Proyecto X</h5>
-                <img class="img p-t-10 " src="{{ asset('img.png','img') }}" alt="Symfony!"/>
+                <img class="img p-t-10" src="{{ asset('img.png','img') }}" alt="Symfony!"/>
             </div>
             <div class="col-md-9">
                 <table class="table par ">
@@ -98,16 +98,16 @@
                     <tbody>
                         <tr class="border">
                             <td>
-                                <a class="ver_color par" href="#"><p>Ver</p></a>                                       </td>
+                                <a data-toggle="modal" data-target="#modalForm_info_proyecto" class="ver_color par" href="#"><p>Ver</p></a>                                       </td>
                             <td>
-                                <a class="ver_color par" href="#"><p>Idea</p></a>                                       </td>
+                                <a data-toggle="modal" data-target="#modalForm_fase_proyecto" class="ver_color par" href="#"><p>Idea</p></a>                                       </td>
                             <td>
                                 <p>Diseño</p><p>Legal</p> 
-                                <a class="ver_color par" href="#"><p>Nuevo</p></a>
+                                <a data-toggle="modal" data-target="#modalForm_aporto_proyecto" class="ver_color par" href="#"><p>Nuevo</p></a>
                             </td>
                             <td>
                                 <p>Marketing 3 /Obra y Servicio</p><p>Legal 3% Ventas</p>
-                                <a class="ver_color par" href="#"><p>Nuevo</p></a>
+                                <a data-toggle="modal" data-target="#modalForm_necesito_proyecto"class="ver_color par" href="#"><p>Nuevo</p></a>
                             </td>
                         </tr>
                     </tbody>     
@@ -115,7 +115,12 @@
             </div>
         </div>
     </div>
+    
     <div class="col-md-12">   
         <buton type="submit" class="btn btn-info btn-block m-b-20 par">Guardar tus actualizaciones</button>
     </div> 
+    {% include 'modals/Act_Info_Proyecto.html.twig' %}
+    {% include 'modals/Act_Fase_Proyecto.html.twig' %}
+    {% include 'modals/Act_Aporto_Proyecto.html.twig' %}  
+    {% include 'modals/Act_Necesito_Proyecto.html.twig' %}      
 {% endblock %} 

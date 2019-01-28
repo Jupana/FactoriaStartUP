@@ -2,35 +2,44 @@
 <!--Contenido Navegaccion-->
 <div class="container">   
     <section id="navegaccion" >       
-        <div class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="navbar navbar-dark bg-dark">
             <div class="row" >
-               <div class="col-lg-3 col-md-2 col-sm-1 col-xs-1"> 
+               <div class="col-md-2 col-sm-1 col-xs-1"> 
                     <img class="imglogo" src="{{ asset('logo.png','imagenlogo') }}" alt="Symfony!"/>
                 </div>
-                <div class="col-lg-9 col-md-10 col-sm-11  col-xs-11">              
+                <div class="col-md-10 col-sm-11  col-xs-11">              
                     <img  class="imgbanner" src="{{ asset('banner.png','banner') }}" alt="Symfony!"/>
+                    <a href="#collapse" data-toggle="collapse" class="par ver_color p-l-0 fs-25">Menu</a>
                 </div>
-                <div class="col-lg-2 col-md-2 col-sm-6  nav-item active ">
-                    <a class="nav-link btn-success par1" href="#">Proyectos <span class="sr-only">(current)</span></a>
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-6 nav-item ">
-                    <a class="nav-link btn-warning text-white par1" href="#">Perfiles <span class="sr-only">(current)</span></a>
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-6  nav-item ">
-                    <a class="nav-link  btn-info par1" href="#">Noticias</a>
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-6  nav-item ">
-                    <a class="nav-link  btn-info par1" href="#">Foro</a>
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-6  nav-item ">
-                    <a class="nav-link btn-info par1" href="#">Heramientas</a>
-                </div>  
-                <div class="col-lg-2 col-md-2 col-sm-6 nav-item float-right">
-                    <a class="nav-link  text-black border par1"href="{{ path('login') }}">Registro</a>
-                </div>                                 
-            </div>         
-            </div>
+                <div class="menu_vista">
+                    <div class="container-menu_vista" >
+                        <div class="wrap-menu m-l-30">
+                            <div class="collapse" id="collapse" >
+                                <a href="{{ path('proyectos_equipos') }}"  class="par1 btn-success p-t-5 p-b-5 p-l-50 p-r-50 text-center" type="submit">
+                                    Proyectos						
+                                </a>
+                                <a href="#" class="par1 text-white btn-warning p-t-5 p-b-5 p-l-50 p-r-50  text-center" type="submit">
+                                    Perfiles						
+                                </a>
+                                <a href="#"   class="par1 btn-info p-t-5 p-b-5 p-l-50 p-r-50  text-center" type="submit">
+                                    Noticias			
+                                </a>
+                                <a href="#"  class="par1 btn-info p-t-5 p-b-5 p-l-50 p-r-50  text-center" type="submit">
+                                    Foro			
+                                </a>
+                                <a href="# " class="par1 btn-info p-t-5 p-b-5 p-l-50 p-r-50  text-center" type="submit">
+                                    Herramientas
+                                </a> 
+                                <a href="{{ path('login') }}"class="par1 border p-t-5 p-b-5 p-l-50 p-r-50  text-center " type="submit">
+                                    Registro
+                                </a>    
+                            </div>                             
+                        </div>
+                    </div>          
+                </div>                            
+            </div>                   
         </div>    
     </section>  
 </div>
 {% endblock %}
+

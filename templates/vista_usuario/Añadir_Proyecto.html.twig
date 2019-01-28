@@ -7,7 +7,7 @@
         }
     </script> 
     <div class="row">
-        <div class="col-md-12 m-t-10">
+        <div class="col-md-12  m-l-20  m-t-60 m-b-20">
             <h4 class="page-head-line">Añadir Proyecto</h4>
         </div>
     </div> 
@@ -17,7 +17,7 @@
                 <p>&#9679; Esto no no es un plan de negocios, se trata de mostrar que has  hechos los deberes y que grado de compromiso tienes con tu proyecto.</p> 
                 <p>&#9679; Recuerda entrar y completar lo que falte para que sea cada vez más atractiva para los demás.</p>
             </div>
-            <div class="col-md-3">
+            <div class="mobil col-md-3">
                 <img src="{{ asset('img.png','img') }}" alt="Symfony!"/>
                 <form class="p-b-0">
                     <div class="form-group">
@@ -139,13 +139,123 @@
                     <label class="form-check-label par1" for="inlineCheckbox2 "> <b>Producto final</b> Tienes equipo, tienes producto, incluso ya facturas.. es decir, necesitas mas profesionales para tu negocio.</label>
                 </div> 
             </div>
-            
+            <div class="col-md-12 text-center m-t-20 ">
+                <a  class="ver_color par" id="ver" href="#que_aporto" value="Mostrar" onclick="mostrar_que_aporto()">Siguiente >>></a>
+            </div>
+            <div id="que_aporto" class="col-md-12 m-b-20  par " style="display:none">
+                <div class="col-md-12 m-t-20">
+                    <p>Para atraer el interés cuenta tu experiencia, contactos, clientes, equipo, espacio de trabajo, etc. Intenta que la gente a parte de confiar en tu proyecto, confíe en ti.</p>
+                </div>
+                <div class="col-md-12">
+                    <p><b>¿Tienes equipo?</b></p>
+                </div>
+                <div class="col-md-12 m-l-80 m-b-10">
+                    <div class="form-check form-check-inline">
+                        <label class="form-check-label par1 m-r-10" for="inlineCheckbox2 "><b>¿Tienes equipo?  Si</b></label>
+                        <input class="form-check-input" type="checkbox" id="  inlineCheckbox2" value="option2">
+                    </div> 
+                </div>
+                <div class="col-md-12">
+                    <p>&#9679; Tanto si estás solo como si tienes equipo, cuéntanos qué perfiles están cubiertos en tu proyecto</p>
+                    <p>&#9679; Marca de forma general que se cubre y luego explica si hay alguna especialidad: Lenguajes de programación, tipo de marketing, especialización jurídica, etc</p>
+                    <p>&#9679; Recuerda que una persona puede cubrir distintos perfiles y varias personas un único perfil</p>
+                </div>
+                <div class="col-md-12 text-center">
+                    <button class="btn-info p-r-10 p-l-10 p-t-5 p-b-5 " data-toggle="modal" data-target="#modalForm">
+                        Añadir Perfil Aportado
+                    </button>
+                </div> 
+                <div class="col-md-12 m-t-20">
+                    <table class="table border par1 ">
+                        <thead>
+                            <tr>
+                                <th>Perfil</th>
+                                <th>Sector</th>
+                                <th>Descripción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <p>Marketing</p>
+                                </td>
+                                <td>
+                                    <p>Distribucion y Venta</p>                                     
+                                </td>
+                                <td>
+                                    <a class="ver_color par1" href="#"><p>ver</p></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row">
+                    <div class="mobil col-md-3 border m-l-20 m-r-10 p-t-10">
+                        <p><span class="btn-info p-l-5 p-r-5 p-t-2 p-b-2">1</span><b> Selecciona perfil:</b></p>
+                        <hr/>
+                        <p class="">Busca el perfil que mejor se adapte a las necesidades que tienes que cubrir en tu proyecto</p>
+                    </div>
+                    <div class="mobil col-md-5 border m-r-10 p-t-10">
+                        <p><span class="btn-info p-l-5 p-r-5 p-t-2 p-b-2">2</span><b> Propón que ofreces:</b></p>
+                        <hr/>
+                        <p class="">
+                            <b>% empresa:</b> el socio de toda la vida.</br>
+                            <b>% ventas:</b> Así vende así gana</br>
+                            <b>Obra y servicio:</b> Pequeñas cuantías</br>
+                            <b>Pacto a Futuro:</b> Compromiso de trabajo
+                        </p>
+                    </div>
+                    <div class="mobil col-md-3 border m-r-10 p-t-10">
+                        <p><span class="btn-info p-l-5 p-r-5 p-t-2 p-b-2">3</span><b> Propuesta:</b></p>
+                        <hr/>
+                        <p class="">Explica que tiene que hacer y porque le ofreces ese acuerdo</p>
+                    </div>
+                </div> 
+                <div class="col-md-12 m-t-25">
+                    <p>&#9679; Trata de ser justo y coherente, si no la gente no le interesa trabajar en tu proyecto.</p>
+                    <P>&#9679; Esto sirve para crear la bases de un futuro trabajo en equipo. Pero la verdadera negociación se hace cara a cara</P>                
+                </div> 
+                 <div class="col-md-12 text-center">
+                    <button class="btn-info p-r-10 p-l-10 p-t-5 p-b-5 " data-toggle="modal" data-target="#modalForm_necesito">
+                        Añadir Perfil Necesitado
+                    </button>
+                </div> 
+                <div class="col-md-12 m-t-20">
+                    <table class="table border par1 ">
+                        <thead>
+                            <tr>
+                                <th>Perfil</th>
+                                <th>Acuerdo</th>
+                                <th>Descripción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <p>Marketing</p><p>Comercial/Contactos</p>
+                                </td>
+                                <td>
+                                    <p>25% socio</p> 
+                                    <p>30% Ventas</p>                                     
+                                </td>
+                                <td>
+                                    <a class="ver_color par1" href="#"><p>ver</p></a>
+                                    <a class="ver_color par1" href="#"><p>ver</p></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div> 
+                <a href="#que_aporto" value="Ocultar" onclick="ocultar_que_aporto()" class="ver_color float-r par" ><<< Anterior</a> 
+            </div>          
         </div>
     </div>
    
     <div class="col-md-12">   
-        <buton type="submit" class="btn btn-info btn-block m-t-30 m-b-10 par">Guardar Proyecto</button>
+        <buton type="submit" class="btn btn-info btn-block m-t-30 m-b-20 par">Guardar Proyecto</button>
     </div> 
+    {% include 'modals/Añadir_perfil.html.twig' %}
+    {% include 'modals/Añadir_perfil_necesitado.html.twig' %}  
 {% endblock %} 
 {% block javascripts %}
 	<script type="text/javascript">
@@ -153,5 +263,9 @@
             document.getElementById('ayuda').style.display = 'block';}
         function ocultar(){
             document.getElementById('ayuda').style.display = 'none';}
+        function mostrar_que_aporto(){
+            document.getElementById('que_aporto').style.display = 'block';} 
+         function ocultar_que_aporto(){
+            document.getElementById('que_aporto').style.display = 'none';}       
 	</script>
 {% endblock %}
