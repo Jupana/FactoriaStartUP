@@ -5,30 +5,29 @@
 {% block content %}
 <!--Contenido Vista-Usuario-->
 <div class="row col-md-8 content bgWhite">
-  	<div class="menu_vista">
 		<div class="container-menu_vista" >
-			<div class="row wrap-menu  navbar-fixed-top p-l-15">
-            <span class="par1 p-l-5">Mi Espacio</span>
-  	            <div class="p-l-10" >
-					<a href="{{ path('datos_personales') }}" id="op0"class="par1 btn-info p-t-5 p-b-5 p-l-10 p-r-10 text-center" type="submit">
+			<nav class="navbar navbar-expand-sm navbar-fixed-top  ">
+                <button data-toggle="collapse" data-target="#menu" class="ver_color par1">Ocultar&raquo </button>
+  	            <ul class="navbar-nav" id="menu" >
+					<li class="nav-item"><a href="{{ path('datos_personales') }}" id="op0"class="nav-link par1 btn-info p-t-5 p-b-5 p-l-10 p-r-10 text-center" type="submit">
 						Datos Personales						
-                    </a>
-                    <a href="{{ path('datos_profesionales') }}" id="op1" class="par1 btn-info p-t-5 p-b-5 p-l-10 p-r-10 text-center" type="submit">
+                    </a></li>
+                    <li class="nav-item"><a href="{{ path('datos_profesionales') }}" id="op1" class="nav-link par1 btn-info p-t-5 p-b-5 p-l-10 p-r-10 text-center" type="submit">
 						Datos Profesionales						
-                    </a>
-                    <a href="{{ path('datos_proyectos') }}" id="op2"  class="par1 btn-info p-t-5 p-b-5 p-l-10 p-r-10 text-center" type="submit">
+                    </a></li>
+                    <li class="nav-item"><a href="{{ path('datos_proyectos') }}" id="op2"  class="nav-link par1 btn-info p-t-5 p-b-5 p-l-10 p-r-10 text-center" type="submit">
 						Mis Proyectos				
-                    </a>
-                    <a href="{{ path('datos_propuestas') }}" id="op3" class="par1 btn-info p-t-5 p-b-5 p-l-10 p-r-10 text-center" type="submit">
-						Mis Propuestas			
-                    </a>
-                    <a href="{{ path('datos_cuenta') }}" id="op4" class="par1 btn-info p-t-5 p-b-5 p-l-10 p-r-10 text-center" type="submit">
+                    </a></li>
+                    <li class="nav-item "><a class="nav-link par1  btn-info p-t-5 p-b-5 p-l-10 p-r-10 text-center"  href="{{ path('datos_propuestas') }}" id="op3"  type="submit">
+						Mis Propuestas</a>			
+                    </li>
+                    <li class="nav-item"><a href="{{ path('datos_cuenta') }}" id="op4" class="nav-link  par1 btn-info p-t-5 p-b-5 p-l-10 p-r-10 text-center" type="submit">
 						Mis Cuenta
-                    </a>    
-				</div>                             
-            </div>
+                    </a></li>    
+				</ul>                             
+            </nav>
         </div>          
-    </div>
+  
      {% block vista %}{% endblock %}             
 </div>
 {% endblock %}
