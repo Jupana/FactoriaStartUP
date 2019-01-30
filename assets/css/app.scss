@@ -84,7 +84,8 @@ a {
 }
 .modal-dialog {
     min-width: 70%;
-    min-height: 600px;
+	min-height: 600px;
+	
 }
 
 
@@ -92,10 +93,10 @@ a {
 /*---NavBar--*/
 
 #navegaccion{
-    min-height: 180px;
-    position: relative;
-	margin-right: 24px;
-	margin-left:-15px;
+    min-height: 160px;
+	position: relative;
+	margin-right:-4px;
+
      
 }
 .navbar-dark {
@@ -105,6 +106,13 @@ a {
     margin-top: 0;
     box-shadow:$shadow;
 }
+
+.nti{
+	margin-bottom: -90px !important;
+	margin-left:-25px;
+ 
+}
+
 
 
  img{
@@ -585,7 +593,7 @@ iframe {
   /*---Datos_Personales--*/
   .page-head-line {
     font-weight: 500;;
-    border-bottom: 2px solid $color2;
+    /*--border-bottom: 2px solid $color2;--*/
     color: $color2;
 	font-size: 20px; 
 }
@@ -639,7 +647,7 @@ iframe {
 	.container {
 		max-width: 100%;
 		margin-right: 0px;
-		margin-left: 26px;
+		margin-left: 10px;
 	}
     .imgbanner{
         width: 102%;
@@ -648,12 +656,14 @@ iframe {
         width: 119%;
     }
     #navegaccion{
-        min-height: 160px;
-		margin-right:8px;
-		margin-left:-15px;
+		margin-right: -10px;
+		margin-left: 0px;
 
       
-    }
+	}
+	.nti{
+		margin-bottom: -10px!important;
+	}
     #buscar{
         margin-left:0px;
         width:99%;
@@ -671,7 +681,7 @@ iframe {
     .info {
         max-width: 104.66667%;
         flex: 1 0 104.66667%;
-        margin-left: -41px;
+        margin-left: -24px;
     }
     .banner{
         margin-top:20px;
@@ -738,8 +748,12 @@ iframe {
 		top: 267px;
 	}
 	.nav-pills{
-		margin-top:143px;
+		margin-top:200px;
 		margin-bottom:-190px;
+	}
+
+	.int_btn{
+		margin-top:211px;
 	}
 
 	
@@ -748,139 +762,11 @@ iframe {
 
 /*---sm--*/
 @media (max-width:768px){
-	.container {
-		max-width: 100%;
-		margin-right: 0px;
-		margin-left: 26px;
-	}
-    .imgbanner{
-        width: 102%;
-    }
-    .imglogo{
-        width: 119%;
-    }
-    #navegaccion{
-        min-height: 160px;
-        margin-right:8px;
-    }
-    #buscar{
-        margin-left:0px;
-        width:99%;
-         
-    }
-    .banner{
-        margin-top:20px;
-        }
-    .wrap-login100 {
-        padding-left: 60px;
-        padding-right: 60px;
-    }
-	.columna1,.columna2 ,.columna3,.columna4{
-		flex: 0 0 70.33333%;
-		max-width: 70.33333%;
-	}
-	.text_header{
-		font-size:25px !important;
-	}
-	.text_f{
-		font-size:20px !important;
-	}
-	.page-head-line{
-		margin-top:200px;
-		margin-bottom:20px;
-	}
-	.img_usuario {
-		width:76% !important;
-	}
-	.img_select{
-		width:77%!important;
-	}
-	.wrapper {
-		width: 100%;
-	}
-	.content{
-		margin-top:30px;
-	}
-	.navbar-fixed-top {
-		top: 267px;
-	}
-	.nav-pills{
-		margin-top:143px;
-		margin-bottom:-190px;
-	}
 	
 }
 /*---col.(xs)--*/
 @media (max-width:575){
-	.container {
-		max-width: 100%;
-		margin-right: 0px;
-		margin-left: 26px;
-	}
-    .imgbanner{
-        width: 102%;
-    }
-    .imglogo{
-        width: 119%;
-    }
-    #navegaccion{
-        min-height: 160px;
-        margin-right:8px;
-      
-      
-    }
-    #buscar{
-        margin-left:0px;
-        width:99%;
-         
-    }
-    .banner{
-    margin-top:20px;
-    }
-    .wrap-login100 {
-        padding-left: 15px;
-        padding-right: 15px;
-
-    }
-    .btn-face,
-    .btn-google {
-        width: 100%;
-	}
-
-	.columna1,.columna2 ,.columna3,.columna4{
-		flex: 0 0 70.33333%;
-		max-width: 70.33333%;
-	}
-	.text_header{
-		font-size:25px !important;
-	}
-	.text_f{
-		font-size:20px !important;
-	}
-	.page-head-line{
-		margin-top:200px;
-		margin-bottom:20px;
-	}
-	.img_usuario {
-		width:76%!important;
-	}	
-	.img_select{
-		width:77%!important;
-	}
-	.wrapper {
-		width: 100%;
-	}
-
-	.content{
-		margin-top:30px;
-	}
-	.navbar-fixed-top {
-		top: 267px;
-	}
-	.nav-pills{
-		margin-top:143px;
-		margin-bottom:-190px;
-	}
+	
   
 } 
 /*[ FONT SIZE ]

@@ -6,12 +6,18 @@ login:
     controller: App\Controller\RegistrationController::loginAction
 logout:
     path: /logout      
-proyectos_equipos:
-    path: /proyectos_equipos
-    controller: App\Controller\ProyectosController::index    
+proyectos:
+    path: /proyectos
+    controller: App\Controller\BuscarController::proyectos   
+equipo:
+    path: /equipo
+    controller: App\Controller\BuscarController::equipo       
 detalle_proyecto:
-    path: /detalle_proyecto
-    controller: App\Controller\DetalleProyectoController::index  
+    path: /detalleProyecto
+    controller: App\Controller\DetalleController::proyecto 
+detalle_usuario:
+    path: /detalleUsuario
+    controller: App\Controller\DetalleController::usuario     
 vista_usuario:
     path: /vista_usuario
     controller: App\Controller\VistaUsuarioController::index_vista

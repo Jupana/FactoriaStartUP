@@ -1,0 +1,120 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Perfiles{% endblock %}
+
+{% block content %}
+<!--Contenido Proyectos-->
+<div class="col-md-8 content bgWhite border">
+    <h1 class="col-md-12 text-center m-t-20 m-b-20 par">Buscar Equipo</h1>
+    <div class="col-md-12 m-b-20" id="buscar">
+        <div class="form-group row">
+            <label for="sector" class="col-form-label par1">Sectores</label>
+            <div class="col-md-2">
+                <input class="form-control" type="search"  >
+            </div>
+            <label for="perfiles" class="col-form-label par1">Perfiles</label>
+            <div class="col-md-2">
+                <input class="form-control" type="search" >
+            </div>
+            <label for="distancia" class="col-form-label par1">Distrancia</label>
+            <div class="col-md-2">
+                <input class="form-control" type="search">            
+            </div>             
+            <button type="search" class=" btn-md btn-info par1">Buscar</button>                           
+        </div>
+    </div>
+    <div class="perfiles">
+        <div class="row m-t-20 m-b-20">
+            <div class="col-md-4">
+                <div class="blog-grid border ">                          
+                    <div class="blog-grid-img p-l-35">  
+                        <img src="{{ asset('img.png','img') }}" alt="Symfony!"/>
+                    </div>
+                    <div class="blog-grid-text p-t-25 p-b-25 p-r-25 p-l-25 ">     
+                        <h4><strong>Usuario:Nombre</strong></h4>
+                        <div class="no-margin">    
+                            <p>Perfil:Marketing,Finaciar</strong></p>
+                        </div>  
+                        <a  class="ver_color"href="{{ path('detalle_usuario') }}">Ver Mas...</a>                  
+                    </div>                                                   
+                </div>
+            </div>
+             <div class="col-md-4">
+                <div class="blog-grid border ">                          
+                    <div class="blog-grid-img p-l-35">  
+                        <img src="{{ asset('img.png','img') }}" alt="Symfony!"/>
+                    </div>
+                    <div class="blog-grid-text p-t-25 p-b-25 p-r-25 p-l-25 ">     
+                        <h4><strong>Usuario:Nombre</strong></h4>
+                        <div class="no-margin">    
+                            <p>Perfil:Marketing,Finaciar</strong></p>
+                        </div>  
+                        <a  class="ver_color"href="{{ path('detalle_usuario') }}">Ver Mas...</a>                  
+                    </div>                                                   
+                </div>
+            </div>
+             <div class="col-md-4">
+                <div class="blog-grid border ">                          
+                    <div class="blog-grid-img p-l-35">  
+                        <img src="{{ asset('img.png','img') }}" alt="Symfony!"/>
+                    </div>
+                    <div class="blog-grid-text p-t-25 p-b-25 p-r-25 p-l-25 ">     
+                        <h4><strong>Usuario:Nombre</strong></h4>
+                        <div class="no-margin">    
+                            <p>Perfil:Marketing,Finaciar</strong></p>
+                        </div>  
+                        <a  class="ver_color"href="{{ path('detalle_usuario') }}">Ver Mas...</a>                  
+                    </div>                                                   
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="blog-grid border ">                          
+                    <div class="blog-grid-img p-l-35">  
+                        <img src="{{ asset('img.png','img') }}" alt="Symfony!"/>
+                    </div>
+                    <div class="blog-grid-text p-t-25 p-b-25 p-r-25 p-l-25 ">     
+                        <h4><strong>Usuario:Nombre</strong></h4>
+                        <div class="no-margin">    
+                            <p>Perfil:Marketing,Finaciar</strong></p>
+                        </div>  
+                        <a  class="ver_color"href="{{ path('detalle_usuario') }}">Ver Mas...</a>                  
+                    </div>                                                   
+                </div>
+            </div>
+             <div class="col-md-4">
+                <div class="blog-grid border ">                          
+                    <div class="blog-grid-img p-l-35">  
+                        <img src="{{ asset('img.png','img') }}" alt="Symfony!"/>
+                    </div>
+                    <div class="blog-grid-text p-t-25 p-b-25 p-r-25 p-l-25 ">     
+                        <h4><strong>Usuario:Nombre</strong></h4>
+                        <div class="no-margin">    
+                            <p>Perfil:Marketing,Finaciar</strong></p>
+                        </div>  
+                        <a  class="ver_color"href="{{ path('detalle_usuario') }}">Ver Mas...</a>                  
+                    </div>                                                   
+                </div>
+            </div>
+             <div class="col-md-4">
+                <div class="blog-grid border ">                          
+                    <div class="blog-grid-img p-l-35">  
+                        <img src="{{ asset('img.png','img') }}" alt="Symfony!"/>
+                    </div>
+                    <div class="blog-grid-text p-t-25 p-b-25 p-r-25 p-l-25 ">     
+                        <h4><strong>Usuario:Nombre</strong></h4>
+                        <div class="no-margin">    
+                            <p>Perfil:Marketing,Finaciar</strong></p>
+                        </div>  
+                        <a  class="ver_color"href="{{ path('detalle_usuario') }}">Ver Mas...</a>                  
+                    </div>                                                   
+                </div>
+            </div>
+        </div>
+         
+         
+    </div>                         
+</div>
+{% endblock %}
+

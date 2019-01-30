@@ -2,24 +2,27 @@
 <!--Contenido Navegaccion-->
 <div class="container">   
     <section id="navegaccion" >       
-        <div class="navbar navbar-dark bg-dark">
+        <div class="navbar navbar-dark bg-dark p-b-0">
             <div class="row" >
-               <div class="col-md-2 col-sm-1 col-xs-1"> 
+                <div class="col-md-1">
+                    <button type="button" data-toggle="collapse" data-target="#menu1" class="navbar-toggler p-t-70 ">
+                        <span class="navbar-toggler-icon nti btn-info par m-b-0  active "></span>
+                    </button> 
+                </div> 
+               <div class="col-md-2"> 
                     <img class="imglogo" src="{{ asset('logo.png','imagenlogo') }}" alt="Symfony!"/>
-                </div>
-                <div class="col-md-10 col-sm-11  col-xs-11">              
-                    <img  class="imgbanner" src="{{ asset('banner.png','banner') }}" alt="Symfony!"/>
-                    <a href="#collapse" data-toggle="collapse" class="par ver_color p-l-0 fs-25">Menu&raquo;
-                    </a>
-                </div>
+                </div>               
+                <div class="col-md-9">                           
+                    <img  class="imgbanner" src="{{ asset('banner.png','banner') }}" alt="Symfony!"/>          
+                </div>   
                 <div class="menu_vista">
                     <div class="container-menu_vista" >
                         <div class="wrap-menu m-l-35">
-                            <div class="collapse" id="collapse" >
-                                <a href="{{ path('proyectos_equipos') }}"  class="par1 btn-success p-t-5 p-b-5 p-l-50 p-r-50 text-center" type="submit">
+                            <div  id="menu1" >
+                                <a href="{{ path('proyectos') }}"  class="par1 btn-success p-t-5 p-b-5 p-l-50 p-r-50 text-center" type="submit">
                                     Proyectos						
                                 </a>
-                                <a href="#" class="par1 text-white btn-warning p-t-5 p-b-5 p-l-50 p-r-50  text-center" type="submit">
+                                <a href="{{ path('equipo') }}" class="par1 text-white btn-warning p-t-5 p-b-5 p-l-50 p-r-50  text-center" type="submit">
                                     Perfiles						
                                 </a>
                                 <a href="#"   class="par1 btn-info p-t-5 p-b-5 p-l-50 p-r-50  text-center" type="submit">
@@ -31,9 +34,9 @@
                                 <a href="# " class="par1 btn-info p-t-5 p-b-5 p-l-50 p-r-50  text-center" type="submit">
                                     Herramientas
                                 </a> 
-                                <a href="{{ path('login') }}"class="par1 border p-t-5 p-b-5 p-l-50 p-r-50 m-r-0 text-center " type="submit">
-                                    Registro
-                                </a>    
+                                <a href="{{ path('login') }}"  class="par1 border p-t-5 p-b-5 p-l-50 p-r-50 text-center" type="submit">
+                                    Login
+                                </a>   
                             </div>                             
                         </div>
                     </div>          
@@ -41,6 +44,6 @@
             </div>                   
         </div>    
     </section>  
-</div>
+</div> 
 {% endblock %}
 
