@@ -9,7 +9,7 @@
                 <p class="par ver_color int_btn fs-20 p-l-5"><b>Informacion personal del promotor del proyecto</b></p>
             </div>
             <div class="col-md-3">
-                <a href="#"><p class="bgGris int_btn par p-r-5 p-l-5 text-center fs-20 m-r-10  ">Me Interesa</p></a>
+                <a href="#" data-toggle="modal" data-target="#modalForm_MeInteresa"><p class="bgGris int_btn par p-r-5 p-l-5 text-center fs-20 m-r-10  ">Me Interesa</p></a>                                   
             </div>
         </div>
         <div class="row margin_top m-t-20">    
@@ -119,5 +119,6 @@
             <div class="col-md-2"><p class="p-t-10">Marketing/<br/>25%<br/>Empresa</p></div>
             <div class="col-md-8 border"style="height:80px;"></div>
         </div>
-    </div>    
+     </div>  
+    {% include 'modals/MeInteresa.html.twig' %}      
 {% endblock %}

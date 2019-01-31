@@ -26,9 +26,117 @@
                     </a></li>    
 				</ul>                             
             </nav>
-        </div>          
-  
-     {% block vista %}{% endblock %}             
+        </div>
+        <a class="float-r  p-t-60 par datosGrabados" href="{{ path('vista_usuario')}}">&raquoDatosGrabados</a>          
+    {% block vista %}
+    <div class="vistaPredefinida m-t-80">
+        <div class="row">
+            <div class="col-md-6">
+                <p class="par ver_color fs-20 p-l-5 "><b>Informacion Perfil</b></p>
+                <div class="row p-l-20">
+                    <div class="col-md-4 border par1 ">
+                        <div>Foto</div>
+                    </div> 
+                    <div class="col-md-8 par1">
+                        <span>Usuario : UserName</span><br/>
+                        <span>Nombre: Nombre</span><br/>
+                        <span>Email: *********</span><br/>
+                        <span>Telefono: 666******</span><br/>
+                    </div> 
+                </div>
+            </div>
+            <div class="col-md-6">
+                <p class="ver_color par fs-20 p-l-5"><b>Datos profesionales</b></p>
+                <span class=" par fs-15 p-l-5">Te defines como:</span>
+                <div  class="border m-r-20 par1"style="height:60px;" >FFFFFFFFFFFF</div>
+            </div>
+        </div>
+        <div class="row m-t-20 margin_top "> 
+            <div class="col-md-12">
+                <p class=" par fs-17 p-l-5">Estos son los perfiles profesionales y los sectores en los que tienes experiencia:</p>
+            </div>
+        </div>   
+        <div class="row m-t-10 m-r-10 par1">
+            <div class="col-md-2"><p class="p-t-10">Comercial/<br/>Contactos:<br/>Fereteria</p></div>
+            <div class="col-md-10  border"style="height:80px;"></div>
+        </div> 
+        <div class="proyect_box m-t-10 m-l-5 m-r-20 ">
+            <div class="row ">
+                <div class="col-md-12 par">
+                <p class="fs-20 ver_color par"><b>Tienes los siguentes proyectos publicados:</b></p> 
+                </div>
+                <div class="col-md-3 p-t-10 ">
+                    <h5 class="par">Proyecto X</h5>
+                    <img class="img p-t-10" src="{{ asset('img.png','img') }}" alt="Symfony!"/>
+                </div>
+                <div class="col-md-9">
+                    <table class="table par ">
+                        <thead class="bgGris ">
+                            <tr>
+                                <th>Informe</th>
+                                <th>Fase</th>
+                                <th>Aporto</th>
+                                <th>Necesito/Ofrezo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border">
+                                <td>
+                                    <a data-toggle="modal" data-target="#modalForm_info_proyecto" class="ver_color par" href="#"><p>Ver</p></a>                                       </td>
+                                <td>
+                                    <a data-toggle="modal" data-target="#modalForm_fase_proyecto" class="ver_color par" href="#"><p>Idea</p></a>                                       </td>
+                                <td>
+                                    <p>Diseño</p><p>Legal</p> 
+                                    <a data-toggle="modal" data-target="#modalForm_aporto_proyecto" class="ver_color par" href="#"><p>Nuevo</p></a>
+                                </td>
+                                <td>
+                                    <p>Marketing 3 /Obra y Servicio</p><p>Legal 3% Ventas</p>
+                                    <a data-toggle="modal" data-target="#modalForm_necesito_proyecto"class="ver_color par" href="#"><p>Nuevo</p></a>
+                                </td>
+                            </tr>
+                        </tbody>     
+                    </table> 
+                </div>
+                <div class="col-md-3 p-t-10 ">
+                    <h5 class="par">Proyecto X</h5>
+                    <img class="img p-t-10" src="{{ asset('img.png','img') }}" alt="Symfony!"/>
+                </div>
+                <div class="col-md-9">
+                    <table class="table par ">
+                        <thead class="bgGris ">
+                            <tr>
+                                <th>Informe</th>
+                                <th>Fase</th>
+                                <th>Aporto</th>
+                                <th>Necesito/Ofrezo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border">
+                                <td>
+                                    <a data-toggle="modal" data-target="#modalForm_info_proyecto" class="ver_color par" href="#"><p>Ver</p></a>                                       </td>
+                                <td>
+                                    <a data-toggle="modal" data-target="#modalForm_fase_proyecto" class="ver_color par" href="#"><p>Idea</p></a>                                       </td>
+                                <td>
+                                    <p>Diseño</p><p>Legal</p> 
+                                    <a data-toggle="modal" data-target="#modalForm_aporto_proyecto" class="ver_color par" href="#"><p>Nuevo</p></a>
+                                </td>
+                                <td>
+                                    <p>Marketing 3 /Obra y Servicio</p><p>Legal 3% Ventas</p>
+                                    <a data-toggle="modal" data-target="#modalForm_necesito_proyecto"class="ver_color par" href="#"><p>Nuevo</p></a>
+                                </td>
+                            </tr>
+                        </tbody>     
+                    </table> 
+                </div>
+            </div>
+        </div> 
+    </div>          
+        {% include 'modals/Act_Info_Proyecto.html.twig' %}
+        {% include 'modals/Act_Fase_Proyecto.html.twig' %}
+        {% include 'modals/Act_Aporto_Proyecto.html.twig' %}  
+        {% include 'modals/Act_Necesito_Proyecto.html.twig' %}  
+    {% endblock %}             
 </div>
 {% endblock %}
 

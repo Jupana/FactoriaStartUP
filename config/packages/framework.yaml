@@ -32,6 +32,10 @@ framework:
             cuaderno:
                 base_path: 'img'
             final:
-                base_path: 'img'                
+                base_path: 'img' 
+            MeInteresa1:
+                base_path: 'img'
+            MeInteresa2:
+                base_path: 'img'                           
                     
           

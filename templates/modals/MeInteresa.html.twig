@@ -1,0 +1,66 @@
+<!--Ventana Pop-Up -->  
+    <div class="modal fade par" id="modalForm_MeInteresa" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span class="modal-close par" aria-hidden="true">×</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                </div>
+                <div class="col-md-12 text-center m-t-10  modal-title">
+                    <h4 class="par" id="myModalLabel">Me Interesa</h4>  
+                </div>    
+                <!-- Modal Body -->
+                <div class="modal-body "> 
+                <div class="col-md-10">
+                    <div class="row fs-17 par1 m-l-100 p-l-10"> 
+                        <div class="col-md-12">                 
+                            <p>En estos momentos dispones de un <a href=""class="ver_color fs-17 par1">bono gratuito de 30 </a>contactos, has gastado <a href=""class="ver_color fs-17 par1">5</a></p>            
+                            <button data-toggle="modal" data-target="#modalForm_RecargarContactos" type="button" class="btn btn-info  par1 float-r" data-dismiss="modal">Recargar Contactos</button>
+                            <p>Para que os conozcais un poco mejor, os invitamos a tomar un café en uno de nuestros centros colaboradores.</p>
+                        </div>
+                        <div class="col-md-3 m-t-10">  
+                            <img src="{{ asset('MeInteresa1.png','MeInteresa1') }}" alt="Symfony!"/>
+                        </div>
+                        <div class="col-md-4 m-t-10">  
+                            <img src="{{ asset('MeInteresa2.png','MeInteresa2') }}" alt="Symfony!"/>
+                        </div>
+                        <div class="col-md-2"></div>
+                        <div class="col-md-8 m-t-10">
+                            <table class="table par ">
+                                <thead class="bgGris ">
+                                    <tr>
+                                        <th>Centro</th>
+                                        <th>Distancia</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="border">
+                                        <td>
+                                            <p>Centro 1</p><p>Centro 2</p><p>Centro 3</p>
+                                        </td>
+                                        <td>
+                                            <p>1,4 km</p><p>2,8 km</p><p>3,5 km</p>
+                                        </td>
+                                    </tr>
+                                </tbody>     
+                            </table> 
+                        </div>
+                        <div class="col-md-2"></div>
+                    </div>
+                </div>
+                </div>
+                <!-- Modal Footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info" data-dismiss="modal">Ver Mapa</button>
+                </div>
+            </div>
+        </div>
+    </div>
+     {% include 'modals/RecargarContactos.html.twig' %}  
+    
+ 
+
+    

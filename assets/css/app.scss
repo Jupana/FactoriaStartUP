@@ -26,6 +26,7 @@ body {
   color:$colortext;  
 }
 
+
 .wrapper {
 	width: 80%;
 	margin: auto;
@@ -698,7 +699,7 @@ iframe {
 		font-size:20px !important;
 	}
 	.page-head-line{
-		margin-top:200px;
+		margin-top:180px;
 		margin-bottom:20px;
 		font-size:30px;
 	}
@@ -755,7 +756,13 @@ iframe {
 	.int_btn{
 		margin-top:211px;
 	}
-
+	.vistaPredefinida,.datosGrabados{
+		margin-top:250px !important;
+	}
+	.datosGrabados{
+		margin-top:130px !important;
+		color:$color2;
+	}
 	
 	
 }
