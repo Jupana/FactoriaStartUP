@@ -44,4 +44,10 @@ herramientas:
     controller: App\Controller\HerramientasController::index 
 foro:
     path: /foro
-    controller: App\Controller\ForoController::index                   
+    controller: App\Controller\ForoController::index 
+noticias:
+    path: /noticias
+    controller: App\Controller\NoticiasController::index  
+noticia:
+    path: /noticias/id_noticia
+    controller: App\Controller\NoticiasController::noticias                             
