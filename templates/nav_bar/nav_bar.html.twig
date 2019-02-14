@@ -1,49 +1,45 @@
 {% block header %}
-<!--Contenido Navegaccion-->
-<div class="container">   
-    <section id="navegaccion" >       
-        <div class="navbar navbar-dark bg-dark p-b-0">
-            <div class="row" >
-                <div class="col-md-1">
-                    <button type="button" data-toggle="collapse" data-target="#menu1" class="navbar-toggler p-t-70 ">
-                        <span class="navbar-toggler-icon nti btn-info par m-b-0  active "></span>
-                    </button> 
-                </div> 
-               <div class="col-md-2"> 
-                    <img class="imglogo" src="{{ asset('logo.png','imagenlogo') }}" alt="Symfony!"/>
-                </div>               
-                <div class="col-md-9">                           
-                    <img  class="imgbanner" src="{{ asset('banner.png','banner') }}" alt="Symfony!"/>          
-                </div>   
-                <div class="menu_vista">
-                    <div class="container-menu_vista" >
-                        <div class="wrap-menu m-l-35">
-                            <div  id="menu1" >
-                                <a href="{{ path('proyectos') }}"  class="par1 btn-success p-t-5 p-b-5 p-l-50 p-r-50 text-center" type="submit">
-                                    Proyectos						
-                                </a>
-                                <a href="{{ path('equipo') }}" class="par1 text-white btn-warning p-t-5 p-b-5 p-l-50 p-r-50  text-center" type="submit">
-                                    Perfiles						
-                                </a>
-                               <a href="{{ path('noticias') }}"   class="par1 btn-info p-t-5 p-b-5 p-l-50 p-r-50  text-center" type="submit">
-                                    Noticias			
-                                </a>
-                                <a href="{{ path('foro') }}"  class="par1 btn-info p-t-5 p-b-5 p-l-50 p-r-50  text-center" type="submit">
-                                    Foro			
-                                </a>
-                                <a href="{{ path('herramientas') }}" class="par1 btn-info p-t-5 p-b-5 p-l-50 p-r-50  text-center" type="submit">
-                                    Herramientas
-                                </a> 
-                                <a href="{{ path('login') }}"  class="par1 border p-t-5 p-b-5 p-l-50 p-r-50 text-center" type="submit">
-                                    Login
-                                </a>   
-                            </div>                             
-                        </div>
-                    </div>          
-                </div>                            
-            </div>                   
-        </div>    
-    </section>  
-</div> 
+<div class="container bgWhite  "> 
+    <div class="flex-row justify-content-around border-bottom border-secondary">
+        <div class="col-xs-2"> 
+            <img class="imglogo " src="{{ asset('logo.png','imagenlogo') }}" alt="Symfony!"/>
+         </div>               
+        <div class="col-xs-10 ">                           
+            <img  class="imgbanner" src="{{ asset('banner.png','banner') }}" alt="Symfony!"/>          
+        </div> 
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="#"> 
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ path('proyectos') }}">Proyectos <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link " href="{{ path('equipo') }}">Perfiles <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Blog
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{ path('noticias') }}">Noticias</a>
+                        <a class="dropdown-item" href="{{ path('foro') }}">Foro</a>
+                        <a class="dropdown-item" href="{{ path('herramientas') }}">Herramientas</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <a class="btn btn-outline-secondary my-2 my-sm-0" href="{{ path('login') }}">Iniciar/Registrar</a>
+            </form>
+        </div>
+    </nav>   
+</div>    
 {% endblock %}
 

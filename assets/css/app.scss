@@ -25,21 +25,10 @@ body {
   line-height: 1.5;
   color:$colortext;  
 }
-
-
-.wrapper {
-	width: 80%;
-	margin: auto;
-	overflow:hidden;
-  }
-  header {
+header {
 	width: 100%;
 	position: fixed;
 	z-index: 10;
-  }
-  .contenido {
-	padding-top: 170px;
-	
   }
 
 a,
@@ -58,17 +47,11 @@ a {
 	
   }
 
-  .navbar-fixed-top{
-	position: fixed;
-	z-index: 1030;
-	top: 180px;
-    border-width: 0 0 1px;
-  }
-
 
 .bgWhite{
 	background: $colorWhite;
 	box-shadow: $shadow;
+	margin-bottom:10px;
 
 	
 }
@@ -90,53 +73,23 @@ a {
 }
 
 
-
-/*---NavBar--*/
-
-#navegaccion{
-    min-height: 160px;
-	position: relative;
-	margin-right:-4px;
-
-     
-}
-.navbar-dark {
-    background-color:$colorWhite!important;
-    width: 100%;
-    margin-left:-15px;
-    margin-top: 0;
-    box-shadow:$shadow;
-}
-
-.nti{
-	margin-bottom: -90px !important;
-	margin-left:-25px;
- 
-}
-
-
-
- img{
-    margin-top: -10px;
-}
-
 /*---Home--*/
 .home{ 
     background-color: $color2;
     height: 500px;
-    box-shadow:$shadow;
+	box-shadow:$shadow;
+	margin-right:-15px;
+	margin-left:-15px;
+	
 } 
 .home-item a{ 
-    margin-top:90%;
-    margin-left:50%;
-    margin-right:-70%;
     text-decoration:none;
     color:white;
     font-size:20px;
 
 }
 .banner{
-    margin:0px 10px 10px 10px;
+	margin-bottom:11px;
     min-height:10%;
     padding: 25%;
 	background-color: $colorWhite;
@@ -144,40 +97,7 @@ a {
     
  } 
 
-/*---Proyectos--*/
-.content{ 
-	box-shadow:$shadow;
-	
-}
 
-#buscar{
-    margin-left:25px;
-    width:100%;
-     
-}
-
-.blog-grid {
-    box-shadow:$shadow;
-}
-.blog-grid-img{
-    padding-top: 10px !important;
-}
-.blog-grid-text {
-    position: relative;
-    margin-bottom: 15px;
-}
-.padding-25px-all {
-    padding: 25px;
-}
-.border {
-    //box-shadow: 0 0 0 1px rgba(0,0,0,.15), 0 1px 2px rgba(0,0,0,.2);
-    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.2), 0 1px 5px 0 rgba(0,0,0,0.12);
-    -webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.2), 0 1px 5px 0 rgba(0,0,0,0.12);
-}
-/*---Detalle_Proyectos--*/
-.detalle_proyecto{
-    padding:50px 0px 0px 50px;
-}
 
 /*---Registro--*/
 input {
@@ -618,29 +538,6 @@ iframe {
 }
 
 
-  /*---Footer-*/
-
-.ct-footer {
-  background-color: $color2;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-flex-flow: row wrap;
-  flex-flow: row wrap;
-  
- 
-}
-.columna1, 
-.columna2, 
-.columna3, 
-.columna4 {
-  width: 100%;
-}
-
-.socials{
-	margin-right:-20px;
-}
-
-
 
 /*---Media queries--*/
 /*---lg pantalla Mayor de 992px--*/
@@ -648,20 +545,10 @@ iframe {
 @media screen and (max-width:992px){ 
 	.container {
 		max-width: 100%;
-		margin-right: 0px;
-		margin-left: 10px;
 	}
-    .imgbanner{
-        width: 102%;
-    }
-    .imglogo{
-        width: 119%;
-    }
-    #navegaccion{
-		margin-right: -10px;
-		margin-left: 0px;
 
-      
+	.margin-mobil-container{
+		margin-top:120px !important;
 	}
 	.nti{
 		margin-bottom: -10px!important;
@@ -671,38 +558,28 @@ iframe {
         width:99%;
          
     }
-    .col-md-8 {
-        flex: 0 0 97.66667%;
-        max-width: 97.66667%;
+    .home{
+		margin-left:-15px;
+		margin-right:-15px;
+	}
+	.mobil_banner{
+		margin-left:-15px !important;
 	}
 	.mobil{
         flex: 0 0 97.66667%;
 		max-width: 97.66667%;
 		
 	}
-    .info {
-        max-width: 104.66667%;
-        flex: 1 0 104.66667%;
-        margin-left: -24px;
-    }
-    .banner{
-        margin-top:20px;
-	}
-	.columna1,.columna2 ,.columna3,.columna4{
-		flex: 0 0 70.33333%;
-		max-width: 70.33333%;
-
-	}
+    
 	.text_header{
-		font-size:25px !important;
+		font-size:17px !important;
 	}
 	.text_f{
-		font-size:20px !important;
+		font-size:13px !important;
 	}
 	.page-head-line{
-		margin-top:180px;
 		margin-bottom:20px;
-		font-size:30px;
+		font-size:20px;
 	}
 	.img_usuario {
 		width:86%!important;
@@ -718,21 +595,7 @@ iframe {
 	.formulario{
 		margin-top:30px;
 	}
-
-	.par{
-		font-size: 35px !important;
-	}
-	.par1{
-		font-size: 30px !important;
-	}
-	.col-md-7 {
-		flex: 0 0 80%;
-		max-width:80%;
-	}
-	.col-md-5{
-		flex: 0 0 80%;
-		max-width:80%;
-	}
+	
 	.parafos{
 		margin-top:20px;
 	}
@@ -740,30 +603,16 @@ iframe {
 		width:273px;
 		height:76px;
 	}
-	.wrapper {
-		width: 100%;
-	}
+	
 	.content{
 		margin-top:30px;
 	}
-	.navbar-fixed-top {
-		top: 267px;
-	}
+	
 	.nav-pills{
 		margin-top:200px;
 		margin-bottom:-190px;
 	}
-
-	.int_btn{
-		margin-top:211px;
-	}
-	.vistaPredefinida,.datosGrabados{
-		margin-top:250px !important;
-	}
-	.datosGrabados{
-		margin-top:130px !important;
-		color:$color2;
-	}
+	
 	
 	
 }

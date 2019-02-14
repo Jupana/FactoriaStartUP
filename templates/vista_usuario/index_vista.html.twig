@@ -4,9 +4,9 @@
 
 {% block content %}
 <!--Contenido Vista-Usuario-->
-<div class="col-md-8 content bgWhite">
-		<div class="container-menu_vista" >
-			<nav class="navbar navbar-expand-sm navbar-fixed-top  ">
+    <div class="row">
+		<div class="col-12" >
+			<nav class="navbar navbar-expand navbar-fixed-top  ">
                 <button data-toggle="collapse" data-target="#menu" class="ver_color par1">Ocultar&raquo </button>
   	            <ul class="navbar-nav" id="menu" >
 					<li class="nav-item"><a href="{{ path('datos_personales') }}" id="op0"class="nav-link par1 btn-info p-t-5 p-b-5 p-l-10 p-r-10 text-center" type="submit">
@@ -27,9 +27,10 @@
 				</ul>                             
             </nav>
         </div>
-        <a class="float-r  p-t-60 par datosGrabados" href="{{ path('vista_usuario')}}">&raquoDatosGrabados</a>          
+    </div>    
+    <a class="float-r par" href="{{ path('vista_usuario')}}">&raquoDatosGrabados</a>          
     {% block vista %}
-    <div class="vistaPredefinida m-t-80">
+    <div class="vistaPredefinida m-t-20 ">
         <div class="row">
             <div class="col-md-6">
                 <p class="par ver_color fs-20 p-l-5 "><b>Informacion Perfil</b></p>
@@ -137,7 +138,7 @@
         {% include 'modals/Act_Aporto_Proyecto.html.twig' %}  
         {% include 'modals/Act_Necesito_Proyecto.html.twig' %}  
     {% endblock %}             
-</div>
+
 {% endblock %}
 
   

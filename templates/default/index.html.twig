@@ -2,16 +2,15 @@
 
 {% block content %}
 <!--Contenido HOME-->
-<div class="col-md-8  home">
-    <div class="row">
-		<div class=" col-md-4 home-item   ">
-            <a class="par" style="float:left" href="{{ path('equipo') }}">Busco equipo</a>  
+    <div class="flex-row justify-content-around  home p-t-200">
+		<div class=" col-xs-4 home-item">
+            <a class=""  href="{{ path('equipo') }}">Busco equipo</a>  
         </div>
-        <div class="col-md-4 home-item ">
-            <a class="par" style="float:right"href="{{ path('proyectos') }}">Busco Proyecto</a>                                            
+        <div class="col-xs-4 home-item">
+            <a class="" href="{{ path('proyectos') }}">Busco Proyecto</a>                                            
         </div> 
     </div>                   
-</div>
+
 {% endblock %}
 
 
