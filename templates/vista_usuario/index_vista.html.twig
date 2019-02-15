@@ -3,46 +3,65 @@
 {% block title %}Vista_Usuario{% endblock %}
 
 {% block content %}
-<!--Contenido Vista-Usuario-->
-    <div class="row">
-		<div class="col-12" >
-			<nav class="navbar navbar-expand navbar-fixed-top  ">
-                <button data-toggle="collapse" data-target="#menu" class="ver_color par1">Ocultar&raquo </button>
-  	            <ul class="navbar-nav" id="menu" >
-					<li class="nav-item"><a href="{{ path('datos_personales') }}" id="op0"class="nav-link par1 btn-info p-t-5 p-b-5 p-l-10 p-r-10 text-center" type="submit">
-						Datos Personales						
-                    </a></li>
-                    <li class="nav-item"><a href="{{ path('datos_profesionales') }}" id="op1" class="nav-link par1 btn-info p-t-5 p-b-5 p-l-10 p-r-10 text-center" type="submit">
-						Datos Profesionales						
-                    </a></li>
-                    <li class="nav-item"><a href="{{ path('datos_proyectos') }}" id="op2"  class="nav-link par1 btn-info p-t-5 p-b-5 p-l-10 p-r-10 text-center" type="submit">
-						Mis Proyectos				
-                    </a></li>
-                    <li class="nav-item "><a class="nav-link par1  btn-info p-t-5 p-b-5 p-l-10 p-r-10 text-center"  href="{{ path('datos_propuestas') }}" id="op3"  type="submit">
-						Mis Propuestas</a>			
-                    </li>
-                    <li class="nav-item"><a href="{{ path('datos_cuenta') }}" id="op4" class="nav-link  par1 btn-info p-t-5 p-b-5 p-l-10 p-r-10 text-center" type="submit">
-						Mis Cuenta
-                    </a></li>    
-				</ul>                             
-            </nav>
-        </div>
-    </div>    
-    <a class="float-r par" href="{{ path('vista_usuario')}}">&raquoDatosGrabados</a>          
+<!--Contenido Vista-Usuario--> 
+	<nav class="navbar navbar-light">
+    <a class="float-l" href="{{ path('vista_usuario')}}">&raquoTu Vista</a>
+    <a class="float-r" href="{{ path('index')}}">Deconectate</a>
+        <div class="row">
+            <div class="col-md-1">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu" aria-controls="menu"  aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+            <div class="col-md-11 col-12">       
+                <form class="form-inline"id="menu">
+                    <div class="row no-gutters">
+                        <div class="col-md-2 col-12">
+                            <a href="{{ path('datos_personales') }}" id="op0"class="nav-link  text-center" type="submit">
+                                Datos Personales						
+                            </a>
+                        </div>
+                        <div class="col-md-2 col-12">
+                            <a href="{{ path('datos_profesionales') }}" id="op1" class="nav-link  text-center" type="submit">
+                                Datos Profesionales						
+                            </a>
+                        </div>
+                        <div class="col-md-2 col-12">
+                            <a href="{{ path('datos_proyectos') }}" id="op2"  class="nav-link text-center" type="submit">
+                                Mis Proyectos				
+                            </a>
+                        </div>
+                        <div class="col-md-2 col-12">
+                            <a class="nav-link  text-center"  href="{{ path('datos_propuestas') }}" id="op3"  type="submit">
+                                Mis Propuestas
+                            </a>
+                        </div>
+                        <div class="col-md-2 col-12">			
+                            <a href="{{ path('datos_cuenta') }}" id="op4" class="nav-link   text-center" type="submit">
+                                Mis<br/> Cuenta
+                            </a> 
+                        </div>
+                    </div> 
+                </form> 
+            </div>    
+        </div>                               
+    </nav>            
     {% block vista %}
     <div class="vistaPredefinida m-t-20 ">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-6 col-12">
                 <p class="par ver_color fs-20 p-l-5 "><b>Informacion Perfil</b></p>
                 <div class="row p-l-20">
-                    <div class="col-md-4 border par1 ">
+                    <div class="col-md-4 col-4 border">
                         <div>Foto</div>
                     </div> 
-                    <div class="col-md-8 par1">
-                        <span>Usuario : UserName</span><br/>
-                        <span>Nombre: Nombre</span><br/>
-                        <span>Email: *********</span><br/>
-                        <span>Telefono: 666******</span><br/>
+                    <div class="col-md-8 col-8">
+                        <div class="row">
+                            <span>Usuario : UserName</span>
+                            <span>Nombre: Nombre</span>
+                            <span>Email: *********</span>
+                            <span>Telefono: 666******</span>
+                        </div>    
                     </div> 
                 </div>
             </div>
@@ -58,8 +77,8 @@
             </div>
         </div>   
         <div class="row m-t-10 m-r-10 par1">
-            <div class="col-md-2"><p class="p-t-10">Comercial/<br/>Contactos:<br/>Fereteria</p></div>
-            <div class="col-md-10  border"style="height:80px;"></div>
+            <div class="col-md-2 col-3"><p class="p-t-10">Comercial/<br/>Contactos:<br/>Fereteria</p></div>
+            <div class="col-md-10 col-9  border"style="height:80px;"></div>
         </div> 
         <div class="proyect_box m-t-10 m-l-5 m-r-20 ">
             <div class="row ">
