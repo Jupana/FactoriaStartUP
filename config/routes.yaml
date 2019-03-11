@@ -1,11 +1,6 @@
 index:
     path: /
-    controller: App\Controller\DefaultController::index
-login:
-    path: /login
-    controller: App\Controller\RegistrationController::loginAction
-logout:
-    path: /logout      
+    controller: App\Controller\DefaultController::index          
 proyectos:
     path: /proyectos
     controller: App\Controller\BuscarController::proyectos   
