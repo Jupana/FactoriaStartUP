@@ -3,10 +3,10 @@ index:
     controller: App\Controller\DefaultController::index          
 proyectos:
     path: /proyectos
-    controller: App\Controller\BuscarController::proyectos   
+    controller: App\Controller\SearchController::searchProject  
 equipo:
     path: /equipo
-    controller: App\Controller\BuscarController::equipo       
+    controller: App\Controller\SearchController::searchTeam       
 detalle_proyecto:
     path: /detalleProyecto
     controller: App\Controller\DetalleController::proyecto 

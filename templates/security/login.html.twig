@@ -2,7 +2,7 @@
 
 {% block content %}
 	{% if error %}
-		<div class="alert alert-danger">
+		<div class="m-t-20 alert alert-danger">
 			{{ error.messageKey|trans(error.messageData, 'security') }}
 		</div>
 	{% endif %}
@@ -10,9 +10,6 @@
 		<h4  class="font-weight-bold">Ingresa</h4>
 		<form action="{{ path('security_login') }}" method="post" class="form-inline">
 			<div class="input-group m-r-10 m-t-10">
-				<div class="input-group-prepend">
-					<span class="input-group-text" id="basic-addon1">@</span>
-				</div>
 				<input type="text" id="username" name="_username" required="required" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" 
 					value="{{ last_username }}">
 			</div>

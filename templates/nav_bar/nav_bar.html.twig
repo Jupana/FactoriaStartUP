@@ -36,7 +36,12 @@
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
-                <a class="btn btn-outline-secondary my-2 my-sm-0" href="{{ path('security_login') }}">Iniciar/Registrar</a>
+                {% if is_granted('ROLE_USER') %}
+                    <a class="nav-link" href="{{ path('vista_usuario')}}">{{ app.user.name}}</a>       
+                    <a class="btn btn-outline-secondary my-2 my-sm-0" href="{{ path('security_logout') }}">Deconectate</a>       
+                {% else %}
+                    <a class="btn btn-outline-secondary my-2 my-sm-0" href="{{ path('security_login') }}">Iniciar/Registrar</a>
+                {% endif %}
             </form>
         </div>
     </nav>   
