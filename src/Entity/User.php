@@ -12,18 +12,19 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @UniqueEntity(fields="email", message="This e-mail is already used")
  * @uniqueEntity(fields="username", message="This username is already used")
+ * @ORM\Table(name="fsu_users")
  */
 class User implements UserInterface,\Serializable
 {
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer")     * 
      */
     private $id;
 
      /**
-     * @ORM\Column(type="string", length=50, unique=true)
+     * @ORM\Column(type="string", length=50, unique=true,name="user_username")
      * @Assert\NotBlank()
      * @Assert\Length(min=5, max=50)
      */
