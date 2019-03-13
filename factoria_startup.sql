@@ -6,6 +6,8 @@
 #
 # Structure for table "migration_versions"
 #
+CREATE database factoria_startup;
+use factoria_startup;
 
 DROP TABLE IF EXISTS `migration_versions`;
 CREATE TABLE `migration_versions` (
