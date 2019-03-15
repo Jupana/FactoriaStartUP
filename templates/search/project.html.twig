@@ -9,16 +9,20 @@
         <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Sectores</label>
         <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
             <option selected>Elije...</option>
-            <option value="1">Marketing</option>
-            <option value="2">Ventas</option>
-            <option value="3">Compras</option>
+            {% for sector in opciones_sectores %}
+                <option>
+                    {{ sector.name }}</li>
+                </option>    
+            {% endfor %}  
         </select>
         <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Perfiles</label>
         <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
             <option selected>Elije...</option>
-            <option value="1">Ingeniero</option>
-            <option value="2">Administrativo</option>
-            <option value="3">Director</option>
+            {% for perfil in opciones_perfil %}
+                <option>
+                    {{ perfil.name }}</li>
+                </option>    
+            {% endfor %}
         </select>
         <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Distancia</label>
         <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">

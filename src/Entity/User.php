@@ -19,7 +19,7 @@ class User implements UserInterface,\Serializable
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")     * 
+     * @ORM\Column(type="integer") 
      */
     private $id;
 
@@ -31,7 +31,7 @@ class User implements UserInterface,\Serializable
     private $username;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string",name="user_password")
      */
     private $password;
 
@@ -42,140 +42,138 @@ class User implements UserInterface,\Serializable
     private $plainPassword;
 
     /**
-     * @ORM\Column(type="string", length=30, unique=true)
+     * @ORM\Column(type="string", length=30, unique=true,name="user_email")
      * @Assert\NotBlank()
      * @Assert\Email()
      */
     private $email;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="string", nullable=true,name="user_name")
      */
     private $name;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
-     
-     
+     * @ORM\Column(type="string", nullable=true,name="user_surname_1")   
      */
     private $surname_1;
       /**
-     * @ORM\Column(type="string", nullable=true) 
+     * @ORM\Column(type="string", nullable=true,name="user_surname_2") 
      
      */
     private $surname_2;
 
      /**
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(type="datetime", nullable=true,name="user_birth_date")
     
      */
     private $birth_date;
 
      /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="string", nullable=true,name="user_sex")
     
      */
     private $sex;
 
      /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="string", nullable=true,name="user_street_type")
     
      */
     private $street_type;
 
      /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="string", nullable=true,name="user_street_name")
     
      */
     private $street_name;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="string", nullable=true,name="user_street_number")
     
      */
     private $street_number;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="string", nullable=true,name="user_block")
     
      */
     private $block;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="string", nullable=true,name="user_apartment")
     
      */
     private $apartment;
 
      /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="string", nullable=true,name="user_city")
     
 
      */
     private $city;
 
      /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="string", nullable=true,name="user_postal_code")
     
      */
     private $postal_code;
 
      /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="string", nullable=true,name="user_provincie")
     
      */
     private $province;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="string", nullable=true,name="user_country")
     
      */
     private $country;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="string", nullable=true,name="user_perfil_img")
     
      */
     private $perfil_img;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="string", nullable=true,name="user_team_search")
     
      */
     private $team_search;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="string", nullable=true,name="user_proyect_search")
     
      */
     private $proyect_search;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
-    
+     * @ORM\Column(type="string", nullable=true,name="user_phone_number")
+
      */
     private $phone_number;
 
     /**
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(type="datetime", nullable=true,name="user_inscription_date")
     
      */
-    private $instription_date;
+    private $inscription_date;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="string", nullable=true,name="user_latitud")
     
      */
     private $latitud;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="string", nullable=true,name="user_longitud")
     
      */
     private $longitud;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="string", nullable=true,name="user_IP")
     
      */
     private $IP;
@@ -186,9 +184,16 @@ class User implements UserInterface,\Serializable
      */
     private $projects;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\ProfileUser", mappedBy="user") 
+     */
+    private $profiles;
+
+
     public function __construct()
     {
         $this->projects = new ArrayCollection();
+        $this->profiles = new ArrayCollection();
     }
 
 
@@ -496,12 +501,12 @@ class User implements UserInterface,\Serializable
         return $this;
     }
 
-    public function getInstriptionDate(): ?\DateTimeInterface
+    public function getInscriptionDate(): ?\DateTimeInterface
     {
         return $this->instription_date;
     }
 
-    public function setInstriptionDate(\DateTimeInterface $instription_date): self
+    public function setInscriptionDate(\DateTimeInterface $instription_date): self
     {
         $this->instription_date = $instription_date;
 

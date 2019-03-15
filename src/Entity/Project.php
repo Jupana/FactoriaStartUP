@@ -6,16 +6,17 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ProjectRepository")
- * *@ORM\Table(name="fsu_projects")
+ * @ORM\Table(name="fsu_projects")
  */
 class Project
 {
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer",name="project_id")
      */
     private $id;
+    
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="projects")
