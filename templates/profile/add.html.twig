@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block content %} 
+    <div class="row">
+        <div class="col-md-12  m-l-20  m-t-20 m-b-20">
+            <h4 class="page-head-line">Nuevo Perfil</h4>
+        </div>
+    </div> 
+    {{ form_start(form) }} 
+    {{ form_widget(form) }}    
+    {{ form_end(form) }}
+
+{% endblock %} 

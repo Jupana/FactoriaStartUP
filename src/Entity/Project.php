@@ -285,7 +285,10 @@ class Project
         return $this;
     }
 
-    public function getUser(): ?User
+    /**
+     * @return User
+     */
+    public function getUser()
     {
         return $this->user;
     }

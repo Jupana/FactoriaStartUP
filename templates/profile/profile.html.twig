@@ -18,11 +18,11 @@
                     <div>Foto</div>
                 </div> 
                 <div class="col-md-8 col-8">
-                    <span>Usuario : UserName</span><br/>
-                    <span>Nombre: Nombre</span><br/>
+                    <span>Usuario :<b>{{profile.user.username}}</b></span><br/>
+                    <span>Nombre:<b>{{profile.user.name}}</b></span><br/>
                     <span>Proximidad: 4,5km</span><br/>
-                    <span>Email: *********</span><br/>
-                    <span>Telefono: 666******</span><br/>
+                    <span>Email:<b>{{profile.user.email}}</b></span><br/>
+                    <span>Telefono:<b>{{profile.user.phoneNumber}}</b></span><br/>
                 </div> 
             </div>
         </div>
@@ -39,11 +39,11 @@
     </div> 
     <div class="row m-t-20 margin_top "> 
         <div class="col-md-12">
-            <p class=" par fs-20 p-l-5"><b>Se define como:</b></p>
+            <p class=" par fs-20 p-l-5">Se define como:</p>
         </div>
         <div class="col-md-12 ">
             <div  class="border m-r-20"style="height:80px;" >
-            lalalalalalallllllllllllllllllllllllllllllllllllllllllllllllllll
+                <b>{{profile.description}}</b>
             </div>
         </div>
     </div> 
@@ -51,15 +51,15 @@
         <div class="col-md-12">
             <p class=" par fs-20 p-l-5"><b>Estos son los perfiles profesionales y los sectores en los que tiene experiencia:</b></p>
         </div>
-    </div>   
-    <div class="row m-t-20 m-r-10">
-        <div class="col-md-2 col-3"><p class="p-t-10">Comercial/<br/>Contactos:<br/>Fereteria</p></div>
-        <div class="col-md-10 col-8  border"style="height:80px;"></div>
     </div> 
-    <div class="row m-t-20 m-r-10">
-        <div class="col-md-2 col-3"><p class="p-t-10">Comercial/<br/>Contactos<br/>Marketing</p></div>
-        <div class="col-md-10 col-8 border"style="height:80px;"></div>
-    </div>  
+     
+    <div class="row m-t-20 m-r-10">      
+        <div class="col-md-12 col-8 border"style="height:80px;">
+            <p>Sector:<b>{{ profile.Sector.Name}}</b></strong></p>
+            <p>Perfil:<b>{{ profile.Profil.Name}}</b></strong></p>        
+        </div>
+    </div> 
+    
     <div class="row m-t-20 m-b-20 p-r-20"> 
         <div class="col-md-12">
             <p class="ver_color par fs-20 "><b>Contactos previos</b></p>

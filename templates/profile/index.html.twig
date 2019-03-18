@@ -1,24 +1,32 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Proyectos{% endblock %}
+{% block title %}Perfiles{% endblock %}
 
 {% block content %}
-<!--Proyectos-->
-    <h1 class="col-md-12 text-center m-t-20 m-b-20 par">Buscar Proyectos </h1>
-      <form class="form-inline m-t-20 m-b-20">
+<!--Equipos-->
+{% if is_granted('ROLE_USER') %}    
+<small class="d-block text-right pt-3">
+    <button class="btn-info" data-toggle="modal" data-target="#modalForm">
+         Añade Perfil 
+    </button> 
+</small>
+{% endif %}
+<h1 class="col-md-12 text-center m-t-20 m-b-20 par">Buscar Equipo</h1>
+    <form class="form-inline m-t-20 m-b-20">
         <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Sectores</label>
         <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
             <option selected>Elije...</option>
-            {% for sector in opciones_sectores %}
+                {% for sector in opciones_sectores %}
                 <option>
                     {{ sector.name }}</li>
                 </option>    
-            {% endfor %}  
+                {% endfor %}  
+            </option>       
         </select>
         <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Perfiles</label>
         <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
             <option selected>Elije...</option>
-            {% for perfil in opciones_perfil %}
+             {% for perfil in opciones_perfil %}
                 <option>
                     {{ perfil.name }}</li>
                 </option>    
@@ -35,23 +43,31 @@
         <button type="submit" class="d-block d-sm-none btn btn-block btn-outline-secondary my-2 my-xs-0">Buscar</button>
     </form> 
     <div class="row ">
-    {% for project in projects %}
+    {% for profile in profiles %}
         <div class="col-md-4 col-sm-6 col-xs-12 m-t-10 m-b-10"> 
             <div class="card border">                         
                 <div class="card-header d-none d-sm-block">  
-                    <img  class="card-img-top" src="{{ asset('logo.png','imagenlogo') }}" alt="image">
+                    <img  class="card-img-top" src="{{ asset('img.png','img') }}" alt="image">
                 </div>
                 <div class="card-body ">     
-                    <h4 class="card-title">{{ project.ProjectName }}</h4>                                     
-                    <p class="card-text">Descripcion Proyecto</br>{{ project.ProjectDescription}}</p>               
+                    <h4 class="card-title">Usuario:<br/>{{ profile.User.Name}}</h4>                   
+                    <p class="card-text">Perfil:{{ profile.Profil.Name}}</strong></p>
+                    <p class="card-text">Sector:{{ profile.Sector.Name}}</strong></p>                               
                 </div> 
                 <div class="card-footer">
-                    <span class="d-block"><strong>@{{project.User.Username}}</strong><small>{{ project.ProjectDate|date("d/m/y")}}</small></span>
-                    <a href="{{ path('detalle_proyecto') }}" class=" ver_color">Ver Mass..</a>
-                </div>                                                  
-            </div>
-        </div> 
-    {% endfor %}            
+                    <a href="{{ path('detalle_profile',{"id": profile.id }) }}" class=" ver_color">Ver Mass..</a></br>                                                
+                    {% if is_granted('edit', profile) %} 
+                        <a href="{{ path("editar_profile",{"id": profile.id }) }}" class="btn btn-outline-warning">Modificar</a>
+                    {% endif %}
+                    {% if is_granted('delete', profile) %} 
+                        <a href="{{ path("eliminar_profile",{"id": profile.id }) }}" class="btn btn-outline-danger">Eliminar</a>
+                    {% endif %}
+                </div>
+            </div>    
+        </div>   
+    {% endfor %}     
     </div>
+    {% include 'modals/Añadir_perfil.html.twig' %} 
+                      
 {% endblock %}
 

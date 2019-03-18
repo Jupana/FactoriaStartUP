@@ -18,11 +18,11 @@
                     <div>Foto</div>
                 </div> 
                 <div class="col-md-8 col-8">
-                    <span>Usuario : UserName</span><br/>
-                    <span>Nombre: Nombre</span><br/>
+                    <span>Usuario :<b>{{project.user.username}}</b></span><br/>
+                    <span>Nombre:<b>{{project.user.name}}</b></span><br/>
                     <span>Proximidad: 4,5km</span><br/>
-                    <span>Email: *********</span><br/>
-                        <span>Telefono: 666******</span><br/>
+                    <span>Email:<b>{{project.user.email}}</b></span><br/>
+                    <span>Telefono:<b>{{project.user.phoneNumber}}</b></span><br/>
                 </div> 
             </div>
         </div>
@@ -43,25 +43,25 @@
         </div> 
         <div class="col-md-9 col-12">
             <div class="row">
-                <div class="col-md-6 col-12"><span>Nombre del Proyecto:xxxxxxxxxxx</span></div>
-                <div class="col-md-6 col-12"><span>Publicado el : dd/mm/aaaa</span></div>
+                <div class="col-md-6 col-12"><span>Nombre del Proyecto:<b>{{ project.ProjectName }}</b></span></div>
+                <div class="col-md-6 col-12"><span>Publicado el :<b>{{ project.ProjectDate|date("d/m/y")}}</b></span></div>
             </div>
             <div class="row">
-                <div class="col-md-12 col-12"><span>Definelo en una linea: xxxxxxxxxxxxxxxxxxxx</span></div>
+                <div class="col-md-12 col-12"><span>Definelo en una linea:<b>{{ project.ProjectShortDescription}}</b></span></div>
             </div>
             <div class="row">
-                <div class="col-md-6 col-12"><span>Facturacion estimada:</span></div>
-                <div class="col-md-2 col-4"><span>año1: xxx</span></div>
-                <div class="col-md-2 col-4"><span>año2: xxx</span></div>
-                <div class="col-md-2 col-4"><span>año3: xxx</span></div>
+                <div class="col-md-4 col-12"><span>Facturacion estimada:</span></div>
+                <div class="col-md-2 col-4"><span>año1:<b>{{ project.ProjectAproxFacturation1}}</b></span></div>
+                <div class="col-md-2 col-4"><span>año2:<b>{{ project.ProjectAproxFacturation2}}</b></span></div>
+                <div class="col-md-2 col-4"><span>año3:<b>{{ project.ProjectAproxFacturation3}}</b></span></div>
             </div> 
             <div class="row">
-                <div class="col-md-4 col-12"><span>Clientes potentiales :</span></div>
-                <div class="col-md-4 col-6"><span>Usarios:xxx</span></div>
-                <div class="col-md-4 col-6"><span>Empresas:xxx</span></div>
+                <div class="col-md-4 col-12"><span>Clientes potentiales:</span></div>
+                <div class="col-md-4 col-6"><span>Usarios:<b>{{ project.ProjectPotentialyUsers}}</b></span></div>
+                <div class="col-md-4 col-6"><span>Empresas:<b>{{ project.ProjectPotentialyCompanies}}</b></span></div>
             </div> 
             <div class="row">
-                <div class="col-md-12 col-12"><span>Competidores: xxxxxxxxxxxxxxxxxxxx</span></div>
+                <div class="col-md-12 col-12"><span>Competidores:<b>{{ project.ProjectCompetitors}}</b></span></div>
             </div>        
         </div>
     </div>
@@ -71,7 +71,7 @@
         </div>
         <div class="col-md-12 ">
             <div  class="border m-r-20"style="height:80px;" >
-                lalalalalalallllllllllllllllllllllllllllllllllllllllllllllllllll
+               <b>{{ project.ProjectShortDescription}}</b>
             </div>
         </div>
     </div> 

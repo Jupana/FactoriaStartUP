@@ -1,18 +1,41 @@
 index:
     path: /
-    controller: App\Controller\DefaultController::index          
+    controller: App\Controller\DefaultController::index 
+equipo:
+    path: /profiles
+    controller: App\Controller\ProfileUserController::indexProfile 
+detalle_profile:
+    path: /profiles/{id}
+    controller: App\Controller\ProfileUserController::profile 
+editar_profile:
+    path: /profiles/modificar/{id}
+    controller: App\Controller\ProfileUserController::edit  
+eliminar_profile:
+    path: /profiles/eliminar/{id}
+    controller: App\Controller\ProfileUserController::delete
+add_profile:
+    path: /profiles/añadir
+    controller: App\Controller\ProfileUserController::add    
+
+
 proyectos:
     path: /proyectos
-    controller: App\Controller\SearchController::searchProject  
-equipo:
-    path: /equipo
-    controller: App\Controller\SearchController::searchTeam           
+    controller: App\Controller\ProjectController::indexProject
+add_project:
+    path: /proyectos/añadir
+    controller: App\Controller\ProjectController::add              
 detalle_proyecto:
-    path: /detalleProyecto
-    controller: App\Controller\DetalleController::proyecto 
-detalle_usuario:
-    path: /detalleUsuario
-    controller: App\Controller\DetalleController::usuario     
+    path: /proyectos/{id}
+    controller: App\Controller\ProjectController::project
+editar_proyecto:
+    path: /proyectos/modificar/{id}
+    controller: App\Controller\ProjectController::edit  
+eliminar_proyecto:
+    path: /proyectos/eliminar/{id}
+    controller: App\Controller\ProjectController::delete      
+
+        
+
 vista_usuario:
     path: /vista_usuario
     controller: App\Controller\VistaUsuarioController::index_vista
@@ -34,6 +57,8 @@ datos_propuestas:
 datos_cuenta:
     path: /vista_usuario/datos_cuenta
     controller: App\Controller\VistaUsuarioController::datos_cuenta
+
+
 herramientas:
     path: /herramientas
     controller: App\Controller\HerramientasController::index 

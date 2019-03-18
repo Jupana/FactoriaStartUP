@@ -1,21 +1,102 @@
 <?php
 namespace App\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
+
+use App\Entity\ProfileUser;
+use App\Entity\User;
+use App\Form\ProfileUserType;
+use App\Repository\ProfileUserRepository;
+use App\Repository\ProfilRepository;
+use App\Repository\SectorRepository;
+use App\Repository\UserRepository;
+
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Response;
-/**
- * @Route("/")
- */
-class VistaUsuarioController extends Controller
+use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+
+class VistaUsuarioController extends AbstractController
 {
+        /**
+    * @var \Twig_Environment
+    */
+    private $twig;
+
     /**
-     * @Route("/", name="index")
-     */
-    public function index_vista(Request $request): Response
+    * @var userRepository
+    */
+    private $userRepository;
+    /**
+    * @var sectorRepository
+    */
+    private $sectorRepository;
+
+    /**
+    * @var profilRepository
+    */
+    private $profilRepository;
+
+    /**
+    * @var profilUserRepository
+    */
+    private $profilUserRepository;
+
+      /**
+    * @var FormFactoryInterface
+    */
+    private $formFactory;
+
+    /**
+    * @var EntityManagerInterface
+    */
+    private $entityManager;
+
+    /**
+    * @var FlashBagInterface
+    */
+    private $flashBag;
+
+
+    public function __construct(
+        \Twig_Environment $twig, UserRepository $userRepository,
+        ProfileUserRepository $profileUserRepository, ProfilRepository $profilRepository, SectorRepository $sectorRepository,
+        FormFactoryInterface $formFactory,EntityManagerInterface $entityManager,
+        FlashBagInterface $flashBag
+        ) {
+        $this->twig = $twig;
+        $this->userRepository = $userRepository;
+        $this->profileUserRepository = $profileUserRepository;
+        $this->sectorRepository = $sectorRepository;
+        $this->profilRepository = $profilRepository;
+        $this->formFactory = $formFactory;
+        $this->entityManager = $entityManager;
+        $this->flashBag = $flashBag;
+    }
+   
+    public function index_vista()
     {
-        $em = $this->getDoctrine()->getManager();
-        return $this->render('vista_usuario/index_vista.html.twig');
+
+        return new Response(
+            $this->twig->render(
+                'vista_usuario/index_vista.html.twig'
+            )
+        );
+    }
+     
+    public function vista($id)
+    {
+        $user = $this->userRepository->find($id);
+
+        return new Response(
+            $this->twig->render(
+                'vista_usuario/index_vista.html.twig',
+                [
+                    'user' => $user
+                ]
+            )
+        );
     }
     public function datos_personales(Request $request): Response
     {
