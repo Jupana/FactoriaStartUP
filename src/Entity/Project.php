@@ -40,8 +40,9 @@ class Project
     private $project_description;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
-     */
+     * @ORM\ManyToOne(targetEntity="App\Entity\Sector", inversedBy="projects")
+     * @ORM\JoinColumn()
+    */
     private $project_sector;
 
     /**
@@ -49,10 +50,6 @@ class Project
      */
     private $project_state;
 
-    /**
-     * @ORM\Column(type="string", nullable=true)
-     */
-    private $project_clientes_users;
 
     /**
      * @ORM\Column(type="string", nullable=true)

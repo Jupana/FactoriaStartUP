@@ -1,6 +1,11 @@
-{% extends 'base.html.twig' %}
+{% extends 'vista_usuario/index_vista.html.twig' %}
 
-{% block content %} 
+{% block vista %} 
+<script type="text/javascript">
+        window.onload = function() {
+            document.getElementById("op2").style.background="green";
+        }
+</script>
     <div class="row">
         <div class="col-md-12  m-l-20  m-t-20 m-b-20">
             <h4 class="page-head-line">Nuevo Perfil</h4>

@@ -28,11 +28,17 @@ class Sector
      * @ORM\OneToMany(targetEntity="App\Entity\Profil", mappedBy="sector") 
      */
     private $profiles;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Project", mappedBy="project_sector") 
+     */
+    private $projects;
     
 
     public function __construct()
     {
         $this->profiles = new ArrayCollection();
+        $this->projects = new ArrayCollection();
     }
 
     public function getId(): ?int
