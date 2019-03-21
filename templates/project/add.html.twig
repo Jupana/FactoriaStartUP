@@ -1,4 +1,4 @@
- {% extends 'vista_usuario/index_vista.html.twig' %}
+{% extends 'vista_usuario/index_vista.html.twig' %}
 
 
 {% block vista %} 
@@ -84,10 +84,10 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-10"></div>
             <div class="col-md-2">
                 <a  id="ver"href="#ayuda" value="Mostrar" onclick="mostrar()"><img src="{{ asset('circulo.png','circulo') }}" alt="Symfony!"/></a>
             </div>
+            <div class="col-md-10"></div>
             <div id="ayuda" class="col-md-12 m-b-20  border par " style="display:none">
                 <h4 class="bgAzul text-white par">¿ Cómo rellenar un Proyecto?</h4>
                 <p>Esto no es plan de negocio, es un resumen de puntos básicos que debes de mostrar si  quieres que alguien se interese en tu proyecto</p>
@@ -121,36 +121,44 @@
                 <img src="{{ asset('bumb.png','bumb') }}" alt="Symfony!"/>
             </div>
             <div class="col-md-10">
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                    <label class="form-check-label par1" for="inlineCheckbox2 "> <b>Idea</b> Es solo eso, no has analizado nada y piensas que puede funcionar.</label>
+                <div class="form-check">
+                    {{ form_errors(form.phase_idea) }}
+                    {{ form_widget(form.phase_idea) }}   
+                    <label class="form-check-label text-secondary"><strong class="font-weight-bold  m-r-5">{{form_label(form.phase_idea) }}</strong>
+                    Es solo eso, no has analizado nada y piensas que puede funcionar.</label>
                 </div> 
             </div>
             <div class="col-md-2">
                 <img src="{{ asset('cuaderno.png','cuaderno') }}" alt="Symfony!"/>
             </div>
             <div class="col-md-10">
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                    <label class="form-check-label par1" for="inlineCheckbox2 "> <b>Idea minima viable</b> Sigue siendo una idea, pero ya tienes un analisis total o parcial echo:competencia, clientes, coeste, estrategias, perseonal, etc...Seguro que te falta algo pero ya se ve que puede funcionar.... o no.</label>
+                <div class="form-check ">             
+                    {{ form_errors(form.phase_ideaMV) }}
+                    {{ form_widget(form.phase_ideaMV) }}               
+                    <label class="form-check-label text-secondary" ><strong class="font-weight-bold">{{ form_label(form.phase_ideaMV) }}</strong>
+                    Sigue siendo una idea, pero ya tienes un analisis total o parcial echo:competencia, clientes, coeste, estrategias, perseonal, etc...Seguro que te falta algo pero ya se ve que puede funcionar.... o no .</label>
                 </div> 
             </div>
             <div class="col-md-2">
                 <img src="{{ asset('caja.png','caja') }}" alt="Symfony!"/>
             </div>
             <div class="col-md-10">
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                    <label class="form-check-label par1" for="inlineCheckbox2 "> <b>Producto mínimo viable </b> Tienes un prototipo que funciona, pero te falta complementarlo con mas perfiles.</label>
+                <div class="form-check m-t-10">
+                    {{ form_errors(form.phase_productoMV) }}
+                    {{ form_widget(form.phase_productoMV) }}               
+                    <label class="form-check-label text-secondary" ><strong class="font-weight-bold">{{ form_label(form.phase_productoMV) }}</strong>
+                    Tienes un prototipo que funciona, pero te falta complementarlo con mas perfiles.</label>
                 </div> 
             </div>
               <div class="col-md-2">
                 <img src="{{ asset('final.png','final') }}" alt="Symfony!"/>
             </div>
             <div class="col-md-10">
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input par1" type="checkbox" id="inlineCheckbox2" value="option2">
-                    <label class="form-check-label par1" for="inlineCheckbox2 "> <b>Producto final</b> Tienes equipo, tienes producto, incluso ya facturas.. es decir, necesitas mas profesionales para tu negocio.</label>
+                <div class="form-check m-t-10">
+                    {{ form_errors(form.phase_productoFinal) }}
+                    {{ form_widget(form.phase_productoFinal) }}               
+                    <label class="form-check-label text-secondary" ><strong class="font-weight-bold">{{ form_label(form.phase_productoFinal) }}</strong>
+                    Tienes equipo, tienes producto, incluso ya facturas.. es decir, necesitas mas profesionales para tu negocio.</label>
                 </div> 
             </div>
             <div class="col-md-12 text-center m-t-20 ">

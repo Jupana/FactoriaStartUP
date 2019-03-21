@@ -30,6 +30,10 @@ class ProjectType extends AbstractType
             ->add('project_aprox_facturation2',NumberType::class,['label' => 'Año 2*','required'=>true])
             ->add('project_aprox_facturation3',NumberType::class ,['label' => 'Año 3*','required'=>true])
             ->add('project_competitors',TextType::class ,['label' => 'Competidores*','required'=>true])
+            ->add('phase_idea',CheckboxType::class ,['label' => 'Idea','required'=>false])
+            ->add('phase_ideaMV',CheckboxType::class ,['label' => 'Idea minima viable','required'=>false])
+            ->add('phase_productoMV',CheckboxType::class ,['label' => 'Producto minimo viable','required'=>false])
+            ->add('phase_productoFinal',CheckboxType::class ,['label' => 'Producto Final','required'=>false])
             ->add('submit', SubmitType::class)
         ;
     }

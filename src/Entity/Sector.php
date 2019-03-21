@@ -66,5 +66,14 @@ class Sector
         return $this->profiles;
     }
 
+
+    /**
+     * @return Collection|Project[]
+     */
+    public function getProjects(): Collection
+    {
+        return $this->projects;
+    }
+
  
 }

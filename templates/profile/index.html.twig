@@ -5,11 +5,15 @@
 {% block content %}
 <!--Equipos-->
 {% if is_granted('ROLE_USER') %}    
-<small class="d-block text-right pt-3">
+<!--<small class="d-block text-right pt-3">
     <button class="btn-info" data-toggle="modal" data-target="#modalForm">
          Añade Perfil 
     </button> 
+</small>-->
+<small class="d-block text-right pt-3">
+    <a href="{{ path('add_profile') }}"class="btn btn-sm btn-primary">Añade Perfil </a> 
 </small>
+
 {% endif %}
 <h1 class="col-md-12 text-center m-t-20 m-b-20 par">Buscar Equipo</h1>
     <form class="form-inline m-t-20 m-b-20">
@@ -68,6 +72,7 @@
     {% endfor %}     
     </div>
     {% include 'modals/Añadir_perfil.html.twig' %} 
+  
                       
 {% endblock %}
 

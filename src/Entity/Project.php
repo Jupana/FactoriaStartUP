@@ -44,11 +44,34 @@ class Project
      * @ORM\JoinColumn()
     */
     private $project_sector;
+    
+    /**
+    * @ORM\Column(name="project_phase_idea", type="boolean", nullable=true)
+    */
+    private $phase_idea ;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
-     */
-    private $project_state;
+    * @ORM\Column(name="project_phase_ideaMV", type="boolean", nullable=true)
+    */
+    private $phase_ideaMV ;
+
+    /**
+    * @ORM\Column(name="project_phase_productoMV", type="boolean", nullable=true)
+    */
+    private $phase_productoMV ;
+
+        /**
+    * @ORM\Column(name="project_phase_productoFinal", type="boolean", nullable=true)
+    */
+    private $phase_productoFinal ;
+
+    public function __construct() 
+{
+    $this->phase_idea = false;
+    $this->phase_ideaMV = false;
+    $this->phase_productoMV = false;
+    $this->phase_productoFinal = false;
+}
 
 
     /**
@@ -138,29 +161,6 @@ class Project
         return $this;
     }
 
-    public function getProjectSector(): ?string
-    {
-        return $this->project_sector;
-    }
-
-    public function setProjectSector(?string $project_sector): self
-    {
-        $this->project_sector = $project_sector;
-
-        return $this;
-    }
-
-    public function getProjectState(): ?string
-    {
-        return $this->project_state;
-    }
-
-    public function setProjectState(?string $project_state): self
-    {
-        $this->project_state = $project_state;
-
-        return $this;
-    }
 
     public function getProjectClientesUsers(): ?string
     {
@@ -296,6 +296,70 @@ class Project
 
         return $this;
     }
+
+    public function getProjectSector(): ?Sector
+    {
+        return $this->project_sector;
+    }
+
+    public function setProjectSector(?Sector $project_sector): self
+    {
+        $this->project_sector = $project_sector;
+
+        return $this;
+    }
+
+    public function getPhaseIdea(): ?bool
+    {
+        return $this->phase_idea;
+    }
+
+    public function setPhaseIdea(?bool $phase_idea): self
+    {
+        $this->phase_idea = $phase_idea;
+
+        return $this;
+    }
+
+    public function getPhaseIdeaMV(): ?bool
+    {
+        return $this->phase_ideaMV;
+    }
+
+    public function setPhaseIdeaMV(?bool $phase_ideaMV): self
+    {
+        $this->phase_ideaMV = $phase_ideaMV;
+
+        return $this;
+    }
+
+    public function getPhaseProductoMV(): ?bool
+    {
+        return $this->phase_productoMV;
+    }
+
+    public function setPhaseProductoMV(?bool $phase_productoMV): self
+    {
+        $this->phase_productoMV = $phase_productoMV;
+
+        return $this;
+    }
+
+    public function getPhaseProductoFinal(): ?bool
+    {
+        return $this->phase_productoFinal;
+    }
+
+    public function setPhaseProductoFinal(?bool $phase_productoFinal): self
+    {
+        $this->phase_productoFinal = $phase_productoFinal;
+
+        return $this;
+    }
+    
+
+
+   
 
   
 

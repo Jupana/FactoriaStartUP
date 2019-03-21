@@ -30,6 +30,7 @@ class AppFixtures extends Fixture
         $this->loadSectors($manager);
         $this->loadProfils($manager);
         $this->loadProfilUser($manager);
+       
     }
 
     private function loadUsers(ObjectManager $manager)
@@ -70,14 +71,14 @@ class AppFixtures extends Fixture
     
     private function loadProjects(ObjectManager $manager)
     {
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 5; $i++) {
             $project = new Project();
             $project ->setProjectName('Project de Prueba');
             $project ->setProjectDescription('Some text '.rand(0,100));
             $project ->setProjectDate(new \Datetime(2019-03-12));
 
             $project->setUser($this->getReference('liviu'));
-            
+      
             $manager->persist($project);
         }
         $manager->flush();
@@ -163,4 +164,6 @@ class AppFixtures extends Fixture
        
         $manager->flush();
     }
+
+
 }

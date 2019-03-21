@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Project;
 use App\Entity\User;
+use App\Entity\Sector;
 use App\Repository\ProjectRepository;
 use App\Repository\ProfileUserRepository;
 use App\Repository\ProfilRepository;
@@ -115,6 +116,7 @@ class ProjectController extends AbstractController
         $project->setProjectDate(new \DateTime());
         $user=$this->getUser();
         $project->setUser($user);
+
 
         $form = $this->formFactory->create(ProjectType::class,$project);
         $form->handleRequest($request);

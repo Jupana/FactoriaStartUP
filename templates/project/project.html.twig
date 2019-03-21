@@ -79,14 +79,50 @@
         <div class="col-md-12 col-12">
             <p class="fs-20 p-l-5"><b>Fase en la que se encuentra el proyecto</b></p>
         </div>
-        <div class="col-md-2 col-4">
-            <img src="{{ asset('bumb.png','bumb') }}" alt="Symfony!"/>
-        </div>
-        <div class="col-md-10 col-8">
-            <span>
-                <b>Idea</b> Es solo eso, no has analizado nada y piensas que puede funcionar.
-            </span>
-        </div>
+        {% if project.PhaseIdea == true %}
+            <div class="col-md-2 col-4">
+                <img src="{{ asset('bumb.png','bumb') }}" alt="Symfony!"/>
+            </div>
+            <div class="col-md-10 col-8">
+                <div> 
+                    <label><b>Idea</b>
+                    Es solo eso, no has analizado nada y piensas que puede funcionar.</label>
+                </div> 
+            </div>
+            {% else %}
+            {% if project.PhaseIdeaMV == true %}
+                <div class="col-md-2 col-4">
+                    <img src="{{ asset('cuaderno.png','cuaderno') }}" alt="Symfony!"/>
+                </div>
+                <div class="col-md-10 col-8">
+                    <div>                           
+                        <label><b>Idea minima viable</b>
+                        Sigue siendo una idea, pero ya tienes un analisis total o parcial echo:competencia, clientes, coeste, estrategias, perseonal, etc...Seguro que te falta algo pero ya se ve que puede funcionar.... o no .</label>
+                    </div> 
+                </div>
+                {% else %}
+                {% if project.PhaseProductoMV == true %}
+                    <div class="col-md-2 col-4">
+                        <img src="{{ asset('caja.png','caja') }}" alt="Symfony!"/>
+                    </div>
+                    <div class="col-md-10 col-8">                           
+                        <label><b>Producto minimo viable</b>
+                        Tienes un prototipo que funciona, pero te falta complementarlo con mas perfiles.</label>
+                    </div> 
+                    {% else %}
+                    {% if project.PhaseProductoFinal == true %}
+                        <div class="col-md-2 col-4">
+                            <img src="{{ asset('final.png','final') }}" alt="Symfony!"/>
+                        </div>
+                        <div class="col-md-10 col-8">                           
+                            <label><b>Producto Final</b>
+                            Tienes equipo, tienes producto, incluso ya facturas.. es decir, necesitas mas profesionales para tu negocio..</label>
+                        </div> 
+                    {% endif %}
+                {% endif %}
+            {% endif %}
+        {% endif %} 
+       
     </div>
     <div class="row m-t-20 margin_top "> 
         <div class="col-md-12">
