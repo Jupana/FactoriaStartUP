@@ -1,5 +1,5 @@
 ﻿# Host: localhost  (Version 5.5.5-10.1.36-MariaDB)
-# Date: 2019-03-15 15:59:50
+# Date: 2019-03-22 20:10:44
 # Generator: MySQL-Front 6.0  (Build 2.20)
 
 #
@@ -12,6 +12,7 @@
 #php bin/console doctrine:schema:update --force --dump-sql
 #
 
+#
 # Structure for table "fsu_profiles_users"
 #
 
@@ -30,13 +31,13 @@ CREATE TABLE `fsu_profiles_users` (
   CONSTRAINT `FK_E99B63F2275ED078` FOREIGN KEY (`profil_id`) REFERENCES `fsu_profiles` (`id`),
   CONSTRAINT `FK_E99B63F2A76ED395` FOREIGN KEY (`user_id`) REFERENCES `fsu_users` (`id`),
   CONSTRAINT `FK_E99B63F2DE95C867` FOREIGN KEY (`sector_id`) REFERENCES `fsu_sectores` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 #
 # Data for table "fsu_profiles_users"
 #
 
-INSERT INTO `fsu_profiles_users` VALUES (1,4,9,6,'Aqui esta la descripcion profesional sobre el perfil grabado de prueba','2019-03-15 20:01:00'),(2,4,8,5,'Aqui esta la descripcion profesional sobre el perfil grabado de prueba','2019-03-15 20:01:00');
+INSERT INTO `fsu_profiles_users` VALUES (7,28,24,15,'jjgvfd','2019-03-22 20:07:42'),(10,29,21,13,'SUPER','2019-03-22 18:27:47');
 
 #
 # Structure for table "fsu_sectores"
@@ -47,13 +48,13 @@ CREATE TABLE `fsu_sectores` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `sector_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 #
 # Data for table "fsu_sectores"
 #
 
-INSERT INTO `fsu_sectores` VALUES (4,'Financiero'),(5,'Ventas'),(6,'Marketing');
+INSERT INTO `fsu_sectores` VALUES (13,'Financiero'),(14,'Ventas'),(15,'Marketing');
 
 #
 # Structure for table "fsu_profiles"
@@ -67,13 +68,13 @@ CREATE TABLE `fsu_profiles` (
   PRIMARY KEY (`id`),
   KEY `IDX_88E3A157DE95C867` (`sector_id`),
   CONSTRAINT `FK_88E3A157DE95C867` FOREIGN KEY (`sector_id`) REFERENCES `fsu_sectores` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 #
 # Data for table "fsu_profiles"
 #
 
-INSERT INTO `fsu_profiles` VALUES (6,4,'Contable'),(7,4,'Administrativo financiero'),(8,5,'Comercial'),(9,6,'Analista Web'),(10,6,'Director marketing');
+INSERT INTO `fsu_profiles` VALUES (21,13,'Contable'),(22,13,'Administrativo financiero'),(23,14,'Comercial'),(24,15,'Analista Web'),(25,15,'Director marketing');
 
 #
 # Structure for table "fsu_users"
@@ -110,13 +111,13 @@ CREATE TABLE `fsu_users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_7A866DA918D3E277` (`user_username`),
   UNIQUE KEY `UNIQ_7A866DA9550872C` (`user_email`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 #
 # Data for table "fsu_users"
 #
 
-INSERT INTO `fsu_users` VALUES (4,'liviu','$2y$13$88Ank08ABKmU8FjjVVx/ouDnZxfME0aw0DYwAmAgxFR2IF6TV585y','liviu@liviu.com','Liviu Vasile','Todoran','Gologan',NULL,'Hombre','Calle','Vilar de Donas','13','13','2D','Madrid','28050','Madrid','España',NULL,'0','1','999 999 999',NULL,NULL,NULL,NULL);
+INSERT INTO `fsu_users` VALUES (28,'liviu','$2y$13$luFd.7/xG7VG1wWXpTtYh.ON/BDqj.kHjE508EMPCHHcLyrqyWEUe','liviu@liviu.com','Liviu Vasile','Todoran','Gologan',NULL,'Hombre','Calle','Vilar de Donas','13','13','2D','Madrid','28050','Madrid','España',NULL,'0','1','999 999 999',NULL,NULL,NULL,NULL),(29,'Nicol','$2y$13$bx8zguOrptiNquFIQSyFmuyUK7JUhrkNNlweXqh60Y2jU975hoEjC','nicol@nicol.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 
 #
 # Structure for table "fsu_projects"
@@ -129,9 +130,6 @@ CREATE TABLE `fsu_projects` (
   `project_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `project_short_description` longtext COLLATE utf8mb4_unicode_ci,
   `project_description` longtext COLLATE utf8mb4_unicode_ci,
-  `project_sector` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `project_state` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `project_clientes_users` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `project_potentialy_users` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `project_potentialy_companies` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `project_aprox_facturation1` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -141,16 +139,23 @@ CREATE TABLE `fsu_projects` (
   `project_team_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `project_team` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `project_date` datetime DEFAULT NULL,
+  `project_sector_id` int(11) DEFAULT NULL,
+  `project_phase_idea` tinyint(1) DEFAULT NULL,
+  `project_phase_ideaMV` tinyint(1) DEFAULT NULL,
+  `project_phase_productoMV` tinyint(1) DEFAULT NULL,
+  `project_phase_productoFinal` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`project_id`),
   KEY `IDX_5F4097C3A76ED395` (`user_id`),
-  CONSTRAINT `FK_5F4097C3A76ED395` FOREIGN KEY (`user_id`) REFERENCES `fsu_users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  KEY `IDX_5F4097C3CFA98DB0` (`project_sector_id`),
+  CONSTRAINT `FK_5F4097C3A76ED395` FOREIGN KEY (`user_id`) REFERENCES `fsu_users` (`id`),
+  CONSTRAINT `FK_5F4097C3CFA98DB0` FOREIGN KEY (`project_sector_id`) REFERENCES `fsu_sectores` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 #
 # Data for table "fsu_projects"
 #
 
-INSERT INTO `fsu_projects` VALUES (21,4,'Project de Prueba',NULL,'Some text 7',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-03-15 20:04:00'),(22,4,'Project de Prueba',NULL,'Some text 30',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-03-15 20:04:00'),(23,4,'Project de Prueba',NULL,'Some text 52',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-03-15 20:04:00'),(24,4,'Project de Prueba',NULL,'Some text 71',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-03-15 20:04:00'),(25,4,'Project de Prueba',NULL,'Some text 29',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-03-15 20:04:00'),(26,4,'Project de Prueba',NULL,'Some text 63',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-03-15 20:04:00'),(27,4,'Project de Prueba',NULL,'Some text 29',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-03-15 20:04:00'),(28,4,'Project de Prueba',NULL,'Some text 73',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-03-15 20:04:00'),(29,4,'Project de Prueba',NULL,'Some text 79',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-03-15 20:04:00'),(30,4,'Project de Prueba',NULL,'Some text 2',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-03-15 20:04:00');
+INSERT INTO `fsu_projects` VALUES (56,28,'Project de Prueba',NULL,'Some text 58',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-03-21 20:04:00',NULL,0,0,0,0),(57,28,'Project de Prueba',NULL,'Some text 41',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-03-21 20:04:00',NULL,0,0,0,0),(58,28,'Project de Prueba',NULL,'Some text 3',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-03-21 20:04:00',NULL,0,0,0,0),(59,28,'Project de Prueba',NULL,'Some text 78',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-03-21 20:04:00',NULL,0,0,0,0),(60,28,'Project de Prueba',NULL,'Some text 45',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-03-21 20:04:00',NULL,0,0,0,0),(61,28,'Marketing Web','fshbsr','gdrdg','Adultos','Web Marketing','22222','5000','1000','rgs',NULL,NULL,'2019-03-21 15:22:59',NULL,1,0,0,0),(62,29,'Proyecto Minimo Viable','Proyecto FinalProyecto FinalProyecto Final','Proyecto FinalProyecto FinalProyecto FinalProyecto FinalProyecto FinalProyecto','Adultos','Web Marketing','22222','5555','200000','Marketing',NULL,NULL,'2019-03-21 15:58:49',NULL,0,0,1,0);
 
 #
 # Structure for table "migration_versions"
@@ -166,4 +171,3 @@ CREATE TABLE `migration_versions` (
 # Data for table "migration_versions"
 #
 
-INSERT INTO `migration_versions` VALUES ('20190315130822');

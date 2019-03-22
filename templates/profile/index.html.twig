@@ -1,5 +1,6 @@
 {% extends 'base.html.twig' %}
 
+
 {% block title %}Perfiles{% endblock %}
 
 {% block content %}
@@ -10,15 +11,11 @@
 {% endfor %}
 <!--Equipos-->
 {% if is_granted('ROLE_USER') %}    
-<!--<small class="d-block text-right pt-3">
+<small class="d-block text-right pt-3">
     <button class="btn-info" data-toggle="modal" data-target="#modalForm">
          Añade Perfil 
     </button> 
-</small>-->
-<small class="d-block text-right pt-3">
-    <a href="{{ path('add_profile') }}"class="btn btn-sm btn-primary">Añade Perfil </a> 
 </small>
-
 {% endif %}
 <h1 class="col-md-12 text-center m-t-20 m-b-20 par">Buscar Equipo</h1>
     <form class="form-inline m-t-20 m-b-20">
@@ -66,7 +63,7 @@
                 <div class="card-footer">
                     <a href="{{ path('detalle_profile',{"id": profile.id }) }}" class=" ver_color">Ver Mass..</a></br>                                                
                     {% if is_granted('edit', profile) %} 
-                        <a href="{{ path("editar_profile",{"id": profile.id }) }}" class="btn btn-outline-warning">Modificar</a>
+                        <a href="{{ path("editar_profile",{"id": profile.id }) }}" class="btn btn-outline-warning" >Modificar</a>
                     {% endif %}
                     {% if is_granted('delete', profile) %} 
                         <a href="{{ path("eliminar_profile",{"id": profile.id }) }}" class="btn btn-outline-danger">Eliminar</a>
@@ -76,8 +73,8 @@
         </div>   
     {% endfor %}     
     </div>
-    {% include 'modals/Añadir_perfil.html.twig' %} 
-  
-                      
+    {{ render(controller('App\\Controller\\ProfileUserController:addProfile')) }}               
 {% endblock %}
+
+ 
 

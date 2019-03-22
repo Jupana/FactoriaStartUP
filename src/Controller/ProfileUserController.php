@@ -81,6 +81,33 @@ class ProfileUserController extends AbstractController
         ]);
         return new Response($html);
     }
+
+    public function addProfile(Request $request)
+    {
+        $ProfileUser = new ProfileUser();
+        $ProfileUser->setprofileDate(new \DateTime());
+        $user=$this->getUser();
+        $ProfileUser->setUser($user);
+
+        $form = $this->formFactory->create(ProfileUserType::class, $ProfileUser);
+        $form->handleRequest($request);
+        
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->entityManager->persist($ProfileUser);
+            $this->entityManager->flush();
+
+            return $this->redirectToRoute('equipo');
+
+
+        }
+        return new Response(
+            $this->twig->render(
+                'modals/AddPerfil.html.twig',
+                ['form'=>$form->createView()]
+            )
+        );
+   
+    }
     public function profile($id)
     {
         $profile = $this->profileUserRepository->find($id);
@@ -94,7 +121,7 @@ class ProfileUserController extends AbstractController
             )
         );
     }
-    public function edit(ProfileUser $ProfileUser, Request $request)
+    public function editProfile(ProfileUser $ProfileUser, Request $request)
     {
         
         $form = $this->formFactory->create(ProfileUserType::class, $ProfileUser);
@@ -111,7 +138,7 @@ class ProfileUserController extends AbstractController
         }
         return new Response(
             $this->twig->render(
-                'profile/add.html.twig',
+                'modals/AddPerfil.html.twig',
                 ['form'=>$form->createView()]
             )
         );
@@ -126,30 +153,5 @@ class ProfileUserController extends AbstractController
         
         return $this->redirectToRoute('equipo');
     }
-    public function addProfile(Request $request)
-    {
-        $ProfileUser = new ProfileUser();
-        $ProfileUser->setprofileDate(new \DateTime());
-        $user=$this->getUser();
-        $ProfileUser->setUser($user);
-
-        $form = $this->formFactory->create(ProfileUserType::class, $ProfileUser);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->entityManager->persist($ProfileUser);
-            $this->entityManager->flush();
-
-            return $this->redirectToRoute('equipo');
-
-
-        }
-        return new Response(
-            $this->twig->render(
-                'profile/add.html.twig',
-                ['form'=>$form->createView()]
-            )
-        );
    
-    }
 }

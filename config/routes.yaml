@@ -1,6 +1,9 @@
 index:
     path: /
     controller: App\Controller\DefaultController::index 
+vista_usuario:
+    path: /vista_usuario
+    controller: App\Controller\VistaUsuarioController::index_vista    
 equipo:
     path: /profiles
     controller: App\Controller\ProfileUserController::indexProfile 
@@ -12,7 +15,7 @@ detalle_profile:
     controller: App\Controller\ProfileUserController::profile 
 editar_profile:
     path: /profiles/modificar/{id}
-    controller: App\Controller\ProfileUserController::edit  
+    controller: App\Controller\ProfileUserController::editProfile  
 eliminar_profile:
     path: /profiles/eliminar/{id}
     controller: App\Controller\ProfileUserController::delete
@@ -37,9 +40,10 @@ eliminar_proyecto:
 
         
 
-vista_usuario:
-    path: /vista_usuario
-    controller: App\Controller\VistaUsuarioController::index_vista
+
+añadir_proyecto:
+    path: /vista_usuario/añadir_proyecto
+    controller: App\Controller\VistaUsuarioController::añadir_proyecto 
 datos_personales:
     path: /vista_usuario/datos_personales
     controller: App\Controller\VistaUsuarioController::datos_personales 
@@ -49,9 +53,7 @@ datos_profesionales:
 datos_proyectos:
     path: /vista_usuario/datos_proyectos
     controller: App\Controller\VistaUsuarioController::datos_proyectos
-añadir_proyecto:
-    path: /vista_usuario/añadir_proyecto
-    controller: App\Controller\VistaUsuarioController::añadir_proyecto  
+ 
 datos_propuestas:
     path: /vista_usuario/datos_propuestas
     controller: App\Controller\VistaUsuarioController::datos_propuestas  

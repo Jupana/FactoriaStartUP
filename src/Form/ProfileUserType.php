@@ -38,7 +38,7 @@ class ProfileUserType extends AbstractType
                 }
             ])    
             ->add('description',TextareaType::class)  
-            ->add('submit',SubmitType::class)
+            ->add('submit', SubmitType::class,['label' => 'Guardar Perfil'])
         ;
     }
 
