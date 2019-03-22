@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\ProfileUser;
 use App\Entity\Sector;
 use App\Entity\Profil;
+use App\Repository\ProfilRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -21,19 +22,21 @@ class ProfileUserType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->add('profil',EntityType::class,[
-                'class' => Profil::class,
-                'choice_label' => function($profil){
-                    return $profil->getName();
-                }
-            ])  
+        $builder 
             ->add('sector',EntityType::class,[
                 'class' => Sector::class,
+                'placeholder' => 'Selecciona un sector',
                 'choice_label' => function($sector){
                     return $sector->getName();
                 }
             ]) 
+            ->add('profil',EntityType::class,[
+                'class' => Profil::class,
+                'placeholder' => 'Selecciona un perfil',
+                'choice_label' => function($profil){
+                    return $profil->getName(); 
+                }
+            ])    
             ->add('description',TextareaType::class)  
             ->add('submit',SubmitType::class)
         ;

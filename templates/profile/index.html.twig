@@ -3,6 +3,11 @@
 {% block title %}Perfiles{% endblock %}
 
 {% block content %}
+{% for message in app.flashes('notice') %}
+    <div class="alert alert-success">
+        {{ message }}
+    </div>
+{% endfor %}
 <!--Equipos-->
 {% if is_granted('ROLE_USER') %}    
 <!--<small class="d-block text-right pt-3">
@@ -54,7 +59,7 @@
                     <img  class="card-img-top" src="{{ asset('img.png','img') }}" alt="image">
                 </div>
                 <div class="card-body ">     
-                    <h4 class="card-title">Usuario:<br/>{{ profile.User.Name}}</h4>                   
+                    <h4 class="card-title">Usuario:<br/>{{ profile.User.username}}</h4>                   
                     <p class="card-text">Perfil:{{ profile.Profil.Name}}</strong></p>
                     <p class="card-text">Sector:{{ profile.Sector.Name}}</strong></p>                               
                 </div> 

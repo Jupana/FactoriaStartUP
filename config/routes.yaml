@@ -4,6 +4,9 @@ index:
 equipo:
     path: /profiles
     controller: App\Controller\ProfileUserController::indexProfile 
+add_profile:
+    path: /profiles/añadir
+    controller: App\Controller\ProfileUserController::addProfile     
 detalle_profile:
     path: /profiles/{id}
     controller: App\Controller\ProfileUserController::profile 
@@ -13,9 +16,7 @@ editar_profile:
 eliminar_profile:
     path: /profiles/eliminar/{id}
     controller: App\Controller\ProfileUserController::delete
-add_profile:
-    path: /profiles/añadir
-    controller: App\Controller\ProfileUserController::add    
+   
 
 
 proyectos:

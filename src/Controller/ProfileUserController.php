@@ -126,14 +126,14 @@ class ProfileUserController extends AbstractController
         
         return $this->redirectToRoute('equipo');
     }
-    public function add(Request $request)
+    public function addProfile(Request $request)
     {
         $ProfileUser = new ProfileUser();
         $ProfileUser->setprofileDate(new \DateTime());
         $user=$this->getUser();
         $ProfileUser->setUser($user);
 
-        $form = $this->formFactory->create(ProfileUserType::class,$ProfileUser);
+        $form = $this->formFactory->create(ProfileUserType::class, $ProfileUser);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
