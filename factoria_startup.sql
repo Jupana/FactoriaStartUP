@@ -8,6 +8,7 @@
 #php bin/console cache:clear
 #php bin/console doctrine:cache:clear-metadata
 #php bin/console doctrine:migrations:diff
+#php bin/console doctrine:migrations:status --show-versions
 #php bin/console doctrine:migrations:migrate xxxxxxxx (version)
 #php bin/console doctrine:schema:update --force --dump-sql
 #

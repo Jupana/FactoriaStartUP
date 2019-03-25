@@ -25,7 +25,6 @@ class ProfileUserController extends AbstractController
     */
     private $twig;
 
-
     /**
     * @var sectorRepository
     */
@@ -72,18 +71,21 @@ class ProfileUserController extends AbstractController
     }
 
 
-    public function indexProfile()
+    public function indexProfile(Request $request)
     {
+        
         $html = $this->twig->render('profile/index.html.twig', [
             'profiles' => $this->profileUserRepository->findAll(),
             'opciones_sectores' => $this->sectorRepository->findAll(),
-            'opciones_perfil' => $this->profilRepository->findAll() 
+            'opciones_perfil' => $this->profilRepository->findAll(),
+            'form_addProfile'=>$this->addProfile($request)
         ]);
         return new Response($html);
     }
 
     public function addProfile(Request $request)
     {
+       
         $ProfileUser = new ProfileUser();
         $ProfileUser->setprofileDate(new \DateTime());
         $user=$this->getUser();
@@ -95,18 +97,11 @@ class ProfileUserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->entityManager->persist($ProfileUser);
             $this->entityManager->flush();
-
-            return $this->redirectToRoute('equipo');
-
-
+            //return $this->redirect('equipo');
         }
-        return new Response(
-            $this->twig->render(
-                'modals/AddPerfil.html.twig',
-                ['form'=>$form->createView()]
-            )
-        );
-   
+        
+        return $form->createView();
+        
     }
     public function profile($id)
     {
