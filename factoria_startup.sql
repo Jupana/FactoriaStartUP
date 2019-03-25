@@ -15,7 +15,7 @@
 #
 # Structure for table "fsu_profiles_users"
 #
-
+use factoria_startup;
 DROP TABLE IF EXISTS `fsu_profiles_users`;
 CREATE TABLE `fsu_profiles_users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
