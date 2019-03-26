@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block content %} 
+    <div class="container">      
+        <div class="row">       
+            <div class="col-md-12 text-center" style="margin-top:50px">
+                <h2>Añadir Noticia</h2>    
+            </div>
+            <div class="col-md-12">                 
+                {{form_start(form,{'enctype':'multipart/form-data'})}}
+                {{form_end(form)}}
+            </div>  
+            <div class="clearfix"></div>  
+        </div>
+         {% if (app.user.id is defined) %}
+            <a class="nav-link float-right" href="{{ path('posts') }}">Go back to posts!!</a>
+        {% endif %}
+    </div>           
+{% endblock %}
+      

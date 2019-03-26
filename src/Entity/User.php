@@ -185,6 +185,11 @@ class User implements UserInterface,\Serializable
     private $projects;
 
     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Posts", mappedBy="user") 
+     */
+    private $posts;
+
+    /**
      * @ORM\OneToMany(targetEntity="App\Entity\ProfileUser", mappedBy="user") 
      */
     private $profiles;
@@ -194,6 +199,7 @@ class User implements UserInterface,\Serializable
     {
         $this->projects = new ArrayCollection();
         $this->profiles = new ArrayCollection();
+        $this->posts = new ArrayCollection();
     }
 
 
@@ -552,6 +558,11 @@ class User implements UserInterface,\Serializable
     public function getProjects()
     {
         return $this->projects;
+    }
+
+    public function getPosts()
+    {
+        return $this->posts;
     }
 
 }

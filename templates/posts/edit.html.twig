@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+<div class="container">      
+    <div class="row">       
+        <div class="col-md-12 text-center" style="margin-top:50px">
+            <h2>Editar Entrada:<br/><hr/>{{post.title}}</h2>   
+        </div>
+        <div class="col-md-12">             
+            {{form_start(form,{'enctype':'multipart/form-data'})}}
+                <label>Imagen:</label>
+                <img width="100" src="{{ asset("uploads/"~post.image)}}"/>
+                {{form_widget(form.image)}}
+
+            {{form_end(form)}}
+        </div> 
+    </div>     
+    <div class="clearfix"></div> 
+    {% if (app.user.id is defined) %} 
+            <a class="nav-link float-right" href="{{ path('posts') }}">Go back to posts!!</a>
+    {% endif %}
+</div>    
+{% endblock %}
+

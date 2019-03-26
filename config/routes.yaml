@@ -68,9 +68,20 @@ herramientas:
 foro:
     path: /foro
     controller: App\Controller\ForoController::index 
-noticias:
-    path: /noticias
-    controller: App\Controller\NoticiasController::index  
-noticia:
-    path: /noticias/id_noticia
-    controller: App\Controller\NoticiasController::noticias                             
+
+    
+posts:
+    path: /posts
+    controller: App\Controller\PostsController::indexAction        
+add_posts:
+    path: /posts/add
+    controller: App\Controller\PostsController::addAction
+delete_posts:
+    path: /posts/delete/{id}
+    controller: App\Controller\PostsController::deleteAction
+edit_posts:
+    path: /posts/edit/{id}
+    controller: App\Controller\PostsController::editAction
+posts_details:
+    path: /posts/detail/{id}
+    controller: App\Controller\PostsController::detailAction     

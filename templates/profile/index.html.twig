@@ -62,21 +62,27 @@
                 </div> 
                 <div class="card-footer">
                     <a href="{{ path('detalle_profile',{"id": profile.id }) }}" class=" ver_color">Ver Mass..</a></br>                                                
-                    {% if is_granted('edit', profile) %} 
-                        <a href="{{ path("editar_profile",{"id": profile.id }) }}" class="btn btn-outline-warning" >Modificar</a>
+                    {% if is_granted('edit', profile) %}              
+                         <a href="{{ path("editar_profile",{"id": profile.id }) }}" class="btn btn-outline-warning">
+                           Editar
+                        </a>
                     {% endif %}
                     {% if is_granted('delete', profile) %} 
-                        <a href="{{ path("eliminar_profile",{"id": profile.id }) }}" class="btn btn-outline-danger">Eliminar</a>
+                        <a href="{{ path("eliminar_profile",{"id": profile.id }) }}" class="btn btn-outline-danger">
+                            Eliminar
+                        </a>
                     {% endif %}
                 </div>
             </div>    
         </div>   
     {% endfor %}     
     </div>
-   
     <!--Ventana Pop-Up -->       
-     {% include 'modals/AddPerfil.html.twig' %}              
+    {% include 'modals/AddPerfil.html.twig' %}
+
+              
 {% endblock %}
+
 
  
 

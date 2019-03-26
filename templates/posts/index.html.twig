@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Noticias{% endblock %}
+
+{% block content %}
+    {% for message in app.session.flashbag().get('status') %}   
+        <div class="alert alert-success">{{message}}</div>
+    {% endfor %}
+    {% if (app.user.id is defined) %} 
+        <a class="float-right m-t-20"  href="{{ path('add_posts') }}">Añadir POST</a>
+    {% endif %}
+    <br/> 
+    <h1 class="page-head-line p-t-20"><span>Noticias</span></h1> 
+    <hr>
+    <div class="items m-r-20 m-l-20 p-t-10 m-b-20 ">
+        <div class="item p-t-10 p-b-10 ">
+            <div class="row">
+            {% for post in posts %} 
+                <div class="col-md-4 p-t-20">
+                    <a href={{path("posts_details",{"id":post.id})}} title="" class="image-item">
+                        <img src="{{ asset("uploads/"~post.image)}}"/></a>
+                    </a>
+                </div>
+                <div class="col-md-8">
+                    <a href={{path("posts_details",{"id":post.id})}} title="" class="fs-20 ">
+                        <h4><strong>{{post.title}}</strong></h4>
+                    </a><br/>
+                    <a href={{path("posts_details",{"id":post.id})}} >
+                        <p>{{post.summary | raw}}</strong></p>
+                    </a>
+                    <a href="{{path("posts_details",{"id":post.id})}}">Leer Mas..</a> 
+                    <time class="mod-date" datetime="2019-01-31 17:18:04">
+                        <span class="d-block"><strong>@{{post.user.username}}:</strong><small>{{ post.Date|date("d/m/y")}}</small></span>
+                    </time>
+                     
+                    {% if (app.user.id is defined) and (post.user.id == app.user.id) %} 
+                    <p>
+                        <a href="{{path("delete_posts",{"id":post.id})}}" class="btn btn-danger">Delete</a>
+                        <a href="{{path("edit_posts",{"id":post.id})}}" class="btn btn-warning">Edit</a>
+                    </p>
+                    {% endif %}
+                   <br/><hr><br/>   
+                </div>
+                   
+            {% endfor %} 
+            </div>         
+        </div>      
+    </div>        
+{% endblock %}        
