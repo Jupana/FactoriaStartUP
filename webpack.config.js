@@ -17,13 +17,17 @@ Encore
     .addEntry('js/app', './assets/js/app.js')
     .addStyleEntry('css/app', './assets/css/app.scss')
 
-    
-
     // uncomment if you use Sass/SCSS files
     .enableSassLoader()
 
     // uncomment for legacy applications that require $/jQuery as a global variable
     .autoProvidejQuery()
+
+    .configureBabel(function(babelConfig) {
+        babelConfig.presets.push('env');
+      })
+    //Enable React
+    .enableReactPreset();
 ;
 
 module.exports = Encore.getWebpackConfig();

@@ -16,6 +16,7 @@ use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 
 class ProfileUserController extends AbstractController
@@ -83,6 +84,9 @@ class ProfileUserController extends AbstractController
         return new Response($html);
     }
 
+    /**
+     * @Route("add/profile", name="api_user")
+     */
     public function addProfile(Request $request)
     {
        
@@ -100,7 +104,11 @@ class ProfileUserController extends AbstractController
             //return $this->redirect('equipo');
         }
         
-        return $form->createView();
+        //return $form->createView();
+
+        return new JsonResponse([
+            'success_message' => 'Thank you for registering'
+        ]);
         
     }
     public function profile($id)
