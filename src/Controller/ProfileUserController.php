@@ -16,8 +16,8 @@ use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
-
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
 
 class ProfileUserController extends AbstractController
 {   
@@ -74,20 +74,18 @@ class ProfileUserController extends AbstractController
 
     public function indexProfile(Request $request)
     {
-        
-        $html = $this->twig->render('profile/index.html.twig', [
-            'profiles' => $this->profileUserRepository->findAll(),
-            'opciones_sectores' => $this->sectorRepository->findAll(),
-            'opciones_perfil' => $this->profilRepository->findAll(),
-            'form_addProfile'=>$this->addProfile($request)
-        ]);
-        return new Response($html);
+       
+            $html = $this->twig->render('profile/index.html.twig', [
+                'profiles' => $this->profileUserRepository->findAll(),
+                'opciones_sectores' => $this->sectorRepository->findAll(),
+                'opciones_perfil' => $this->profilRepository->findAll(),
+                'form_addProfile'=>$this->addProfile($request)
+            ]);
+            return new Response($html); 
+       
     }
 
-    /**
-     * @Route("add/profile", name="api_user")
-     */
-    public function addProfile(Request $request)
+    public function addProfile(Request $request  )
     {
        
         $ProfileUser = new ProfileUser();
@@ -101,14 +99,10 @@ class ProfileUserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->entityManager->persist($ProfileUser);
             $this->entityManager->flush();
-            //return $this->redirect('equipo');
+            return new RedirectResponse('/profiles?v=1.2');
         }
         
-        //return $form->createView();
-
-        return new JsonResponse([
-            'success_message' => 'Thank you for registering'
-        ]);
+        return $form->createView();
         
     }
     public function profile($id)
