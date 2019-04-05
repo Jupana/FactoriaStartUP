@@ -18,6 +18,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
 
 class ProfileUserController extends AbstractController
 {   
@@ -85,26 +86,54 @@ class ProfileUserController extends AbstractController
        
     }
 
+
+    /**
+    * @Route ("addPerfil", name="addPerfile", methods={"GET"}, options={"expose"=true})
+    * @param Request $request
+    * @param int
+    * @return JsonResponse
+    */
     public function addProfile(Request $request  )
+    
     {
        
         $ProfileUser = new ProfileUser();
         $ProfileUser->setprofileDate(new \DateTime());
         $user=$this->getUser();
         $ProfileUser->setUser($user);
-
+        
         $form = $this->formFactory->create(ProfileUserType::class, $ProfileUser);
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->entityManager->persist($ProfileUser);
-            $this->entityManager->flush();
-            return new RedirectResponse('/profiles?v=1.2');
+            
+            if($request->isXmlHttpRequest){
+                $encoders = [new JsonEncoder()];
+
+                $normalizers =[
+                    (new ObjectNormalizer())->setCirularReferenceHandler(function ($object){
+                        return $object->getName();
+                    })
+                ];
+
+                $serialzer = new Seriliazer($normalizers, $encoders);
+                $this->perisit($ProfileUser);
+                
+                $data = $serialzer->serialize($ProfileUser, 'json');
+
+                return new JsonResponse($data,200,[], true);
+
+            }
+
+
+
         }
         
-        return $form->createView();
+       // return $form->createView();
         
     }
+
+
     public function profile($id)
     {
         $profile = $this->profileUserRepository->find($id);
