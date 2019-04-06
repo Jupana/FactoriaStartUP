@@ -4,6 +4,7 @@ namespace App\Controller;
 use App\Entity\ProfileUser;
 use App\Entity\User;
 use App\Form\ProfileUserType;
+use App\Form\UserPersonalInfoType;
 use App\Repository\ProfileUserRepository;
 use App\Repository\ProfilRepository;
 use App\Repository\SectorRepository;
@@ -88,7 +89,7 @@ class VistaUsuarioController extends AbstractController
     public function vista($id)
     {
         $user = $this->userRepository->find($id);
-
+        
         return new Response(
             $this->twig->render(
                 'vista_usuario/index_vista.html.twig',
@@ -100,8 +101,16 @@ class VistaUsuarioController extends AbstractController
     }
     public function datos_personales(Request $request): Response
     {
-        $em = $this->getDoctrine()->getManager();
-        return $this->render('vista_usuario/datos_Personales.html.twig');
+        
+        $user = $this->getUser();
+        
+        $form = $this->createForm(UserPersonalInfoType::class, $user);
+        $form->handleRequest($request);
+
+        return $this->render('vista_usuario/datos_Personales.html.twig',
+            ['user' =>$user,
+            'form' =>$form->createView()
+            ]);
     }
     public function datos_profesionales(Request $request): Response
     {
@@ -113,7 +122,7 @@ class VistaUsuarioController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         return $this->render('vista_usuario/datos_Proyectos.html.twig');
     }
-    public function añadir_proyecto(Request $request): Response
+    public function add_proyecto(Request $request): Response
     {
         $em = $this->getDoctrine()->getManager();
         return $this->render('vista_usuario/añadir_proyecto.html.twig');

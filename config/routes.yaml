@@ -8,7 +8,7 @@ equipo:
     path: /profiles
     controller: App\Controller\ProfileUserController::indexProfile 
 add_profile:
-    path: /profiles/añadir
+    path: /profiles/add
     controller: App\Controller\ProfileUserController::addProfile     
 detalle_profile:
     path: /profiles/{id}
@@ -26,7 +26,7 @@ proyectos:
     path: /proyectos
     controller: App\Controller\ProjectController::indexProject
 add_project:
-    path: /proyectos/añadir
+    path: /proyectos/add
     controller: App\Controller\ProjectController::add              
 detalle_proyecto:
     path: /proyectos/{id}
@@ -41,11 +41,11 @@ eliminar_proyecto:
         
 
 
-añadir_proyecto:
-    path: /vista_usuario/añadir_proyecto
-    controller: App\Controller\VistaUsuarioController::añadir_proyecto 
+add_proyecto:
+    path: /vista_usuario/add_proyecto
+    controller: App\Controller\VistaUsuarioController::add_proyecto 
 datos_personales:
-    path: /vista_usuario/datos_personales
+    path: /usuario/datos_personales
     controller: App\Controller\VistaUsuarioController::datos_personales 
 datos_profesionales:
     path: /vista_usuario/datos_profesionales

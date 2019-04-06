@@ -87,21 +87,60 @@ class AppFixtures extends Fixture
     private function loadSectors(ObjectManager $manager)
     { 
         $sector = new Sector();
-        $sector ->setName('Financiero'); 
-        $this->addReference('Financiero',$sector);      
+        $sector ->setName('Educación'); 
+        $this->addReference('Educación',$sector);      
         $manager->persist($sector);
         
 
         $sector = new Sector();
-        $sector ->setName('Ventas'); 
-        $this->addReference('Ventas',$sector);      
+        $sector ->setName('Investigación y ciencia'); 
+        $this->addReference('Investigación y ciencia',$sector);      
         $manager->persist($sector);
 
         $sector = new Sector();
-        $sector ->setName('Marketing'); 
-        $this->addReference('Marketing',$sector);      
+        $sector ->setName('Gestión y administración'); 
+        $this->addReference('Gestión y administración',$sector);      
         $manager->persist($sector);
-       
+
+        $sector = new Sector();
+        $sector ->setName('Sanidad'); 
+        $this->addReference('Sanidad',$sector);      
+        $manager->persist($sector);
+
+        $sector = new Sector();
+        $sector ->setName('Servicios'); 
+        $this->addReference('Servicios',$sector);      
+        $manager->persist($sector);
+
+        $sector = new Sector();
+        $sector ->setName('Ocio y entretenimiento'); 
+        $this->addReference('Ocio y entretenimiento',$sector);      
+        $manager->persist($sector);
+
+        $sector = new Sector();
+        $sector ->setName('Distribución y vent'); 
+        $this->addReference('Distribución y vent',$sector);      
+        $manager->persist($sector);
+
+        $sector = new Sector();
+        $sector ->setName('Sector inmobiliario'); 
+        $this->addReference('Sector inmobiliario',$sector);      
+        $manager->persist($sector);
+
+        $sector = new Sector();
+        $sector ->setName('Finanzas'); 
+        $this->addReference('Finanzas',$sector);      
+        $manager->persist($sector);
+
+        $sector = new Sector();
+        $sector ->setName('Turismo'); 
+        $this->addReference('Turismo',$sector);      
+        $manager->persist($sector);
+
+        $sector = new Sector();
+        $sector ->setName('Otras Aportaciones'); 
+        $this->addReference('Otras Aportaciones',$sector);      
+        $manager->persist($sector);       
         $manager->flush();
     }
 
