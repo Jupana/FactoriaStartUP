@@ -107,6 +107,14 @@ class VistaUsuarioController extends AbstractController
         $form = $this->createForm(UserPersonalInfoType::class, $user);
         $form->handleRequest($request);
 
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->entityManager->persist($user);
+            $this->entityManager->flush();
+
+            return $this->redirectToRoute('datos_personales');
+
+        }
+
         return $this->render('vista_usuario/datos_Personales.html.twig',
             ['user' =>$user,
             'form' =>$form->createView()

@@ -117,6 +117,7 @@ class UserPersonalInfoType extends AbstractType
                         'label' => false
                     ]
                 )
+                //https://stackoverflow.com/questions/41488108/symfony-file-upload-in-edit-form   
             ->add('perfil_img',FileType::class, 
                     [
                         'label' => false
