@@ -13,6 +13,8 @@ use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class UserPersonalInfoType extends AbstractType
 {
@@ -46,6 +48,10 @@ class UserPersonalInfoType extends AbstractType
                     [
                         'label' =>false,
                         'widget' => 'choice',
+                        'years' =>range(date('Y'), date('Y') - 70),
+                        'placeholder' => [
+                            'year' => '1990', 'month' => '01', 'day' => '01',
+                        ]
                     ]
                 )
             ->add('email', EmailType::class,
@@ -59,11 +65,15 @@ class UserPersonalInfoType extends AbstractType
                     ]
                 )
 
-            /*->add('sex' ,ChoiceType::class, array(
-                'choices' => array('Mujer' => 'm', 'Hombre' => 'h'),
-                'choices_as_values' => true,
-                'expanded' => true))
-            ->add('street_type',ChoiceType::class, array(
+            ->add('sex' ,ChoiceType::class,
+                    [
+                        'choices' => array('Mujer' => 'm', 'Hombre' => 'h'),
+                        'expanded' => true,
+                        'multiple' => false,
+                        'label' => false
+                    ]    
+                )
+            /*->add('street_type',ChoiceType::class, array(
                 'choices' => array('Avenida' =>'avenida','Calle' => 'calle', 'Via' => 'via'),
                 'choices_as_values' => true,
                 'expanded' => true))*/
@@ -77,11 +87,11 @@ class UserPersonalInfoType extends AbstractType
                         'label' => false
                     ]
                 )
-            ->add('block',TextType::class, 
+            /*->add('block',TextType::class, 
                     [
                         'label' => false
                     ]
-                )
+                )*/
             ->add('apartment',TextType::class, 
                     [
                         'label' => false
@@ -107,7 +117,7 @@ class UserPersonalInfoType extends AbstractType
                         'label' => false
                     ]
                 )
-            ->add('perfil_img',TextType::class, 
+            ->add('perfil_img',FileType::class, 
                     [
                         'label' => false
                     ]
@@ -119,6 +129,7 @@ class UserPersonalInfoType extends AbstractType
            // ->add('latitud')
            // ->add('longitud')
            // ->add('IP')
+           ->add('submit', SubmitType::class)
         ;
     }
 

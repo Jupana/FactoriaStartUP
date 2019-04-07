@@ -20,7 +20,7 @@
                 </div>    
                 <form class="p-b-0">
                     <div class="form-group">
-                        <input type="file" class="form-control img_select p-t-0 p-l-0 p-b-0 par1 "style="height:10%;width:100%;" >
+                     {{ form_row(form.perfil_img) }}
                     </div>
                 </form>
             </div>   
@@ -47,14 +47,7 @@
                 </form>
             </div>
             <div class="col-md-4 col-sm-12  p-t-10 par1">
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                    <label class="form-check-label" for="inlineCheckbox1 par1">Hombre</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                    <label class="form-check-label" for="inlineCheckbox2 par1">Mujer</label>
-                </div> 
+               {{ form_row(form.sex) }}
                 <div class="form-group row">
                     <label for="inputEdad" class="col-3 col-form-label par1">Edad</label>
                     <div class="col-9">
@@ -98,6 +91,11 @@
                     <div class="col-9">
                        {{ form_row(form.street_name) }}
                     </div>
+                     <label for="inputVia" class="col-3 col-form-label par1">Portal</label>
+                    <div class="col-9">
+                       {{ form_row(form.apartment) }}
+                    </div>
+
                 </div>
             </div>
             <div class="col-md-2 col-sm-4">
@@ -136,7 +134,15 @@
                        {{ form_row(form.province) }}
                     </div>
                 </div>
-            </div>  
+            </div>
+             <div class="col-md-6 col-sm-12">
+                <div class="form-group row">
+                    <label for="inputCodigoPostal" class="col-3 col-form-label par1">Pais</label>
+                    <div class="col-9">
+                       {{ form_row(form.country) }}
+                    </div>
+                </div>
+            </div>   
         </div>
     </div> 
     <div class="col-md-12 m-b-20">
