@@ -15,7 +15,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 class UserPersonalInfoType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -58,7 +59,7 @@ class UserPersonalInfoType extends AbstractType
                     [
                         'label' => false
                     ]
-                )
+                )  
             ->add('phone_number',TelType::class, 
                     [
                         'label' => false
@@ -72,7 +73,7 @@ class UserPersonalInfoType extends AbstractType
                         'multiple' => false,
                         'label' => false
                     ]    
-                )
+            )
             /*->add('street_type',ChoiceType::class, array(
                 'choices' => array('Avenida' =>'avenida','Calle' => 'calle', 'Via' => 'via'),
                 'choices_as_values' => true,
@@ -118,11 +119,11 @@ class UserPersonalInfoType extends AbstractType
                     ]
                 )
                 //https://stackoverflow.com/questions/41488108/symfony-file-upload-in-edit-form   
-            ->add('perfil_img',FileType::class, 
+            /*->add('perfil_img',FileType::class, 
                     [
                         'label' => false
                     ]
-                )
+                )*/
             //->add('team_search')  Liviu estos tiene que ponerlos en otro form
             //->add('proyect_search')
            // ->add('phone_number',NumberType::class, ['label' => 'Telefono'])
@@ -130,11 +131,10 @@ class UserPersonalInfoType extends AbstractType
            // ->add('latitud')
            // ->add('longitud')
            // ->add('IP')
-           ->add('submit', SubmitType::class)
         ;
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => User::class,

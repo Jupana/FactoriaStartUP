@@ -99,26 +99,26 @@ class VistaUsuarioController extends AbstractController
             )
         );
     }
+  
     public function datos_personales(Request $request): Response
     {
-        
         $user = $this->getUser();
         
         $form = $this->createForm(UserPersonalInfoType::class, $user);
+        $form->remove('plainPassword');
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->entityManager->persist($user);
-            $this->entityManager->flush();
-
+          
+            $this->getDoctrine()->getManager()->flush();
             return $this->redirectToRoute('datos_personales');
 
         }
-
         return $this->render('vista_usuario/datos_Personales.html.twig',
             ['user' =>$user,
             'form' =>$form->createView()
             ]);
+
     }
     public function datos_profesionales(Request $request): Response
     {

@@ -1,4 +1,3 @@
-
 {% extends 'vista_usuario/index_vista.html.twig' %}
 
 {% block vista %}
@@ -12,6 +11,7 @@
             <h4 class="page-head-line">Actualiza tus datos personales</h4>
         </div>
     </div> 
+    {{ form_start(form) }}  
     <div class="box m-l-20 m-r-20 par1 ">
         <div class="row p-l-10 p-r-10 ">
             <div class="col-md-3 col-sm-12 ">
@@ -20,7 +20,7 @@
                 </div>    
                 <form class="p-b-0">
                     <div class="form-group">
-                        <input type="file" class="form-control img_select p-t-0 p-l-0 p-b-0 par1 "style="height:10%;width:100%;" >
+               {#  {form_row(#form.perfil_img) }  #}
                     </div>
                 </form>
             </div>   
@@ -29,36 +29,29 @@
                     <div class="form-group row">
                         <label for="inputUsername" class="col-4 col-form-label par1">Usuario*</label>
                         <div class="col-8 p-l-0 p-b-5">
-                            <input type="username" class="form-control" id="inputUsername" >
+                            {{ form_row(form.username) }}
                         </div>
                         <label for="inputName" class="col-4 col-form-label par1">Nombre*</label>
                         <div class="col-8 p-l-0 p-b-5">
-                            <input type="name" class="form-control" id="inputName" >
+                            {{ form_row(form.name) }}
                         </div>
                         <label for="inputSurname1" class="col-4 col-form-label par1">Appellido1* </label>
                         <div class="col-8 p-l-0 p-b-5">
-                            <input type="surname1" class="form-control" id="inputSurname1" >
+                             {{ form_row(form.surname_1) }}
                         </div>
                         <label for="inputSurname2" class="col-4 col-form-label par1">Apellido2</label>
                         <div class="col-8 p-l-0 p-b-5">
-                            <input type="surname2" class="form-control" id="inputSurname2">
+                            {{ form_row(form.surname_2) }}
                         </div>
                     </div>
                 </form>
             </div>
             <div class="col-md-4 col-sm-12  p-t-10 par1">
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                    <label class="form-check-label" for="inlineCheckbox1 par1">Hombre</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                    <label class="form-check-label" for="inlineCheckbox2 par1">Mujer</label>
-                </div> 
+               {{ form_row(form.sex) }}
                 <div class="form-group row">
                     <label for="inputEdad" class="col-3 col-form-label par1">Edad</label>
                     <div class="col-9">
-                        <input type="edad" class="form-control par1" id="inputEdad" placeholder=" dd/mm/aaaa">
+                        {{ form_row(form.birth_date) }}
                     </div>
                 </div>    
             </div> 
@@ -75,11 +68,11 @@
                 <div class="form-group row">
                     <label for="inputEmail" class="col-3 col-form-label par1">Email*</label>
                     <div class="col-9 p-b-5">
-                        <input type="email" class="form-control" id="inputEmail" >
+                         {{ form_row(form.email) }}
                     </div>
                     <label for="inputTelefono" class="col-3 col-form-label par1">Telefono</label>
                     <div class="col-9">
-                        <input type="telefono" class="form-control" id="inputTelefono" >
+                        {{ form_row(form.phone_number ) }}
                     </div>
                 </div>
             </div>
@@ -94,17 +87,22 @@
         <div class="row p-t-10 p-l-10 p-r-10">
             <div class="col-md-6 col-sm-8">
                 <div class="form-group row">
-                    <label for="inputVia" class="col-3 col-form-label par1">Via*</label>
+                    <label for="inputVia" class="col-3 col-form-label par1">Dirección*</label>
                     <div class="col-9">
-                        <input type="edad" class="form-control" id="inputEdad" >
+                       {{ form_row(form.street_name) }}
                     </div>
+                     <label for="inputVia" class="col-3 col-form-label par1">Portal</label>
+                    <div class="col-9">
+                       {{ form_row(form.apartment) }}
+                    </div>
+
                 </div>
             </div>
             <div class="col-md-2 col-sm-4">
                 <div class="form-group row">
                     <label for="inputNR_Via" class="col-4 col-form-label">Nr</label>
                     <div class="col-8">
-                        <input type="nr_via" class="form-control" id="inputNR_Via" >
+                        {{ form_row(form.street_number) }}
                     </div>
                 </div>
             </div>
@@ -117,7 +115,7 @@
                 <div class="form-group row">
                     <label for="inputCodigoPostal" class="col-3 col-form-label par1">Codigo Postal</label>
                     <div class="col-9">
-                        <input type="codigopostal" class="form-control" id="inputCodigoPostal" >
+                       {{ form_row(form.postal_code) }}
                     </div>
                 </div>
             </div>
@@ -125,7 +123,7 @@
                 <div class="form-group row">
                     <label for="inputCodigoPostal" class="col-3 col-form-label par1">Poblacion</label>
                     <div class="col-9">
-                        <input type="codigopostal" class="form-control" id="inputCodigoPostal" >
+                        {{ form_row(form.city) }}
                     </div>
                 </div>
             </div>
@@ -133,18 +131,23 @@
                 <div class="form-group row">
                     <label for="inputCodigoPostal" class="col-3 col-form-label par1">Provincia</label>
                     <div class="col-9">
-                        <input type="codigopostal" class="form-control" id="inputCodigoPostal" >
+                       {{ form_row(form.province) }}
                     </div>
                 </div>
-            </div>  
+            </div>
+             <div class="col-md-6 col-sm-12">
+                <div class="form-group row">
+                    <label for="inputCodigoPostal" class="col-3 col-form-label par1">Pais</label>
+                    <div class="col-9">
+                       {{ form_row(form.country) }}
+                    </div>
+                </div>
+            </div>   
         </div>
     </div> 
     <div class="col-md-12 m-b-20">
-        <buton  class="btn btn-info btn-block par1">Guardar datos personales</button>
+        <buton type="submit" class="btn btn-info btn-block par1">Guardar datos personales</button>
     </div>
-
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <input type="submit" value="Send"/>
-    {{ form_end(form) }}
+      
+     {{ form_end(form) }}  
 {% endblock %}  

@@ -147,6 +147,7 @@ class ProfileUserController extends AbstractController
             )
         );
     }
+    
     public function editProfile(ProfileUser $ProfileUser, Request $request)
     {
         
