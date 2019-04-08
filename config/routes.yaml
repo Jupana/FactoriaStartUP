@@ -45,10 +45,10 @@ add_proyecto:
     path: /vista_usuario/add_proyecto
     controller: App\Controller\VistaUsuarioController::add_proyecto 
 datos_personales:
-    path: /usuario/datos_personales
+    path: /datos_personales
     controller: App\Controller\VistaUsuarioController::datos_personales 
 datos_profesionales:
-    path: /vista_usuario/datos_profesionales
+    path: /datos_profesionales
     controller: App\Controller\VistaUsuarioController::datos_profesionales
 datos_proyectos:
     path: /vista_usuario/datos_proyectos

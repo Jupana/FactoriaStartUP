@@ -20,7 +20,7 @@ class Profil
     private $id;
 
      /**
-     * @ORM\Column(type="string", nullable=true,name="profil_name")
+     * @ORM\Column(type="string", nullable=true, name="profil_name")
      */
     private $name;
 

@@ -77,6 +77,11 @@
     </div>
     <div class="col-md-12 m-b-20">
         <buton type="submit" class="btn btn-info btn-block  ">Guardar datos profesionales</button>
-    </div>		
+    </div>	
+
+    {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+{{ form_widget(form) }}
+<input type='submit' value='Guardar datos profesionales'/>
+{{ form_end(form) }}	
    
 {% endblock %}  

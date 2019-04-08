@@ -3,8 +3,10 @@ namespace App\Controller;
 
 use App\Entity\ProfileUser;
 use App\Entity\User;
+use App\Entity\ProfesionalProfile;
 use App\Form\ProfileUserType;
 use App\Form\UserPersonalInfoType;
+use App\Form\ProfesionalProfileType;
 use App\Repository\ProfileUserRepository;
 use App\Repository\ProfilRepository;
 use App\Repository\SectorRepository;
@@ -138,8 +140,23 @@ class VistaUsuarioController extends AbstractController
     }
     public function datos_profesionales(Request $request): Response
     {
-        $em = $this->getDoctrine()->getManager();
-        return $this->render('vista_usuario/datos_Profesionales.html.twig');
+        $profesionalProfile = new ProfesionalProfile;
+        
+        $form = $this->createForm(ProfesionalProfileType::class, $profesionalProfile);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+          
+            $this->entityManager->persist($profesionalProfile);
+            $this->entityManager->flush();
+            return $this->redirectToRoute('datos_personales');
+
+        }
+        return $this->render('vista_usuario/datos_Profesionales.html.twig',
+            ['profesionalProfile' =>$profesionalProfile,
+            'form' =>$form->createView()
+            ]);
+        
     }
     public function datos_proyectos(Request $request): Response
     {
