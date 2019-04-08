@@ -65,93 +65,79 @@ class User implements UserInterface,\Serializable
 
      /**
      * @ORM\Column(type="datetime", nullable=true,name="user_birth_date")
-    
      */
     private $birth_date;
 
      /**
      * @ORM\Column(type="string", nullable=true,name="user_sex")
-    
      */
     private $sex;
 
      /**
      * @ORM\Column(type="string", nullable=true,name="user_street_type")
-    
      */
     private $street_type;
 
      /**
      * @ORM\Column(type="string", nullable=true,name="user_street_name")
-    
      */
     private $street_name;
 
     /**
      * @ORM\Column(type="string", nullable=true,name="user_street_number")
-    
      */
     private $street_number;
 
     /**
      * @ORM\Column(type="string", nullable=true,name="user_block")
-    
      */
     private $block;
 
     /**
      * @ORM\Column(type="string", nullable=true,name="user_apartment")
-    
      */
     private $apartment;
 
      /**
      * @ORM\Column(type="string", nullable=true,name="user_city")
-    
-
      */
     private $city;
 
      /**
      * @ORM\Column(type="string", nullable=true,name="user_postal_code")
-    
      */
     private $postal_code;
 
      /**
      * @ORM\Column(type="string", nullable=true,name="user_provincie")
-    
      */
     private $province;
 
     /**
      * @ORM\Column(type="string", nullable=true,name="user_country")
-    
      */
     private $country;
 
     /**
      * @ORM\Column(type="string", nullable=true,name="user_perfil_img")
-    
+     * @Assert\Image
+     * @Assert\File(maxSize = "2M")
      */
     private $perfil_img;
 
     /**
      * @ORM\Column(type="string", nullable=true,name="user_team_search")
-    
      */
     private $team_search;
 
     /**
      * @ORM\Column(type="string", nullable=true,name="user_proyect_search")
-    
      */
     private $proyect_search;
 
     /**
      * @ORM\Column(type="string", nullable=true,name="user_phone_number")
-
-     */
+ */
     private $phone_number;
 
     /**
@@ -453,14 +439,14 @@ class User implements UserInterface,\Serializable
         return $this;
     }
 
-    public function getPerfilImg(): ?string
+    public function getPerfilImg()
     {
         return $this->perfil_img;
     }
 
-    public function setPerfilImg(string $perfil_img): self
+    public function setPerfilImg($file)
     {
-        $this->perfil_img = $perfil_img;
+        $this->perfil_img = $file;
 
         return $this;
     }

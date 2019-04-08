@@ -16,16 +16,16 @@
         <div class="row p-l-10 p-r-10 ">
             <div class="col-md-3 col-sm-12 ">
                 <div class="img_usuario border" style="min-height:80%;width:100%;">
-                    <span class="par1">Foto</span>
+                    <img src ="{{ asset ('img/uploads/users_perfil/' ~ user.getPerfilImg) }}"/>
                 </div>    
-                <form class="p-b-0">
+                <div class="p-b-0">
                     <div class="form-group">
-               {#  {form_row(#form.perfil_img) }  #}
+                        {{form_row(form.perfil_img) }}
                     </div>
-                </form>
+                </div>
             </div>   
             <div class="col-md-5 col-sm-12">
-                <form class="formulario">
+                <div class="formulario">
                     <div class="form-group row">
                         <label for="inputUsername" class="col-4 col-form-label par1">Usuario*</label>
                         <div class="col-8 p-l-0 p-b-5">
@@ -44,7 +44,7 @@
                             {{ form_row(form.surname_2) }}
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
             <div class="col-md-4 col-sm-12  p-t-10 par1">
                {{ form_row(form.sex) }}
@@ -146,7 +146,7 @@
         </div>
     </div> 
     <div class="col-md-12 m-b-20">
-        <buton type="submit" class="btn btn-info btn-block par1">Guardar datos personales</button>
+        <input type="submit" class="btn btn-info btn-block par1" value="Guardar datos personales"/>
     </div>
       
      {{ form_end(form) }}  

@@ -17,6 +17,9 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+
+
+
 class UserPersonalInfoType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -119,11 +122,12 @@ class UserPersonalInfoType extends AbstractType
                     ]
                 )
                 //https://stackoverflow.com/questions/41488108/symfony-file-upload-in-edit-form   
-            /*->add('perfil_img',FileType::class, 
+            ->add('perfil_img',FileType::class, 
                     [
-                        'label' => false
+                        'label' => false,
+                        'data_class' => null
                     ]
-                )*/
+                )
             //->add('team_search')  Liviu estos tiene que ponerlos en otro form
             //->add('proyect_search')
            // ->add('phone_number',NumberType::class, ['label' => 'Telefono'])
