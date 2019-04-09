@@ -24,24 +24,12 @@ class Profil
      */
     private $name;
 
-     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Sector", inversedBy="profiles")
-     * @ORM\JoinColumn()
-    */
-    private $sector;
-
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\ProfileUser", mappedBy="profil") 
-     */
-    private $profil_records;
-
-
     public function __construct()
     {
         $this->profil_records = new ArrayCollection();
       
     }
-    
+  
 
     public function getId(): ?int
     {
@@ -60,77 +48,4 @@ class Profil
         return $this;
     }
 
-    public function getSector(): ?Sector
-    {
-        return $this->sector;
-    }
-
-    public function setSector(?Sector $sector): self
-    {
-        $this->sector = $sector;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|ProfileUser[]
-     */
-    public function getProfilRecords(): Collection
-    {
-        return $this->profil_records;
-    }
-
-    public function addProfilRecord(ProfileUser $profilRecord): self
-    {
-        if (!$this->profil_records->contains($profilRecord)) {
-            $this->profil_records[] = $profilRecord;
-            $profilRecord->setProfil($this);
-        }
-
-        return $this;
-    }
-
-    public function removeProfilRecord(ProfileUser $profilRecord): self
-    {
-        if ($this->profil_records->contains($profilRecord)) {
-            $this->profil_records->removeElement($profilRecord);
-            // set the owning side to null (unless already changed)
-            if ($profilRecord->getProfil() === $this) {
-                $profilRecord->setProfil(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|ProfileUser[]
-     */
-    public function getSectorRecords(): Collection
-    {
-        return $this->sector_records;
-    }
-
-    public function addSectorRecord(ProfileUser $sectorRecord): self
-    {
-        if (!$this->sector_records->contains($sectorRecord)) {
-            $this->sector_records[] = $sectorRecord;
-            $sectorRecord->setSector($this);
-        }
-
-        return $this;
-    }
-
-    public function removeSectorRecord(ProfileUser $sectorRecord): self
-    {
-        if ($this->sector_records->contains($sectorRecord)) {
-            $this->sector_records->removeElement($sectorRecord);
-            // set the owning side to null (unless already changed)
-            if ($sectorRecord->getSector() === $this) {
-                $sectorRecord->setSector(null);
-            }
-        }
-
-        return $this;
-    }
 }

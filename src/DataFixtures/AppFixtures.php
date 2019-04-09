@@ -88,58 +88,47 @@ class AppFixtures extends Fixture
     { 
         $sector = new Sector();
         $sector ->setName('Educación'); 
-        $this->addReference('Educación',$sector);      
         $manager->persist($sector);
         
 
         $sector = new Sector();
         $sector ->setName('Investigación y ciencia'); 
-        $this->addReference('Investigación y ciencia',$sector);      
         $manager->persist($sector);
 
         $sector = new Sector();
         $sector ->setName('Gestión y administración'); 
-        $this->addReference('Gestión y administración',$sector);      
         $manager->persist($sector);
 
         $sector = new Sector();
         $sector ->setName('Sanidad'); 
-        $this->addReference('Sanidad',$sector);      
         $manager->persist($sector);
 
         $sector = new Sector();
         $sector ->setName('Servicios'); 
-        $this->addReference('Servicios',$sector);      
         $manager->persist($sector);
 
         $sector = new Sector();
         $sector ->setName('Ocio y entretenimiento'); 
-        $this->addReference('Ocio y entretenimiento',$sector);      
         $manager->persist($sector);
 
         $sector = new Sector();
         $sector ->setName('Distribución y vent'); 
-        $this->addReference('Distribución y vent',$sector);      
         $manager->persist($sector);
 
         $sector = new Sector();
         $sector ->setName('Sector inmobiliario'); 
-        $this->addReference('Sector inmobiliario',$sector);      
         $manager->persist($sector);
 
         $sector = new Sector();
         $sector ->setName('Finanzas'); 
-        $this->addReference('Finanzas',$sector);      
         $manager->persist($sector);
 
         $sector = new Sector();
         $sector ->setName('Turismo'); 
-        $this->addReference('Turismo',$sector);      
         $manager->persist($sector);
 
         $sector = new Sector();
         $sector ->setName('Otras Aportaciones'); 
-        $this->addReference('Otras Aportaciones',$sector);      
         $manager->persist($sector);       
         $manager->flush();
     }
@@ -147,36 +136,49 @@ class AppFixtures extends Fixture
     private function loadProfils(ObjectManager $manager)
     { 
         $profil = new Profil();
-        $profil ->setName('Contable');  
-        $this->addReference('Contable',$profil);      
-        $profil->setSector($this->getReference('Financiero'));
+        $profil ->setName('Educación');  
         $manager->persist($profil);
      
         $profil = new Profil();
-        $profil ->setName('Administrativo financiero');
-        $this->addReference('Administrativo financiero',$profil);   
-        $profil->setSector($this->getReference('Financiero'));     
+        $profil ->setName('Investigación y ciencia');
         $manager->persist($profil);
        
         $profil = new Profil();
-        $profil ->setName('Comercial'); 
-        $this->addReference('Comercial',$profil); 
-        $profil->setSector($this->getReference('Ventas'));      
+        $profil ->setName('Gestión y administración'); 
         $manager->persist($profil);
       
         $profil = new Profil();
-        $profil ->setName('Analista Web'); 
-        $this->addReference('Analista Web',$profil);  
-        $profil->setSector($this->getReference('Marketing'));     
+        $profil ->setName('Sanidad'); 
         $manager->persist($profil);
 
         $profil = new Profil();
-        $profil ->setName('Director marketing'); 
-        $this->addReference('Director marketing',$profil); 
-        $profil->setSector($this->getReference('Marketing'));       
+        $profil ->setName('Servicios'); 
         $manager->persist($profil);
 
-       
+        $profil = new Profil();
+        $profil ->setName('Ocio y entretenimiento'); 
+        $manager->persist($profil);
+
+        $profil = new Profil();
+        $profil ->setName('Distribución y venta'); 
+        $manager->persist($profil);
+
+        $profil = new Profil();
+        $profil ->setName('Sector inmobiliario'); 
+        $manager->persist($profil);
+
+        $profil = new Profil();
+        $profil ->setName('Finanzas'); 
+        $manager->persist($profil);
+
+        $profil = new Profil();
+        $profil ->setName('Turismo'); 
+        $manager->persist($profil);
+
+        $profil = new Profil();
+        $profil ->setName('Otras Aportaciones'); 
+        $manager->persist($profil);
+
         $manager->flush();
     }
 
@@ -184,8 +186,8 @@ class AppFixtures extends Fixture
     { 
         $ProfileUser = new ProfileUser();
         $ProfileUser -> setUser($this->getReference('liviu'));
-        $ProfileUser -> setProfil($this->getReference('Analista Web'));
-        $ProfileUser -> setSector($this->getReference('Marketing'));
+        //$ProfileUser -> setProfil($this->getReference('Analista Web'));
+        //$ProfileUser -> setSector($this->getReference('Marketing'));
         $ProfileUser->setDescription('Aqui esta la descripcion profesional sobre el perfil grabado de prueba');
         $ProfileUser->setProfileDate(new \Datetime(2019-03-15));
            
@@ -193,8 +195,8 @@ class AppFixtures extends Fixture
 
         $ProfileUser = new ProfileUser();
         $ProfileUser -> setUser($this->getReference('liviu'));
-        $ProfileUser -> setProfil($this->getReference('Comercial'));
-        $ProfileUser -> setSector($this->getReference('Ventas'));
+        //$ProfileUser -> setProfil($this->getReference('Comercial'));
+        //$ProfileUser -> setSector($this->getReference('Ventas'));
         $ProfileUser->setDescription('Aqui esta la descripcion profesional sobre el perfil grabado de prueba');
         $ProfileUser->setProfileDate(new \Datetime(2019-03-15));
            

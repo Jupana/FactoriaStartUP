@@ -138,12 +138,21 @@ class VistaUsuarioController extends AbstractController
             ]);
 
     }
+    
     public function datosProfesionales(Request $request): Response
     {
+       
+       
         $profesionalProfile = $this->getDoctrine()->getRepository(ProfesionalProfile::class);
         $user = $this->getUser();
         
         $profesionalProfile = $profesionalProfile->findOneBy(['profesionalIdUser' => $user->getId()]);
+        
+        //Check to see if we have a profesional content and user
+        if(!$profesionalProfile){
+            $profesionalProfile = new ProfesionalProfile();
+            $profesionalProfile->setProfesionalIdUser($user->getId()); 
+        }
         $profesionalProfile ->setProfesionalDate((new \DateTime()));
 
         $form = $this->createForm(ProfesionalProfileType::class, $profesionalProfile);

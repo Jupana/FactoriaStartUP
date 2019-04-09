@@ -61,13 +61,14 @@
                     </thead>
                     <tbody>
                         <tr>
+                        
                             <td>{% for profile in profiles %}
-                                      <p>{{profile.Sector.Name}}</p>
+                                      <p>{#{ profile.Sector.Name}#}</p>
                                  {% endfor %} 
                                                                      </td>
                             <td>
                                 {% for profile in profiles %}
-                                      <p>{{profile.Profil.Name}}</p>
+                                      <p>{#{profile.Profil.Name}#}</p>
                                  {% endfor %} 
                                 
                             <td>

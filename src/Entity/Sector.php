@@ -24,23 +24,6 @@ class Sector
      */
     private $name;
 
-      /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Profil", mappedBy="sector") 
-     */
-    private $profiles;
-
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Project", mappedBy="project_sector") 
-     */
-    private $projects;
-    
-
-    public function __construct()
-    {
-        $this->profiles = new ArrayCollection();
-        $this->projects = new ArrayCollection();
-    }
-
     public function getId(): ?int
     {
         return $this->id;
@@ -57,23 +40,5 @@ class Sector
 
         return $this;
     }
-
-    /**
-     * @return Collection|Profil[]
-     */
-    public function getProfiles(): Collection
-    {
-        return $this->profiles;
-    }
-
-
-    /**
-     * @return Collection|Project[]
-     */
-    public function getProjects(): Collection
-    {
-        return $this->projects;
-    }
-
  
 }
