@@ -11,7 +11,8 @@
             <h4 class="page-head-line">Actualiza tus datos profesionales</h4>
         </div>
     </div> 
-    <div class="content_header m-l-20 m-r-20">  
+    <div class="content_header m-l-20 m-r-20"> 
+    {{ form_start(form) }}
         <div class="row p-r-80"> 
             <div class="col-md-12 fs-17 m-b-10"> 
                 <p class=""><b>¿Buscas nuevos retos y nuevas colaboraciones?</b></p> 
@@ -19,7 +20,7 @@
             <div class="col-md-5  ver_color">
                 <div class="form-check form-check-inline cuadro border p-l-15 p-r-15">
                     <label class="form-check-label  p-r-10 fs-20" for="inlineCheckbox1">Busco Proyecto</label>
-                    <input class="form-check-input"  type="checkbox" id="" value="">
+                    {{ form_row(form.profesionalSearchProject) }}
                 </div> 
             </div> 
             <div class="afos col-md-7 m-l-0  fs-15">
@@ -33,7 +34,8 @@
                 <p class=""><b>¿Quien eres? Defínete como persona, como compañero lo bien que trabajas...</b></p> 
             </div>
             <div class="col-md-12 m-l-0  fs-15">
-                <textarea  name="Description" class="form-control " rows="6" required="" maxlength="300" placeholder="Descríbete con un máximo de 300 caracteres..."></textarea>
+            {{ form_row(form.profesionalDescription, {'attr': {'placeholder': 'Descríbete con un máximo de 300 caracteres...'}} ) }}
+               
             </div>
         </div>        
     </div>
@@ -75,13 +77,12 @@
         </div>
                
     </div>
-    <div class="col-md-12 m-b-20">
-        <buton type="submit" class="btn btn-info btn-block  ">Guardar datos profesionales</button>
+    <div class="col-md-12 m-b-20">        
+        <input type='submit' class="btn btn-info btn-block" value='Guardar datos profesionales'/>
     </div>	
 
-    {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
-{{ form_widget(form) }}
-<input type='submit' value='Guardar datos profesionales'/>
+
+
 {{ form_end(form) }}	
    
 {% endblock %}  
