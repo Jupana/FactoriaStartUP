@@ -160,7 +160,8 @@ class VistaUsuarioController extends AbstractController
         return $this->render('vista_usuario/datos_Profesionales.html.twig',
             ['profesionalProfile' =>$profesionalProfile,
             'form' =>$form->createView(),
-            'form_addProfile'=>$this->datosAddProfile($request)
+            'form_addProfile'=>$this->datosAddProfile($request),
+            'profiles' => $this->profileUserRepository->findAll(),
             ]);
         
     }

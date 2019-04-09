@@ -61,10 +61,15 @@
                     </thead>
                     <tbody>
                         <tr>
+                            <td>{% for profile in profiles %}
+                                      <p>{{profile.Sector.Name}}</p>
+                                 {% endfor %} 
+                                                                     </td>
                             <td>
-                                <p>Marketing</p><p>Programacion</p><p>Diseño</p><p>Legal</p>                                        </td>
-                            <td>
-                                <p>Educacion</p><p>Distribucion y Venta</p><p>Sanidad</p><p>Servicios</p>                                        </td>
+                                {% for profile in profiles %}
+                                      <p>{{profile.Profil.Name}}</p>
+                                 {% endfor %} 
+                                
                             <td>
                                <a data-toggle="modal" data-target="#modalForm_info_proyecto" class="ver_color par" href="#"><p>Ver</p></a>  
                                 <a class="ver_color 1" href="#"><p>ver</p></a>
