@@ -138,32 +138,55 @@ class VistaUsuarioController extends AbstractController
             ]);
 
     }
-    public function datos_profesionales(Request $request): Response
+    public function datosProfesionales(Request $request): Response
     {
         $profesionalProfile = $this->getDoctrine()->getRepository(ProfesionalProfile::class);
         $user = $this->getUser();
-        dump($user->getId());
-        $profesionalProfile = $profesionalProfile->findOneBy(['profesionalIdUser' => $user->getId()]);
         
-        $form = $this->createForm(ProfesionalProfileType::class, $profesionalProfile);
-        $form->handleRequest($request);
-
-        //$profesionalProfile ->setProfesionalIdUser($user->getId());
+        $profesionalProfile = $profesionalProfile->findOneBy(['profesionalIdUser' => $user->getId()]);
         $profesionalProfile ->setProfesionalDate((new \DateTime()));
 
+        $form = $this->createForm(ProfesionalProfileType::class, $profesionalProfile);
+        $form->handleRequest($request);
+       
         if ($form->isSubmitted() && $form->isValid()) {
           
             $this->entityManager->persist($profesionalProfile);
             $this->entityManager->flush();
-            return $this->redirectToRoute('datos_personales');
+            return $this->redirectToRoute('datos_profesionales');
 
         }
+        
         return $this->render('vista_usuario/datos_Profesionales.html.twig',
             ['profesionalProfile' =>$profesionalProfile,
-            'form' =>$form->createView()
+            'form' =>$form->createView(),
+            'form_addProfile'=>$this->datosAddProfile($request)
             ]);
         
     }
+
+
+    public function datosAddProfile(Request $request  )
+    {
+       
+        $ProfileUser = new ProfileUser();
+        $ProfileUser->setprofileDate(new \DateTime());
+        $user=$this->getUser();
+        $ProfileUser->setUser($user);
+        $form = $this->formFactory->create(ProfileUserType::class, $ProfileUser);
+        $form->handleRequest($request);
+        
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->entityManager->persist($ProfileUser);
+            $this->entityManager->flush();
+            
+        }
+        
+        return $form->createView();
+        
+    }
+
+
     public function datos_proyectos(Request $request): Response
     {
         $em = $this->getDoctrine()->getManager();

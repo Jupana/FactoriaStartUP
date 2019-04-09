@@ -49,7 +49,7 @@ datos_personales:
     controller: App\Controller\VistaUsuarioController::datos_personales 
 datos_profesionales:
     path: /datos_profesionales
-    controller: App\Controller\VistaUsuarioController::datos_profesionales
+    controller: App\Controller\VistaUsuarioController::datosProfesionales
 datos_proyectos:
     path: /vista_usuario/datos_proyectos
     controller: App\Controller\VistaUsuarioController::datos_proyectos

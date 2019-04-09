@@ -39,15 +39,16 @@
             </div>
         </div>        
     </div>
-    <div class="content_sector m-l-20 ">  
+  <div class="content_sector m-l-20 ">  
         <div class="row p-r-80"> 
             <div class="col-md-12 fs-17 m-b-20"> 
                 <p class=""><b>¿Cómo de bueno eres en tu trabajo? Cuéntanos en qué destacas,tus hitos,tus exitos y que sector es el que mejor conoces.</b></p> 
             </div>
             <div class="col-md-2 p-t-60">
-               <button class="btn-info">
-                    Añade Perfil 
-                </button>
+                <a class="btn-info" data-toggle="modal" data-target="#modalForm">
+                             Añade Perfil
+                </a> 
+                
             </div> 
             <div class="col-md-10  table-responsive m-l-0  fs-15">
                 <table class="table border ">
@@ -65,7 +66,7 @@
                             <td>
                                 <p>Educacion</p><p>Distribucion y Venta</p><p>Sanidad</p><p>Servicios</p>                                        </td>
                             <td>
-                                <a class="ver_color 1" href="#"><p>ver</p></a>
+                               <a data-toggle="modal" data-target="#modalForm_info_proyecto" class="ver_color par" href="#"><p>Ver</p></a>  
                                 <a class="ver_color 1" href="#"><p>ver</p></a>
                                 <a class="ver_color 1" href="#"><p>ver</p></a>
                                 <a class="ver_color 1" href="#"><p>ver</p></a>
@@ -74,15 +75,13 @@
                     </tbody>
                 </table>
             </div>
-        </div>
-               
+        </div>     
     </div>
     <div class="col-md-12 m-b-20">        
         <input type='submit' class="btn btn-info btn-block" value='Guardar datos profesionales'/>
     </div>	
 
-
-
-{{ form_end(form) }}	
-   
+  
+{{ form_end(form) }}	 
+{% include 'modals/AddPerfil.html.twig' %} 
 {% endblock %}  
