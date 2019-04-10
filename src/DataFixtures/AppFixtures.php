@@ -11,12 +11,22 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
-class AppFixtures extends Fixture
+use App\Repository\ProfilRepository;
+use App\Repository\SectorRepository;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
+
+
+class AppFixtures extends Fixture 
 {
     /**
      * @var UserPasswordEncoderInterface
      */
     private $passwordEncoder;
+
+      /**
+    * @var EntityManagerInterface
+    */
+    private $entityManager;
 
     public function __construct(UserPasswordEncoderInterface $passwordEncoder)
     {
@@ -27,8 +37,10 @@ class AppFixtures extends Fixture
     {
         $this->loadUsers($manager);
         $this->loadProjects($manager);
-        $this->loadSectors($manager);
-        $this->loadProfils($manager);
+        
+        //WE LOAD SECTORS and PROFILES ONLY ONCE
+        //$this->loadSectors($manager);
+        //$this->loadProfils($manager);
         $this->loadProfilUser($manager);
        
     }
@@ -84,7 +96,33 @@ class AppFixtures extends Fixture
         $manager->flush();
     }
 
-    private function loadSectors(ObjectManager $manager)
+
+    private function loadProfilUser(ObjectManager $manager)
+    { 
+        $ProfileUser = new ProfileUser();
+        $ProfileUser -> setUser($this->getReference('liviu'));
+        $ProfileUser -> setProfil($this->getReference('Legal'));
+        $ProfileUser -> setSector($this->getReference('Sanidad'));
+        $ProfileUser->setDescription('Primer Proyecto');
+        $ProfileUser->setProfileDate(new \Datetime(2019-03-15));
+           
+        $manager->persist($ProfileUser);
+        $ProfileUser = new ProfileUser();
+        $ProfileUser -> setUser($this->getReference('liviu'));
+        $ProfileUser -> setProfil($this->getReference('Marketing'));
+        $ProfileUser -> setSector($this->getReference('Finanzas'));
+        $ProfileUser->setDescription('Segundo Proyecto');
+        $ProfileUser->setProfileDate(new \Datetime(2019-03-15));
+           
+        $manager->persist($ProfileUser);
+           
+        $manager->persist($ProfileUser);
+        
+       
+        $manager->flush();
+    }
+
+    /*private function loadSectors(ObjectManager $manager)
     { 
         $sector = new Sector();
         $sector ->setName('Educación'); 
@@ -136,75 +174,37 @@ class AppFixtures extends Fixture
     private function loadProfils(ObjectManager $manager)
     { 
         $profil = new Profil();
-        $profil ->setName('Educación');  
+        $profil ->setName('Marketing');  
         $manager->persist($profil);
      
         $profil = new Profil();
-        $profil ->setName('Investigación y ciencia');
+        $profil ->setName('Diseño');
         $manager->persist($profil);
        
         $profil = new Profil();
-        $profil ->setName('Gestión y administración'); 
+        $profil ->setName('Programación'); 
         $manager->persist($profil);
       
         $profil = new Profil();
-        $profil ->setName('Sanidad'); 
+        $profil ->setName('Legal'); 
         $manager->persist($profil);
 
         $profil = new Profil();
-        $profil ->setName('Servicios'); 
+        $profil ->setName('Comercial'); 
         $manager->persist($profil);
 
         $profil = new Profil();
-        $profil ->setName('Ocio y entretenimiento'); 
+        $profil ->setName('Financiero'); 
         $manager->persist($profil);
 
         $profil = new Profil();
-        $profil ->setName('Distribución y venta'); 
+        $profil ->setName('Espacio Físico'); 
         $manager->persist($profil);
 
         $profil = new Profil();
-        $profil ->setName('Sector inmobiliario'); 
-        $manager->persist($profil);
-
-        $profil = new Profil();
-        $profil ->setName('Finanzas'); 
-        $manager->persist($profil);
-
-        $profil = new Profil();
-        $profil ->setName('Turismo'); 
-        $manager->persist($profil);
-
-        $profil = new Profil();
-        $profil ->setName('Otras Aportaciones'); 
+        $profil ->setName('Financiación'); 
         $manager->persist($profil);
 
         $manager->flush();
-    }
-
-    private function loadProfilUser(ObjectManager $manager)
-    { 
-        $ProfileUser = new ProfileUser();
-        $ProfileUser -> setUser($this->getReference('liviu'));
-        //$ProfileUser -> setProfil($this->getReference('Analista Web'));
-        //$ProfileUser -> setSector($this->getReference('Marketing'));
-        $ProfileUser->setDescription('Aqui esta la descripcion profesional sobre el perfil grabado de prueba');
-        $ProfileUser->setProfileDate(new \Datetime(2019-03-15));
-           
-        $manager->persist($ProfileUser);
-
-        $ProfileUser = new ProfileUser();
-        $ProfileUser -> setUser($this->getReference('liviu'));
-        //$ProfileUser -> setProfil($this->getReference('Comercial'));
-        //$ProfileUser -> setSector($this->getReference('Ventas'));
-        $ProfileUser->setDescription('Aqui esta la descripcion profesional sobre el perfil grabado de prueba');
-        $ProfileUser->setProfileDate(new \Datetime(2019-03-15));
-           
-        $manager->persist($ProfileUser);
-        
-       
-        $manager->flush();
-    }
-
-
+    }*/
 }

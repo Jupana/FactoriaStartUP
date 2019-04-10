@@ -31,7 +31,7 @@ class ProfileUser
     private $profil;
 
      /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Sector", inversedBy="sector_name")
+     * @ORM\OneToOne(targetEntity="App\Entity\Sector", inversedBy="sector_name")
      * @ORM\JoinColumn()
      * @ORM\Column(type="string", name="sector_name")
     */

@@ -170,7 +170,7 @@ class VistaUsuarioController extends AbstractController
             ['profesionalProfile' =>$profesionalProfile,
             'form' =>$form->createView(),
             'form_addProfile'=>$this->datosAddProfile($request),
-            'profiles' => $this->profileUserRepository->findAll(),
+            'profiles' => $this->profilRepository->findAll(),
             ]);
         
     }
