@@ -24,25 +24,26 @@ class ProfileUser
     private $user;
 
      /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Profil", inversedBy="profil_records")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Profil", inversedBy="profil_name")
      * @ORM\JoinColumn()
+     * @ORM\Column(type="string", name="profil_name")
     */
     private $profil;
 
      /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Sector", inversedBy="profiles")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Sector", inversedBy="sector_name")
      * @ORM\JoinColumn()
+     * @ORM\Column(type="string", name="sector_name")
     */
     private $sector;
 
     /**
-     * @ORM\Column(type="string", nullable=true,name="profil_profesional_description")
-    
+     * @ORM\Column(type="string", nullable=true,name="profil_profesional_description")    
      */
     private $description;
 
       /**
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(type="datetime", nullable=false)
      */
     private $profile_date;
 
