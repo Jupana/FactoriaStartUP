@@ -11,10 +11,6 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
-use App\Repository\ProfilRepository;
-use App\Repository\SectorRepository;
-use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
-
 
 class AppFixtures extends Fixture 
 {
@@ -23,10 +19,6 @@ class AppFixtures extends Fixture
      */
     private $passwordEncoder;
 
-      /**
-    * @var EntityManagerInterface
-    */
-    private $entityManager;
 
     public function __construct(UserPasswordEncoderInterface $passwordEncoder)
     {
@@ -39,8 +31,9 @@ class AppFixtures extends Fixture
         $this->loadProjects($manager);
         
         //WE LOAD SECTORS and PROFILES ONLY ONCE
-        //$this->loadSectors($manager);
-        //$this->loadProfils($manager);
+        $this->loadSectors($manager);
+        $this->loadProfils($manager);
+        
         $this->loadProfilUser($manager);
        
     }
@@ -95,90 +88,71 @@ class AppFixtures extends Fixture
         }
         $manager->flush();
     }
+    
 
-
-    private function loadProfilUser(ObjectManager $manager)
-    { 
-        $ProfileUser = new ProfileUser();
-        $ProfileUser -> setUser($this->getReference('liviu'));
-        $ProfileUser -> setProfil($this->getReference('Legal'));
-        $ProfileUser -> setSector($this->getReference('Sanidad'));
-        $ProfileUser->setDescription('Primer Proyecto');
-        $ProfileUser->setProfileDate(new \Datetime(2019-03-15));
-           
-        $manager->persist($ProfileUser);
-        $ProfileUser = new ProfileUser();
-        $ProfileUser -> setUser($this->getReference('liviu'));
-        $ProfileUser -> setProfil($this->getReference('Marketing'));
-        $ProfileUser -> setSector($this->getReference('Finanzas'));
-        $ProfileUser->setDescription('Segundo Proyecto');
-        $ProfileUser->setProfileDate(new \Datetime(2019-03-15));
-           
-        $manager->persist($ProfileUser);
-           
-        $manager->persist($ProfileUser);
-        
-       
-        $manager->flush();
-    }
-
-    /*private function loadSectors(ObjectManager $manager)
+    //This function is comment on LOAD , so we will load the SECTORS only once
+    private function loadSectors(ObjectManager $manager)
     { 
         $sector = new Sector();
-        $sector ->setName('Educación'); 
+        $sector ->setName('Educación');
+        $this->addReference(1,$sector);
         $manager->persist($sector);
         
-
         $sector = new Sector();
         $sector ->setName('Investigación y ciencia'); 
+        $this->addReference(2,$sector);
         $manager->persist($sector);
 
         $sector = new Sector();
         $sector ->setName('Gestión y administración'); 
-        $manager->persist($sector);
+               $manager->persist($sector);
 
         $sector = new Sector();
         $sector ->setName('Sanidad'); 
-        $manager->persist($sector);
+               $manager->persist($sector);
 
         $sector = new Sector();
-        $sector ->setName('Servicios'); 
-        $manager->persist($sector);
+        $sector ->setName('Servicios');
+               $manager->persist($sector);
 
         $sector = new Sector();
-        $sector ->setName('Ocio y entretenimiento'); 
-        $manager->persist($sector);
+        $sector ->setName('Ocio y entretenimiento');
+               $manager->persist($sector);
 
         $sector = new Sector();
         $sector ->setName('Distribución y vent'); 
-        $manager->persist($sector);
+               $manager->persist($sector);
 
         $sector = new Sector();
         $sector ->setName('Sector inmobiliario'); 
-        $manager->persist($sector);
+               $manager->persist($sector);
 
         $sector = new Sector();
         $sector ->setName('Finanzas'); 
-        $manager->persist($sector);
+               $manager->persist($sector);
 
         $sector = new Sector();
         $sector ->setName('Turismo'); 
-        $manager->persist($sector);
+               $manager->persist($sector);
 
         $sector = new Sector();
         $sector ->setName('Otras Aportaciones'); 
-        $manager->persist($sector);       
+               $manager->persist($sector);       
+        
         $manager->flush();
     }
 
+    //This function is comment on LOAD , so we will load the profile only once
     private function loadProfils(ObjectManager $manager)
     { 
         $profil = new Profil();
-        $profil ->setName('Marketing');  
+        $profil ->setName('Marketing');
+        $this->addReference(3,$profil);
         $manager->persist($profil);
      
         $profil = new Profil();
         $profil ->setName('Diseño');
+        $this->addReference(4,$profil);
         $manager->persist($profil);
        
         $profil = new Profil();
@@ -206,5 +180,30 @@ class AppFixtures extends Fixture
         $manager->persist($profil);
 
         $manager->flush();
-    }*/
+    }
+
+
+    
+    private function loadProfilUser(ObjectManager $manager)
+    { 
+        $ProfileUser = new ProfileUser();
+        $ProfileUser -> setUser($this->getReference('liviu'));
+        $ProfileUser -> setProfil($this->getReference(3));
+        $ProfileUser -> setSector($this->getReference(1));
+        $ProfileUser->setDescription('Primer Proyecto');
+        $ProfileUser->setProfileDate(new \Datetime(2019-03-15));
+        $manager->persist($ProfileUser);
+        
+        $ProfileUser = new ProfileUser();
+        $ProfileUser -> setUser($this->getReference('liviu'));
+        $ProfileUser -> setProfil($this->getReference(4));        
+        $ProfileUser -> setSector($this->getReference(2));
+        $ProfileUser->setDescription('Segundo Proyecto');
+        $ProfileUser->setProfileDate(new \Datetime(2019-03-15));
+                   
+        $manager->persist($ProfileUser);
+        
+       
+        $manager->flush();
+    }
 }

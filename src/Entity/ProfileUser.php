@@ -24,26 +24,27 @@ class ProfileUser
     private $user;
 
      /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Profil", inversedBy="profil_name")
-     * @ORM\JoinColumn()
-     * @ORM\Column(type="string", name="profil_name")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Profil", inversedBy="profiles_profil_name")
+     * @ORM\JoinColumn() 
+     * @ORM\Column(name="profiles_profil_name")
     */
     private $profil;
 
      /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Sector", inversedBy="sector_name")
-     * @ORM\JoinColumn()
-     * @ORM\Column(type="string", name="sector_name")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Sector", inversedBy="profiles_sector_name")
+     * @ORM\JoinColumn() 
+     * @ORM\Column(name="profiles_sector_name")
+     * 
     */
     private $sector;
 
     /**
-     * @ORM\Column(type="string", nullable=true,name="profil_profesional_description")    
+     * @ORM\Column(type="string", nullable=true,name="profiles_profesional_description")    
      */
     private $description;
 
       /**
-     * @ORM\Column(type="datetime", nullable=false)
+     * @ORM\Column(type="datetime", nullable=false ,name="profiles_date")
      */
     private $profile_date;
 
@@ -115,4 +116,5 @@ class ProfileUser
 
         return $this;
     }
+
 }

@@ -48,4 +48,10 @@ class Profil
         return $this;
     }
 
+    //ToDo LIVIU check this later
+    public function __toString()
+    {
+        return  (string) $this->getName();
+    }
+
 }
