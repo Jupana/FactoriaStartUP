@@ -92,7 +92,7 @@ class ProfileUser
         return $this;
     }
 
-    public function getProfil(): ?Profil
+    public function getProfil(): ?String
     {
         return $this->profil;
     }
@@ -105,7 +105,7 @@ class ProfileUser
     }
 
 
-    public function getSector(): ?Sector
+    public function getSector(): ?String
     {
         return $this->sector;
     }

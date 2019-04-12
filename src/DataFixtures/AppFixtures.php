@@ -31,8 +31,8 @@ class AppFixtures extends Fixture
         $this->loadProjects($manager);
         
         //WE LOAD SECTORS and PROFILES ONLY ONCE
-        $this->loadSectors($manager);
-        $this->loadProfils($manager);
+        //$this->loadSectors($manager);
+        //$this->loadProfils($manager);
         
         $this->loadProfilUser($manager);
        
@@ -183,7 +183,7 @@ class AppFixtures extends Fixture
     }
 
 
-    
+    // LIVIU + NICO Don't forget to add Reference to Profil and Sector if you want to load orfile User again
     private function loadProfilUser(ObjectManager $manager)
     { 
         $ProfileUser = new ProfileUser();

@@ -60,22 +60,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                        {{dump(profiles)}}
+                        <tr>                       
                             <td>{% for profile in profiles %}
-                                      <p>{#{ profile.Sector.Name}#}</p>
+                                      <p>{{ profile.sector}}</p>
                                  {% endfor %} 
-                                                                     </td>
+                            </td>
                             <td>
                                 {% for profile in profiles %}
-                                      <p>{#{profile.Profil.Name}#}</p>
+                                      <p>{{profile.profil}}</p>
                                  {% endfor %} 
-                                
                             <td>
                                <a data-toggle="modal" data-target="#modalForm_info_proyecto" class="ver_color par" href="#"><p>Ver</p></a>  
                                 <a class="ver_color 1" href="#"><p>ver</p></a>
-                                <a class="ver_color 1" href="#"><p>ver</p></a>
-                                <a class="ver_color 1" href="#"><p>ver</p></a>
+                                <a class="ver_color 1" href="#"><p>ver</p></a>                                
                             </td>
                         </tr>
                     </tbody>
