@@ -212,7 +212,7 @@ $(document).ready(function () {
 /*! exports provided: base_url, routes, prefix, host, port, scheme, default */
 /***/ (function(module) {
 
-module.exports = {"base_url":"","routes":{"addPerfilUpdate":{"tokens":[["text","/add_perfil_update"]],"defaults":[],"requirements":[],"hosttokens":[],"methods":["POST,GET"],"schemes":[]}},"prefix":"","host":"localhost","port":"","scheme":"http"};
+module.exports = {"base_url":"","routes":{"addPerfilUpdate":{"tokens":[["text","/add_perfil_update"]],"defaults":[],"requirements":[],"hosttokens":[],"methods":["GET","POST"],"schemes":[]},"addPerfilUserUpdate":{"tokens":[["variable","/","[^/]++","id",true],["text","/addProfilUserUpdate"]],"defaults":[],"requirements":[],"hosttokens":[],"methods":["GET","POST"],"schemes":[]}},"prefix":"","host":"localhost","port":"","scheme":"http"};
 
 /***/ }),
 

@@ -117,4 +117,10 @@ class ProfileUser
         return $this;
     }
 
+     //ToDo LIVIU check this later
+     public function __toString()
+     {
+         return  (string) $this->getSector();
+     }
+
 }

@@ -91,8 +91,8 @@ class ProfileUserController extends AbstractController
 
 
     /**
-    * @Route ("/addPerfil", name="addPerfil", methods={"POST,GET"})
-    * @param Request $request    * 
+    * @Route ("/addPerfil", name="addPerfil", methods={"POST"} )
+    * @param Request $request    
     */
     public function addProfile(Request $request )
     
@@ -109,7 +109,6 @@ class ProfileUserController extends AbstractController
     }
 
     /**
-    * @Route ("/add_perfil_update", name="addPerfilUpdate", methods={"POST,GET"}, options={"expose"=true})
     * @param Request $request
     * @param int
     * @return JsonResponse

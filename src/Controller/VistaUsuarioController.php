@@ -139,20 +139,20 @@ class VistaUsuarioController extends AbstractController
 
     }
     
-    public function datosProfesionales(Request $request): Response
+    public function datosProfesionales(Request $request, $id=null): Response
     {       
         $profesionalProfile = $this->getDoctrine()->getRepository(ProfesionalProfile::class);
         $user = $this->getUser();
-        
+
         $profesionalProfile = $profesionalProfile->findOneBy(['profesionalIdUser' => $user->getId()]);
-        
+       
         //Check to see if we have a profesional content and user
         if(!$profesionalProfile){
             $profesionalProfile = new ProfesionalProfile();
             $profesionalProfile->setProfesionalIdUser($user->getId()); 
         }
         $profesionalProfile ->setProfesionalDate((new \DateTime()));
-
+        
         $form = $this->createForm(ProfesionalProfileType::class, $profesionalProfile);
         $form->handleRequest($request);
        
@@ -167,7 +167,92 @@ class VistaUsuarioController extends AbstractController
             'form' =>$form->createView(),
             'form_addProfile'=>$this->datosAddProfile($request),
             'profiles' => $this->profileUserRepository->findAll(),
+            'formUpdateProfile'=>$this->addProfileUser($request,$id)
             ]);
+        
+    }
+
+     /**
+    * @Route ("/addProfileUser", name="addProfileUser")
+    * @param Request $request 
+    */
+    public function addProfileUser(Request $request , $id=null)
+    
+    {
+        $id=1;
+        $profileUser = new ProfileUser();
+        $profileUser->setprofileDate(new \DateTime());
+        $user=$this->getUser();
+        $profileUser->setUser($user);
+
+        dump($profileUser);
+       //$profileUser = !$id ? $profileUser : $this->profileUserRepository->find(1);
+        
+        dump($profileUser);
+       
+        $profileUserSector = $this->sectorRepository->findOneBy(
+            (['name' => $profileUser->getSector()])
+        );
+
+        $profileUserProfil = $this->profilRepository->findOneBy(
+            (['name'=>$profileUser->getProfil()])
+        );
+        dump($profileUserSector,$profileUserProfil);
+        
+        //$profileUser->setSector($profileUserSector);
+        //$profileUser->setProfil($profileUserProfil);
+        //$profileUser->setProfileDate((new \DateTime()));
+        
+        //dump($profileUser);die;
+
+        $form = $this->formFactory->create(ProfileUserType::class, $profileUser);
+        $form->handleRequest($request);
+        return $form->createView();
+        
+    }
+
+
+    /**
+    * @Route ("/addProfilUserUpdate/{id}", name="addProfilUserUpdate")
+    * @param Request $request
+    * @param int
+    * @return JsonResponse
+    */
+    public function addProfilUserUpdate(Request $request , int $id)
+    
+    {
+        $ProfileUser = new ProfileUser();
+
+        $ProfileUser->setprofileDate(new \DateTime());
+        $user=$this->getUser();
+        $ProfileUser->setUser($user);
+        
+        $profileUser = $this->profileUserRepository->find(3);
+        dump($profileUser);
+        $form = $this->formFactory->create(ProfileUserType::class, $ProfileUser);
+        $form->handleRequest($request);
+        
+        if ($form->isSubmitted() && $form->isValid()) { 
+            if($request->isXmlHttpRequest()){
+                $encoders = [new JsonEncoder()];
+
+                $normalizers =[
+                    (new ObjectNormalizer())->setCircularReferenceHandler(function ($object){
+                        return $object->getName();
+                    })
+                ];
+
+                $serialzer = new Serializer($normalizers, $encoders);
+                
+                $this->entityManager->persist($ProfileUser);
+                $this->entityManager->flush();
+                $data = $serialzer->serialize($ProfileUser, 'json');
+                
+                return new JsonResponse($data,200,[], true);
+
+            }
+           
+        }
         
     }
 
@@ -175,19 +260,18 @@ class VistaUsuarioController extends AbstractController
     public function datosAddProfile(Request $request  )
     {
        
-        $ProfileUser = new ProfileUser();
-        $ProfileUser->setprofileDate(new \DateTime());
+        $profileUser = new ProfileUser();
+        $profileUser->setprofileDate(new \DateTime());
         $user=$this->getUser();
-        $ProfileUser->setUser($user);
-        $form = $this->formFactory->create(ProfileUserType::class, $ProfileUser);
+        $profileUser->setUser($user);
+
+        $form = $this->formFactory->create(ProfileUserType::class, $profileUser);
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->entityManager->persist($ProfileUser);
-            $this->entityManager->flush();
-            
+            $this->entityManager->persist($profileUser);
+            $this->entityManager->flush(); 
         }
-        
         return $form->createView();
         
     }
