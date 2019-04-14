@@ -1,0 +1,1 @@
+{"base_url":"","routes":{"addPerfilUpdate":{"tokens":[["text","\/add_perfil_update"]],"defaults":[],"requirements":[],"hosttokens":[],"methods":["POST,GET"],"schemes":[]}},"prefix":"","host":"localhost","port":"","scheme":"http"}

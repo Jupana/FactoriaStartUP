@@ -19,6 +19,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 
 class ProfileUserController extends AbstractController
 {   
@@ -80,7 +83,7 @@ class ProfileUserController extends AbstractController
                 'profiles' => $this->profileUserRepository->findAll(),
                 'opciones_sectores' => $this->sectorRepository->findAll(),
                 'opciones_perfil' => $this->profilRepository->findAll(),
-               // 'form_addProfile'=>$this->addProfile($request)
+                'form_addProfile'=>$this->addProfile($request)
             ]);
             return new Response($html); 
        
@@ -88,15 +91,32 @@ class ProfileUserController extends AbstractController
 
 
     /**
-    * @Route ("addPerfil", name="addPerfile", methods={"GET"}, options={"expose"=true})
+    * @Route ("/addPerfil", name="addPerfil", methods={"POST,GET"})
+    * @param Request $request    * 
+    */
+    public function addProfile(Request $request )
+    
+    {
+        $ProfileUser = new ProfileUser();
+        $ProfileUser->setprofileDate(new \DateTime());
+        $user=$this->getUser();
+        $ProfileUser->setUser($user);
+        
+        $form = $this->formFactory->create(ProfileUserType::class, $ProfileUser);
+        $form->handleRequest($request);
+        return $form->createView();
+        
+    }
+
+    /**
+    * @Route ("/add_perfil_update", name="addPerfilUpdate", methods={"POST,GET"}, options={"expose"=true})
     * @param Request $request
     * @param int
     * @return JsonResponse
     */
-    public function addProfile(Request $request  )
+    public function addProfileUpdate(Request $request )
     
     {
-       
         $ProfileUser = new ProfileUser();
         $ProfileUser->setprofileDate(new \DateTime());
         $user=$this->getUser();
@@ -105,31 +125,27 @@ class ProfileUserController extends AbstractController
         $form = $this->formFactory->create(ProfileUserType::class, $ProfileUser);
         $form->handleRequest($request);
         
-        if ($form->isSubmitted() && $form->isValid()) {
-            
-            if($request->isXmlHttpRequest){
+        if ($form->isSubmitted() && $form->isValid()) { 
+            if($request->isXmlHttpRequest()){
                 $encoders = [new JsonEncoder()];
 
                 $normalizers =[
-                    (new ObjectNormalizer())->setCirularReferenceHandler(function ($object){
+                    (new ObjectNormalizer())->setCircularReferenceHandler(function ($object){
                         return $object->getName();
                     })
                 ];
 
-                $serialzer = new Seriliazer($normalizers, $encoders);
-                $this->perisit($ProfileUser);
+                $serialzer = new Serializer($normalizers, $encoders);
                 
+                $this->entityManager->persist($ProfileUser);
+                $this->entityManager->flush();
                 $data = $serialzer->serialize($ProfileUser, 'json');
-
+                
                 return new JsonResponse($data,200,[], true);
 
             }
-
-
-
+           
         }
-        
-       // return $form->createView();
         
     }
 

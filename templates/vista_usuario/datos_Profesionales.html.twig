@@ -60,21 +60,18 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>                       
-                            <td>{% for profile in profiles %}
-                                      <p>{{ profile.sector}}</p>
-                                 {% endfor %} 
-                            </td>
-                            <td>
-                                {% for profile in profiles %}
-                                      <p>{{profile.profil}}</p>
-                                 {% endfor %} 
-                            <td>
-                               <a data-toggle="modal" data-target="#modalForm_info_proyecto" class="ver_color par" href="#"><p>Ver</p></a>  
-                                <a class="ver_color 1" href="#"><p>ver</p></a>
-                                <a class="ver_color 1" href="#"><p>ver</p></a>                                
-                            </td>
-                        </tr>
+                        {% for profile in profiles %}
+                            <tr>                       
+                                <td>
+                                    <p>{{ profile.sector}}</p>                                 
+                                </td>
+                                <td>
+                                    <p>{{profile.profil}}</p>    
+                                <td>
+                                    <a data-toggle="modal" data-target="#modalForm_info_proyecto" class="ver_color par" href="#{{profile.id}}"><p>Ver</p></a>  
+                                </td>
+                            </tr>
+                        {% endfor %} 
                     </tbody>
                 </table>
             </div>

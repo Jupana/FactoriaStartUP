@@ -147,7 +147,7 @@ class User implements UserInterface,\Serializable
     private $inscription_date;
 
     /**
-     * @ORM\Column(type="string", nullable=true,name="user_latitud")
+     * @ORM\Column(type="string", nullable=true, name="user_latitud")
     
      */
     private $latitud;
@@ -489,12 +489,12 @@ class User implements UserInterface,\Serializable
 
     public function getInscriptionDate(): ?\DateTimeInterface
     {
-        return $this->instription_date;
+        return $this->inscription_date;
     }
 
-    public function setInscriptionDate(\DateTimeInterface $instription_date): self
+    public function setInscriptionDate(\DateTimeInterface $inscription_date): self
     {
-        $this->instription_date = $instription_date;
+        $this->inscription_date = $inscription_date;
 
         return $this;
     }

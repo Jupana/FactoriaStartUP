@@ -22,12 +22,6 @@ Encore
 
     // uncomment for legacy applications that require $/jQuery as a global variable
     .autoProvidejQuery()
-
-    .configureBabel(function(babelConfig) {
-        babelConfig.presets.push('env');
-      })
-    //Enable React
-    .enableReactPreset();
 ;
 
 module.exports = Encore.getWebpackConfig();

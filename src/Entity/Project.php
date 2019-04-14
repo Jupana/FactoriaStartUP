@@ -60,20 +60,16 @@ class Project
     */
     private $phase_productoMV ;
 
-        /**
+    /**
     * @ORM\Column(name="project_phase_productoFinal", type="boolean", nullable=true)
     */
     private $phase_productoFinal ;
 
-    public function __construct() 
-{
-    $this->phase_idea = false;
-    $this->phase_ideaMV = false;
-    $this->phase_productoMV = false;
-    $this->phase_productoFinal = false;
-}
-
-
+     /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $project_clientes_users;
+   
     /**
      * @ORM\Column(type="string", nullable=true)
      */
@@ -119,6 +115,14 @@ class Project
      */
     private $project_date;
 
+
+    public function __construct() 
+    {
+        $this->phase_idea = false;
+        $this->phase_ideaMV = false;
+        $this->phase_productoMV = false;
+        $this->phase_productoFinal = false;
+    }
 
     public function getId(): ?int
     {

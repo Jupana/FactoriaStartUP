@@ -31,8 +31,8 @@ class AppFixtures extends Fixture
         $this->loadProjects($manager);
         
         //WE LOAD SECTORS and PROFILES ONLY ONCE
-        //$this->loadSectors($manager);
-        //$this->loadProfils($manager);
+        $this->loadSectors($manager);
+        $this->loadProfils($manager);
         
         $this->loadProfilUser($manager);
        

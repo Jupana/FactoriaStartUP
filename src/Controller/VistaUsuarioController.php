@@ -140,9 +140,7 @@ class VistaUsuarioController extends AbstractController
     }
     
     public function datosProfesionales(Request $request): Response
-    {
-       
-       
+    {       
         $profesionalProfile = $this->getDoctrine()->getRepository(ProfesionalProfile::class);
         $user = $this->getUser();
         
@@ -159,11 +157,9 @@ class VistaUsuarioController extends AbstractController
         $form->handleRequest($request);
        
         if ($form->isSubmitted() && $form->isValid()) {
-          
             $this->entityManager->persist($profesionalProfile);
             $this->entityManager->flush();
             return $this->redirectToRoute('datos_profesionales');
-
         }
         
         return $this->render('vista_usuario/datos_Profesionales.html.twig',

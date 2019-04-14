@@ -12,8 +12,8 @@
 <!--Equipos-->
 {% if is_granted('ROLE_USER') %}    
 <small class="d-block text-right pt-3">
-    <button class="btn-info" data-toggle="modal" data-target="#modalForm">
-         Añade Perfil LIVIU
+    <button class="btn-info add-profile" data-toggle="modal" data-target="#modalForm">
+         Añade Perfil 
     </button> 
 </small>
 {% endif %}
@@ -56,9 +56,9 @@
                     <img  class="card-img-top" src="{{ asset('img.png','img') }}" alt="image">
                 </div>
                 <div class="card-body ">     
-                    <h4 class="card-title">Usuario:<br/>{{ profile.User.username}}</h4>                   
-                    <p class="card-text">Perfil:{{ profile.Profil.Name}}</strong></p>
-                    <p class="card-text">Sector:{{ profile.Sector.Name}}</strong></p>                               
+                    <h4 class="card-title">Usuario:<br/>{{ profile.user.username}}</h4>                   
+                    <p class="card-text">Perfil:{{ profile.profil}}</strong></p>
+                    <p class="card-text">Sector:{{ profile.sector}}</strong></p>                               
                 </div> 
                 <div class="card-footer">
                     <a href="{{ path('detalle_profile',{"id": profile.id }) }}" class=" ver_color">Ver Mass..</a></br>                                                
@@ -75,7 +75,7 @@
     </div>
    
     <!--Ventana Pop-Up -->       
-     {% include 'modals/AddPerfil.html.twig' %}              
+     {% include 'modals/AddPerfil.html.twig' %}   
 {% endblock %}
 
  

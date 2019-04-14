@@ -15,11 +15,11 @@
                 </div>    
                 <!-- Modal Body -->
                 <div class="modal-body">                  
-                         {{ form_start(form_addProfile) }}  
+                        {{ form_start(form_addProfile, { 'attr' : { 'id': 'profile_user' } }) }}
                         {{ form_row(form_addProfile.sector) }}
                         {{ form_row(form_addProfile.profil) }}
                         {{ form_row(form_addProfile.description) }}                                             
-                        {{ form_row(form_addProfile.submit) }} 
+                        {{ form_row(form_addProfile.submit) }}
                         {{ form_end(form_addProfile) }}
                 </div>
                 <!-- Modal Footer -->

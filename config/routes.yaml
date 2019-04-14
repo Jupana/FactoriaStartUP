@@ -7,9 +7,12 @@ vista_usuario:
 equipo:
     path: /profiles
     controller: App\Controller\ProfileUserController::indexProfile 
-add_profile:
-    path: /profiles/add
-    controller: App\Controller\ProfileUserController::addProfile     
+addPerfil:
+    path: /addPerfil
+    controller: App\Controller\ProfileUserController::addProfile
+addPerfilUpdate:
+    path: //add_perfil_update
+    controller: App\Controller\ProfileUserController::addProfileUpdate       
 detalle_profile:
     path: /profiles/{id}
     controller: App\Controller\ProfileUserController::profile 

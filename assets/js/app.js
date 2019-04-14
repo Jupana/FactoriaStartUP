@@ -1,4 +1,9 @@
+import Routing from '../../vendor/friendsofsymfony/jsrouting-bundle/Resources/public/js/router'
+//php bin/console fos:js-routing:dump --format=json --target=assets/js/js_routes.json   -- Liviu,Nico you have to run this command in order to get all the paths into json
+import Routes from './js_routes.json'
+Routing.setRoutingData(Routes)
 const $ = require('jquery');
+
 // this "modifies" the jquery module: adding behavior to it
 // the bootstrap module doesn't export/return anything
 require('bootstrap');
@@ -53,15 +58,53 @@ $(document).ready(function() {
 
     function showValidate(input) {
         var thisAlert = $(input).parent();
-
         $(thisAlert).addClass('alert-validate');
     }
 
     function hideValidate(input) {
         var thisAlert = $(input).parent();
-
         $(thisAlert).removeClass('alert-validate');
     }
+
+    /* <!-- START Modal Form Script*/
+    //Profil user
+        $('.add-profile').click(function () {
+            let url = Routing.generate('addPerfilUpdate')
+            let formProfileUser = document.getElementById('profile_user');
+            formProfileUser.addEventListener('submit', function (event) {
+                // XXX: make a post ajax request
+
+                event.preventDefault()
+                new Promise(function (resolve, reject) {
+                    let xhr = new XMLHttpRequest()
+                    let formData = new FormData(formProfileUser)
+                    // third argument specifies if it's an async request or a sync
+                    console.log(xhr)
+                    xhr.addEventListener('load', function () {
+                        if (this.readyState === 4) {
+                            if (this.status === 200) {
+                                resolve(JSON.parse(this.response))
+                            } else {
+                                reject(this.status)
+                            }
+                        }
+                    })
+                    xhr.open("POST", url)
+                    xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest')
+
+                    xhr.send(formData)
+                }) // end of the promise
+                    .then((data) => {
+                        window.location.replace('/profiles')
+                    })
+                    .catch((error) => {
+                        console.error(error)
+                    })
+            })
+        })   
+
+    /* FIN Modal Form Script -->*/
+
 })(jQuery);    
     
    
