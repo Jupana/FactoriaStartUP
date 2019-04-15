@@ -45,7 +45,7 @@
                 <p class=""><b>¿Cómo de bueno eres en tu trabajo? Cuéntanos en qué destacas,tus hitos,tus exitos y que sector es el que mejor conoces.</b></p> 
             </div>
             <div class="col-md-2 p-t-60">
-                {% if profiles|length <= 20 %}
+                {% if profiles|length <= 4 %}
                 <a class="btn-info" data-toggle="modal" data-target="#modalForm">
                              Añade Perfil
                 </a>
@@ -69,15 +69,17 @@
                         {% for profile in profiles %}
                             <tr>                       
                                 <td>
-                                    <p>{{ profile.sector}}</p>                                 
+                                    <p>{{ profile.profil}}</p>                                 
                                 </td>
                                 <td>
-                                    <p>{{profile.profil}}</p>    
+                                    <p>{{profile.sector}}</p>    
                                 <td>
-                                    <a data-toggle="modal" data-target="#modalForm" class="ver_color par" href="#{{profile.id}}"><p>Ver</p></a>  
-                                </td>
+                                    <a data-toggle="modal" data-target="#modalForm" data-profil="{{profile.profil}}" data-sector="{{profile.sector}}" class="ver_color select_perfil" 
+                                    href="#{{ profile.id  }}"><p>Ver</p></a> 
+                                              
                             </tr>
                         {% endfor %} 
+                       {{ render(controller('App\\Controller\\SingelProfile::addProfileUser', { 'id' : '' } )) }} 
                     </tbody>
                 </table>
             </div>
@@ -89,5 +91,5 @@
 
   
 {{ form_end(form) }}	 
-{% include 'modals/AddPerfil.html.twig' %} 
+{#% include 'modals/AddPerfil.html.twig' %#} 
 {% endblock %}  

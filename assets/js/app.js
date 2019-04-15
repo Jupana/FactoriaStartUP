@@ -105,6 +105,28 @@ $(document).ready(function() {
 
     /* FIN Modal Form Script -->*/
 
+    /* <!-- START PASS DATA TO MODAL for the SELECT */
+    $('.select_perfil').on('click', function (e){
+        var profil=$(this).data("profil");
+        var sector =$(this).data("sector");
+        
+       
+
+        //Remove selected first
+        $("#profile_user_profil option").prop("selected", false);
+        $("#profile_user_sector option").prop("selected", false)
+
+        console.log($("#profile_user_profil option:selected"));
+
+        $("#profile_user_profil option:contains(" + profil +")").attr("selected", true);
+        $("#profile_user_sector option:contains(" + sector +")").attr("selected", true);
+        
+        console.log('Aici Perfil',profil,sector);
+    })
+    
+
+    /* START PASS DATA TO MODAL for the SELECT --> */
+
 })(jQuery);    
     
    

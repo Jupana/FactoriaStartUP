@@ -14,13 +14,13 @@
                     <h4 class="par" id="myModalLabel">Nuevo Perfil</h4>  
                 </div>    
                 <!-- Modal Body -->
-                <div class="modal-body">                  
-                        {{ form_start(form_addProfile, { 'attr' : { 'id': 'profile_user' } }) }}
-                        {{ form_row(form_addProfile.sector) }}
-                        {{ form_row(form_addProfile.profil) }}
-                        {{ form_row(form_addProfile.description) }}                                             
-                        {{ form_row(form_addProfile.submit) }}
-                        {{ form_end(form_addProfile) }}
+                <div class="modal-body liviu">                  
+                        {{ form_start(formAddProfile, { 'attr' : { 'id': 'profile_user' } }) }}
+                        {{ form_row(formAddProfile.sector ) }}
+                        {{ form_row(formAddProfile.profil) }}
+                        {{ form_row(formAddProfile.description) }}                                             
+                        {{ form_row(formAddProfile.submit) }}
+                        {{ form_end(formAddProfile) }}
                 </div>
                 <!-- Modal Footer -->
                 <div class="modal-footer">

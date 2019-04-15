@@ -17,12 +17,12 @@ addPerfilUpdate:
     options:
         expose: true
 addProfileUser:
-    path: /addProfileUser
-    controller: App\Controller\VistaUsuarioController::addProfileUser
+    path: /addProfileUser/{id}
+    controller: App\Controller\SingelProfile::addProfileUser
 
 addPerfilUserUpdate:
     path: /addProfilUserUpdate/{id}
-    controller: App\Controller\VistaUsuarioController::addProfilUserUpdate
+    controller: App\Controller\SingelProfile::addProfilUserUpdate
     methods:  [GET,POST]
     options:
         expose: true       
