@@ -149,7 +149,6 @@ class VistaUsuarioController extends AbstractController
         $user = $this->getUser();
 
         $profesionalProfile = $profesionalProfile->findOneBy(['profesionalIdUser' => $user->getId()]);
-       
         //Check to see if we have a profesional content and user
         if(!$profesionalProfile){
             $profesionalProfile = new ProfesionalProfile();
@@ -166,35 +165,13 @@ class VistaUsuarioController extends AbstractController
             return $this->redirectToRoute('datos_profesionales');
         }
         
-        return $this->render('vista_usuario/datos_Profesionales.html.twig',
+        return $this->render('vista_usuario/DatosProfesionales.html.twig',
             ['profesionalProfile' =>$profesionalProfile,
             'form' =>$form->createView(),
-            'form_addProfile'=>$this->datosAddProfile($request),
             'profiles' => $this->profileUserRepository->findAll(),
-            //'formAddProfile'=>$this->forward('App\Controler\SingleProfile::addProfileUser',['request'=>$request,'id'=>$id])  
             ]);
         
     }
-
-    public function datosAddProfile(Request $request  )
-    {
-       
-        $profileUser = new ProfileUser();
-        $profileUser->setprofileDate(new \DateTime());
-        $user=$this->getUser();
-        $profileUser->setUser($user);
-
-        $form = $this->formFactory->create(ProfileUserType::class, $profileUser);
-        $form->handleRequest($request);
-        
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->entityManager->persist($profileUser);
-            $this->entityManager->flush(); 
-        }
-        return $form->createView();
-        
-    }
-
 
     public function datos_proyectos(Request $request): Response
     {

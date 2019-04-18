@@ -1,8 +1,4 @@
   <!--Ventana Pop-Up -->       
-    <div class="modal fade par" id="modalForm" role="dialog">  
-        
-        <div class="modal-dialog">      
-            <div class="modal-content">              
                 <!-- Modal Header -->
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">
@@ -14,23 +10,18 @@
                     <h4 class="par" id="myModalLabel">Nuevo Perfil</h4>  
                 </div>    
                 <!-- Modal Body -->
-                <div class="modal-body liviu">                  
-                        {{ form_start(formAddProfile, { 'attr' : { 'id': 'profile_user' } }) }}
-                        {{ form_row(formAddProfile.sector ) }}
-                        {{ form_row(formAddProfile.profil) }}
-                        {{ form_row(formAddProfile.description) }}                                             
-                        {{ form_row(formAddProfile.submit) }}
-                        {{ form_end(formAddProfile) }}
+                <div class="modal-body">                  
+                        {{ form_start (formAddProfile, { 'attr' : { 'id': 'profile_user' } }) }}
+                            {{ form_row (formAddProfile.sector) }}
+                            {{ form_row (formAddProfile.profil) }}
+                            {{ form_row (formAddProfile.description) }}                                             
+                            {{ form_row (formAddProfile.submit) }}
+                        {{ form_end (formAddProfile) }}
                 </div>
                 <!-- Modal Footer -->
                 <div class="modal-footer">
                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    
-                    
                 </div>                            
-            </div>  
-        </div> 
-              
-    </div>
+            
     
       

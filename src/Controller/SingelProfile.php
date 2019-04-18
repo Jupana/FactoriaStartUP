@@ -23,6 +23,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use App\Repository\ProfesionalProfileRepository;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
 
 class SingelProfile extends AbstractController
 {
@@ -74,12 +78,37 @@ class SingelProfile extends AbstractController
             $this->flashBag = $flashBag;
         }
   
-
-     /**
-    * @Route ("/addProfileUser/{id}", name="addProfileUser")
+    /**
     * @param Request $request 
     */
-    public function addProfileUser(Request $request , $id=null)
+    public function addProfileUser(Request $request)
+    {
+        $profileUser = new ProfileUser();
+        $profileUser->setprofileDate(new \DateTime());
+        $user=$this->getUser();
+        $profileUser->setUser($user);
+        
+        $formAddProfile = $this->formFactory->create(ProfileUserType::class, $profileUser);
+        $formAddProfile->handleRequest($request);
+
+        if ($formAddProfile->isSubmitted() && $formAddProfile->isValid()) {
+            $this->entityManager->persist($profileUser);
+            $this->entityManager->flush();
+            return $this->redirectToRoute('datos_profesionales');
+        }
+        return $this->render('modals/FormPerfil.html.twig',
+            [
+                'formProfile' =>$formAddProfile->createView(),
+                'profileUser' =>$profileUser
+            ]
+        );      
+    }
+
+
+    /**
+    * @param Request $request 
+    */
+    public function editProfileUser(Request $request , $id=null)
     
     {
         $profileUser = new ProfileUser();
@@ -88,43 +117,34 @@ class SingelProfile extends AbstractController
         $profileUser->setUser($user);
         
         $profileUser = !$id ? $profileUser : $this->profileUserRepository->find($id);
-       
-        $profileUserSector = new Sector();
-        $profileUserProfil = new Profil();
-        
-        $profileUser->setSector($profileUserSector);
-        $profileUser->setProfil($profileUserProfil);
-        
-        $formAddProfile = $this->formFactory->create(ProfileUserType::class, $profileUser);
-        $formAddProfile->handleRequest($request);
-        //return $formAddProfile->createView();
-        dump($profileUser);
-        return $this->render('modals/AddPerfil.html.twig',
+        $formEditProfile = $this->formFactory->create(ProfileUserType::class, $profileUser);
+        $formEditProfile->handleRequest($request);
+
+        return $this->render('modals/FormPerfil.html.twig',
             [
-                'formAddProfile' =>$formAddProfile->createView()
+                'formProfile' =>$formEditProfile->createView(),
+                'profileUser'=>$profileUser
             ]
         );      
     }
-
-
     /**
-    * @Route ("/addProfilUserUpdate/{id}", name="addProfilUserUpdate")
     * @param Request $request
     * @param int
     * @return JsonResponse
     */
-    public function addProfilUserUpdate(Request $request , int $id)
     
+    public function editProfilUserUpdate(Request $request , int $id)
     {
-        $ProfileUser = new ProfileUser();
+        $profileUser = new ProfileUser();
 
-        $ProfileUser->setprofileDate(new \DateTime());
+        $profileUser->setprofileDate(new \DateTime());
         $user=$this->getUser();
-        $ProfileUser->setUser($user);
+        $profileUser->setUser($user);
         
-        $profileUser = $this->profileUserRepository->find(3);
-        dump($profileUser);
-        $form = $this->formFactory->create(ProfileUserType::class, $ProfileUser);
+        $profileUser = !$id ? $profileUser : $this->profileUserRepository->find($id);
+
+        $profileUser = $this->profileUserRepository->find($id);
+        $form = $this->formFactory->create(ProfileUserType::class, $profileUser);
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) { 
@@ -139,13 +159,28 @@ class SingelProfile extends AbstractController
 
                 $serialzer = new Serializer($normalizers, $encoders);
                 
-                $this->entityManager->persist($ProfileUser);
+                $this->entityManager->persist($profileUser);
                 $this->entityManager->flush();
-                $data = $serialzer->serialize($ProfileUser, 'json');
+                $data = $serialzer->serialize($profileUser, 'json');
                 
                 return new JsonResponse($data,200,[], true);
 
             }  
         }    
+    }
+
+    /**
+    * @param Request $request 
+    */
+
+    public function deleteUserProfile(ProfileUser $ProfileUser, int $id)
+    {
+        $profileUser = $this->profileUserRepository->find($id);
+        $this->entityManager->remove($profileUser);
+        $this->entityManager->flush();
+
+        $this->flashBag->add('notice', 'El perfil ha sido eliminado');
+        
+        return $this->redirectToRoute('datos_profesionales');
     }
 }

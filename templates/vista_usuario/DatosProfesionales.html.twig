@@ -45,8 +45,8 @@
                 <p class=""><b>¿Cómo de bueno eres en tu trabajo? Cuéntanos en qué destacas,tus hitos,tus exitos y que sector es el que mejor conoces.</b></p> 
             </div>
             <div class="col-md-2 p-t-60">
-                {% if profiles|length <= 4 %}
-                <a class="btn-info" data-toggle="modal" data-target="#modalForm" class="select_perfil">
+                {% if profiles|length <= 3 %}
+                <a class="btn-info add-profil" data-toggle="modal" data-target="#modalForm">
                              Añade Perfil
                 </a>
                 {% else %}
@@ -91,11 +91,11 @@
 
   
 {{ form_end(form) }}	 
-{#% include 'modals/AddPerfil.html.twig' %#} 
+<!-- Include Modal Header and the conetento we will get from SingleProfil-->
  <div class="modal fade par" id="modalForm" role="dialog">  
     <div class="modal-dialog">      
         <div class="modal-content">  
-        </div>  <!-- Fin Modal-Content -->
+        </div>  
     </div>           
 </div>
 {% endblock %}  

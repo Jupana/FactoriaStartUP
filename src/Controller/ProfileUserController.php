@@ -89,66 +89,6 @@ class ProfileUserController extends AbstractController
        
     }
 
-
-    /**
-    * @Route ("/addPerfil", name="addPerfil", methods={"POST"} )
-    * @param Request $request    
-    */
-    public function addProfile(Request $request )
-    
-    {
-        $ProfileUser = new ProfileUser();
-        $ProfileUser->setprofileDate(new \DateTime());
-        $user=$this->getUser();
-        $ProfileUser->setUser($user);
-        
-        $form = $this->formFactory->create(ProfileUserType::class, $ProfileUser);
-        $form->handleRequest($request);
-        return $form->createView();
-        
-    }
-
-    /**
-    * @param Request $request
-    * @param int
-    * @return JsonResponse
-    */
-    public function addProfileUpdate(Request $request )
-    
-    {
-        $ProfileUser = new ProfileUser();
-        $ProfileUser->setprofileDate(new \DateTime());
-        $user=$this->getUser();
-        $ProfileUser->setUser($user);
-        
-        $form = $this->formFactory->create(ProfileUserType::class, $ProfileUser);
-        $form->handleRequest($request);
-        
-        if ($form->isSubmitted() && $form->isValid()) { 
-            if($request->isXmlHttpRequest()){
-                $encoders = [new JsonEncoder()];
-
-                $normalizers =[
-                    (new ObjectNormalizer())->setCircularReferenceHandler(function ($object){
-                        return $object->getName();
-                    })
-                ];
-
-                $serialzer = new Serializer($normalizers, $encoders);
-                
-                $this->entityManager->persist($ProfileUser);
-                $this->entityManager->flush();
-                $data = $serialzer->serialize($ProfileUser, 'json');
-                
-                return new JsonResponse($data,200,[], true);
-
-            }
-           
-        }
-        
-    }
-
-
     public function profile($id)
     {
         $profile = $this->profileUserRepository->find($id);
@@ -163,29 +103,6 @@ class ProfileUserController extends AbstractController
         );
     }
     
-    public function editProfile(ProfileUser $ProfileUser, Request $request)
-    {
-        
-        $form = $this->formFactory->create(ProfileUserType::class, $ProfileUser);
-        $form->handleRequest($request);
-        $ProfileUser->setProfileDate(new \DateTime());
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->entityManager->persist($ProfileUser);
-            $this->entityManager->flush();
-
-            return $this->redirectToRoute('equipo');
-
-
-        }
-        return new Response(
-            $this->twig->render(
-                'modals/AddPerfil.html.twig',
-                ['form'=>$form->createView()]
-            )
-        );
-    }
-
     public function delete(ProfileUser $ProfileUser)
     {
         $this->entityManager->remove($ProfileUser);
