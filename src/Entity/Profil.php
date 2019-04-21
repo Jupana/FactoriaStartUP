@@ -24,11 +24,7 @@ class Profil
      */
     private $name;
 
-   /* public function __construct()
-    {
-        $this->profil_records = new ArrayCollection();
-      
-    }*/
+    
   
 
     public function getId(): ?int

@@ -29,8 +29,6 @@ class ProfesionalProfile
 
     /**
      * @ORM\Column(type="integer", name="profesional_id_user")
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="id")
-     * @ORM\JoinColumn()
      */
     private $profesionalIdUser;
 

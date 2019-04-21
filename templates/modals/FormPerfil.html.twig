@@ -10,9 +10,9 @@
                     <h4 class="par" id="myModalLabel">Nuevo Perfil</h4>  
                 </div>    
                 <!-- Modal Body -->
-                <div class="modal-body">                  
-                        {{ form_start (formProfile, { 'attr' : { 'id': 'profile_user' } }) }}
-                            {{ form_row (formProfile.sector) }}
+                <div class="modal-body">  
+                            {{ form_start (formProfile, { 'attr' : { 'id': 'profile_user' } }) }}
+                                    {{ form_row (formProfile.sector) }}
                             {{ form_row (formProfile.profil) }}
                             {{ form_row (formProfile.description) }}                                             
                             
@@ -27,7 +27,9 @@
                                     <button type="button" class="btn-primary btn float-r profile_user_delete" data-id="{{profileUser.id}}">Borrar Perfil</button>
                                 </div>
                                 {% endif %}
-                            </div>    
+                            </div>  
+                      
+                              
   
                 </div>                          
             

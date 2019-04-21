@@ -1,0 +1,29 @@
+<!--Ventana Pop-Up --> 
+    <div class="modal fade par" id="modalForm_AddProjectTitle" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">      
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span class="modal-close" aria-hidden="true">×</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                </div>
+                <div class="col-md-12 text-center m-t-10  modal-title">
+                    <h4 class="par" id="myModalLabel">Nuevo Proyecto</h4>  
+                </div>    
+                <!-- Modal Body -->
+                <div class="modal-body">                  
+                        {{ form_start (formAddProject, { 'attr' : { 'id': 'project_name'} } ) }}
+                            {{ form_row (formAddProject.project_name) }}                                            
+                            {{ form_row (formAddProject.submit) }}
+                        {{ form_end (formAddProject) }}
+                </div>
+                <!-- Modal Footer -->
+                <div class="modal-footer">
+                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div> 
+            </div>
+        </div>
+    </div>                           
+            

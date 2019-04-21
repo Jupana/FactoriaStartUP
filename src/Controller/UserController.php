@@ -6,13 +6,17 @@ use App\Entity\User;
 use App\Entity\Sector;
 use App\Entity\Profil;
 use App\Entity\ProfesionalProfile;
+use App\Entity\Project;
 use App\Form\ProfileUserType;
 use App\Form\UserPersonalInfoType;
 use App\Form\ProfesionalProfileType;
+use App\Form\ProjectType;
+use App\Form\ProjectNameType;
 use App\Repository\ProfileUserRepository;
 use App\Repository\ProfilRepository;
 use App\Repository\SectorRepository;
 use App\Repository\UserRepository;
+use App\Repository\ProjectRepository;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\FormFactoryInterface;
@@ -24,7 +28,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use App\Repository\ProfesionalProfileRepository;
 
-class VistaUsuarioController extends AbstractController
+class UserController extends AbstractController
 {
         /**
     * @var \Twig_Environment
@@ -44,13 +48,13 @@ class VistaUsuarioController extends AbstractController
     * @var profilRepository
     */
     private $profilRepository;
-
+ 
     /**
     * @var profilUserRepository
     */
     private $profileUserRepository;
 
-      /**
+    /**
     * @var FormFactoryInterface
     */
     private $formFactory;
@@ -67,8 +71,13 @@ class VistaUsuarioController extends AbstractController
 
 
     public function __construct(
-        \Twig_Environment $twig, UserRepository $userRepository,
-        ProfileUserRepository $profileUserRepository, ProfilRepository $profilRepository, SectorRepository $sectorRepository, ProfesionalProfileRepository $profesionalProfilRespository,
+        \Twig_Environment $twig, 
+        UserRepository $userRepository,
+        ProfileUserRepository $profileUserRepository, 
+        ProfilRepository $profilRepository, 
+        SectorRepository $sectorRepository, 
+        ProfesionalProfileRepository $profesionalProfilRespository,
+        ProjectRepository $projectsUserRepository,
         FormFactoryInterface $formFactory,EntityManagerInterface $entityManager,
         FlashBagInterface $flashBag
         ) {
@@ -78,6 +87,7 @@ class VistaUsuarioController extends AbstractController
         $this->sectorRepository = $sectorRepository;
         $this->profilRepository = $profilRepository;
         $this->profesionalProfilRespository = $profesionalProfilRespository;
+        $this->projectsUserRepository = $projectsUserRepository;
         $this->formFactory = $formFactory;
         $this->entityManager = $entityManager;
         $this->flashBag = $flashBag;
@@ -88,7 +98,7 @@ class VistaUsuarioController extends AbstractController
 
         return new Response(
             $this->twig->render(
-                'vista_usuario/index_vista.html.twig'
+                'user_views/index_vista.html.twig'
             )
         );
     }
@@ -99,7 +109,7 @@ class VistaUsuarioController extends AbstractController
         
         return new Response(
             $this->twig->render(
-                'vista_usuario/index_vista.html.twig',
+                'user_views/index_vista.html.twig',
                 [
                     'user' => $user
                 ]
@@ -136,7 +146,7 @@ class VistaUsuarioController extends AbstractController
             return $this->redirectToRoute('datos_personales');
 
         }
-        return $this->render('vista_usuario/datos_Personales-div.html.twig',
+        return $this->render('user_views/PersonalData.html.twig',
             ['user' =>$user,
             'form' =>$form->createView()
             ]);
@@ -165,33 +175,52 @@ class VistaUsuarioController extends AbstractController
             return $this->redirectToRoute('datos_profesionales');
         }
         
-        return $this->render('vista_usuario/DatosProfesionales.html.twig',
+        return $this->render('user_views/ProfessionalData.html.twig',
             ['profesionalProfile' =>$profesionalProfile,
             'form' =>$form->createView(),
             'profiles' => $this->profileUserRepository->findAll(),
             ]);
         
     }
-
     public function datos_proyectos(Request $request): Response
     {
+        $newProject = new Project();
+        $newProject->setUser($this->getUser());
+
+        $formNewProject = $this->createForm(ProjectNameType::class,$newProject);
+        $formNewProject->handleRequest($request);
+
+        if($formNewProject->isSubmitted() && $formNewProject->isValid()){
+            $this->entityManager->persist($newProject);
+            $this->entityManager->flush();
+
+            return $this->redirectToRoute('add_proyecto',['id'=>$newProject->getid()]);
+        }
+
+
         $em = $this->getDoctrine()->getManager();
-        return $this->render('vista_usuario/datos_Proyectos.html.twig');
+        return $this->render('user_views/datos_Proyectos.html.twig',
+                    ['formAddProject' =>$formNewProject->createView()]
+            );
     }
+    
+    // Fomr by Steps https://stackoverflow.com/questions/21254733/how-to-split-long-symfony-form-in-multiple-pages
     public function add_proyecto(Request $request): Response
     {
-        $em = $this->getDoctrine()->getManager();
-        return $this->render('vista_usuario/añadir_proyecto.html.twig');
+        //$projectsUser = $this->projectsUserRepository->find(1);
+        //$em = $this->getDoctrine()->getManager();
+        return $this->render('user_views/AddProject.html.twig');
     }
+
     public function datos_propuestas(Request $request): Response
     {
         $em = $this->getDoctrine()->getManager();
-        return $this->render('vista_usuario/datos_Propuestas.html.twig');
+        return $this->render('user_views/datos_Propuestas.html.twig');
     }
     public function datos_cuenta(Request $request): Response
     {
         $em = $this->getDoctrine()->getManager();
-        return $this->render('vista_usuario/datos_Cuenta.html.twig');
+        return $this->render('user_views/datos_Cuenta.html.twig');
     }
 
 

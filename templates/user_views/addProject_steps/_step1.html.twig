@@ -1,0 +1,111 @@
+<div class="tab-multi-form"> 
+                <!-- Step Form Header -->
+                <div class="modal-header">
+                </div>
+                <div class="col-md-12 text-center m-t-10  modal-title">
+                    <h4 class="par" id="myModalLabel">Información Proyecto</h4>  
+                </div>  
+    <div class="nuevo_proyecto m-l-20 m-r-20 m-t-20">
+            <div class="row">
+                <div class="mobil col-md-3">
+                    <img src="{{ asset('img.png','img') }}" alt="Symfony!"/>
+                    <div class="p-b-0">
+                        <div class="form-group">
+                            <input type="file" class="form-control  p-t-0 p-l-0 p-b-0 par1 "style="height:10%;width:100%;" >
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                     {{form_start (formProfile , { 'attr' : { 'id': 'project_form'} }) }}
+                        <div class="row step-1">
+                        {{form_row (formProfile.project_name,{ 'attr' : { 'class': 'col-md-12'} } )}}
+                        {{form_row (formProfile.project_short_description)}}
+                            <p for="" class="col-4 col-form-label par1 m-t-25">Facturacion estimada </p>
+                            <div class="col-8 p-l-0 p-b-5">
+                                <div class="row">
+                                    <div class="col-4">
+                                        {{form_row (formProfile.project_aprox_facturation1)}}
+                                    </div>  
+                                    <div class="col-4">
+                                        {{form_row (formProfile.project_aprox_facturation2)}}
+                                    </div> 
+                                    <div class="col-4">
+                                        {{form_row (formProfile.project_aprox_facturation3)}}
+                                    </div>   
+                                </div>    
+                            </div>
+                            <label for="" class="col-4 col-form-label par1">Clientes Potenciales</label>
+                            <div class="col-8 p-l-0 p-b-5">
+                                <div class="row">
+                                    {{form_row (formProfile.project_potentialy_users)}}
+                                    {{form_row (formProfile.project_potentialy_companies)}}
+                                </div>    
+                            </div>
+                                {{form_row (formProfile.project_competitors)}}
+                            
+                        </div>
+
+                </div>
+                <div class="col-md-10"></div>
+                <div class="col-md-2">
+                    <a  id="ver"href="#help"  data-toggle="modal" data-target="#modalHelp"><img src="{{ asset('circulo.png','circulo') }}" alt="Symfony!"/></a>
+                </div>
+                <div class="col-md-12 m-l-0  fs-15">
+                    <p class="par"><b>Rezumen ejecutivo*</b></p> 
+                    
+                    {{form_row (formProfile.project_description)}}
+                </div>     
+            </div>
+        </div>
+        <div class="col-md-6">
+        {#{form_row (formProfile.submit ,{ 'attr' : { 'class': 'btn-info btn-block float-r m-t-30 m-b-20 par'}} ) } #}
+        </div>
+    {#{form_end (formProfile)}#}
+    
+        <!-- <div class="col-md-6">   
+            <buton  class="btn btn-info btn-block float-r m-t-30 m-b-20 par">Siguiente</button>
+        </div> -->
+
+    <!-- Include Modal Header-->
+    <div class="modal fade par" id="modalHelp" role="dialog">  
+        <div class="modal-dialog">      
+            <div class="modal-content">  
+                <div id="ayuda" class="col-md-12 m-b-20  border par" id="modalHelp" >
+                    <h4 class="bgAzul text-white par">¿ Cómo rellenar un Proyecto?</h4>
+                    <p>Esto no es plan de negocio, es un resumen de puntos básicos que debes de mostrar si  quieres que alguien se interese en tu proyecto</p>
+                    <p>Trata de despertar el interés sin desvelar información sobre tu modelo de negocio, tu estrategia, tu política de precio o tu mercado. Eso dejalo para cuando encuentres a tu equipo.</p>
+                    <p>&#9679;  <b>Nombre del Proyecto:</b> si lo tienes pensado y no lo has registrado no lo pongas, y si no tienes nada pensado inventatelo y vete pensando uno.</p>
+                    <p>&#9679;  <b>Definirlo en una línea: </b> Cuenta de forma rápida y precisa en qué consiste tu negocio.</p>  
+                    <p>Los siguientes puntos son importantes si quieres que la gente demuestre interés, son puntos necesarios de un estudio de mercado para ver la viabilidad del proyecto.</p>
+                    <p>Si inicialmente no lo sabes, no pasa nada, pero poco a poco vete completandolo</p>
+                    <p>&#9679; <b>Facturación estimada:</b> Cuantifica cuánto vas a vender en los próximo 3 años, pon cifras lógicas y basadas en números que que tengan sentido.</p>
+                    <p>&#9679; <b>Clientes Potenciales: </b> son los que van a pagar por tu producto o servicio.</p>
+                    <p>Según el tipo de proyecto, pueden existir 2 tipos de clientes:</p>
+                    <p>Usuarios:</p><p>Ejemplo</p><p>Empresas:</p><p>Ejemplo</p>
+                    <p>&#9679; <b>Competencia: </b>Enumera quien es tu competencia, ya tendrás tiempo de analizar.</p>
+                    <p><b>Mini-Resumen ejecutivo:</b></p>
+                    <p>Aquí puede cualificar los anteriores. el objetivo es demostrar a los futuromiembros que todo tiene un ¿porque?, una base sólida que permite confiar tanto en el proyecto como en ti y tu equipo</p>
+                    <p>Recuerda que tienes que demostrar que es un proyecto serio, y con pespectivas, pero nuestro consejo es que no desveles etratejias </p>
+                    <p>La idea.</p><p>La idea.</p><p>El estado en el que encuentra</p><p>La prevision de crecimiento</p><p>La prevision.</p><p>El equipo.</p>
+                </div>
+            </div>  
+        </div>           
+    </div>
+</div>
+{% include 'user_views/addProject_steps/_step2.html.twig' %} 
+{% include 'user_views/addProject_steps/_step3.html.twig' %} 
+{% include 'user_views/addProject_steps/_step4.html.twig' %} 
+
+<div style="overflow:auto;">
+    <div style="float:right;">
+      <button type="button" class="btn btn-info btn-block nextPrev" id="nextBtn" data-next="1">Next</button>
+      <button type="button" class="btn btn-info btn-block nextPrev" id="prevBtn" data-next="-1">Previous</button>
+    </div>
+  </div>
+  <!-- Circles which indicates the steps of the form: -->
+  <div style="text-align:center;margin-top:40px;">
+    <span class="step"></span>
+    <span class="step"></span>
+    <span class="step"></span>
+    <span class="step"></span>
+  </div> 

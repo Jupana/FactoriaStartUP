@@ -1,0 +1,78 @@
+{% extends 'user_views/index_vista.html.twig' %}
+
+{% block vista %} 
+  <script type="text/javascript">
+        window.onload = function() {
+            document.getElementById("op2").style.background="green";
+        }
+    </script> 
+    <div class="row">
+        <div class="col-md-12  m-l-20  m-t-20 m-b-20">
+            <h4 class="page-head-line">Añadir Proyecto</h4>
+                <p>&#9679; Esto no es un plan de negocios, se trata de mostrar que has  hechos los deberes y que grado de compromiso tienes con tu proyecto.</p> 
+                <p>&#9679; Recuerda entrar y completar lo que falte para que sea cada vez más atractiva para los demás.</p>
+        </div>
+    </div> 
+     <div class="row">
+                    <ul class="js-pagination u-carousel-indicators-v30 g-pos-abs g-top-0">
+            <li class="slick-active">
+
+                <a href="#">
+                    <i class="u-dot-line-v1 g-brd-gray-light-v2--before g-brd-gray-light-v2--after g-mb-15--sm">
+                        <span class="u-dot-line-v1__inner g-bg-white g-bg-primary--before g-brd-gray-light-v2 g-brd-primary--hover g-brd-primary--active g-transition--ease-in g-transition-0_2"></span>
+                    </i>
+                    <span class="g-hidden-sm-down g-color-black g-font-size-15">Información Proyecto</span>
+                </a>
+
+            </li>
+            <li class=" ">
+
+                <a href="#">
+                    <i class="u-dot-line-v1 g-brd-gray-light-v2--before g-brd-gray-light-v2--after g-mb-15--sm">
+                        <span class="u-dot-line-v1__inner g-bg-white g-bg-primary--before g-brd-gray-light-v2 g-brd-primary--hover g-brd-primary--active g-transition--ease-in g-transition-0_2"></span>
+                    </i>
+                    <span class="g-hidden-sm-down g-color-black g-font-size-15">Fase Proyecto</span>
+                </a>
+            </li>
+            <li class=" disabled">
+                <a href="#">
+                    <i class="u-dot-line-v1 g-brd-gray-light-v2--before g-brd-gray-light-v2--after g-mb-15--sm">
+                        <span class="u-dot-line-v1__inner g-bg-white g-bg-primary--before g-brd-gray-light-v2 g-brd-primary--hover g-brd-primary--active g-transition--ease-in g-transition-0_2"></span>
+                    </i>
+                    <span class="g-hidden-sm-down g-color-black g-font-size-15">Aportación en el Proyecto</span>
+                </a>
+            </li>
+            <li class="">
+
+                <i class="u-dot-line-v1 g-brd-gray-light-v2--before g-brd-gray-light-v2--after g-mb-15--sm">
+                    <span class="u-dot-line-v1__inner g-bg-white g-bg-primary--before g-brd-gray-light-v2 g-brd-primary--hover g-brd-primary--active g-transition--ease-in g-transition-0_2"></span>
+                </i>
+                <span class="g-hidden-sm-down g-color-black g-font-size-15 ">Necesidades Proyecto</span>
+
+            </li>
+        </ul>
+    </div>    
+       
+     {{ render (controller ('App\\Controller\\UserProjectController::addProject', {'request': app.request, 'id':app.request.get('id')} )) }} 
+       
+   {#% include 'user_views/addProject_steps/_step1.html.twig' %#}  
+   
+    <!--<div class="col-md-12">   
+        <buton type="submit" class="btn btn-info btn-block m-t-30 m-b-20 par">Guardar Proyecto</button>
+    </div>--> 
+    {#% include 'modals/Añadir_perfil.html.twig' %#}
+    {% include 'modals/Anadir_perfil_necesitado.html.twig' %}  
+
+{% endblock %} 
+{% block javascripts %}
+	<script type="text/javascript">
+        function mostrar(){
+            document.getElementById('ayuda').style.display = 'block';}
+        function ocultar(){
+            document.getElementById('ayuda').style.display = 'none';}
+        function mostrar_que_aporto(){
+            document.getElementById('que_aporto').style.display = 'block';} 
+         function ocultar_que_aporto(){
+            document.getElementById('que_aporto').style.display = 'none';}       
+	</script>
+{% endblock %}

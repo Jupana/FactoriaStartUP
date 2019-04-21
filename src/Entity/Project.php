@@ -13,7 +13,7 @@ class Project
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer",name="project_id")
+     * @ORM\Column(type="integer")
      */
     private $id;
     
@@ -106,7 +106,7 @@ class Project
     private $project_team_number;
 
      /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="boolean", nullable=true)
      */
     private $project_team;
 
@@ -115,6 +115,7 @@ class Project
      */
     private $project_date;
 
+    
 
     public function __construct() 
     {
@@ -122,6 +123,7 @@ class Project
         $this->phase_ideaMV = false;
         $this->phase_productoMV = false;
         $this->phase_productoFinal = false;
+        $this->project_team = false;
     }
 
     public function getId(): ?int
@@ -262,12 +264,12 @@ class Project
         return $this;
     }
 
-    public function getProjectTeam(): ?string
+    public function getProjectTeam(): ?bool
     {
         return $this->project_team;
     }
 
-    public function setProjectTeam(?string $project_team): self
+    public function setProjectTeam(?bool $project_team): self
     {
         $this->project_team = $project_team;
 
@@ -357,6 +359,30 @@ class Project
     public function setPhaseProductoFinal(?bool $phase_productoFinal): self
     {
         $this->phase_productoFinal = $phase_productoFinal;
+
+        return $this;
+    }
+
+    public function getContributeId(): ?Contribute
+    {
+        return $this->contribute_id;
+    }
+
+    public function setContributeId(?Contribute $contribute_id): self
+    {
+        $this->contribute_id = $contribute_id;
+
+        return $this;
+    }
+
+    public function getNeedsProjectId(): ?NeedsProject
+    {
+        return $this->needs_project_id;
+    }
+
+    public function setNeedsProjectId(?NeedsProject $needs_project_id): self
+    {
+        $this->needs_project_id = $needs_project_id;
 
         return $this;
     }

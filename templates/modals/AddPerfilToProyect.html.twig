@@ -1,0 +1,30 @@
+  <!--Ventana Pop-Up --> 
+<!-- Include Modal Header and the content we will get from SingleProfil-->
+ <div class="modal fade par" id="modalForm" role="dialog">  
+    <div class="modal-dialog">      
+        <div class="modal-content">        
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span class="modal-close" aria-hidden="true">×</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                </div>
+                <div class="col-md-12 text-center m-t-10  modal-title">
+                    <h4 class="par" id="myModalLabel">Nuevo Perfil</h4>  
+                </div>    
+                <!-- Modal Body -->
+                <div class="modal-body">               
+                            {{ form_start (form_New_Contribute, { 'attr' : { 'id': 'profile_to_project' } }) }}
+                     
+                                    {{ form_row (form_New_Contribute.contribute_profile) }}
+                                    {{ form_row (form_New_Contribute.contribute_description) }}                                             
+                                     {{ form_row (form_New_Contribute.submit , { 'attr' : { 'class': 'btn-primary float-l' } }) }}     
+                            {{ form_end (form_New_Contribute) }}
+                </div>       
+        </div>  
+    </div>           
+</div>                            
+            
+    
+      

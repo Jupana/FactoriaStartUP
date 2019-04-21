@@ -19,22 +19,17 @@ class ProfileUser
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="profiles")
-     * @ORM\JoinColumn()
     */
     private $user;
 
      /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Profil", inversedBy="profiles_profil_name")
-     * @ORM\JoinColumn() 
-     * @ORM\Column(name="profiles_profil_name")
+     * 
     */
     private $profil;
 
      /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Sector", inversedBy="profiles_sector_name")
-     * @ORM\JoinColumn() 
-     * @ORM\Column(name="profiles_sector_name")
-     * 
+     * @ORM\ManyToOne(targetEntity="App\Entity\Sector", inversedBy="profiles_sector_name") 
     */
     private $sector;
 

@@ -5,12 +5,13 @@ use App\Entity\ProfileUser;
 use App\Entity\User;
 use App\Entity\Sector;
 use App\Entity\Profil;
+use App\Entity\Project;
 use App\Entity\ProfesionalProfile;
-use App\Form\ProfileUserType;
-use App\Form\UserPersonalInfoType;
-use App\Form\ProfesionalProfileType;
-use App\Repository\ProfileUserRepository;
+use App\Entity\Contribute;
+use App\Form\ProjectType;
+use App\Form\ContributeType;
 use App\Repository\ProfilRepository;
+use App\Repository\ProjectRepository;
 use App\Repository\SectorRepository;
 use App\Repository\UserRepository;
 
@@ -27,7 +28,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
 
-class SingelProfile extends AbstractController
+class UserProjectController extends AbstractController
 {
         /**
     * @var \Twig_Environment
@@ -39,11 +40,6 @@ class SingelProfile extends AbstractController
     */
     private $userRepository;
   
-    /**
-    * @var profilUserRepository
-    */
-    private $profileUserRepository;
-
       /**
     * @var FormFactoryInterface
     */
@@ -63,7 +59,7 @@ class SingelProfile extends AbstractController
     public function __construct(
             \Twig_Environment $twig, 
             UserRepository $userRepository,
-            ProfileUserRepository $profileUserRepository,
+            ProjectRepository $projectRepository,
             FormFactoryInterface $formFactory,
             EntityManagerInterface $entityManager,
             FlashBagInterface $flashBag
@@ -71,38 +67,64 @@ class SingelProfile extends AbstractController
         {
             $this->twig = $twig;
             $this->userRepository = $userRepository;
-            $this->profileUserRepository = $profileUserRepository;
+            $this->projectRepository = $projectRepository;
             $this->formFactory = $formFactory;
             $this->entityManager = $entityManager;
             $this->flashBag = $flashBag;
         }
   
     /**
-    * @param Request $request 
+    *
+    *@param Request $request 
     */
-    public function addProfileUser(Request $request)
+    public function addProject(Request $request, int $id=null)
     {
-        $profileUser = new ProfileUser();
-        $profileUser->setprofileDate(new \DateTime());
+        $newProject = $this->projectRepository ->find($id);
+        //$profileUser->setprofileDate(new \DateTime());
         $user=$this->getUser();
-        $profileUser->setUser($user);
+        //$profileUser->setUser($user);
         
-        $formAddProfile = $this->formFactory->create(ProfileUserType::class, $profileUser);
-        $formAddProfile->handleRequest($request);
+        $formNewProject = $this->formFactory->create(ProjectType::class, $newProject);
+        $formNewProject->handleRequest($request);
 
-        if ($formAddProfile->isSubmitted() && $formAddProfile->isValid()) {
-            $this->entityManager->persist($profileUser);
+        if ($formNewProject->isSubmitted() && $formNewProject->isValid()) {
+            
+            $this->entityManager->persist($newProject);
             $this->entityManager->flush();
-            return $this->redirectToRoute('datos_profesionales');
+            //return $this->redirectToRoute('datos_proyectos');
         }
-        return $this->render('modals/FormPerfil.html.twig',
+        return $this->render('user_views/addProject_steps/_step1.html.twig',
             [
-                'formProfile' =>$formAddProfile->createView(),
-                'profileUser' =>$profileUser
+                'formProfile' =>$formNewProject->createView()
             ]
         );      
     }
 
+
+    public function addPerfilToProyect (Request $request, int $id=null){
+        $newContribute = new Contribute();
+        
+        $contributeProject = $this->projectRepository->find($id);
+        $newContribute->setContributeIdProject($contributeProject);
+        $newContribute->setContributeDate(new \DateTime());
+
+        $formNewContribute = $this->formFactory->create(ContributeType::class, $newContribute);
+        $formNewContribute->handleRequest($request);
+
+        if($formNewContribute->isSubmitted() && $formNewContribute->isValid()){
+            dump($newContribute);
+            $this->entityManager->persist($newContribute);
+            $this->entityManager->flush();
+            return $this->redirectToRoute('datos_proyectos');
+        }
+
+        return $this->render('modals/AddPerfilToProyect.html.twig',
+            [
+                'form_New_Contribute' =>$formNewContribute->createView()
+            ]
+        );
+
+    }
 
     /**
     * @param Request $request 
