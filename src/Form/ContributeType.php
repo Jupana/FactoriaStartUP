@@ -21,6 +21,7 @@ class ContributeType extends AbstractType
                 'placeholder' => 'Selecciona un perfil',
                 'choice_label' => function($profil){
                     return $profil->getName(); 
+                    die;
                 },
                 'required'=>false
             ])    

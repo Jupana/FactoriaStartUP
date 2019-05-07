@@ -61,8 +61,13 @@ editar_proyecto:
     controller: App\Controller\ProjectController::edit  
 eliminar_proyecto:
     path: /proyectos/eliminar/{id}
-    controller: App\Controller\ProjectController::delete      
-
+    controller: App\Controller\ProjectController::delete 
+addPerfilToProyect:   
+    path: /addPerfilToProyect/{id}
+    controller: App\Controller\UserProjectController::addPerfilToProyect
+    methods:  [GET,POST]
+    options:
+        expose: true
         
 
 

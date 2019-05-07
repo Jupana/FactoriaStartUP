@@ -142,7 +142,7 @@ class SingelProfile extends AbstractController
         
         $profileUser = !$id ? $profileUser : $this->profileUserRepository->find($id);
 
-        $profileUser = $this->profileUserRepository->find($id);
+        //$profileUser = $this->profileUserRepository->find($id);
         $form = $this->formFactory->create(ProfileUserType::class, $profileUser);
         $form->handleRequest($request);
         

@@ -65,7 +65,7 @@ class Contribute
 
     public function setContributeProfile(Profil $contributeProfile): self
     {
-        $this->contribute_profile[] = $contributeProfile;
+        $this->contribute_profile = $contributeProfile;
         return $this;
     }
 

@@ -22,19 +22,19 @@ class ProjectType extends AbstractType
     {
         $builder
             ->add('project_name',TextType::class, ['label' => 'Nombre del proyecto *', 'required'=>true])
-            ->add('project_short_description',TextareaType::class , ['label' => 'Definelo en una linea*','required'=>true])
-            ->add('project_description',TextareaType::class,['label' => 'Rezumen ejecutivo*','required'=>true])
-            ->add('project_potentialy_users',TextType::class,['label' => 'Usuarios*','required'=>true])
-            ->add('project_potentialy_companies',TextType::class,['label' => 'Empresas*','required'=>true])
-            ->add('project_aprox_facturation1',NumberType::class,['label' => 'Año 1*','required'=>true])
-            ->add('project_aprox_facturation2',NumberType::class,['label' => 'Año 2*','required'=>true])
-            ->add('project_aprox_facturation3',NumberType::class ,['label' => 'Año 3*','required'=>true])
-            ->add('project_competitors',TextType::class ,['label' => 'Competidores*','required'=>true])
-            ->add('phase_idea',CheckboxType::class ,['required'=>false])
-            ->add('phase_ideaMV',CheckboxType::class ,['required'=>false])
-            ->add('phase_productoMV',CheckboxType::class ,['required'=>false])
-            ->add('phase_productoFinal',CheckboxType::class ,['required'=>false])
-            ->add('project_team',CheckboxType::class ,['required'=>false])
+            ->add('project_short_description',TextareaType::class , ['label' => 'Definelo en una linea*'])
+            ->add('project_description',TextareaType::class,['label' => 'Rezumen ejecutivo*'])
+            ->add('project_potentialy_users',TextType::class,['label' => 'Usuarios*'])
+            ->add('project_potentialy_companies',TextType::class,['label' => 'Empresas*'])
+            ->add('project_aprox_facturation1',NumberType::class,['label' => 'Año 1*'])
+            ->add('project_aprox_facturation2',NumberType::class,['label' => 'Año 2*'])
+            ->add('project_aprox_facturation3',NumberType::class ,['label' => 'Año 3*'])
+            ->add('project_competitors',TextType::class ,['label' => 'Competidores*'])
+            ->add('phase_idea',CheckboxType::class )
+            ->add('phase_ideaMV',CheckboxType::class )
+            ->add('phase_productoMV',CheckboxType::class )
+            ->add('phase_productoFinal',CheckboxType::class )
+            ->add('project_team',CheckboxType::class )
            
            
            

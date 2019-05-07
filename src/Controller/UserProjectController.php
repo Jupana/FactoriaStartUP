@@ -2,27 +2,17 @@
 namespace App\Controller;
 
 use App\Entity\ProfileUser;
-use App\Entity\User;
-use App\Entity\Sector;
-use App\Entity\Profil;
-use App\Entity\Project;
-use App\Entity\ProfesionalProfile;
 use App\Entity\Contribute;
 use App\Form\ProjectType;
 use App\Form\ContributeType;
-use App\Repository\ProfilRepository;
 use App\Repository\ProjectRepository;
-use App\Repository\SectorRepository;
 use App\Repository\UserRepository;
-
+use App\Repository\ContributeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\FormFactoryInterface;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use App\Repository\ProfesionalProfileRepository;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
@@ -62,7 +52,8 @@ class UserProjectController extends AbstractController
             ProjectRepository $projectRepository,
             FormFactoryInterface $formFactory,
             EntityManagerInterface $entityManager,
-            FlashBagInterface $flashBag
+            FlashBagInterface $flashBag,
+            ContributeRepository $contributeRepository
         ) 
         {
             $this->twig = $twig;
@@ -71,6 +62,7 @@ class UserProjectController extends AbstractController
             $this->formFactory = $formFactory;
             $this->entityManager = $entityManager;
             $this->flashBag = $flashBag;
+            $this->contributeRepository = $contributeRepository;
         }
   
     /**
@@ -102,22 +94,32 @@ class UserProjectController extends AbstractController
 
 
     public function addPerfilToProyect (Request $request, int $id=null){
+       
         $newContribute = new Contribute();
         
-        $contributeProject = $this->projectRepository->find($id);
-        $newContribute->setContributeIdProject($contributeProject);
+        $project = $this->projectRepository->find($id);
+        $contributeExist   = $this->contributeRepository->findBy(["contribute_project" => $id]);
+
+        $newContribute->setContributeIdProject($project);
         $newContribute->setContributeDate(new \DateTime());
 
-        $formNewContribute = $this->formFactory->create(ContributeType::class, $newContribute);
+        $request = $this->get('request_stack')->getMasterRequest();
+        $contributeProject = $contributeExist ? $contributeExist[0] : $newContribute;
+        echo gettype($contributeExist[0]->getContributeProfile());
+        $contributeProject->setContributeProfile($contributeExist[0]);
+        echo $contributeExist[0]->getContributeProfile();
+       // dump($contributeExist[0]);die;
+
+        $formNewContribute = $this->formFactory->create(ContributeType::class, $contributeProject);
         $formNewContribute->handleRequest($request);
 
+        
         if($formNewContribute->isSubmitted() && $formNewContribute->isValid()){
-            dump($newContribute);
-            $this->entityManager->persist($newContribute);
+           dump($contributeProject);
+            $this->entityManager->persist($contributeProject);
             $this->entityManager->flush();
             return $this->redirectToRoute('datos_proyectos');
         }
-
         return $this->render('modals/AddPerfilToProyect.html.twig',
             [
                 'form_New_Contribute' =>$formNewContribute->createView()
