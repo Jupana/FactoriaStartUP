@@ -17,6 +17,11 @@ use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Bazinga\GeocoderBundle\ProviderFactory\GoogleMapsFactory;
+use Geocoder\Query\GeocodeQuery;
+use Geocoder\Query\ReverseQuery;
+use Geocoder\Provider\Provider;
+
 
 
 class ProjectController extends AbstractController
@@ -150,9 +155,18 @@ class ProjectController extends AbstractController
         );
     }
 
-    public function indexProject()
+    public function indexProject(GoogleMapsFactory $geoCodingProvider )
     {
-        $html = $this->twig->render('project/index.html.twig', [
+        $config = []; 
+        $config['api_key'] = 'AIzaSyDmQm7vyUCKhZ_rxCyM8kTtxSN4YfDNc3M'; 
+        $config['region'] ='es_ES';
+
+        $provider = $geoCodingProvider->createProvider($config); 
+        $result = $provider->geocodeQuery(GeocodeQuery::create('Calle Vila de Donas 13'));
+       
+        var_dump($result);die;
+        
+    $html = $this->twig->render('project/index.html.twig', [
             'projects' => $this->projectRepository->findBy([],['project_date'=>'DESC']),
             'opciones_sectores' => $this->sectorRepository->findAll(),
             'opciones_perfil' => $this->profilRepository->findAll() 
