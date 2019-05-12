@@ -1,4 +1,24 @@
 {
   "build/css/app.css": "/build/css/app.css",
-  "build/js/app.js": "/build/js/app.js"
+  "build/js/app.js": "/build/js/app.js",
+  "build/img/MeInteresa1.png": "/build/img/MeInteresa1.png",
+  "build/img/MeInteresa2.png": "/build/img/MeInteresa2.png",
+  "build/img/banner.png": "/build/img/banner.png",
+  "build/img/bumb.png": "/build/img/bumb.png",
+  "build/img/caja.png": "/build/img/caja.png",
+  "build/img/circulo.png": "/build/img/circulo.png",
+  "build/img/cuaderno.png": "/build/img/cuaderno.png",
+  "build/img/final.png": "/build/img/final.png",
+  "build/img/icons/favicon.ico": "/build/img/icons/favicon.ico",
+  "build/img/icons/icon-face.png": "/build/img/icons/icon-face.png",
+  "build/img/icons/icon-google.png": "/build/img/icons/icon-google.png",
+  "build/img/icons/map-marker.png": "/build/img/icons/map-marker.png",
+  "build/img/icons/symbol-01.png": "/build/img/icons/symbol-01.png",
+  "build/img/img.png": "/build/img/img.png",
+  "build/img/logo.png": "/build/img/logo.png",
+  "build/img/uploads/users_perfil/liviu-2a871d7508366f11482f4f90418de0c3.jpeg": "/build/img/uploads/users_perfil/liviu-2a871d7508366f11482f4f90418de0c3.jpeg",
+  "build/img/uploads/users_perfil/liviu-64dd693a5745e28f27e71bb0942bf1f1.png": "/build/img/uploads/users_perfil/liviu-64dd693a5745e28f27e71bb0942bf1f1.png",
+  "build/img/uploads/users_perfil/liviu-bf8ccd980f8aa25a5bb795c669c9472e.jpeg": "/build/img/uploads/users_perfil/liviu-bf8ccd980f8aa25a5bb795c669c9472e.jpeg",
+  "build/img/uploads/users_perfil/liviu-e8fd141646d89edbba9953c873c312e4.jpeg": "/build/img/uploads/users_perfil/liviu-e8fd141646d89edbba9953c873c312e4.jpeg",
+  "build/img/uploads/users_perfil/liviu-fe578299e8ca009c83faa832ab47bb55.png": "/build/img/uploads/users_perfil/liviu-fe578299e8ca009c83faa832ab47bb55.png"
 }
