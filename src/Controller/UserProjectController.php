@@ -96,7 +96,7 @@ class UserProjectController extends AbstractController
     public function addPerfilToProyect (Request $request, int $id=null){
        
         $newContribute = new Contribute();
-        
+                
         $project = $this->projectRepository->find($id);
         $contributeExist   = $this->contributeRepository->findBy(["contribute_project" => $id]);
 
@@ -105,17 +105,14 @@ class UserProjectController extends AbstractController
 
         $request = $this->get('request_stack')->getMasterRequest();
         $contributeProject = $contributeExist ? $contributeExist[0] : $newContribute;
-        echo gettype($contributeExist[0]->getContributeProfile());
-        $contributeProject->setContributeProfile($contributeExist[0]);
-        echo $contributeExist[0]->getContributeProfile();
-       // dump($contributeExist[0]);die;
-
+        
+        $contributeProject->setContributeProfile( $contributeExist[0]->getContributeProfile());
+        
+        
         $formNewContribute = $this->formFactory->create(ContributeType::class, $contributeProject);
         $formNewContribute->handleRequest($request);
-
         
-        if($formNewContribute->isSubmitted() && $formNewContribute->isValid()){
-           dump($contributeProject);
+        if($formNewContribute->isSubmitted() && $formNewContribute->isValid()){        
             $this->entityManager->persist($contributeProject);
             $this->entityManager->flush();
             return $this->redirectToRoute('datos_proyectos');

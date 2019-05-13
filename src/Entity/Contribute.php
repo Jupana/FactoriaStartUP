@@ -63,7 +63,7 @@ class Contribute
         return $this->contribute_profile;
     }
 
-    public function setContributeProfile(Profil $contributeProfile): self
+    public function setContributeProfile(?string $contributeProfile): self
     {
         $this->contribute_profile = $contributeProfile;
         return $this;
