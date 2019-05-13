@@ -17,12 +17,11 @@ use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Bazinga\GeocoderBundle\ProviderFactory\GoogleMapsFactory;
 use Geocoder\Query\GeocodeQuery;
-use Geocoder\Query\ReverseQuery;
+use Geocoder\Query;
 use Geocoder\Provider\Provider;
-
-
+use Geocoder\ProviderAggregator;
+use Bazinga\GeocoderBundle\ProviderFactory\GoogleMapsFactory;
 
 class ProjectController extends AbstractController
 {   
@@ -67,10 +66,16 @@ class ProjectController extends AbstractController
     private $flashBag;
 
 
+    /**
+    * @var ProviderAggregator
+    */
+    private $geoProvider;
+
+
     public function __construct(
         \Twig_Environment $twig, ProjectRepository $projectRepository,ProfileUserRepository $profileUserRepository, ProfilRepository $profilRepository, SectorRepository $sectorRepository,
         FormFactoryInterface $formFactory,EntityManagerInterface $entityManager,
-        FlashBagInterface $flashBag
+        FlashBagInterface $flashBag, ProviderAggregator $geoProvider
         ) {
         $this->twig = $twig;
         $this->projectRepository = $projectRepository;
@@ -80,6 +85,7 @@ class ProjectController extends AbstractController
         $this->formFactory = $formFactory;
         $this->entityManager = $entityManager;
         $this->flashBag = $flashBag;
+        $this->geoProvider =$geoProvider;
     }
 
     public function edit(Project $project, Request $request)
@@ -155,16 +161,38 @@ class ProjectController extends AbstractController
         );
     }
 
-    public function indexProject(GoogleMapsFactory $geoCodingProvider )
+    public function indexProject(GoogleMapsFactory $geoCodingProvider)
     {
         $config = []; 
         $config['api_key'] = 'AIzaSyDmQm7vyUCKhZ_rxCyM8kTtxSN4YfDNc3M'; 
-        $config['region'] ='es_ES';
+        
 
         $provider = $geoCodingProvider->createProvider($config); 
-        $result = $provider->geocodeQuery(GeocodeQuery::create('Calle Vila de Donas 13'));
-       
-        var_dump($result);die;
+        $result =  $provider->geocodeQuery(GeocodeQuery::create('Calle Vilar de Donas 13'));
+        $coords = $result->first()->getCoordinates();
+ 
+        //https://github.com/geocoder-php/BazingaGeocoderBundle/issues/52   : Filter by distance
+    //https://stackoverflow.com/questions/15267205/symfony2-doctrine-search-and-order-by-distance
+
+    /*
+    To search by kilometers instead of miles, replace 3959 with 6371.
+         ->addSelect(
+            '( 6371 * acos(cos(radians(' . $latitude . '))' .
+                '* cos( radians( l.latitude ) )' .
+                '* cos( radians( l.longitude )' .
+                '- radians(' . $longitude . ') )' .
+                '+ sin( radians(' . $latitude . ') )' .
+                '* sin( radians( l.latitude ) ) ) ) as distance'
+        )
+        ->andWhere('l.enabled = :enabled')
+        ->setParameter('enabled', 1)
+        ->having('distance < :distance')
+        ->setParameter('distance', $requestedDistance)
+        ->orderBy('distance', 'ASC')
+    */
+
+    $radius = $this->projectRepository->findByDistance($coords->getLatitude(),$coords->getLongitude(),15);
+    var_dump($radius);die;
         
     $html = $this->twig->render('project/index.html.twig', [
             'projects' => $this->projectRepository->findBy([],['project_date'=>'DESC']),

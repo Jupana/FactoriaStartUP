@@ -28,6 +28,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use App\Repository\ProfesionalProfileRepository;
 
+use Geocoder\Query\GeocodeQuery;
+use Geocoder\Provider\Provider;
+use Geocoder\ProviderAggregator;
+use Bazinga\GeocoderBundle\ProviderFactory\GoogleMapsFactory;
+
 class UserController extends AbstractController
 {
         /**
@@ -117,7 +122,7 @@ class UserController extends AbstractController
         );
     }
   
-    public function datos_personales(Request $request): Response
+    public function datos_personales(Request $request, GoogleMapsFactory $geoCodingProvider): Response
     {
         $user = $this->getUser();
         
@@ -140,6 +145,27 @@ class UserController extends AbstractController
             }
 
             $user->setPerfilImg($fileName);
+
+            $config = []; 
+            $config['api_key'] = 'AIzaSyDmQm7vyUCKhZ_rxCyM8kTtxSN4YfDNc3M'; 
+               
+            $provider = $geoCodingProvider->createProvider($config); 
+            $result =  $provider->geocodeQuery(GeocodeQuery::create(
+                $user->getStreetName().' '.
+                $user->getStreetName().' '.
+                $user->getStreetNumber().' '.
+                $user->getCity().' '.
+                $user->getPostalCode().' '.
+                $user->getProvince().' '. 
+                $user->getCountry().' '
+            ));
+            $coords = $result->first()->getCoordinates();
+
+            $lat =$coords->getLatitude();
+            $long = $coords->getLongitude();
+
+            $user->setLatitud($lat);
+            $user->setLongitud($long);
 
             $this->entityManager->persist($user);
             $this->entityManager->flush();

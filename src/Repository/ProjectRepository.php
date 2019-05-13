@@ -47,4 +47,22 @@ class ProjectRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    //good query SELECT ( 6371 * acos( cos( radians(40.5089) ) * cos( radians( user_latitud ) ) * cos( radians( user_longitud ) - radians(-3.66544) ) + sin( radians(40.5089) ) * sin(radians(user_latitud)) ) ) AS distance  FROM     fsu_users  HAVING     distance < 25  ORDER BY     distance;
+    public function findByDistance($lat,$long, $distance){
+        return $this->createQueryBuilder('p')
+            ->addSelect(
+                '( 6371 * acos(cos(radians(' . $lat . '))' .
+                    '* cos( radians( p.user_latitude ) )' .
+                    '* cos( radians( p.user_longitude )' .
+                    '- radians(' . $long . ') )' .
+                    '+ sin( radians(' . $lat . ') )' .
+                    '* sin( radians( p.user_latitude ) ) ) ) as distance'
+            )
+            ->having('distance < :distance')
+            ->setParameter('distance', $distance)
+            ->orderBy('distance', 'ASC')
+            ->getQuery()
+        ;
+    }
 }
