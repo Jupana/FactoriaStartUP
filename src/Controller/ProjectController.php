@@ -22,6 +22,7 @@ use Geocoder\Query;
 use Geocoder\Provider\Provider;
 use Geocoder\ProviderAggregator;
 use Bazinga\GeocoderBundle\ProviderFactory\GoogleMapsFactory;
+use App\Repository\UserRepository;
 
 class ProjectController extends AbstractController
 {   
@@ -75,13 +76,14 @@ class ProjectController extends AbstractController
     public function __construct(
         \Twig_Environment $twig, ProjectRepository $projectRepository,ProfileUserRepository $profileUserRepository, ProfilRepository $profilRepository, SectorRepository $sectorRepository,
         FormFactoryInterface $formFactory,EntityManagerInterface $entityManager,
-        FlashBagInterface $flashBag, ProviderAggregator $geoProvider
+        FlashBagInterface $flashBag, ProviderAggregator $geoProvider,UserRepository $userRepository
         ) {
         $this->twig = $twig;
         $this->projectRepository = $projectRepository;
         $this->profileUserRepository = $profileUserRepository;
         $this->sectorRepository = $sectorRepository;
         $this->profilRepository = $profilRepository;
+        $this->userRepository =$userRepository;
         $this->formFactory = $formFactory;
         $this->entityManager = $entityManager;
         $this->flashBag = $flashBag;
@@ -191,10 +193,11 @@ class ProjectController extends AbstractController
         ->orderBy('distance', 'ASC')
     */
 
-    $radius = $this->projectRepository->findByDistance($coords->getLatitude(),$coords->getLongitude(),15);
-    var_dump($radius);die;
+    //$radius = $this->userRepository->findByDistance($coords->getLatitude(),$coords->getLongitude(),15);
+    //var_dump($this->projectRepository->findBy([],['project_date'=>'DESC']));die;
         
     $html = $this->twig->render('project/index.html.twig', [
+            'distance'=> $this->userRepository->findByDistance($coords->getLatitude(),$coords->getLongitude(),15),
             'projects' => $this->projectRepository->findBy([],['project_date'=>'DESC']),
             'opciones_sectores' => $this->sectorRepository->findAll(),
             'opciones_perfil' => $this->profilRepository->findAll() 
