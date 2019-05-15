@@ -132,8 +132,8 @@ class UserPersonalInfoType extends AbstractType
             //->add('proyect_search')
            // ->add('phone_number',NumberType::class, ['label' => 'Telefono'])
            // ->add('inscription_date',)  LIVIU estos no tiene que verse pero si que tiene que meterlos.
-           // ->add('latitud')
-           // ->add('longitud')
+            ->add('latitud')
+            ->add('longitud')
            // ->add('IP')
         ;
     }
@@ -144,4 +144,5 @@ class UserPersonalInfoType extends AbstractType
             'data_class' => User::class,
         ]);
     }
+   
 }

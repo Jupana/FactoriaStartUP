@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
+use Bazinga\GeocoderBundle\Mapping\Annotations as Geocoder;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
@@ -147,14 +148,15 @@ class User implements UserInterface,\Serializable
     private $inscription_date;
 
     /**
-     * @ORM\Column(type="string", nullable=true, name="user_latitud")
+    * @ORM\Column(type="string", nullable=true, name="user_latitud")
+    * @Geocoder\Latitude
+    */
     
-     */
     private $latitud;
 
     /**
      * @ORM\Column(type="string", nullable=true,name="user_longitud")
-    
+     * @Geocoder\Longitude
      */
     private $longitud;
 

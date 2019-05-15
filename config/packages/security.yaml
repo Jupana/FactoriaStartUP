@@ -36,4 +36,12 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+        # - { path: ^/profile, roles: ROLE_USER } 
+bazinga_geocoder:
+    providers:
+        acme:
+            factory: Bazinga\GeocoderBundle\ProviderFactory\GoogleMapsFactory
+            aliases:
+                - my_geocoder
+            options:
+                api_key: 'AIzaSyDmQm7vyUCKhZ_rxCyM8kTtxSN4YfDNc3M'

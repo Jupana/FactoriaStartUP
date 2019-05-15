@@ -27,3 +27,10 @@ doctrine:
                 dir: '%kernel.project_dir%/src/Entity'
                 prefix: 'App\Entity'
                 alias: App
+        dql:
+            numeric_functions:
+                acos: DoctrineExtensions\Query\Mysql\Acos
+                asin: DoctrineExtensions\Query\Mysql\Asin
+                cos: DoctrineExtensions\Query\Mysql\Cos
+                radians: DoctrineExtensions\Query\Mysql\Radians
+                sin: DoctrineExtensions\Query\Mysql\Sin
