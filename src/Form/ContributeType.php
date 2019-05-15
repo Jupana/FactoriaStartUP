@@ -18,11 +18,11 @@ class ContributeType extends AbstractType
         $builder
             ->add('contribute_profile',EntityType::class,[
                 'class' => Profil::class,
-                'placeholder' => 'Selecciona un perfil',
+                
+                'placeholder' => 'Selecciona un perfil',                
                 'choice_label' => function($profil){
-                    return $profil->getName(); 
-                    die;
-                },
+                        return $profil->getName(); 
+                    },
                 'required'=>false
             ])    
             ->add('contribute_description',TextareaType::class,['required'=>false])  
