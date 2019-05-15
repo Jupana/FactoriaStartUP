@@ -26,7 +26,7 @@ class ContributeType extends AbstractType
                 'required'=>false
             ])    
             ->add('contribute_description',TextareaType::class,['required'=>false])  
-            ->add('submit', SubmitType::class,['label' => 'Guardar Perfil'])
+           ->add('submit', SubmitType::class)
         ;
     }
 

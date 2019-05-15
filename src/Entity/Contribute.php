@@ -26,7 +26,7 @@ class Contribute
     private $contribute_project;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Profil", inversedBy="contribute_profile")
+     * @ORM\Column(type="string", length=3000, nullable=true)
      */
     private $contribute_profile;
 

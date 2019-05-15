@@ -72,9 +72,7 @@ class UserProjectController extends AbstractController
     public function addProject(Request $request, int $id=null)
     {
         $newProject = $this->projectRepository ->find($id);
-        //$profileUser->setprofileDate(new \DateTime());
         $user=$this->getUser();
-        //$profileUser->setUser($user);
         
         $formNewProject = $this->formFactory->create(ProjectType::class, $newProject);
         $formNewProject->handleRequest($request);
@@ -96,23 +94,29 @@ class UserProjectController extends AbstractController
     public function addPerfilToProyect (Request $request, int $id=null){
        
         $newContribute = new Contribute();
+        $request = $this->get('request_stack')->getMasterRequest();
+       
                 
         $project = $this->projectRepository->find($id);
         $contributeExist   = $this->contributeRepository->findBy(["contribute_project" => $id]);
-
+        
         $newContribute->setContributeIdProject($project);
         $newContribute->setContributeDate(new \DateTime());
-
-        $request = $this->get('request_stack')->getMasterRequest();
-        $contributeProject = $contributeExist ? $contributeExist[0] : $newContribute;
+       
+        //$contributeProject = $contributeExist ? $contributeExist[0] : $newContribute;
+        //$contributeProject->setContributeProfile( $contributeExist[0]->getContributeProfile());
         
-        $contributeProject->setContributeProfile( $contributeExist[0]->getContributeProfile());
-        
+        if($contributeExist){
+            $contributeProject =$contributeExist[0];
+            $contributeProject->setContributeProfile( $contributeExist[0]->getContributeProfile());
+        }else{
+            $contributeProject = $newContribute;
+        }
         
         $formNewContribute = $this->formFactory->create(ContributeType::class, $contributeProject);
         $formNewContribute->handleRequest($request);
         
-        if($formNewContribute->isSubmitted() && $formNewContribute->isValid()){        
+        if($formNewContribute->isSubmitted() && $formNewContribute->isValid()){   
             $this->entityManager->persist($contributeProject);
             $this->entityManager->flush();
             return $this->redirectToRoute('datos_proyectos');

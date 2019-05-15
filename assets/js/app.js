@@ -178,8 +178,6 @@ $(document).ready(function() {
         function showTab(n) {
         // This function will display the specified tab of the form...
         var x = document.getElementsByClassName("tab-multi-form");
-        console.log(x);
-        console.log('Y aqui :', n);
         x[n].style.display = "block";
         //... and fix the Previous/Next buttons:
         if (n == 0) {
@@ -198,7 +196,7 @@ $(document).ready(function() {
 
         $('.nextPrev').click(function (){
             var n = $(this).data('next');
-            console.log('BAAAA', n);
+            
                 // This function will figure out which tab to display
             var x = document.getElementsByClassName("tab-multi-form");
             // Exit the function if any field in the current tab is invalid:
