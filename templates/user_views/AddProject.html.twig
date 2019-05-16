@@ -54,6 +54,7 @@
     </div>    
        
      {{ render (controller ('App\\Controller\\UserProjectController::addProject', {'request': app.request, 'id':app.request.get('id')} )) }} 
+
        
    {#% include 'user_views/addProject_steps/_step1.html.twig' %#}  
    

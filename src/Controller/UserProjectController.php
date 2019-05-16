@@ -78,10 +78,12 @@ class UserProjectController extends AbstractController
         $formNewProject->handleRequest($request);
 
         if ($formNewProject->isSubmitted() && $formNewProject->isValid()) {
+                $this->entityManager->persist($newProject);
+                $this->entityManager->flush();
+                      
+            //return $this->redirect('/vista_usuario/add_proyecto/step_2/'.$id);
+
             
-            $this->entityManager->persist($newProject);
-            $this->entityManager->flush();
-            //return $this->redirectToRoute('datos_proyectos');
         }
         return $this->render('user_views/addProject_steps/_step1.html.twig',
             [
@@ -119,9 +121,9 @@ class UserProjectController extends AbstractController
         if($formNewContribute->isSubmitted() && $formNewContribute->isValid()){   
             $this->entityManager->persist($contributeProject);
             $this->entityManager->flush();
-            return $this->redirectToRoute('datos_proyectos');
+            return $this->redirectToRoute('addPerfilToProyect');
         }
-        return $this->render('modals/AddPerfilToProyect.html.twig',
+        return $this->render('user_views/addProject_steps/_step3.html.twig',
             [
                 'form_New_Contribute' =>$formNewContribute->createView()
             ]

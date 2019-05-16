@@ -8,6 +8,12 @@
     <div class="col-md-12 m-t-20 par">
         <p><b>¿Como de avanzado se encuentra tu proyecto?</b></p>
     </div>
+     <div class="col-md-10">
+        <div class="form-check form-check-inline">
+            {{form_row (formProfile.project_team)}}
+            <label class="form-check-label par1" for="inlineCheckbox2 "> <b>¿Tienes equipo?</b> Tanto si estás solo como si tienes equipo, cuéntanos</label>
+        </div> 
+    </div>
     <div class="col-md-2">
         <img src="{{ asset('bumb.png','bumb') }}" alt="Symfony!"/>
     </div>
@@ -45,4 +51,7 @@
             <label class="form-check-label par1" for="inlineCheckbox2 "> <b>Producto final</b> Tienes equipo, tienes producto, incluso ya facturas.. es decir, necesitas mas profesionales para tu negocio.</label>
         </div> 
     </div>
+       
+
 </div>
+{{form_end (formProfile)}}

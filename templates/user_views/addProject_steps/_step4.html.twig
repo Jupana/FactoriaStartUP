@@ -68,5 +68,5 @@
                 <!-- Modal Footer -->
                 
             </div>
-{{form_end (formProfile)}}
+
 {{ render (controller ('App\\Controller\\UserProjectController::addPerfilToProyect', {'request': app.request, 'id':app.request.get('id')} )) }}
