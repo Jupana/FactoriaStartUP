@@ -79,7 +79,7 @@ class UserController extends AbstractController
         \Twig_Environment $twig, 
         UserRepository $userRepository,
         ProfileUserRepository $profileUserRepository, 
-        ProfilRepository $profilRepository, 
+        ProfilRepository $profilRepository,
         SectorRepository $sectorRepository, 
         ProfesionalProfileRepository $profesionalProfilRespository,
         ProjectRepository $projectsUserRepository,
@@ -230,14 +230,6 @@ class UserController extends AbstractController
             );
     }
     
-    // Fomr by Steps https://stackoverflow.com/questions/21254733/how-to-split-long-symfony-form-in-multiple-pages
-    public function add_proyecto(Request $request): Response
-    {
-        //$projectsUser = $this->projectsUserRepository->find(1);
-        //$em = $this->getDoctrine()->getManager();
-        return $this->render('user_views/AddProject.html.twig');
-    }
-
     public function datos_propuestas(Request $request): Response
     {
         $em = $this->getDoctrine()->getManager();

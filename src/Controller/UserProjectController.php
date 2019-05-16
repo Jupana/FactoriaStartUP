@@ -64,12 +64,9 @@ class UserProjectController extends AbstractController
             $this->flashBag = $flashBag;
             $this->contributeRepository = $contributeRepository;
         }
-  
-    /**
-    *
-    *@param Request $request 
-    */
-    public function addProject(Request $request, int $id=null)
+    
+    // Fomr by Steps https://stackoverflow.com/questions/21254733/how-to-split-long-symfony-form-in-multiple-pages
+    public function add_proyecto(Request $request, int $id)
     {
         $newProject = $this->projectRepository ->find($id);
         $user=$this->getUser();
@@ -79,19 +76,15 @@ class UserProjectController extends AbstractController
 
         if ($formNewProject->isSubmitted() && $formNewProject->isValid()) {
                 $this->entityManager->persist($newProject);
-                $this->entityManager->flush();
-                      
-            //return $this->redirect('/vista_usuario/add_proyecto/step_2/'.$id);
-
-            
+                $this->entityManager->flush();          
+                return $this->redirect('/vista_usuario/add_proyecto/step_2/'.$id); 
         }
-        return $this->render('user_views/addProject_steps/_step1.html.twig',
+        return $this->render('user_views/AddProject.html.twig',
             [
                 'formProfile' =>$formNewProject->createView()
             ]
-        );      
-    }
-
+        );
+    }    
 
     public function addPerfilToProyect (Request $request, int $id=null){
        
@@ -104,9 +97,6 @@ class UserProjectController extends AbstractController
         
         $newContribute->setContributeIdProject($project);
         $newContribute->setContributeDate(new \DateTime());
-       
-        //$contributeProject = $contributeExist ? $contributeExist[0] : $newContribute;
-        //$contributeProject->setContributeProfile( $contributeExist[0]->getContributeProfile());
         
         if($contributeExist){
             $contributeProject =$contributeExist[0];
@@ -121,7 +111,7 @@ class UserProjectController extends AbstractController
         if($formNewContribute->isSubmitted() && $formNewContribute->isValid()){   
             $this->entityManager->persist($contributeProject);
             $this->entityManager->flush();
-            return $this->redirectToRoute('addPerfilToProyect');
+            return $this->redirectToRoute('datos_proyectos');
         }
         return $this->render('user_views/addProject_steps/_step3.html.twig',
             [

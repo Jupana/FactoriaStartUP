@@ -64,6 +64,10 @@ eliminar_proyecto:
     controller: App\Controller\ProjectController::delete 
 
 
+add_proyecto:
+    path: /vista_usuario/add_proyecto/{id}
+    controller: App\Controller\UserProjectController::add_proyecto
+
 
 addPerfilToProyect:   
     path: /vista_usuario/add_proyecto/step_2/{id}
@@ -73,9 +77,7 @@ addPerfilToProyect:
         expose: true        
 
 
-add_proyecto:
-    path: /vista_usuario/add_proyecto
-    controller: App\Controller\UserController::add_proyecto 
+ 
 datos_personales:
     path: /datos_personales
     controller: App\Controller\UserController::datos_personales 

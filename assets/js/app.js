@@ -208,7 +208,6 @@ $(document).ready(function() {
             if (currentTab >= x.length) {
                 // ... the form gets submitted:
                 document.getElementById("project_form").submit();
-                window.location.replace('/vista_usuario/add_proyecto/step_2/6')
                 //return false;
             }
             // Otherwise, display the correct tab:
