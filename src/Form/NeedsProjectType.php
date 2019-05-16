@@ -12,13 +12,21 @@ class NeedsProjectType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('needs_id')
+            
             ->add('needs_deal')
             ->add('needs_percent')
             ->add('needs_description')
             ->add('needs_status')
             ->add('needs_date')
-            ->add('needs_perfil')
+            ->add('needs_perfil',EntityType::class,[
+                'class' => Profil::class,
+                
+                'placeholder' => 'Selecciona un perfil',                
+                'choice_label' => function($profil){
+                        return $profil->getName(); 
+                    },
+                'required'=>false
+            ])    
         ;
     }
 

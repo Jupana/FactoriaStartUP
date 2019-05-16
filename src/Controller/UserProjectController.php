@@ -3,20 +3,23 @@ namespace App\Controller;
 
 use App\Entity\ProfileUser;
 use App\Entity\Contribute;
+use App\Entity\NeedsProject;
 use App\Form\ProjectType;
 use App\Form\ContributeType;
+use App\Form\NeedsProjectType;
 use App\Repository\ProjectRepository;
 use App\Repository\UserRepository;
 use App\Repository\ContributeRepository;
+use App\Repository\NeedsProjectRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\FormFactoryInterface;
-use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
+
 
 class UserProjectController extends AbstractController
 {
@@ -41,9 +44,10 @@ class UserProjectController extends AbstractController
     private $entityManager;
 
     /**
-    * @var FlashBagInterface
+    * @var needsProjectRepository
     */
-    private $flashBag;
+    private $needsProjectRepository;
+
 
 
     public function __construct(
@@ -52,8 +56,8 @@ class UserProjectController extends AbstractController
             ProjectRepository $projectRepository,
             FormFactoryInterface $formFactory,
             EntityManagerInterface $entityManager,
-            FlashBagInterface $flashBag,
-            ContributeRepository $contributeRepository
+            ContributeRepository $contributeRepository,
+            NeedsProjectRepository $needsProjectRepository
         ) 
         {
             $this->twig = $twig;
@@ -61,8 +65,8 @@ class UserProjectController extends AbstractController
             $this->projectRepository = $projectRepository;
             $this->formFactory = $formFactory;
             $this->entityManager = $entityManager;
-            $this->flashBag = $flashBag;
             $this->contributeRepository = $contributeRepository;
+            $this->needsProjectRepository = $needsProjectRepository;
         }
     
     // Fomr by Steps https://stackoverflow.com/questions/21254733/how-to-split-long-symfony-form-in-multiple-pages
@@ -89,8 +93,6 @@ class UserProjectController extends AbstractController
     public function addPerfilToProyect (Request $request, int $id=null){
        
         $newContribute = new Contribute();
-        $request = $this->get('request_stack')->getMasterRequest();
-       
                 
         $project = $this->projectRepository->find($id);
         $contributeExist   = $this->contributeRepository->findBy(["contribute_project" => $id]);
@@ -111,7 +113,7 @@ class UserProjectController extends AbstractController
         if($formNewContribute->isSubmitted() && $formNewContribute->isValid()){   
             $this->entityManager->persist($contributeProject);
             $this->entityManager->flush();
-            return $this->redirectToRoute('datos_proyectos');
+            return $this->redirectToRoute('proyectNeeds',['id'=>$id]);
         }
         return $this->render('user_views/addProject_steps/_step3.html.twig',
             [
@@ -119,6 +121,40 @@ class UserProjectController extends AbstractController
             ]
         );
 
+    }
+
+    public function proyectNeeds(Request $request, int $id=null){
+
+        $newProyectNeeds = new NeedsProject();
+
+        $project = $this->projectRepository->find($id);
+        $needsPojectExist   = $this->needsProjectRepository->findBy(["needs_project" => $id]);
+        
+        //$newProyectNeeds->setNeedsIdProject($project);
+        $newProyectNeeds->setNeedsDate(new \DateTime());
+        
+        if($needsPojectExist){
+            var_dump($needsPojectExist);die;
+            $newProyectNeeds =$needsPojectExist[0];
+           // $newProyectNeeds->setNeedsIdProject( $needsPojectExist[0]->getNeedsIdProject());
+        }else{
+            $newProyectNeeds = $newProyectNeeds;
+        }
+        
+       /* $formNewProyectNeeds = $this->formFactory->create(NeedsProjectType::class, $newProyectNeeds);
+        $formNewProyectNeeds->handleRequest($request);
+        
+        if($formNewProyectNeeds->isSubmitted() && $formNewProyectNeeds->isValid()){   
+            $this->entityManager->persist($newProyectNeeds);
+            $this->entityManager->flush();
+            return $this->redirectToRoute('datos_proyectos');
+        }*/
+       
+        return $this->render('user_views/addProject_steps/_step4.html.twig',
+        [
+            //'form_New_Proyect_Needse' =>$formNewProyectNeeds->createView()
+        ]
+        );
     }
 
     /**

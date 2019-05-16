@@ -1,4 +1,48 @@
-<div class="tab-multi-form">
+
+
+{% extends 'user_views/index_vista.html.twig' %}
+
+{% block vista %}
+ <div class="row">
+                    <ul class="js-pagination u-carousel-indicators-v30 g-pos-abs g-top-0">
+            <li class="">
+
+                <a href="#">
+                    <i class="u-dot-line-v1 g-brd-gray-light-v2--before g-brd-gray-light-v2--after g-mb-15--sm">
+                        <span class="u-dot-line-v1__inner g-bg-white g-bg-primary--before g-brd-gray-light-v2 g-brd-primary--hover g-brd-primary--active g-transition--ease-in g-transition-0_2"></span>
+                    </i>
+                    <span class="g-hidden-sm-down g-color-black g-font-size-15">Información Proyecto</span>
+                </a>
+
+            </li>
+            <li class=" ">
+
+                <a href="#">
+                    <i class="u-dot-line-v1 g-brd-gray-light-v2--before g-brd-gray-light-v2--after g-mb-15--sm">
+                        <span class="u-dot-line-v1__inner g-bg-white g-bg-primary--before g-brd-gray-light-v2 g-brd-primary--hover g-brd-primary--active g-transition--ease-in g-transition-0_2"></span>
+                    </i>
+                    <span class="g-hidden-sm-down g-color-black g-font-size-15">Fase Proyecto</span>
+                </a>
+            </li>
+            <li class="">
+                <a href="#">
+                    <i class="u-dot-line-v1 g-brd-gray-light-v2--before g-brd-gray-light-v2--after g-mb-15--sm">
+                        <span class="u-dot-line-v1__inner g-bg-white g-bg-primary--before g-brd-gray-light-v2 g-brd-primary--hover g-brd-primary--active g-transition--ease-in g-transition-0_2"></span>
+                    </i>
+                    <span class="g-hidden-sm-down g-color-black g-font-size-15">Aportación en el Proyecto</span>
+                </a>
+            </li>
+            <li class="slick-active">
+
+                <i class="u-dot-line-v1 g-brd-gray-light-v2--before g-brd-gray-light-v2--after g-mb-15--sm">
+                    <span class="u-dot-line-v1__inner g-bg-white g-bg-primary--before g-brd-gray-light-v2 g-brd-primary--hover g-brd-primary--active g-transition--ease-in g-transition-0_2"></span>
+                </i>
+                <span class="g-hidden-sm-down g-color-black g-font-size-15 ">Necesidades Proyecto</span>
+
+            </li>
+        </ul>
+    </div> 
+
                  <!-- Step Form Header -->
                 <div class="modal-header">
                 </div>
@@ -66,5 +110,6 @@
                     </div>
                 </div>     
                 <!-- Modal Footer -->
-                
-            </div>
+                {% include 'modals/Act_Necesito_Proyecto.html.twig' %}  
+ {% endblock %}               
+

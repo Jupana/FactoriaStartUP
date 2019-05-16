@@ -26,7 +26,7 @@ class NeedsProject
     private $needs_project;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Profil", inversedBy="needs_project_profil")
+     * @ORM\Column(type="string", length=3000, nullable=true)
      */
     private $needs_perfil;
 

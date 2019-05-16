@@ -76,7 +76,10 @@ addPerfilToProyect:
     options:
         expose: true        
 
-
+proyectNeeds:
+    path: /vista_usuario/add_proyecto/step_3/{id}
+    controller: App\Controller\UserProjectController::proyectNeeds
+    methods:  [GET,POST]
  
 datos_personales:
     path: /datos_personales
