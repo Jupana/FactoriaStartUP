@@ -52,8 +52,8 @@
     {% for profile in profiles %}
         <div class="col-md-4 col-sm-6 col-xs-12 m-t-10 m-b-10"> 
             <div class="card border">                         
-                <div class="card-header d-none d-sm-block">  
-                    <img  class="card-img-top" src="{{ asset('img.png','img') }}" alt="image">
+                <div class="card-header d-none d-sm-block">                     
+                    <img  class="card-img-top" src ="{{ asset('build/img/uploads/users_perfil/' ~ profile.user.getPerfilImg) }}" alt="image"/>
                 </div>
                 <div class="card-body ">     
                     <h4 class="card-title">Usuario:<br/>{{ profile.user.username}}</h4>                   
