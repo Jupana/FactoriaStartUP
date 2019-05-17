@@ -15,7 +15,7 @@
         <div class="col-md-7 col-12 p-l-40">
             <div class="row">
                 <div class="col-md-4 col-4 border ">
-                    <div>Foto</div>
+                    <div> <img  class="card-img-top" src ="{{ asset('build/img/uploads/users_perfil/' ~ profile.user.getPerfilImg) }}" alt="image"/></div>
                 </div> 
                 <div class="col-md-8 col-8">
                     <span>Usuario :<b>{{profile.user.Username}}</b></span><br/>
@@ -55,8 +55,8 @@
      
     <div class="row m-t-20 m-r-10">      
         <div class="col-md-12 col-8 border"style="height:80px;">
-            <p>Sector:<b>{{ profile.Sector.Name}}</b></strong></p>
-            <p>Perfil:<b>{{ profile.Profil.Name}}</b></strong></p>        
+            <p>Sector:<b>{{ profile.Sector}}</b></strong></p>
+            <p>Perfil:<b>{{ profile.Profil}}</b></strong></p>        
         </div>
     </div> 
     
