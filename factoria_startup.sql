@@ -12,7 +12,7 @@
 #php bin/console doctrine:migrations:migrate xxxxxxxx (version)
 #php bin/console doctrine:schema:update --force --dump-sql
 
-#CREATE USER 'liviu'@'localhost' IDENTIFIED BY '123456';
+#CREATE USER 'liviu'@'localhost' IDENTIFIED BY 'liviu';
 #GRANT ALL PRIVILEGES ON *.* TO 'liviu'@'localhost';
 #FLUSH PRIVILEGES;
 #

@@ -83,7 +83,7 @@ class ProfileUserController extends AbstractController
                 'profiles' => $this->profileUserRepository->findAll(),
                 'opciones_sectores' => $this->sectorRepository->findAll(),
                 'opciones_perfil' => $this->profilRepository->findAll(),
-                'form_addProfile'=>$this->addProfile($request)
+                //'form_addProfile'=>$this->addProfile($request)
             ]);
             return new Response($html); 
        

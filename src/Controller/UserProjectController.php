@@ -128,31 +128,34 @@ class UserProjectController extends AbstractController
         $newProyectNeeds = new NeedsProject();
 
         $project = $this->projectRepository->find($id);
-        $needsPojectExist   = $this->needsProjectRepository->findBy(["needs_project" => $id]);
+        $needsProyectExist   = $this->needsProjectRepository->findBy(["needs_project" => $id]);
         
-        //$newProyectNeeds->setNeedsIdProject($project);
+        
+        $newProyectNeeds->setNeedsIdProject($project);
         $newProyectNeeds->setNeedsDate(new \DateTime());
+       
         
-        if($needsPojectExist){
-            var_dump($needsPojectExist);die;
-            $newProyectNeeds =$needsPojectExist[0];
-           // $newProyectNeeds->setNeedsIdProject( $needsPojectExist[0]->getNeedsIdProject());
+        if($needsProyectExist){
+            
+          // $newProyectNeeds =$needsProyectExist[0];
+          // $newProyectNeeds->setNeedsIdProject($needsProyectExist[0]->getNeedsIdProject());
         }else{
             $newProyectNeeds = $newProyectNeeds;
         }
         
-       /* $formNewProyectNeeds = $this->formFactory->create(NeedsProjectType::class, $newProyectNeeds);
+        $formNewProyectNeeds = $this->formFactory->create(NeedsProjectType::class, $newProyectNeeds);
         $formNewProyectNeeds->handleRequest($request);
+
         
         if($formNewProyectNeeds->isSubmitted() && $formNewProyectNeeds->isValid()){   
             $this->entityManager->persist($newProyectNeeds);
             $this->entityManager->flush();
             return $this->redirectToRoute('datos_proyectos');
-        }*/
+        }
        
         return $this->render('user_views/addProject_steps/_step4.html.twig',
         [
-            //'form_New_Proyect_Needse' =>$formNewProyectNeeds->createView()
+            'form_New_Proyect_Needs' =>$formNewProyectNeeds->createView()
         ]
         );
     }
