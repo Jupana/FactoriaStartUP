@@ -70,9 +70,44 @@ $(document).ready(function() {
         $(thisAlert).removeClass('alert-validate');
     }
 
+    /* START FILTER PROYECTS*/
+     
+     $('.filter-proyects').click(function(){
+        var sector = $( "select#select-sector" ).val();
+        var km =$(".proyect-km").val();
+        var lat = 0;
+        var long = 0;
+        var urlProyectFilter='';        
+        let notBlocked= false;
+      
+        if(km != ''){
+            if (navigator.geolocation) {
+                let notBlocked= true;
+                navigator.geolocation.getCurrentPosition(function(position) {
+                   let lat = position.coords.latitude ? position.coords.latitude : lat
+                   let long = position.coords.longitude ? position.coords.longitude :long
+                   urlProyectFilter = Routing.generate('proyectos_filter',{sector:sector,km:km,lat:lat,long:long})
+                   window.location.replace(urlProyectFilter)               
+                });
+              } else {
+                // Browser doesn't support Geolocation
+                console.log("Para utilizar el filtro de distancia necesitamos que permitas tu localización ");       
+              }
+        }else{
+            km=10000;
+            urlProyectFilter = Routing.generate('proyectos_filter',{sector:sector,km:km,lat:lat,long:long})
+            window.location.replace(urlProyectFilter)  
+        }
+    })
+
+    /*Fin FILTER PROYECTS*/
+   
     /* <!-- START Modal Form Script*/
    
     /*<!--START AddProfil user */
+
+  
+
         $('.add-profil').click(function () {
             let urlAddProfil = Routing.generate('addProfil');
             $.get(urlAddProfil, function(data){
@@ -172,7 +207,7 @@ $(document).ready(function() {
 /* FIN Modal Form Script -->*/
 
 /* <!-- START function for Multi Step Form into addProyect*/
-        var currentTab = 0; // Current tab is set to be the first tab (0)
+       /* var currentTab = 0; // Current tab is set to be the first tab (0)
         showTab(currentTab); // Display the current tab
 
         function showTab(n) {
@@ -222,7 +257,7 @@ $(document).ready(function() {
         }
         //... and adds the "active" class on the current step:
         x[n].className += " active";
-        }
+        }*/
 
 
 /* FIN function for Multi Step Form into addProyect -->*/

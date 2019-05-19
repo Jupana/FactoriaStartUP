@@ -50,6 +50,13 @@ eliminar_profile:
 proyectos:
     path: /proyectos
     controller: App\Controller\ProjectController::indexProject
+proyectos_filter:
+    path: /proyectos/{sector}/{km}/{lat}/{long}
+    controller: App\Controller\ProjectController::indexProjectFilter
+    methods:  [GET,POST]
+    options:
+        expose: true
+
 add_project:
     path: /proyectos/add
     controller: App\Controller\ProjectController::add              

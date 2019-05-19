@@ -23,6 +23,8 @@ use Geocoder\Provider\Provider;
 use Geocoder\ProviderAggregator;
 use Bazinga\GeocoderBundle\ProviderFactory\GoogleMapsFactory;
 use App\Repository\UserRepository;
+use App\Services\GetProyects;
+
 
 class ProjectController extends AbstractController
 {   
@@ -100,10 +102,7 @@ class ProjectController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->entityManager->persist($project);
             $this->entityManager->flush();
-
             return $this->redirectToRoute('proyectos');
-
-
         }
         return new Response(
             $this->twig->render(
@@ -163,45 +162,25 @@ class ProjectController extends AbstractController
         );
     }
 
-    public function indexProject(GoogleMapsFactory $geoCodingProvider)
-    {
-        $config = []; 
-        $config['api_key'] = 'AIzaSyDmQm7vyUCKhZ_rxCyM8kTtxSN4YfDNc3M'; 
-        
-
-        $provider = $geoCodingProvider->createProvider($config); 
-        $result =  $provider->geocodeQuery(GeocodeQuery::create('Calle Vilar de Donas 13'));
-        $coords = $result->first()->getCoordinates();
- 
-        //https://github.com/geocoder-php/BazingaGeocoderBundle/issues/52   : Filter by distance
-    //https://stackoverflow.com/questions/15267205/symfony2-doctrine-search-and-order-by-distance
-
-    /*
-    To search by kilometers instead of miles, replace 3959 with 6371.
-         ->addSelect(
-            '( 6371 * acos(cos(radians(' . $latitude . '))' .
-                '* cos( radians( l.latitude ) )' .
-                '* cos( radians( l.longitude )' .
-                '- radians(' . $longitude . ') )' .
-                '+ sin( radians(' . $latitude . ') )' .
-                '* sin( radians( l.latitude ) ) ) ) as distance'
-        )
-        ->andWhere('l.enabled = :enabled')
-        ->setParameter('enabled', 1)
-        ->having('distance < :distance')
-        ->setParameter('distance', $requestedDistance)
-        ->orderBy('distance', 'ASC')
-    */
-
-    //$radius = $this->userRepository->findByDistance($coords->getLatitude(),$coords->getLongitude(),15);
-    //var_dump($this->projectRepository->findBy([],['project_date'=>'DESC']));die;
-        
-    $html = $this->twig->render('project/index.html.twig', [
-            'distance'=> $this->userRepository->findByDistance($coords->getLatitude(),$coords->getLongitude(),15),
-            'projects' => $this->projectRepository->findBy([],['project_date'=>'DESC']),
-            'opciones_sectores' => $this->sectorRepository->findAll(),
-            'opciones_perfil' => $this->profilRepository->findAll() 
-        ]);
-        return new Response($html);
-    }
+    public function indexProject(GetProyects $projects)
+    {           
+            $projects = $projects->listProyects($this->getUser());
+            $html = $this->twig->render('project/index.html.twig', [
+                'projects' => $projects,
+                'opciones_sectores' => $this->sectorRepository->findAll(),
+                'opciones_perfil' => $this->profilRepository->findAll() 
+            ]);
+            return new Response($html);
+    } 
+    
+    public function indexProjectFilter(GetProyects $projects, $sector, $km,$lat,$long)
+    {           
+            $projects = $projects->listProyects($this->getUser(),$sector,$km,$lat,$long);
+            $html = $this->twig->render('project/index.html.twig', [
+                'projects' => $projects,
+                'opciones_sectores' => $this->sectorRepository->findAll(),
+                'opciones_perfil' => $this->profilRepository->findAll() 
+            ]);
+            return new Response($html);
+    } 
 }

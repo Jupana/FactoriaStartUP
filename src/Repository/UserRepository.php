@@ -71,13 +71,14 @@ class UserRepository extends ServiceEntityRepository
     public function findByDistance($lat,$long, $distance){
         return $this->createQueryBuilder('p')
             ->addSelect(
-                '( 6371 * acos(cos(radians(' . $lat . '))' .
+                'p.username,p.id,( 6371 * acos(cos(radians(' . $lat . '))' .
                     '* cos( radians( p.latitud ) )' .
                     '* cos( radians( p.longitud )' .
                     '- radians(' . $long . ') )' .
                     '+ sin( radians(' . $lat . ') )' .
                     '* sin( radians( p.latitud ) ) ) ) as distance'
             )
+          
             ->having('distance < :distance')
             ->setParameter('distance', $distance)
             ->orderBy('distance', 'ASC')
