@@ -101,6 +101,38 @@ $(document).ready(function() {
     })
 
     /*Fin FILTER PROYECTS*/
+
+    /* START FILTER PROFILES*/
+     
+    $('.filter-profiles').click(function(){
+        var profiles = $( "select#select-profiles" ).val();
+        var km =$(".proyect-km").val();
+        var lat = 0;
+        var long = 0;
+        var urlProyectFilter='';        
+        let notBlocked= false;
+      
+        if(km != ''){
+            if (navigator.geolocation) {
+                let notBlocked= true;
+                navigator.geolocation.getCurrentPosition(function(position) {
+                   let lat = position.coords.latitude ? position.coords.latitude : lat
+                   let long = position.coords.longitude ? position.coords.longitude :long
+                   urlProyectFilter = Routing.generate('profiles_filter',{profiles:profiles,km:km,lat:lat,long:long})
+                   window.location.replace(urlProyectFilter)               
+                });
+              } else {
+                // Browser doesn't support Geolocation
+                console.log("Para utilizar el filtro de distancia necesitamos que permitas tu localización ");       
+              }
+        }else{
+            km=10000;
+            urlProyectFilter = Routing.generate('profiles_filter',{profiles:profiles,km:km,lat:lat,long:long})
+            window.location.replace(urlProyectFilter)  
+        }
+    })
+
+    /*Fin FILTER PROFILES*/
    
     /* <!-- START Modal Form Script*/
    

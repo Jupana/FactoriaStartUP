@@ -5,10 +5,6 @@ vista_usuario:
     path: /vista_usuario
     controller: App\Controller\UserController::index_vista    
 
-equipo:
-    path: /profiles
-    controller: App\Controller\ProfileUserController::indexProfile 
-
 addProfil:
     path: /addProfil
     controller: App\Controller\SingelProfile::addProfileUser
@@ -53,6 +49,16 @@ proyectos:
 proyectos_filter:
     path: /proyectos/{sector}/{km}/{lat}/{long}
     controller: App\Controller\ProjectController::indexProjectFilter
+    methods:  [GET,POST]
+    options:
+        expose: true
+
+profiles:
+    path: /profiles
+    controller: App\Controller\ProfileUserController::indexProfile 
+profiles_filter:
+    path: /profiles/{profiles}/{km}/{lat}/{long}
+    controller: App\Controller\ProfileUserController::indexProfileFilter
     methods:  [GET,POST]
     options:
         expose: true

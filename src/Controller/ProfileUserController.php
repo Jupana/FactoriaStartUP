@@ -8,7 +8,7 @@ use App\Form\ProfileUserType;
 use App\Repository\ProfileUserRepository;
 use App\Repository\ProfilRepository;
 use App\Repository\SectorRepository;
-
+use App\Services\GetProfile;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -76,18 +76,28 @@ class ProfileUserController extends AbstractController
     }
 
 
-    public function indexProfile(Request $request)
+    public function indexProfile(GetProfile $profiles)
     {
-       
+            $profiles=$profiles->listProfile($this->getUser());
             $html = $this->twig->render('profile/index.html.twig', [
-                'profiles' => $this->profileUserRepository->findAll(),
+                'profiles' => $profiles,
                 'opciones_sectores' => $this->sectorRepository->findAll(),
-                'opciones_perfil' => $this->profilRepository->findAll(),
-                //'form_addProfile'=>$this->addProfile($request)
+                'opciones_perfil' => $this->profilRepository->findAll()
             ]);
             return new Response($html); 
        
     }
+   
+    public function indexProfileFilter(GetProfile $listProfiles, $profiles, $km,$lat,$long)
+    {           
+            $listProfiles = $listProfiles->listProfile($this->getUser(),$profiles,$km,$lat,$long);
+            $html = $this->twig->render('profile/index.html.twig', [
+                'profiles' => $listProfiles,
+                'opciones_sectores' => $this->sectorRepository->findAll(),
+                'opciones_perfil' => $this->profilRepository->findAll() 
+            ]);
+            return new Response($html);
+    } 
 
     public function profile($id)
     {
@@ -110,7 +120,7 @@ class ProfileUserController extends AbstractController
 
         $this->flashBag->add('notice', 'El perfil ha sido eliminado');
         
-        return $this->redirectToRoute('equipo');
+        return $this->redirectToRoute('profiles');
     }
    
 }
