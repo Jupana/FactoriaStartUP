@@ -60,6 +60,11 @@ class UserController extends AbstractController
     private $profileUserRepository;
 
     /**
+    * @var ProjectRepository
+    */
+    private $projectsUserRepository;
+
+    /**
     * @var FormFactoryInterface
     */
     private $formFactory;
@@ -100,23 +105,16 @@ class UserController extends AbstractController
    
     public function index_vista()
     {
-
-        return new Response(
-            $this->twig->render(
-                'user_views/index_vista.html.twig'
-            )
-        );
-    }
-     
-    public function vista($id)
-    {
-        $user = $this->userRepository->find($id);
-        
+        $user = $this->getUser();
+        $userProfesionalProfile = $this->profesionalProfilRespository->findOneBy(['profesionalIdUser' => $user->getId()]);
+        $userProjects = $this->projectsUserRepository->findAll(['user' => $user->getId()]);
         return new Response(
             $this->twig->render(
                 'user_views/index_vista.html.twig',
                 [
-                    'user' => $user
+                    'user' => $user,
+                    'profesionalProfile' =>$userProfesionalProfile,
+                    'userProjects' =>$userProjects
                 ]
             )
         );
@@ -222,9 +220,6 @@ class UserController extends AbstractController
 
             return $this->redirectToRoute('add_proyecto',['id'=>$newProject->getid()]);
         }
-
-
-        $em = $this->getDoctrine()->getManager();
         return $this->render('user_views/datos_Proyectos.html.twig',
                     ['formAddProject' =>$formNewProject->createView()]
             );
