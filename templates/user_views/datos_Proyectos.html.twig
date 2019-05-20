@@ -43,48 +43,14 @@
             </div>
         </div>
     </div>
-    <div class="proyect_box m-l-20 m-r-20 ">
-        <div class="row ">
-            <div class="col-md-3 p-t-10 ">
-                <h5 class="par">Proyecto X</h5>
-                <img class="img p-t-10" src="{{ asset('img.png','img') }}" alt="Symfony!"/>
-            </div>
-            <div class="col-md-9 table-responsive">
-                <table class="table par ">
-                    <thead class="bgGris ">
-                        <tr>
-                            <th>Informe</th>
-                            <th>Fase</th>
-                            <th>Aporto</th>
-                            <th>Necesito/Ofrezo</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="border">
-                            <td>
-                                <a data-toggle="modal" data-target="#modalForm_info_proyecto" class="ver_color par" href="#"><p>Ver</p></a>                                       </td>
-                            <td>
-                                <a data-toggle="modal" data-target="#modalForm_fase_proyecto" class="ver_color par" href="#"><p>Idea</p></a>                                       </td>
-                            <td>
-                                <p>Diseño</p><p>Legal</p> 
-                                <a data-toggle="modal" data-target="#modalForm_aporto_proyecto" class="ver_color par" href="#"><p>Nuevo</p></a>
-                            </td>
-                            <td>
-                                <p>Marketing 3 /Obra y Servicio</p><p>Legal 3% Ventas</p>
-                                <a data-toggle="modal" data-target="#modalForm_necesito_proyecto"class="ver_color par" href="#"><p>Nuevo</p></a>
-                            </td>
-                        </tr>
-                    </tbody>     
-                </table> 
-            </div>
-        </div>
-    </div>
      <div class="proyect_box m-l-20 m-r-20 ">
         <div class="row ">
+        {% for project in userProjects %}
             <div class="col-md-3 p-t-10 ">
-                <h5 class="par">Proyecto X</h5>
+                <h5 class="par">{{project.ProjectName}}</h5>
                 <img class="img p-t-10" src="{{ asset('img.png','img') }}" alt="Symfony!"/>
             </div>
+            
             <div class="col-md-9 table-responsive">
                 <table class="table par ">
                     <thead class="bgGris ">
@@ -98,7 +64,9 @@
                     <tbody>
                         <tr class="border">
                             <td>
-                                <a data-toggle="modal" data-target="#modalForm_info_proyecto" class="ver_color par" href="#"><p>Ver</p></a>                                       </td>
+                                {% include 'modals/Act_Info_Proyecto.html.twig' with {'project':project} %}   
+                                <a data-toggle="modal" data-target="#modalForm_info_proyecto-{{project.id}}" class="ver_color par" href="#{{project.id}}"><p>Ver</p></a> 
+                                                                     </td>
                             <td>
                                 <a data-toggle="modal" data-target="#modalForm_fase_proyecto" class="ver_color par" href="#"><p>Idea</p></a>                                       </td>
                             <td>
@@ -113,6 +81,7 @@
                     </tbody>     
                 </table> 
             </div>
+            {% endfor %}
         </div>
     </div>
     
@@ -120,7 +89,7 @@
         <buton type="submit" class="btn btn-info btn-block m-b-20 par">Guardar tus actualizaciones</button>
     </div> 
     {% include 'modals/AddProjectTitle.html.twig' %}  
-    {% include 'modals/Act_Info_Proyecto.html.twig' %}
+    
     {% include 'modals/Act_Fase_Proyecto.html.twig' %}
 
     

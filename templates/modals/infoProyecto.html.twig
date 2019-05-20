@@ -1,5 +1,5 @@
-<!--Ventana Pop-Up -->  
-    <div class="modal fade par" id="modalForm_info_proyecto-{{project.id}}" role="dialog">
+<!--Ventana Pop-Up --> 
+<div class="modal fade par" id="modalForm_info_proyecto" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
                 <!-- Modal Header -->
@@ -11,9 +11,8 @@
                 </div>
                 <div class="col-md-12 text-center m-t-10  modal-title">
                     <h4 class="par" id="myModalLabel">Informacion Proyecto</h4>  
-                </div> 
+                </div>    
                 <!-- Modal Body -->
-                {{dump(project.id)}}
                 <div class="modal-body">
                     <div class="col-md-12 par">                    
                         <p>&#9679; Esto no no es un plan de negocios, se trata de mostrar que has  hechos los deberes y que grado de compromiso tienes con tu proyecto.</p> 
@@ -31,13 +30,14 @@
                         <div class="col-md-9">
                             <form class="formulario">
                                 <div class="form-group row">
+                                {{dump(userProjects[0])}} 
                                     <label for="inputNombre_Proyecto" class="col-4 col-form-label par1">Nombre del proyecto*</label>
                                     <div class="col-8 p-l-0 p-b-5">
-                                        <input type="nombre" class="form-control" id="inputNombre_Proyecto" >
+                                        <span>{{userProjects[0].ProjectName}}</span> 
                                     </div>
-                                    <label for="" class="col-4 col-form-label par1">Definelo en una linea*</label>
+                                    <label for="" class="col-4 col-form-label par1">Defineción en una linea*</label>
                                     <div class="col-8 p-l-0 p-b-5">
-                                        <input type="" class="form-control" id="" >
+                                        <span>{{userProjects[0].ProjectShortDescription}}</span> 
                                     </div>
                                     <label for="" class="col-4 col-form-label par1 m-t-25">Facturacion estimada </label>
                                     <div class="col-8 p-l-0 p-b-5">
@@ -101,7 +101,9 @@
                     </div>                   
                     <div class="col-md-12 m-l-0  fs-15">
                         <p class="par"><b>Rezumen ejecutivo*</b></p> 
-                        <textarea  name="Description" class="form-control par1" rows="3" required="" maxlength="300" placeholder="Descríbete con un máximo de 300 caracteres..."></textarea>
+                        <span  name="Description" class="form-control par1" >
+                            {{userProjects[0].ProjectDescription}}
+                        </span>
                     </div>
                 </div>
                 <!-- Modal Footer -->

@@ -177,12 +177,13 @@ class UserController extends AbstractController
 
     }
     
-    public function datosProfesionales(Request $request, $id=null): Response
+    public function datosProfesionales(Request $request): Response
     {       
         $profesionalProfile = $this->profesionalProfilRespository;
         $user = $this->getUser();
 
         $profesionalProfile = $profesionalProfile->findOneBy(['profesionalIdUser' => $user->getId()]);
+        
         //Check to see if we have a profesional content and user
         if(!$profesionalProfile){
             $profesionalProfile = new ProfesionalProfile();
@@ -200,17 +201,24 @@ class UserController extends AbstractController
         }
         
         return $this->render('user_views/ProfessionalData.html.twig',
-            ['profesionalProfile' =>$profesionalProfile,
-            'form' =>$form->createView(),
-            'profiles' => $this->profileUserRepository->findAll(),
+            [
+                'profesionalProfile' =>$profesionalProfile,
+                'form' =>$form->createView(),
+                'profiles' => $this->profileUserRepository->findAll(),
+                
             ]);
         
     }
-    public function datos_proyectos(Request $request): Response
+    
+    public function datosProyectos(Request $request): Response
     {
         $newProject = new Project();
+        $user = $this->getUser();
         $newProject->setUser($this->getUser());
 
+        //Check User Projects
+        $userProjects = $this->projectsUserRepository->findAll(['user' => $user->getId()]);
+                
         $formNewProject = $this->createForm(ProjectNameType::class,$newProject);
         $formNewProject->handleRequest($request);
 
@@ -221,9 +229,37 @@ class UserController extends AbstractController
             return $this->redirectToRoute('add_proyecto',['id'=>$newProject->getid()]);
         }
         return $this->render('user_views/datos_Proyectos.html.twig',
-                    ['formAddProject' =>$formNewProject->createView()]
+                    [
+                        'formAddProject' =>$formNewProject->createView(),
+                        'userProjects' =>$userProjects
+                        
+                    ]
             );
     }
+
+    public function dataUnicProyecto(Request $request, $id =0): Response
+    {
+        $newProject = new Project();
+        
+        $userProjects = $this->projectsUserRepository->findById($id);
+                        
+        $formNewProject = $this->createForm(ProjectNameType::class,$newProject);
+        $formNewProject->handleRequest($request);
+
+        /*if($formNewProject->isSubmitted() && $formNewProject->isValid()){
+            $this->entityManager->persist($newProject);
+            $this->entityManager->flush();
+
+            return $this->redirectToRoute('add_proyecto',['id'=>$newProject->getid()]);
+        }*/
+        return $this->render('modals/infoProyecto.html.twig',
+                    [
+                        'userProjects' =>$userProjects                        
+                    ]
+            );
+    }
+
+
     
     public function datos_propuestas(Request $request): Response
     {

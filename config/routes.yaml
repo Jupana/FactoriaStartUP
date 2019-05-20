@@ -102,8 +102,16 @@ datos_profesionales:
     controller: App\Controller\UserController::datosProfesionales
 datos_proyectos:
     path: /vista_usuario/datos_proyectos
-    controller: App\Controller\UserController::datos_proyectos
- 
+    controller: App\Controller\UserController::datosProyectos
+
+data-unic-proyect:
+    path: /vista_usuario/datos_proyectos/{id}
+    controller: App\Controller\UserController::dataUnicProyecto
+    methods:  [GET,POST]
+    options:
+        expose: true         
+
+
 datos_propuestas:
     path: /vista_usuario/datos_propuestas
     controller: App\Controller\UserController::datos_propuestas  
