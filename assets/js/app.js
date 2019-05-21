@@ -235,11 +235,40 @@ $(document).ready(function() {
                     /* FIN deleteProfilUser--> */
                 });//Finish load data
         })
+
+         /*<!--START deleteProyect  */
+         $('.delete-proyect').click(function (){
+            var deleteId = $(this).data('id');
+            let urlDeleteProyect = Routing.generate("deleteProyect",{id:deleteId});
+            let xhr = new XMLHttpRequest();
+            xhr.open('GET', urlDeleteProyect, true);
+            xhr.onload = function () {
+                window.location.replace('/vista_usuario/datos_proyectos')
+            };
+            xhr.send(null);
+        })
+        /* FIN deleteUser--> */
+
+        /*<!--START deleteProfilProyect  */
+        $('.profile_proyect_delete').click(function (){
+            var deleteId = $(this).data('id');
+            var proyectId = $(this).data('proyect-id');
+            let urlDeleteProfilProyect = Routing.generate("deleteProfileProyect",{id:deleteId});
+            let xhr = new XMLHttpRequest();
+            xhr.open('GET', urlDeleteProfilProyect, true);
+            xhr.onload = function () {
+                window.location.replace('/vista_usuario/add_proyecto/step_2/'+proyectId)
+            };
+            xhr.send(null);
+        })
+        /* FIN deleteProyectUser--> */
+        
+
     /* FINISH PASSING DATA TO MODAL for the Update User Profile --> */
 /* FIN Modal Form Script -->*/
 
 /* <!-- START function for Multi Step Form into addProyect*/
-       /* var currentTab = 0; // Current tab is set to be the first tab (0)
+        var currentTab = 0; // Current tab is set to be the first tab (0)
         showTab(currentTab); // Display the current tab
 
         function showTab(n) {
@@ -289,7 +318,7 @@ $(document).ready(function() {
         }
         //... and adds the "active" class on the current step:
         x[n].className += " active";
-        }*/
+        }
 
 
 /* FIN function for Multi Step Form into addProyect -->*/

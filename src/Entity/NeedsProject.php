@@ -69,12 +69,12 @@ class NeedsProject
         return $this;
     }
 
-    public function getNeedsPerfil(): ?Profil
+    public function getNeedsPerfil(): ?string
     {
         return $this->needs_perfil;
     }
 
-    public function setNeedsPerfil(?Profil $needs_perfil): self
+    public function setNeedsPerfil( $needs_perfil): self
     {
         $this->needs_perfil = $needs_perfil;
 

@@ -1,50 +1,13 @@
-
-
-{% extends 'user_views/index_vista.html.twig' %}
-
-{% block vista %}
- <div class="row">
-                    <ul class="js-pagination u-carousel-indicators-v30 g-pos-abs g-top-0">
-            <li class="">
-
-                <a href="{{ path('add_proyecto', {'id':app.request.get('id')}) }}">
-                    <i class="u-dot-line-v1 g-brd-gray-light-v2--before g-brd-gray-light-v2--after g-mb-15--sm">
-                        <span class="u-dot-line-v1__inner g-bg-white g-bg-primary--before g-brd-gray-light-v2 g-brd-primary--hover g-brd-primary--active g-transition--ease-in g-transition-0_2"></span>
-                    </i>
-                    <span class="g-hidden-sm-down g-color-black g-font-size-15">Información Proyecto</span>
-                </a>
-
-            </li>
-            <li class=" ">
-
-                <a href="#">
-                    <i class="u-dot-line-v1 g-brd-gray-light-v2--before g-brd-gray-light-v2--after g-mb-15--sm">
-                        <span class="u-dot-line-v1__inner g-bg-white g-bg-primary--before g-brd-gray-light-v2 g-brd-primary--hover g-brd-primary--active g-transition--ease-in g-transition-0_2"></span>
-                    </i>
-                    <span class="g-hidden-sm-down g-color-black g-font-size-15">Fase Proyecto</span>
-                </a>
-            </li>
-            <li class="">
-               <a href="{{ path('addPerfilToProyect', {'id':app.request.get('id')}) }}">
-                    <i class="u-dot-line-v1 g-brd-gray-light-v2--before g-brd-gray-light-v2--after g-mb-15--sm">
-                        <span class="u-dot-line-v1__inner g-bg-white g-bg-primary--before g-brd-gray-light-v2 g-brd-primary--hover g-brd-primary--active g-transition--ease-in g-transition-0_2"></span>
-                    </i>
-                    <span class="g-hidden-sm-down g-color-black g-font-size-15">Aportación en el Proyecto</span>
-                </a>
-            </li>
-            <li class="slick-active">
-            
-                <i class="u-dot-line-v1 g-brd-gray-light-v2--before g-brd-gray-light-v2--after g-mb-15--sm">
-                    <span class="u-dot-line-v1__inner g-bg-white g-bg-primary--before g-brd-gray-light-v2 g-brd-primary--hover g-brd-primary--active g-transition--ease-in g-transition-0_2"></span>
-                </i>
-                <span class="g-hidden-sm-down g-color-black g-font-size-15 ">Necesidades Proyecto</span>
-
-            </li>
-        </ul>
-    </div> 
-
-                 <!-- Step Form Header -->
+<!--Ventana Pop-Up -->  
+    <div class="modal fade par" id="modalForm_necesito_proyecto" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- Modal Header -->
                 <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span class="modal-close" aria-hidden="true">×</span>
+                        <span class="sr-only">Close</span>
+                    </button>
                 </div>
                 <div class="col-md-12 text-center m-t-10  modal-title">
                     <h4 class="par" id="myModalLabel">Necesidades Proyecto</h4>  
@@ -82,8 +45,6 @@
                             Añadir Perfil Necesitado
                         </button>
                     </div> 
-
-                    {{dump(needsProyect)}}
                     <div class="col-md-12 m-t-20">
                         <table class="table border par1 ">
                             <thead>
@@ -94,24 +55,32 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            {% for needProyect in needsProyect %}
                                 <tr>
                                     <td>
-                                        <p>{{needProyect.NeedsPerfil}}</p>
+                                        <p>Marketing</p><p>Comercial/Contactos</p>
                                     </td>
                                     <td>
-                                        <p>{{needProyect.NeedsPercent}}</p>                                                                              
+                                        <p>25% socio</p> 
+                                        <p>30% Ventas</p>                                     
                                     </td>
-                                    <td>                                        
+                                    <td>
+                                        <a class="ver_color par1" href="#"><p>ver</p></a>
                                         <a class="ver_color par1" href="#"><p>ver</p></a>
                                     </td>
                                 </tr>
-                            {% endfor %}
                             </tbody>
                         </table>
                     </div>
                 </div>     
                 <!-- Modal Footer -->
-                {% include 'modals/Act_Necesito_Proyecto.html.twig' %}  
- {% endblock %}               
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Volver</button>
+                    <button type="button" class="btn btn-success submitBtn" onclick="submitContactForm()">Actualizar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include 'modals/Anadir_perfil_Necesitado.html.twig' %}  
+ 
 
+    

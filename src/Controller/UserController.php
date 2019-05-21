@@ -236,30 +236,6 @@ class UserController extends AbstractController
                     ]
             );
     }
-
-    public function dataUnicProyecto(Request $request, $id =0): Response
-    {
-        $newProject = new Project();
-        
-        $userProjects = $this->projectsUserRepository->findById($id);
-                        
-        $formNewProject = $this->createForm(ProjectNameType::class,$newProject);
-        $formNewProject->handleRequest($request);
-
-        /*if($formNewProject->isSubmitted() && $formNewProject->isValid()){
-            $this->entityManager->persist($newProject);
-            $this->entityManager->flush();
-
-            return $this->redirectToRoute('add_proyecto',['id'=>$newProject->getid()]);
-        }*/
-        return $this->render('modals/infoProyecto.html.twig',
-                    [
-                        'userProjects' =>$userProjects                        
-                    ]
-            );
-    }
-
-
     
     public function datos_propuestas(Request $request): Response
     {

@@ -1,4 +1,4 @@
-  <!--Ventana Pop-Up --> 
+ <!--Ventana Pop-Up --> 
 <!-- Include Modal Header for Add Profil to Project and the content we will -->
  <div class="modal fade par" id="modalForm" role="dialog">  
     <div class="modal-dialog">      
@@ -15,14 +15,14 @@
                 </div>    
                 <!-- Modal Body -->
                 <div class="modal-body"> 
-                               {#{ dump (form_New_Contribute.contribute_profile)}#}         
+                               {{ dump (form_New_Contribute)}}         
                             {{ form_start (form_New_Contribute, { 'attr' : { 'id': 'profile_to_project' } }) }}
                                     {{ form_row  (form_New_Contribute.contribute_profile) }}
                                     {{ form_row (form_New_Contribute.contribute_description) }}                                             
                                      {{ form_row (form_New_Contribute.submit , { 'attr' : { 'class': 'btn-primary float-l' } }) }} 
-                                     <input type="submit" id="submit-form" class="btn-primary float-l" style="display:none"/>  
+                                     <input type="submit" id="submit-form-add" class="btn-primary float-l" style="display:none"/>  
                             {{ form_end (form_New_Contribute) }}
-                                    <label for="submit-form" class="btn-primary float-l" tabindex="0">Guardar perfil</label>
+                                    
 
                 </div>       
         </div>  

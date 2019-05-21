@@ -112,16 +112,6 @@ class ProjectController extends AbstractController
         );
     }
 
-    public function delete(Project $project)
-    {
-        $this->entityManager->remove($project);
-        $this->entityManager->flush();
-
-        $this->flashBag->add('notice', 'Proyecto ha sido eliminado');
-        
-        return $this->redirectToRoute('proyectos');
-    }
-
     public function add(Request $request)
     {
         $project = new Project();

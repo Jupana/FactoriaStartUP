@@ -6,7 +6,7 @@
                     <ul class="js-pagination u-carousel-indicators-v30 g-pos-abs g-top-0">
             <li class="">
 
-                <a href="#">
+               <a href="{{ path('add_proyecto', {'id':app.request.get('id')}) }}">
                     <i class="u-dot-line-v1 g-brd-gray-light-v2--before g-brd-gray-light-v2--after g-mb-15--sm">
                         <span class="u-dot-line-v1__inner g-bg-white g-bg-primary--before g-brd-gray-light-v2 g-brd-primary--hover g-brd-primary--active g-transition--ease-in g-transition-0_2"></span>
                     </i>
@@ -32,12 +32,12 @@
                 </a>
             </li>
             <li class="">
-
+                <a href="{{ path('proyectNeeds', {'id':app.request.get('id')}) }}">
                 <i class="u-dot-line-v1 g-brd-gray-light-v2--before g-brd-gray-light-v2--after g-mb-15--sm">
                     <span class="u-dot-line-v1__inner g-bg-white g-bg-primary--before g-brd-gray-light-v2 g-brd-primary--hover g-brd-primary--active g-transition--ease-in g-transition-0_2"></span>
                 </i>
                 <span class="g-hidden-sm-down g-color-black g-font-size-15 ">Necesidades Proyecto</span>
-
+                </a>
             </li>
         </ul>
     </div> 
@@ -73,17 +73,22 @@
                                 </tr>
                             </thead>
                             <tbody>
+                           
+                            {% for contribute in contributeProject %}
                                 <tr>
                                     <td>
-                                        <p>Marketing</p>
+                                        <p>{{contribute.ContributeProfile}}</p>
                                     </td>
                                     <td>
                                         <p>Distribucion y Venta</p>                                     
                                     </td>
                                     <td>
-                                        <a class="ver_color par1" href="#"><p>ver</p></a>
+                                        <p>{{contribute.ContributeDescription}}</p>
+                                        <a class="ver_color par1" data-toggle="modal" data-target="#modalForm-{{contribute.id}}" href="#"><p>ver</p></a>
+                                        {% include 'modals/editPerfilToProyect.html.twig' with {'id':contribute.id} %}  
                                     </td>
                                 </tr>
+                            {% endfor %}    
                             </tbody>
                         </table>
                     </div>                

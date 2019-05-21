@@ -59,23 +59,28 @@
                             <th>Fase</th>
                             <th>Aporto</th>
                             <th>Necesito/Ofrezo</th>
+                            <th>Eliminar</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr class="border">
                             <td>
                                 {% include 'modals/Act_Info_Proyecto.html.twig' with {'project':project} %}   
-                                <a data-toggle="modal" data-target="#modalForm_info_proyecto-{{project.id}}" class="ver_color par" href="#{{project.id}}"><p>Ver</p></a> 
+                                <a class="ver_color par" href="{{path('add_proyecto',{'id':project.id})}}"><p>Edit</p></a> 
                                                                      </td>
                             <td>
-                                <a data-toggle="modal" data-target="#modalForm_fase_proyecto" class="ver_color par" href="#"><p>Idea</p></a>                                       </td>
+                                <a  class="ver_color par" href="{{path('add_proyecto',{'id':project.id})}}"><p>Idea</p></a>                                       </td>
                             <td>
                                 <p>Diseño</p><p>Legal</p> 
-                                <a data-toggle="modal" data-target="#modalForm_aporto_proyecto" class="ver_color par" href="#"><p>Nuevo</p></a>
+                                <a class="ver_color par" href="{{path('addPerfilToProyect',{'id':project.id})}}"><p>Edit</p></a>
                             </td>
                             <td>
                                 <p>Marketing 3 /Obra y Servicio</p><p>Legal 3% Ventas</p>
-                                <a data-toggle="modal" data-target="#modalForm_necesito_proyecto"class="ver_color par" href="#"><p>Nuevo</p></a>
+                                <a class="ver_color par" href="{{path('proyectNeeds',{'id':project.id})}}"><p>Edit</p></a>
+                            </td>
+                            <td>
+                                
+                                <button class="ver_color par delete-proyect" data-id="{{project.id}}">SI</button>
                             </td>
                         </tr>
                     </tbody>     
@@ -83,14 +88,5 @@
             </div>
             {% endfor %}
         </div>
-    </div>
-    
-    <div class="col-md-12">   
-        <buton type="submit" class="btn btn-info btn-block m-b-20 par">Guardar tus actualizaciones</button>
-    </div> 
-    {% include 'modals/AddProjectTitle.html.twig' %}  
-    
-    {% include 'modals/Act_Fase_Proyecto.html.twig' %}
-
-    
+    </div>    
 {% endblock %} 

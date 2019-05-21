@@ -35,7 +35,7 @@
                 </a>
             </li>
             <li class=" disabled">
-                <a href="#">
+                <a href="{{ path('addPerfilToProyect', {'id':app.request.get('id')}) }}">
                     <i class="u-dot-line-v1 g-brd-gray-light-v2--before g-brd-gray-light-v2--after g-mb-15--sm">
                         <span class="u-dot-line-v1__inner g-bg-white g-bg-primary--before g-brd-gray-light-v2 g-brd-primary--hover g-brd-primary--active g-transition--ease-in g-transition-0_2"></span>
                     </i>
@@ -43,12 +43,12 @@
                 </a>
             </li>
             <li class="">
-
-                <i class="u-dot-line-v1 g-brd-gray-light-v2--before g-brd-gray-light-v2--after g-mb-15--sm">
-                    <span class="u-dot-line-v1__inner g-bg-white g-bg-primary--before g-brd-gray-light-v2 g-brd-primary--hover g-brd-primary--active g-transition--ease-in g-transition-0_2"></span>
-                </i>
-                <span class="g-hidden-sm-down g-color-black g-font-size-15 ">Necesidades Proyecto</span>
-
+                <a href="{{ path('proyectNeeds', {'id':app.request.get('id')}) }}">
+                    <i class="u-dot-line-v1 g-brd-gray-light-v2--before g-brd-gray-light-v2--after g-mb-15--sm">
+                        <span class="u-dot-line-v1__inner g-bg-white g-bg-primary--before g-brd-gray-light-v2 g-brd-primary--hover g-brd-primary--active g-transition--ease-in g-transition-0_2"></span>
+                    </i>
+                    <span class="g-hidden-sm-down g-color-black g-font-size-15 ">Necesidades Proyecto</span>
+                </a>
             </li>
         </ul>
     </div>    
@@ -58,8 +58,7 @@
     <!-- Add Form Step 1  -->
             <div class="tab-multi-form"> 
                         <!-- Step Form Header -->
-                        <div class="modal-header">
-                        </div>
+                      
                         <div class="col-md-12 text-center m-t-10  modal-title">
                             <h4 class="par" id="myModalLabel">Información Proyecto</h4>  
                         </div>  

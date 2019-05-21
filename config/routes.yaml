@@ -81,14 +81,27 @@ add_proyecto:
     path: /vista_usuario/add_proyecto/{id}
     controller: App\Controller\UserProjectController::add_proyecto
 
+deleteProyect:
+    path: /vista_usuario/delete_proyecto/{id}
+    controller: App\Controller\UserProjectController::deleteProyect
+    methods:  [GET,POST]
+    options:
+        expose: true    
 
 addPerfilToProyect:   
     path: /vista_usuario/add_proyecto/step_2/{id}
     controller: App\Controller\UserProjectController::addPerfilToProyect
     methods:  [GET,POST]
     options:
-        expose: true        
-
+        expose: true 
+        
+deleteProfileProyect:        
+    path: /vista_usuario/delete_perfil_proyecto/step_2/{id}
+    controller: App\Controller\UserProjectController::deleteProfileProyect
+    methods:  [GET,POST]
+    options:
+        expose: true 
+    
 proyectNeeds:
     path: /vista_usuario/add_proyecto/step_3/{id}
     controller: App\Controller\UserProjectController::proyectNeeds
@@ -102,14 +115,7 @@ datos_profesionales:
     controller: App\Controller\UserController::datosProfesionales
 datos_proyectos:
     path: /vista_usuario/datos_proyectos
-    controller: App\Controller\UserController::datosProyectos
-
-data-unic-proyect:
-    path: /vista_usuario/datos_proyectos/{id}
-    controller: App\Controller\UserController::dataUnicProyecto
-    methods:  [GET,POST]
-    options:
-        expose: true         
+    controller: App\Controller\UserController::datosProyectos        
 
 
 datos_propuestas:
