@@ -235,6 +235,7 @@ $(document).ready(function() {
                     /* FIN deleteProfilUser--> */
                 });//Finish load data
         })
+        /* FINISH PASSING DATA TO MODAL for the Update User Profile --> */
 
          /*<!--START deleteProyect  */
          $('.delete-proyect').click(function (){
@@ -261,13 +262,65 @@ $(document).ready(function() {
             };
             xhr.send(null);
         })
-        /* FIN deleteProyectUser--> */
+        /* FIN deleteProfilProyect--> */
         
+        /*<!--START deleteNeedsProfil  */
+        $('.needs-profile-delete').click(function (){
+            var deleteId = $(this).data('id');
+            var proyectId = $(this).data('proyect-id');
+            let urlDeleteNeedsProfil = Routing.generate("deleteProfileNeeds",{id:deleteId});
+            let xhr = new XMLHttpRequest();
+            xhr.open('GET', urlDeleteNeedsProfil, true);
+            xhr.onload = function () {
+                window.location.replace('/vista_usuario/add_proyecto/step_3/'+proyectId)
+            };
+            xhr.send(null);
+        })
+        /* FIN deleteNeedsProfil--> */
 
-    /* FINISH PASSING DATA TO MODAL for the Update User Profile --> */
+        /*<!--START showhide Team Member number  */
+        $('#project_project_team').click(function(){            
+            $('#project_project_team_number').toggleClass('hide-e');
+        })
+        /*<!--FIN showhide Team Member number  */
+
+        /*<!--START showhide Deal  */
+        $('select#needs_project_needs_deal').change(function() {
+            var arrOption = ['% Empresa','% Ventas'];
+            var showPecent =arrOption.indexOf($(this).val());
+            if(showPecent != -1){
+                $('#needs_project_needs_percent').removeClass('hide-e');
+            }else{
+                $('#needs_project_needs_percent').addClass('hide-e');
+            }
+            
+        })
+
+        /* EDIT*/
+        /*<!--START showhide Deal  */
+        $('.modal-edit-needs-project').click(function(){
+            let needId = $(this).data('id');                        
+            $('select#proyects_form_'+needId+'_needs_deal').change(function() {
+                var arrOption = ['% Empresa','% Ventas'];
+                var showPecent =arrOption.indexOf($(this).val());
+                
+                if(showPecent != -1){
+                    $('#proyects_form_'+needId+'_needs_percent').removeClass('hide-e');
+                }else{
+                    $('#proyects_form_'+needId+'_needs_percent').addClass('hide-e');
+                }
+                
+            })
+        
+        })
+        
+        /*<!--FIN showhide Deal  */
+
+
 /* FIN Modal Form Script -->*/
 
 /* <!-- START function for Multi Step Form into addProyect*/
+
         var currentTab = 0; // Current tab is set to be the first tab (0)
         showTab(currentTab); // Display the current tab
 
@@ -319,7 +372,6 @@ $(document).ready(function() {
         //... and adds the "active" class on the current step:
         x[n].className += " active";
         }
-
 
 /* FIN function for Multi Step Form into addProyect -->*/
 

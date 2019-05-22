@@ -106,7 +106,14 @@ proyectNeeds:
     path: /vista_usuario/add_proyecto/step_3/{id}
     controller: App\Controller\UserProjectController::proyectNeeds
     methods:  [GET,POST]
- 
+
+deleteProfileNeeds:
+    path: /vista_usuario/delete_perfil_needs/step_3/{id}
+    controller: App\Controller\UserProjectController::deleteProfileNeeds
+    methods:  [GET,POST]
+    options:
+        expose: true
+
 datos_personales:
     path: /datos_personales
     controller: App\Controller\UserController::datos_personales 

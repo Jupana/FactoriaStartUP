@@ -86,7 +86,8 @@ class UserProjectController extends AbstractController
         }
         return $this->render('user_views/AddProject.html.twig',
             [
-                'formProfile' =>$formNewProject->createView()
+                'formProfile' =>$formNewProject->createView(),
+                'project'=>$newProject
             ]
         );
     }
@@ -173,7 +174,7 @@ class UserProjectController extends AbstractController
             $newProyectNeeds = $newProyectNeeds;
         }
 
-
+        $formsProyects =[];
         foreach($needsProyectExist  as $proyects){            
             $formsProyects[$proyects->getId()] =$this->formFactory->createNamed('proyects_form_'.$proyects->getId(),NeedsProjectType::class,$proyects);
             $formsProyects[$proyects->getId()]->handleRequest($request);
@@ -197,11 +198,22 @@ class UserProjectController extends AbstractController
         [
             'form_New_Proyect_Needs' =>$formNewProyectNeeds->createView(),
             'needsProyect' =>$needsProyectExist,
+            'needsProyectNew' =>$newProyectNeeds,
             'formsProyects' => array_map ( function ($formsProyects) {
                 return $formsProyects->createView();
             }, $formsProyects),
         ]
         );
+    }
+
+
+    public function deleteProfileNeeds(int $id)
+    {
+        $needsProfile = $this->needsProjectRepository->find($id);
+        $this->entityManager->remove($needsProfile);
+        $this->entityManager->flush();
+        
+        return $this->redirectToRoute('proyectNeeds',['id'=>$id]);
     }
 
     /**

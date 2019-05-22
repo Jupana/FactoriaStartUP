@@ -10,31 +10,25 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class NeedsProjectType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
+        $builder            
             
-            //->add('needs_deal')
-            ->add('needs_percent',ChoiceType::class,[ 
+            ->add('needs_deal',ChoiceType::class,[ 
                 'choices' => [
-                                '% empresa'=>'% empresa',
+                                'Tipo de acuerdo'=>'Tipo de acuerdo',
+                                '% Empresa'=>'% Empresa',
                                 '% Ventas'=>'% Ventas',
                                 'Obra y Servicios'=>'Obra y Servicios',
                                 'Pacto a Futuro'=>'Pacto a Futuro',
-                            ],
-                /*'choice_label' => function ($choice, $key, $value) {
-                        if (true === $choice) {
-                            return '% empresa';
-              
-                        return $key;
-                
-    
-                    }},*/
-                   // 'choice_label' => 'displayName',   
+                            ], 
                 ])
+            ->add('needs_percent',NumberType::class,['required'=>false])    
             ->add('needs_description',TextareaType::class,['required'=>false])
             ->add('needs_perfil',EntityType::class,[
                 'class' => Profil::class,                
@@ -43,7 +37,8 @@ class NeedsProjectType extends AbstractType
                         return $profil->getName(); 
                     },
                 'required'=>false
-            ])    
+            ]) 
+            ->add('submit', SubmitType::class,['label' => 'Guardar Perfil'])   
         ;
     }
 

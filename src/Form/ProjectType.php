@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Project;
+use App\Entity\Sector;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -10,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 
 class ProjectType extends AbstractType
@@ -18,6 +20,13 @@ class ProjectType extends AbstractType
     {
         $builder
             ->add('project_name',TextType::class, ['label' => 'Nombre del proyecto *', 'required'=>true])
+            ->add('project_sector',EntityType::class,[
+                'class' => Sector::class,
+                'placeholder' => 'Selecciona un sector',
+                'choice_label' => function($sector){
+                    return $sector->getName();
+                }
+            ]) 
             ->add('project_short_description',TextareaType::class , ['label' => 'Definelo en una linea*'])
             ->add('project_description',TextareaType::class,['label' => 'Rezumen ejecutivo*'])
             ->add('project_potentialy_users',TextType::class,['label' => 'Usuarios*'])
@@ -31,6 +40,7 @@ class ProjectType extends AbstractType
             ->add('phase_productoMV',CheckboxType::class )
             ->add('phase_productoFinal',CheckboxType::class )
             ->add('project_team',CheckboxType::class )
+            ->add('project_team_number',NumberType::class,['label' => 'Nr*'])
            
            
            

@@ -76,6 +76,7 @@
                             {{form_start (formProfile , { 'attr' : { 'id': 'project_form'} }) }}
                                 <div class="row step-1">
                                 {{form_row (formProfile.project_name,{ 'attr' : { 'class': 'col-md-12'} } )}}
+                                {{form_row (formProfile.project_sector)}}                                
                                 {{form_row (formProfile.project_short_description)}}
                                     <p for="" class="col-4 col-form-label par1 m-t-25">Facturacion estimada </p>
                                     <div class="col-8 p-l-0 p-b-5">
@@ -164,7 +165,12 @@
     </div>
      <div class="col-md-10">
         <div class="form-check form-check-inline">
-            {{form_row (formProfile.project_team)}}
+            {{form_row (formProfile.project_team)}}            
+            {% if project.ProjectTeam == true %}
+                {{ form_row (formProfile.project_team_number)}}
+           {% else %}
+                {{ form_row (formProfile.project_team_number,{ 'attr' : { 'class': 'hide-e' } })}}
+           {% endif %}  
             <label class="form-check-label par1" for="inlineCheckbox2 "> <b>¿Tienes equipo?</b> Tanto si estás solo como si tienes equipo, cuéntanos</label>
         </div> 
     </div>
@@ -225,18 +231,4 @@
   </div> 
 <!-- FIN navegation Multi Form  -->
 
-    {#% include 'modals/Anadir_perfil_necesitado.html.twig' %#}  
-
 {% endblock %} 
-{% block javascripts %}
-	<script type="text/javascript">
-        function mostrar(){
-            document.getElementById('ayuda').style.display = 'block';}
-        function ocultar(){
-            document.getElementById('ayuda').style.display = 'none';}
-        function mostrar_que_aporto(){
-            document.getElementById('que_aporto').style.display = 'block';} 
-         function ocultar_que_aporto(){
-            document.getElementById('que_aporto').style.display = 'none';}       
-	</script>
-{% endblock %}
