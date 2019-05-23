@@ -1,36 +1,27 @@
 <?php
 namespace App\Controller;
 
-use App\Entity\ProfileUser;
-use App\Entity\User;
-use App\Entity\Sector;
-use App\Entity\Profil;
 use App\Entity\ProfesionalProfile;
 use App\Entity\Project;
-use App\Form\ProfileUserType;
 use App\Form\UserPersonalInfoType;
 use App\Form\ProfesionalProfileType;
-use App\Form\ProjectType;
 use App\Form\ProjectNameType;
 use App\Repository\ProfileUserRepository;
 use App\Repository\ProfilRepository;
 use App\Repository\SectorRepository;
 use App\Repository\UserRepository;
 use App\Repository\ProjectRepository;
-
+use App\Repository\NeedsProjectRepository;
+use App\Repository\ContributeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use App\Repository\ProfesionalProfileRepository;
-
 use Geocoder\Query\GeocodeQuery;
-use Geocoder\Provider\Provider;
-use Geocoder\ProviderAggregator;
 use Bazinga\GeocoderBundle\ProviderFactory\GoogleMapsFactory;
 
 class UserController extends AbstractController
@@ -88,7 +79,10 @@ class UserController extends AbstractController
         SectorRepository $sectorRepository, 
         ProfesionalProfileRepository $profesionalProfilRespository,
         ProjectRepository $projectsUserRepository,
-        FormFactoryInterface $formFactory,EntityManagerInterface $entityManager,
+        NeedsProjectRepository $needsProjectRepository,
+        ContributeRepository $contributeRepository,
+        FormFactoryInterface $formFactory,
+        EntityManagerInterface $entityManager,
         FlashBagInterface $flashBag
         ) {
         $this->twig = $twig;
@@ -101,6 +95,8 @@ class UserController extends AbstractController
         $this->formFactory = $formFactory;
         $this->entityManager = $entityManager;
         $this->flashBag = $flashBag;
+        $this->needsProjectRepository = $needsProjectRepository;
+        $this->contributeRepository = $contributeRepository;
     }
    
     public function index_vista()
@@ -218,7 +214,12 @@ class UserController extends AbstractController
 
         //Check User Projects
         $userProjects = $this->projectsUserRepository->findAll(['user' => $user->getId()]);
-                
+        $userNeedsProjects =   $this->needsProjectRepository->findAll(['needs_user'=> $user->getId()]);
+        $userContributeProjects = $this->contributeRepository->findAll(['contribute_user'=> $user->getId()]);
+
+        dump($userNeedsProjects);
+        dump($userContributeProjects);
+        
         $formNewProject = $this->createForm(ProjectNameType::class,$newProject);
         $formNewProject->handleRequest($request);
 
@@ -231,7 +232,9 @@ class UserController extends AbstractController
         return $this->render('user_views/datos_Proyectos.html.twig',
                     [
                         'formAddProject' =>$formNewProject->createView(),
-                        'userProjects' =>$userProjects
+                        'userProjects' =>$userProjects,
+                        'userNeedsProjects'=>$userNeedsProjects,
+                        'userContributeProjects'=>$userContributeProjects
                         
                     ]
             );

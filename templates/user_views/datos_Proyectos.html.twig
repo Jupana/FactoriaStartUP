@@ -64,18 +64,25 @@
                     </thead>
                     <tbody>
                         <tr class="border">
-                            <td>
-                                {% include 'modals/Act_Info_Proyecto.html.twig' with {'project':project} %}   
+                            <td>                                 
                                 <a class="ver_color par" href="{{path('add_proyecto',{'id':project.id})}}"><p>Edit</p></a> 
                                                                      </td>
                             <td>
                                 <a  class="ver_color par" href="{{path('add_proyecto',{'id':project.id})}}"><p>Idea</p></a>                                       </td>
                             <td>
-                                <p>Diseño</p><p>Legal</p> 
+                                 {% for userContributeProject in userContributeProjects %}
+                                    {% if  userContributeProject.ContributeIdProject.id == project.id %}
+                                            <p>{{ userContributeProject.ContributeProfile }}</p>
+                                    {% endif %}                              
+                                {% endfor %}
                                 <a class="ver_color par" href="{{path('addPerfilToProyect',{'id':project.id})}}"><p>Edit</p></a>
                             </td>
                             <td>
-                                <p>Marketing 3 /Obra y Servicio</p><p>Legal 3% Ventas</p>
+                                {% for userNeedsProject in userNeedsProjects %}
+                                    {% if  userNeedsProject.NeedsIdProject.id == project.id %}
+                                            <p>{{ userNeedsProject.NeedsPerfil }}  /  {{ userNeedsProject.NeedsPercent }}  {{ userNeedsProject.NeedsDeal }}</p>
+                                    {% endif %}                  
+                                {% endfor %}
                                 <a class="ver_color par" href="{{path('proyectNeeds',{'id':project.id})}}"><p>Edit</p></a>
                             </td>
                             <td>

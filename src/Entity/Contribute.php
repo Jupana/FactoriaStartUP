@@ -20,6 +20,12 @@ class Contribute
      */
     private $id;
 
+
+     /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="contribute_user")     * 
+    */
+    private $contribute_user;
+
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Project", inversedBy="contribute_id")
      */
@@ -46,8 +52,22 @@ class Contribute
         return $this->id;
     }
 
+      /**
+     * @return User
+     */
+    public function getContirbuteUser()
+    {
+        return $this->contribute_user;
+    }
+
+    public function setContirbute(?User $contribute_user): self
+    {
+        $this->user = $contribute_user;
+
+        return $this;
+    }
     
-    public function getContributeIdProject(): string
+    public function getContributeIdProject(): Project
     {
         return $this->contribute_project;
     }
