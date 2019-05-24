@@ -31,10 +31,10 @@ class GetProyects{
     public function listProyects($user,$sector=null, $km = null, $lat=0, $long=0){
         
         if($user){
-            if($km==0){                    
+            if($km==0 ){                    
                     $projects = $this->projectRepository->findAll() ;
             }elseif($sector == null){
-                $projects = $this->projectRepository->findAll();
+                    $projects = $this->projectRepository->findAll();
             }            
             else{
                     $usersProjectsByDistance = $this->userRepository->findByDistance($user->getLatitud(),$user->getLongitud(),$km);
