@@ -18,12 +18,13 @@ class NeedsProject
     private $id;
 
      /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="needs_user")     * 
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="needs")
+     * @ORM\JoinColumn()       
     */
-    private $needs_user;
+    private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Project", inversedBy="needs_project")     *     
+     * @ORM\ManyToOne(targetEntity="App\Entity\Project", inversedBy="needs_project")     
      */
     private $needs_project;
 
@@ -66,14 +67,14 @@ class NeedsProject
     /**
      * @return User
      */
-    public function getNeedsUser()
+    public function getUser()
     {
-        return $this->needs_user;
+        return $this->user;
     }
 
-    public function setNeeds(?User $needs_user): self
+    public function setUser(?User $user): self
     {
-        $this->user = $needs_user;
+        $this->user = $user;
 
         return $this;
     }

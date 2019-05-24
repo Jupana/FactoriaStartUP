@@ -102,7 +102,7 @@ class UserController extends AbstractController
     public function index_vista()
     {
         $user = $this->getUser();
-        $userProfesionalProfile = $this->profesionalProfilRespository->findOneBy(['profesionalIdUser' => $user->getId()]);
+        $userProfesionalProfile = $this->profesionalProfilRespository->findOneBy(['profesionalIdUser' => $user->getId()]);        
         $userProjects = $this->projectsUserRepository->findAll(['user' => $user->getId()]);
         return new Response(
             $this->twig->render(
@@ -210,12 +210,13 @@ class UserController extends AbstractController
     {
         $newProject = new Project();
         $user = $this->getUser();
-        $newProject->setUser($this->getUser());
+        $newProject->setUser($user);
 
         //Check User Projects
-        $userProjects = $this->projectsUserRepository->findAll(['user' => $user->getId()]);
-        $userNeedsProjects =   $this->needsProjectRepository->findAll(['needs_user'=> $user->getId()]);
-        $userContributeProjects = $this->contributeRepository->findAll(['contribute_user'=> $user->getId()]);
+        dump($user->getId());
+        $userProjects = $this->projectsUserRepository->findBy(['user' => $user->getId()]);
+        $userNeedsProjects =   $this->needsProjectRepository->findBy(['user'=> $user->getId()]);
+        $userContributeProjects = $this->contributeRepository->findBy(['user'=> $user->getId()]);
 
         dump($userNeedsProjects);
         dump($userContributeProjects);

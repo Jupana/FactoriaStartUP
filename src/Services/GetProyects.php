@@ -28,15 +28,23 @@ class GetProyects{
         $this->userRepository =$userRepository;
     }
 
-    public function listProyects($user,$sector =null,$km = null, $lat=0, $long=0){
+    public function listProyects($user,$sector=null, $km = null, $lat=0, $long=0){
         
         if($user){
-                $usersProjectsByDistance = $this->userRepository->findByDistance($user->getLatitud(),$user->getLongitud(),$km);
-                $arrayUsersId =[];
-                foreach($usersProjectsByDistance as $item){
-                    array_push($arrayUsersId,$item['id']);
+            if($km==0){                    
+                    $projects = $this->projectRepository->findAll() ;
+            }elseif($sector == null){
+                $projects = $this->projectRepository->findAll();
+            }            
+            else{
+                    $usersProjectsByDistance = $this->userRepository->findByDistance($user->getLatitud(),$user->getLongitud(),$km);
+                    $arrayUsersId =[];
+                    foreach($usersProjectsByDistance as $item){
+                        array_push($arrayUsersId,$item['id']);
+                    }
+                    $projects =$this->projectRepository->findBy(['user'=>$arrayUsersId,'project_sector'=>$sector]);
                 }
-                $projects =$this->projectRepository->findBy(['user'=>$arrayUsersId,'project_sector'=>$sector]);
+                
                 shuffle($projects);
             }        
         else{

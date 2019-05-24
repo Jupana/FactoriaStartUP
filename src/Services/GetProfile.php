@@ -29,7 +29,6 @@ class GetProfile{
         
         if($user){
                 if($lat== 0 && $long==0 && $profile == null && $sector ==null){
-                    dump($user);
                     $profiles = $this->profilRepository->findAll() ;
                 }else{
                     $usersProfilesByDistance = $this->userRepository->findByDistance($user->getLatitud(),$user->getLongitud(),$km);

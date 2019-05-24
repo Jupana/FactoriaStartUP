@@ -80,6 +80,8 @@ $(document).ready(function() {
         var urlProyectFilter='';        
         let notBlocked= false;
       
+        sector = isNaN(sector) ? 0:sector;
+
         if(km != ''){
             if (navigator.geolocation) {
                 let notBlocked= true;
@@ -94,7 +96,7 @@ $(document).ready(function() {
                 console.log("Para utilizar el filtro de distancia necesitamos que permitas tu localización ");       
               }
         }else{
-            km=10000;
+            km=0;
             urlProyectFilter = Routing.generate('proyectos_filter',{sector:sector,km:km,lat:lat,long:long})
             window.location.replace(urlProyectFilter)  
         }
@@ -110,11 +112,11 @@ $(document).ready(function() {
         var lat = 0;
         var long = 0;
         var urlProyectFilter='';        
-        let notBlocked= false;
+        profiles = isNaN(profiles) ? 0:profiles;
       
         if(km != ''){
             if (navigator.geolocation) {
-                let notBlocked= true;
+               
                 navigator.geolocation.getCurrentPosition(function(position) {
                    let lat = position.coords.latitude ? position.coords.latitude : lat
                    let long = position.coords.longitude ? position.coords.longitude :long
@@ -126,7 +128,7 @@ $(document).ready(function() {
                 console.log("Para utilizar el filtro de distancia necesitamos que permitas tu localización ");       
               }
         }else{
-            km=10000;
+            km=0;
             urlProyectFilter = Routing.generate('profiles_filter',{profiles:profiles,km:km,lat:lat,long:long})
             window.location.replace(urlProyectFilter)  
         }

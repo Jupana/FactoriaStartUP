@@ -14,8 +14,7 @@
                     <h4 class="par" id="myModalLabel">Nuevo Perfil</h4>  
                 </div>    
                 <!-- Modal Body -->
-                <div class="modal-body"> 
-                               {{ dump (form_New_Contribute)}}         
+                <div class="modal-body">                                        
                             {{ form_start (form_New_Contribute, { 'attr' : { 'id': 'profile_to_project' } }) }}
                                     {{ form_row  (form_New_Contribute.contribute_profile) }}
                                     {{ form_row (form_New_Contribute.contribute_description) }}                                             

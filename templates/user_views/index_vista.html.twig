@@ -66,8 +66,11 @@
                 <p class="ver_color par fs-20 p-l-5"><b>Datos profesionales</b></p>
                 <span class=" par fs-15 p-l-5">Te defines como:</span>
                 <div  class="border m-r-20 par1"style="height:60px;" >
-                {{ profesionalProfile.profesionalDescription }}
                 
+                {% if profesionalProfile is not null %}
+
+                {{ profesionalProfile.profesionalDescription }}
+                {% endif %}
                 </div>
             </div>
         </div>

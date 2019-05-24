@@ -103,13 +103,15 @@ class UserProjectController extends AbstractController
     public function addPerfilToProyect (Request $request, int $id=null){
        
         $newContribute = new Contribute();
+        $user = $this->getUser();
                 
         $project = $this->projectRepository->find($id);
         $contributeExist   = $this->contributeRepository->findBy(["contribute_project" => $id]);
         
         $newContribute->setContributeIdProject($project);
         $newContribute->setContributeDate(new \DateTime());
-      
+        $newContribute->setUser($user);
+
         $contributeProject = $newContribute;
 
         $formsProfiles =[];
@@ -144,9 +146,7 @@ class UserProjectController extends AbstractController
                 }, $formsProfiles),
             ]
         );
-
     }
-
 
     public function deleteProfileProyect(int $id)
     {
@@ -160,12 +160,14 @@ class UserProjectController extends AbstractController
     public function proyectNeeds(Request $request, int $id=null){
 
         $newProyectNeeds = new NeedsProject();
+        $user= $this->getUser();
 
         $project = $this->projectRepository->find($id);
         $needsProyectExist   = $this->needsProjectRepository->findBy(["needs_project" => $id]);
                 
         $newProyectNeeds->setNeedsIdProject($project);
         $newProyectNeeds->setNeedsDate(new \DateTime());
+        $newProyectNeeds->setUser($user);
                
         if($needsProyectExist){            
           // $newProyectNeeds =$needsProyectExist[0];
@@ -219,8 +221,7 @@ class UserProjectController extends AbstractController
     /**
     * @param Request $request 
     */
-    public function editProfileUser(Request $request , $id=null)
-    
+    public function editProfileUser(Request $request , $id=null)    
     {
         $profileUser = new ProfileUser();
         $profileUser->setprofileDate(new \DateTime());
@@ -275,7 +276,6 @@ class UserProjectController extends AbstractController
                 $data = $serialzer->serialize($profileUser, 'json');
                 
                 return new JsonResponse($data,200,[], true);
-
             }  
         }    
     }

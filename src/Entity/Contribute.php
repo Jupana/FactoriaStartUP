@@ -22,9 +22,10 @@ class Contribute
 
 
      /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="contribute_user")     * 
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="contribute")
+     * @ORM\JoinColumn()      
     */
-    private $contribute_user;
+    private $user;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Project", inversedBy="contribute_id")
@@ -51,18 +52,15 @@ class Contribute
     {
         return $this->id;
     }
-
-      /**
-     * @return User
-     */
-    public function getContirbuteUser()
+  
+    public function getUser()
     {
         return $this->contribute_user;
     }
 
-    public function setContirbute(?User $contribute_user): self
+    public function setUser(?User $user): self
     {
-        $this->user = $contribute_user;
+        $this->user = $user;
 
         return $this;
     }
