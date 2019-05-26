@@ -363,35 +363,4 @@ class Project
         return $this;
     }
 
-    public function getContributeId(): ?Contribute
-    {
-        return $this->contribute_id;
-    }
-
-    public function setContributeId(?Contribute $contribute_id): self
-    {
-        $this->contribute_id = $contribute_id;
-
-        return $this;
-    }
-
-    public function getNeedsProjectId(): ?NeedsProject
-    {
-        return $this->needs_project_id;
-    }
-
-    public function setNeedsProjectId(?NeedsProject $needs_project_id): self
-    {
-        $this->needs_project_id = $needs_project_id;
-
-        return $this;
-    }
-    
-
-
-   
-
-  
-
-  
 }
