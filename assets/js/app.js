@@ -113,6 +113,7 @@ $(document).ready(function() {
         var long = 0;
         var urlProyectFilter='';        
         profiles = isNaN(profiles) ? 0:profiles;
+        console.log(km);
       
         if(km != ''){
             if (navigator.geolocation) {

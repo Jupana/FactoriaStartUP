@@ -2,11 +2,8 @@
 
 namespace App\Services;
 
-use App\Entity\User;
-use App\Entity\Project;
 use App\Repository\UserRepository;
 use App\Repository\ProjectRepository;
-use Symfony\Component\HttpFoundation\Request;
 
 class GetProyects{
 
@@ -68,7 +65,7 @@ class GetProyects{
    
         /*No USER*/
         else{
-                if($lat!= 0 && $long!=0 ){
+                /*if($lat!= 0 && $long!=0 ){
                     $km = $km!=0 ? $km:10000 ;
                     $usersProjectsByDistance = $this->userRepository->findByDistance($lat,$long,$km);
                     $arrayUsersId =[];
@@ -77,14 +74,22 @@ class GetProyects{
                         }
                     $projects =$this->projectRepository->findBy(['user'=>$arrayUsersId]);
                     
-                }
-                elseif($sector != 0 && $km != 0){
+                }*/
+                if($sector != 0 && $km != 0){
                     $usersProjectsByDistance = $this->userRepository->findByDistance($lat,$long,$km);
                     $arrayUsersId =[];
                     foreach($usersProjectsByDistance as $item){
                         array_push($arrayUsersId,$item['id']);
                     }
                     $projects =$this->projectRepository->findBy(['user'=>$arrayUsersId,'project_sector'=>$sector]); 
+                    dump($sector,$km);                
+                }elseif($sector == 0 && $km != 0){
+                    $usersProjectsByDistance = $this->userRepository->findByDistance($lat,$long,$km);
+                    $arrayUsersId =[];
+                    foreach($usersProjectsByDistance as $item){
+                        array_push($arrayUsersId,$item['id']);
+                    }
+                    $projects =$this->projectRepository->findBy(['user'=>$arrayUsersId]); 
                     dump($sector,$km);                
                 }
                 elseif($sector!=0 && $km == 0){
