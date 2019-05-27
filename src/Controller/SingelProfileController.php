@@ -2,32 +2,20 @@
 namespace App\Controller;
 
 use App\Entity\ProfileUser;
-use App\Entity\User;
-use App\Entity\Sector;
-use App\Entity\Profil;
-use App\Entity\ProfesionalProfile;
 use App\Form\ProfileUserType;
-use App\Form\UserPersonalInfoType;
-use App\Form\ProfesionalProfileType;
 use App\Repository\ProfileUserRepository;
-use App\Repository\ProfilRepository;
-use App\Repository\SectorRepository;
 use App\Repository\UserRepository;
-
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\FormFactoryInterface;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use App\Repository\ProfesionalProfileRepository;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
 
-class SingelProfile extends AbstractController
+class SingelProfileController extends AbstractController
 {
         /**
     * @var \Twig_Environment

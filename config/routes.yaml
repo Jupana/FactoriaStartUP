@@ -7,26 +7,26 @@ vista_usuario:
 
 addProfil:
     path: /addProfil
-    controller: App\Controller\SingelProfile::addProfileUser
+    controller: App\Controller\SingelProfileController::addProfileUser
     options:
         expose: true
 
 editProfileUser:
     path: /addProfileUser/{id}
-    controller: App\Controller\SingelProfile::editProfileUser
+    controller: App\Controller\SingelProfileController::editProfileUser
     options:
         expose: true
 
 editProfilUserUpdate:
     path: /editProfilUserUpdate/{id}
-    controller: App\Controller\SingelProfile::editProfilUserUpdate
+    controller: App\Controller\SingelProfileController::editProfilUserUpdate
     methods:  [GET,POST]
     options:
         expose: true
 
 deleteUserProfile:
     path: /deleteUserProfile/{id}
-    controller: App\Controller\SingelProfile::deleteUserProfile
+    controller: App\Controller\SingelProfileController::deleteUserProfile
     options:
         expose: true
         
