@@ -319,6 +319,37 @@ $(document).ready(function() {
         
         /*<!--FIN showhide Deal  */
 
+/* <!-- START PROJECT INTEREST */
+        $('select#interest-select-profile').change(function(){
+            console.log('Se cambio');
+            console.log($(this).find("option:selected").text());
+        })
+        $('.profile_project_interest').click(function(){
+            $('select#interest-select-profile').change(function(){
+                console.log($(this).val());                
+            })
+        })
+        $('.btnEndInterest1').click(function(){
+            $('#interest-step-1').addClass('hide-e');
+            $('#interest-step-2').removeClass('hide-e');
+        })
+
+        $('select#interest-select-deal').change(function() {
+            var arrOption = ['1','2'];
+            var showPercent =arrOption.indexOf($(this).val());
+            if(showPercent != -1){
+
+                $('.needs_project_needs_percent').removeClass('hide-e');
+            }else{
+
+                $('.needs_project_needs_percent').addClass('hide-e');
+            }
+            
+        })
+
+
+/* Fin PROJECT INTEREST --> */
+
 
 /* FIN Modal Form Script -->*/
 

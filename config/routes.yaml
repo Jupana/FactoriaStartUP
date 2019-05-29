@@ -132,6 +132,21 @@ datos_cuenta:
     path: /vista_usuario/datos_cuenta
     controller: App\Controller\UserController::datos_cuenta
 
+interestSelectPerfil:
+    path: /proyect/{id}/interest-profile-select
+    controller: App\Controller\ProjectController::interestSelectPerfil
+    methods:  [GET,POST]
+    options:
+        expose: true
+
+interestSelectSectorDeal:
+    path: /proyect/{id}/interest-sector-deal
+    controller: App\Controller\ProjectController::interestSelectSectorDeal
+    methods:  [GET,POST]
+    options:
+        expose: true
+
+    
 
 herramientas:
     path: /herramientas

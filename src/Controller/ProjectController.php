@@ -141,12 +141,16 @@ class ProjectController extends AbstractController
     public function project($id)
     {
         $project = $this->projectRepository->find($id);
+        $profileRepo = $this->profilRepository->findAll();
+        $sectorRepo = $this->sectorRepository->findAll();
 
         return new Response(
             $this->twig->render(
                 'project/project.html.twig',
                 [
-                    'project' => $project
+                    'project' => $project,
+                    'profileList' => $profileRepo,
+                    'sectorList' => $sectorRepo
                 ]
             )
         );
@@ -172,5 +176,5 @@ class ProjectController extends AbstractController
                 'opciones_perfil' => $this->profilRepository->findAll() 
             ]);
             return new Response($html);
-    } 
+    }     
 }
