@@ -82,7 +82,7 @@ class GetProyects{
                         array_push($arrayUsersId,$item['id']);
                     }
                     $projects =$this->projectRepository->findBy(['user'=>$arrayUsersId,'project_sector'=>$sector]); 
-                    dump($sector,$km);                
+                    
                 }elseif($sector == 0 && $km != 0){
                     $usersProjectsByDistance = $this->userRepository->findByDistance($lat,$long,$km);
                     $arrayUsersId =[];
@@ -90,7 +90,7 @@ class GetProyects{
                         array_push($arrayUsersId,$item['id']);
                     }
                     $projects =$this->projectRepository->findBy(['user'=>$arrayUsersId]); 
-                    dump($sector,$km);                
+                    
                 }
                 elseif($sector!=0 && $km == 0){
                     $projects =$this->projectRepository->findBy(['project_sector'=>$sector]);   

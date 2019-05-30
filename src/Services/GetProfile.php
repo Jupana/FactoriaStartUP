@@ -8,10 +8,7 @@ use App\Repository\ProfileUserRepository;
 
 class GetProfile{
 
-    /**
-     * 
-     * var @ProjectRepository
-     * */ 
+   
     private $profilRepository;
     
     private $userRepository;
@@ -32,7 +29,7 @@ class GetProfile{
                     foreach($usersProjectsByDistance as $item){
                         array_push($arrayUsersId,$item['id']);
                     }
-                    $profiles =$this->profilRepository->findBy(['user'=>$arrayUsersId]);
+                    $profiles =$this->profilRepository->findBy(['user'=>$arrayUsersId],['user'=>'ASC']);
                     
                 }
                 elseif($profile != 0 && $km != 0){
@@ -41,14 +38,15 @@ class GetProfile{
                     foreach($usersProjectsByDistance as $item){
                         array_push($arrayUsersId,$item['id']);
                     }
-                    $profiles =$this->profilRepository->findBy(['user'=>$arrayUsersId,'profil'=>$profile]); 
-                    dump($usersProjectsByDistance);              
+                    $profiles =$this->profilRepository->findBy(['user'=>$arrayUsersId,'profil'=>$profile],['user'=>'ASC']); 
+                                
                 }
                 elseif($profile != 0 && $km == 0){
-                    $profiles =$this->profilRepository->findBy(['profil'=>$profile]);                 
+                    $profiles =$this->profilRepository->findBy(['profil'=>$profile],['user'=>'ASC']);                 
                 }
                 else{                                 
-                    $profiles = $this->profilRepository->findAll() ;
+                    $profiles = $this->profilRepository->findBy([],['user'=>'ASC']);
+                    dump($profiles);
                 }
             }        
             else{
@@ -58,7 +56,7 @@ class GetProfile{
                     foreach($usersProjectsByDistance as $item){
                         array_push($arrayUsersId,$item['id']);
                     }
-                    $profiles =$this->profilRepository->findBy(['user'=>$arrayUsersId,'profil'=>$profile]); 
+                    $profiles =$this->profilRepository->findBy(['user'=>$arrayUsersId,'profil'=>$profile],['user'=>'ASC']); 
                     dump($profile,$km);                
                 }elseif($profile == 0 && $km != 0){
                     $usersProjectsByDistance = $this->userRepository->findByDistance($lat,$long,$km);
@@ -66,15 +64,15 @@ class GetProfile{
                     foreach($usersProjectsByDistance as $item){
                         array_push($arrayUsersId,$item['id']);
                     }
-                    $profiles =$this->profilRepository->findBy(['user'=>$arrayUsersId]); 
+                    $profiles =$this->profilRepository->findBy(['user'=>$arrayUsersId],['user'=>'ASC']); 
                     dump($profile,$km);                
                 }
                 elseif($profile!=0 && $km == 0){
-                    $profiles =$this->profilRepository->findBy(['profil'=>$profile]);   
+                    $profiles =$this->profilRepository->findBy(['profil'=>$profile],['user'=>'ASC']);   
                                 
                 }
                 else{
-                    $profiles = $this->profilRepository->findAll();                
+                    $profiles = $this->profilRepository->findBy([],['user'=>'ASC']);                
                 }
             }
         return $profiles;

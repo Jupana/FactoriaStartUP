@@ -103,7 +103,7 @@ class UserController extends AbstractController
     {
         $user = $this->getUser();
         $userProfesionalProfile = $this->profesionalProfilRespository->findOneBy(['profesionalIdUser' => $user->getId()]);        
-        $userProjects = $this->projectsUserRepository->findAll(['user' => $user->getId()]);
+        $userProjects = $this->projectsUserRepository->findBy(['user' => $user->getId()]);
         return new Response(
             $this->twig->render(
                 'user_views/index_vista.html.twig',
@@ -180,6 +180,8 @@ class UserController extends AbstractController
 
         $profesionalProfile = $profesionalProfile->findOneBy(['profesionalIdUser' => $user->getId()]);
         
+        $userProfiles = $this->profileUserRepository->findBy(['user'=> $user->getId()]);
+        
         //Check to see if we have a profesional content and user
         if(!$profesionalProfile){
             $profesionalProfile = new ProfesionalProfile();
@@ -200,7 +202,7 @@ class UserController extends AbstractController
             [
                 'profesionalProfile' =>$profesionalProfile,
                 'form' =>$form->createView(),
-                'profiles' => $this->profileUserRepository->findAll(),
+                'profiles' => $userProfiles,
                 
             ]);
         
@@ -213,13 +215,10 @@ class UserController extends AbstractController
         $newProject->setUser($user);
 
         //Check User Projects
-        dump($user->getId());
+        
         $userProjects = $this->projectsUserRepository->findBy(['user' => $user->getId()]);
         $userNeedsProjects =   $this->needsProjectRepository->findBy(['user'=> $user->getId()]);
         $userContributeProjects = $this->contributeRepository->findBy(['user'=> $user->getId()]);
-
-        dump($userNeedsProjects);
-        dump($userContributeProjects);
         
         $formNewProject = $this->createForm(ProjectNameType::class,$newProject);
         $formNewProject->handleRequest($request);
