@@ -66,7 +66,15 @@ class InterestProject
     /**
      * @ORM\Column(type="boolean")
      */
-    private $interest_status;
+    private $interest_status_contribute;
+
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $interest_status_owner;
+
+
 
     /**
      * @ORM\Column(type="datetime")
@@ -173,15 +181,27 @@ class InterestProject
 
         return $this;
     }
-
-    public function getInterestStatus(): ?bool
+    
+    public function getInterestStatusContribute(): ?bool
     {
-        return $this->interest_status;
+        return $this->interest_status_contribute;
     }
 
-    public function setInterestStatus(bool $interest_status): self
+    public function setInterestStatusContribute(bool $interest_status_contribute): self
     {
-        $this->interest_status = $interest_status;
+        $this->interest_status_contribute = $interest_status_contribute;
+
+        return $this;
+    }
+
+    public function getInterestStatusOwner(): ?bool
+    {
+        return $this->interest_status_owner;
+    }
+
+    public function setInterestStatusOwner(bool $interest_status_owner): self
+    {
+        $this->interest_status_owner = $interest_status_owner;
 
         return $this;
     }

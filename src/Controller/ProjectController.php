@@ -18,6 +18,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Repository\UserRepository;
 use App\Services\GetProyects;
+use App\Services\GetMatchProjects;
 
 
 class ProjectController extends AbstractController
@@ -121,38 +122,49 @@ class ProjectController extends AbstractController
             )
         );
     }
-    public function project( Request $request, $id)
+    public function project( Request $request, $id,GetMatchProjects  $getMatch)
     {
         $project = $this->projectRepository->find($id);
-        $profileRepo = $this->profilRepository->findAll();
-        $sectorRepo = $this->sectorRepository->findAll();
         
-        $interestProyect = new InterestProject;
-        $interestProyect->setInterestDate(new \DateTime());
-        $interestProyect->setInterestIdUser($this->getUser()->getID());
-        $interestProyect->setInterestProjectOwnerID($project->getUser()->getId());
-        $interestProyect->setInterestIdProject($id);
-        $interestProyect->setInterestStatus(true);
-        
-        $formAddInterestProyect = $this->formFactory->create(InterestProjectType::class, $interestProyect);
-        $formAddInterestProyect->handleRequest($request);
+        if($this->getuser()){
+            $interestProyect = new InterestProject;
+            $interestProyect->setInterestDate(new \DateTime());
+            $interestProyect->setInterestIdUser($this->getUser()->getID());
+            $interestProyect->setInterestProjectOwnerID($project->getUser()->getId());
+            $interestProyect->setInterestIdProject($id);
+            $interestProyect->setInterestStatusContribute(true);
+            $interestProyect->setInterestStatusOwner(false);
+            
+            $formAddInterestProyect = $this->formFactory->create(InterestProjectType::class, $interestProyect);
+            $formAddInterestProyect->handleRequest($request);
+    
+            if ($formAddInterestProyect->isSubmitted() && $formAddInterestProyect->isValid()) {
+                $this->entityManager->persist($interestProyect);
+                $this->entityManager->flush();           
+            }
 
-        if ($formAddInterestProyect->isSubmitted() && $formAddInterestProyect->isValid()) {
-            $this->entityManager->persist($interestProyect);
-            $this->entityManager->flush();           
+            $projects = $getMatch->getMatch($this->getUser()->getId(),$id);
+    
+            return new Response(
+                $this->twig->render(
+                    'project/project.html.twig',
+                    [
+                        'project' => $project,
+                        'formInterstProject' =>$formAddInterestProyect->createView()
+                    ]
+                )
+            );
+        }else{
+            return new Response(
+                $this->twig->render(
+                    'project/project.html.twig',
+                    [
+                        'project' => $project
+                    ]
+                )
+            );
         }
-
-        return new Response(
-            $this->twig->render(
-                'project/project.html.twig',
-                [
-                    'project' => $project,
-                    'profileList' => $profileRepo,
-                    'sectorList' => $sectorRepo,
-                    'formInterstProject' =>$formAddInterestProyect->createView()
-                ]
-            )
-        );
+       
     }
 
     public function indexProject(GetProyects $projects)
