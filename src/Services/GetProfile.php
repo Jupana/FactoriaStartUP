@@ -68,8 +68,7 @@ class GetProfile{
                     
                 }
                 elseif($profile!=0 && $km == 0){
-                    $profiles =$this->profilRepository->findBy(['profil'=>$profile],['user'=>'ASC']);   
-                                
+                    $profiles =$this->profilRepository->findBy(['profil'=>$profile],['user'=>'ASC']);                                  
                 }
                 else{
                     $profiles = $this->profilRepository->findBy([],['user'=>'ASC']);                
