@@ -46,7 +46,7 @@ class GetProfile{
                 }
                 else{                                 
                     $profiles = $this->profilRepository->findBy([],['user'=>'ASC']);
-                    dump($profiles);
+                    
                 }
             }        
             else{
@@ -57,7 +57,7 @@ class GetProfile{
                         array_push($arrayUsersId,$item['id']);
                     }
                     $profiles =$this->profilRepository->findBy(['user'=>$arrayUsersId,'profil'=>$profile],['user'=>'ASC']); 
-                    dump($profile,$km);                
+                    
                 }elseif($profile == 0 && $km != 0){
                     $usersProjectsByDistance = $this->userRepository->findByDistance($lat,$long,$km);
                     $arrayUsersId =[];
@@ -65,7 +65,7 @@ class GetProfile{
                         array_push($arrayUsersId,$item['id']);
                     }
                     $profiles =$this->profilRepository->findBy(['user'=>$arrayUsersId],['user'=>'ASC']); 
-                    dump($profile,$km);                
+                    
                 }
                 elseif($profile!=0 && $km == 0){
                     $profiles =$this->profilRepository->findBy(['profil'=>$profile],['user'=>'ASC']);   
