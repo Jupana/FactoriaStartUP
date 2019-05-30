@@ -141,7 +141,7 @@ class UserController extends AbstractController
             $user->setPerfilImg($fileName);
 
             $config = []; 
-            $config['api_key'] = 'AIzaSyDmQm7vyUCKhZ_rxCyM8kTtxSN4YfDNc3M'; 
+            $config['api_key'] = 'xxx'; 
                
             $provider = $geoCodingProvider->createProvider($config); 
             $result =  $provider->geocodeQuery(GeocodeQuery::create(
