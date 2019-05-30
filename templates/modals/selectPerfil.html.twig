@@ -11,51 +11,31 @@
                 </div>
                  <!-- Modal Body -->
                 <div class="modal-body">
-                   
-                    <!-- Step 1 -->
+                    {{ form_start   (formInterstProject) }}
+                        <!-- Step 1 -->
                     <div id="interest-step-1">
                         <div class="col-md-12 text-center m-t-10  modal-title">
                             <h4 class="par" id="myModalLabel">Con que perfil quieres interesarte</h4>  
-                        </div>    
-                                
-                                        <select name="interest-select-profile" id="interest-select-profile" class="form-control">
-                                        {% for profile in profileList %}
-                                            <option value={{profile.id}}>{{profile.name}}</option>                                    
-                                        {% endfor %}
-                                        </select>
-                                    <button class="btn-primary btn float-r profile_project_interest btnEndInterest1">Siguiente</button>
-                                
-                    
+                        </div>
+                            {{ form_row (formInterstProject.interest_profil,{'attr' : { 'id': 'profile_user' }} )}}
+                            <span class="btn-primary btn float-r profile_project_interest btnEndInterest1">Siguiente</span>
                     </div>  
                     <!-- Fin Step 1 -->
                     <!-- Step 2 -->
                     <div id="interest-step-2" class="hide-e">
                         <div class="col-md-12 text-center m-t-10  modal-title">
                             <h4 class="par" id="myModalLabel">Participa en el proyecto</h4>  
-                        </div>    
-                                        <h1>
-                                        <select name="interest-select-profile" class="form-control">
-                                        <option value='0'>Sector</option>   
-                                        {% for sector in sectorList %}
-                                            <option value={{sector.id}}>{{sector.name}}</option>                                    
-                                        {% endfor %}
-                                        </select>
-
-                                        <select name="interest-select-deal" id="interest-select-deal" class="form-control">
-                                            <option value='0'>Acuerdo</option>
-                                            <option value='1'>% Empresa</option>
-                                            <option value='2'>% Ventas</option>
-                                            <option value='3'>Obra y Servicios</option>
-                                            <option value='4'>Pacto a Futuro</option>
-                                        </select>
-                                        <input type="number" class="needs_project_needs_percent hide-e" value="%"/>
-                                        <textarea class="form-control"></textarea>
-                                    <button class="btn-primary btn float-r">Enviar</button>
-                                             
-
                         </div>
+                            {{ form_row (formInterstProject.interest_sector) }}
+                            {{form_row (formInterstProject.interest_deal) }}
+                            {{ form_row (formInterstProject.interest_percent,{'attr' : { 'class': 'needs_project_needs_percent hide-e' }}) }}                            
+                            {{ form_row (formInterstProject.interest_description) }}
+                            {{ form_row (formInterstProject.interest_percent) }} 
+                            <input type="submit" id="submit-form-add" class="btn-primary float-l" style="display:none"/>                                              
+                    </div>
                     
-                    <!-- Fin Step 2 -->  
+                    <!-- Fin Step 2 --> 
+                    {{ form_end     (formInterstProject) }}  
                 </div>
                 <!-- Modal Footer -->
                 <div class="modal-footer">

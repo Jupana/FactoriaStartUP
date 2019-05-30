@@ -3,8 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Project;
-use App\Entity\User;
-use App\Entity\Sector;
+use App\Entity\InterestProject;
+use App\Form\InterestProjectType;
 use App\Repository\ProjectRepository;
 use App\Repository\ProfileUserRepository;
 use App\Repository\ProfilRepository;
@@ -14,14 +14,8 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Geocoder\Query\GeocodeQuery;
-use Geocoder\Query;
-use Geocoder\Provider\Provider;
-use Geocoder\ProviderAggregator;
-use Bazinga\GeocoderBundle\ProviderFactory\GoogleMapsFactory;
 use App\Repository\UserRepository;
 use App\Services\GetProyects;
 
@@ -48,11 +42,6 @@ class ProjectController extends AbstractController
     */
     private $profilRepository;
 
-    /**
-    * @var profilUserRepository
-    */
-    private $profilUserRepository;
-
       /**
     * @var FormFactoryInterface
     */
@@ -69,16 +58,11 @@ class ProjectController extends AbstractController
     private $flashBag;
 
 
-    /**
-    * @var ProviderAggregator
-    */
-    private $geoProvider;
-
 
     public function __construct(
         \Twig_Environment $twig, ProjectRepository $projectRepository,ProfileUserRepository $profileUserRepository, ProfilRepository $profilRepository, SectorRepository $sectorRepository,
         FormFactoryInterface $formFactory,EntityManagerInterface $entityManager,
-        FlashBagInterface $flashBag, ProviderAggregator $geoProvider,UserRepository $userRepository
+        FlashBagInterface $flashBag,UserRepository $userRepository
         ) {
         $this->twig = $twig;
         $this->projectRepository = $projectRepository;
@@ -88,8 +72,7 @@ class ProjectController extends AbstractController
         $this->userRepository =$userRepository;
         $this->formFactory = $formFactory;
         $this->entityManager = $entityManager;
-        $this->flashBag = $flashBag;
-        $this->geoProvider =$geoProvider;
+        $this->flashBag = $flashBag;        
     }
 
     public function edit(Project $project, Request $request)
@@ -138,11 +121,26 @@ class ProjectController extends AbstractController
             )
         );
     }
-    public function project($id)
+    public function project( Request $request, $id)
     {
         $project = $this->projectRepository->find($id);
         $profileRepo = $this->profilRepository->findAll();
         $sectorRepo = $this->sectorRepository->findAll();
+        
+        $interestProyect = new InterestProject;
+        $interestProyect->setInterestDate(new \DateTime());
+        $interestProyect->setInterestIdUser($this->getUser()->getID());
+        $interestProyect->setInterestProjectOwnerID($project->getUser()->getId());
+        $interestProyect->setInterestIdProject($id);
+        $interestProyect->setInterestStatus(true);
+        
+        $formAddInterestProyect = $this->formFactory->create(InterestProjectType::class, $interestProyect);
+        $formAddInterestProyect->handleRequest($request);
+
+        if ($formAddInterestProyect->isSubmitted() && $formAddInterestProyect->isValid()) {
+            $this->entityManager->persist($interestProyect);
+            $this->entityManager->flush();           
+        }
 
         return new Response(
             $this->twig->render(
@@ -150,7 +148,8 @@ class ProjectController extends AbstractController
                 [
                     'project' => $project,
                     'profileList' => $profileRepo,
-                    'sectorList' => $sectorRepo
+                    'sectorList' => $sectorRepo,
+                    'formInterstProject' =>$formAddInterestProyect->createView()
                 ]
             )
         );

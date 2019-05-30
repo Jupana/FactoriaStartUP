@@ -31,6 +31,11 @@ class InterestProject
      */
     private $interest_id_project;
 
+     /**     * 
+     * @ORM\Column(type="integer")
+     */
+    private $interest_project_owner_id;
+
     /** 
      * @ORM\ManyToOne(targetEntity="App\Entity\Sector", inversedBy="interest_sector")
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -81,6 +86,18 @@ class InterestProject
     public function setInterestIdUser(int $interest_id_user): self
     {
         $this->interest_id_user = $interest_id_user;
+
+        return $this;
+    }
+
+    public function getInterestProjectOwnerID(): ?int
+    {
+        return $this->interest_project_owner_id;;
+    }
+
+    public function setInterestProjectOwnerID(int $interest_project_owner_id): self
+    {
+        $this->interest_project_owner_id = $interest_project_owner_id;
 
         return $this;
     }

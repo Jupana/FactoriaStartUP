@@ -334,8 +334,8 @@ $(document).ready(function() {
             $('#interest-step-2').removeClass('hide-e');
         })
 
-        $('select#interest-select-deal').change(function() {
-            var arrOption = ['1','2'];
+        $('select#interest_project_interest_deal').change(function() {
+            var arrOption = ['% Empresa','% Ventas'];
             var showPercent =arrOption.indexOf($(this).val());
             if(showPercent != -1){
 
