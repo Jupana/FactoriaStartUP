@@ -36,53 +36,28 @@
         <button type="button" class="d-none d-sm-block btn btn-sm  btn-outline-secondary my-2 my-xs-0 filter-profiles">Buscar</button>
     </form> 
     <div class="row ">
-    {% for profile in profiles %}
-    
+        {% for profile in profiles %}
                 <!-- Recojemos todos los perfiles del mismo usuario -->          
-            {% if userIdToCheck is not defined %}
-               <div class="col-md-4 col-sm-6 col-xs-12 m-t-10 m-b-10"> 
-                <div class="card border">                         
-                        <div class="card-header d-none d-sm-block">                     
-                            <img  class="card-img-top" src ="{{ asset('build/img/uploads/users_perfil/' ~ profile.user.getPerfilImg) }}" alt="image"/>
-                        </div>
-                    <div class="card-body ">     
-                        <h4 class="card-title">Usuario:<br/>{{ profile.user.username}}</h4>                   
-                            <p class="card-text">Perfil:{{ profile.profil}}</strong></p>
-                            <p class="card-text">Sector:{{ profile.sector}}</strong></p>                
-            {% elseif userIdToCheck != profile.user.id %}
-                       {% if multiProfile is defined and multiProfile == 1%}
-                                        </div>
-                                                <div class="card-footer">
-                                                    <a href="{{ path('detalle_profile',{"id": userIdToCheck }) }}" class=" ver_color 1">Ver Mas...</a></br>                                                
-                                                </div>
-                                    </div>
-                            </div>
-                            {% set multiProfile = 0 %}
-                        {% endif %}
-                    <div class="col-md-4 col-sm-6 col-xs-12 m-t-10 m-b-10"> 
+                <div class="col-md-4 col-sm-6 col-xs-12 m-t-10 m-b-10"> 
                         <div class="card border">                         
                                 <div class="card-header d-none d-sm-block">                     
-                                    <img  class="card-img-top" src ="{{ asset('build/img/uploads/users_perfil/' ~ profile.user.getPerfilImg) }}" alt="image"/>
+                                   <img  class="card-img-top" src ="{{ asset('build/img/uploads/users_perfil/' ~ profile.user_img) }}" alt="image"/>
                                 </div>
                                 <div class="card-body ">     
-                                    <h4 class="card-title">Usuario:<br/>{{ profile.user.username}}</h4>                   
-                                        <p class="card-text">Perfil:{{ profile.profil}}</strong></p>
-                                        <p class="card-text">Sector:{{ profile.sector}}</strong></p>
-                                    <div class="card-footer">
-                                                                                   
-                                        <a href="{{ path('detalle_profile',{"id": profile.user.id }) }}" class=" ver_color 2">Ver Mas...</a></br>                                                
+                                    <h4 class="card-title"><br/>{{ profile.name}}</h4>                   
+                                        
+                                        {% set i = 0 %}
+                                        {% for userperfil in profile.perfiles %}
+                                            <p class="card-text">Perfil:{{ userperfil}}</strong></p>
+                                            <p class="card-text">Sector:{{ profile.sectors[i]}}</strong></p>                                            
+                                            {% set i = i + 1 %}
+                                        {% endfor %}
+                                    <div class="card-footer">                     
+                                        <a href="{{ path('detalle_profile',{"id": profile.user_id }) }}" class=" ver_color 2">Ver Mas...</a></br>                                                
                                     </div>
                                 </div>
                         </div> 
                     </div>
-               
-            {% elseif userIdToCheck == profile.user.id %}
-                    <hr/>
-                    <p class="card-text">Perfil:{{ profile.profil}}</strong></p>
-                    <p class="card-text">Sector:{{ profile.sector}}</strong></p>
-                    {% set multiProfile = 1 %}
-            {% endif %}
-            {% set userIdToCheck = profile.user.id %}
                  <!-- FIN Recojemos todos los perfiles del mismo usuario --> 
     {% endfor %}    
     </div>

@@ -4,7 +4,7 @@ namespace App\Services;
 
 use App\Repository\UserRepository;
 use App\Repository\ProfileUserRepository;
-
+use App\Entity\User;
 
 class GetProfile{
 
@@ -74,6 +74,28 @@ class GetProfile{
                     $profiles = $this->profilRepository->findBy([],['user'=>'ASC']);                
                 }
             }
-        return $profiles;
+
+            $prepareProfiles = [];
+            $i=0;
+            foreach($profiles as $item){
+                               
+                $user = $item->getUser()->getId();
+                
+                if(isset($lastUser) && ($lastUser != $user)){                    
+                    $i=0;
+                }
+                
+                $prepareProfiles[$user]['user_id'] =$user;
+                $prepareProfiles[$user]['name'] =$item->getUser()->getUsername();
+                $prepareProfiles[$user]['user_img'] =$item->getUser()->getPerfilImg();
+                $prepareProfiles[$user]['perfiles'][$i] =$item->getProfil();
+                $prepareProfiles[$user]['sectors'][$i] =$item->getSector();
+                
+                $lastUser = $user;
+
+                $i++;
+            }
+
+        return $prepareProfiles;
     }
 }
