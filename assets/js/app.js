@@ -320,9 +320,25 @@ $(document).ready(function() {
         /*<!--FIN showhide Deal  */
 
 /* <!-- START PROJECT INTEREST */
-        $('select#interest-select-profile').change(function(){
+        $('select#interest_project_interest_profil').change(function(){
             console.log('Se cambio');
             console.log($(this).find("option:selected").text());
+
+            let urlDeleteNeedsProfil = Routing.generate("MatchProject");
+            let xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4) {
+                    console.log((xhr.response));
+                }
+            }
+            
+
+            xhr.open('GET', urlDeleteNeedsProfil, true);
+            xhr.onload = function () {
+               // window.location.replace('/vista_usuario/add_proyecto/step_3/'+proyectId)
+            };
+            xhr.send(null);
+
         })
         $('.profile_project_interest').click(function(){
             $('select#interest-select-profile').change(function(){

@@ -139,9 +139,9 @@ interestSelectPerfil:
     options:
         expose: true
 
-interestSelectSectorDeal:
-    path: /proyect/{id}/interest-sector-deal
-    controller: App\Controller\ProjectController::interestSelectSectorDeal
+MatchProject:
+    path: /match/
+    controller: App\Controller\MatchProjectController::getMatch
     methods:  [GET,POST]
     options:
         expose: true
