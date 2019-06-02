@@ -9,6 +9,8 @@ use App\Repository\ProjectRepository;
 use App\Repository\ProfileUserRepository;
 use App\Repository\ProfilRepository;
 use App\Repository\SectorRepository;
+use App\Repository\ContributeRepository;
+use App\Repository\NeedsProjectRepository;
 use App\Form\ProjectType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\FormFactoryInterface;
@@ -61,9 +63,17 @@ class ProjectController extends AbstractController
 
 
     public function __construct(
-        \Twig_Environment $twig, ProjectRepository $projectRepository,ProfileUserRepository $profileUserRepository, ProfilRepository $profilRepository, SectorRepository $sectorRepository,
-        FormFactoryInterface $formFactory,EntityManagerInterface $entityManager,
-        FlashBagInterface $flashBag,UserRepository $userRepository
+        \Twig_Environment $twig, 
+        ProjectRepository $projectRepository,
+        ProfileUserRepository $profileUserRepository, 
+        ProfilRepository $profilRepository, 
+        SectorRepository $sectorRepository,
+        FormFactoryInterface $formFactory,
+        EntityManagerInterface $entityManager,
+        FlashBagInterface $flashBag,
+        UserRepository $userRepository,
+        ContributeRepository $contributeRepository,
+        NeedsProjectRepository $needsProjectRepository
         ) {
         $this->twig = $twig;
         $this->projectRepository = $projectRepository;
@@ -73,7 +83,9 @@ class ProjectController extends AbstractController
         $this->userRepository =$userRepository;
         $this->formFactory = $formFactory;
         $this->entityManager = $entityManager;
-        $this->flashBag = $flashBag;        
+        $this->flashBag = $flashBag;
+        $this->contributeRepository=$contributeRepository;
+        $this->needsProjectRepository=$needsProjectRepository;
     }
 
     public function edit(Project $project, Request $request)
@@ -125,6 +137,8 @@ class ProjectController extends AbstractController
     public function project( Request $request, $id,GetMatchProjects  $getMatch)
     {
         $project = $this->projectRepository->find($id);
+        $contributeProject = $this->contributeRepository->findBy(['contribute_project'=>$id]);
+        $needProject = $this->needsProjectRepository->findBy(['needs_project'=>$id]);;
         
         if($this->getuser()){
             $interestProyect = new InterestProject;
@@ -140,7 +154,9 @@ class ProjectController extends AbstractController
     
             if ($formAddInterestProyect->isSubmitted() && $formAddInterestProyect->isValid()) {
                 $this->entityManager->persist($interestProyect);
-                $this->entityManager->flush();           
+                $this->entityManager->flush();   
+                
+                $this->flashBag->add('notice', 'Mensaje Enviado');
             }
 
             $projects = $getMatch->getMatch($this->getUser()->getId(),$id);
@@ -150,6 +166,8 @@ class ProjectController extends AbstractController
                     'project/project.html.twig',
                     [
                         'project' => $project,
+                        'contributeProject' => $contributeProject,
+                        'needsProject' =>$needProject,
                         'formInterstProject' =>$formAddInterestProyect->createView()
                     ]
                 )
@@ -159,7 +177,9 @@ class ProjectController extends AbstractController
                 $this->twig->render(
                     'project/project.html.twig',
                     [
-                        'project' => $project
+                        'project' => $project,
+                        'contributeProject' => $contributeProject,
+                        'needsProject' =>$needProject,
                     ]
                 )
             );

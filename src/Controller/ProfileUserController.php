@@ -8,6 +8,8 @@ use App\Form\ProfileUserType;
 use App\Repository\ProfileUserRepository;
 use App\Repository\ProfilRepository;
 use App\Repository\SectorRepository;
+use App\Repository\ProjectRepository;
+use App\Repository\ProfesionalProfileRepository;
 use App\Services\GetProfile;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\FormFactoryInterface;
@@ -22,6 +24,7 @@ use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
+use App\Entity\Project;
 
 class ProfileUserController extends AbstractController
 {   
@@ -39,6 +42,16 @@ class ProfileUserController extends AbstractController
     * @var profilRepository
     */
     private $profilRepository;
+
+    /**
+    * @var profesionalProfileRepository
+    */
+    private $profesionalProfileRepository;
+
+    /**
+    * @var projectRepository
+    */
+    private $projectRepository;
 
     /**
     * @var profilUserRepository
@@ -63,13 +76,15 @@ class ProfileUserController extends AbstractController
 
     public function __construct(
         \Twig_Environment $twig, ProfileUserRepository $profileUserRepository, ProfilRepository $profilRepository, SectorRepository $sectorRepository,
-        FormFactoryInterface $formFactory,EntityManagerInterface $entityManager,
+        FormFactoryInterface $formFactory,EntityManagerInterface $entityManager,ProfesionalProfileRepository $profesionalProfileRepository,ProjectRepository $projectRepository,
         FlashBagInterface $flashBag
         ) {
         $this->twig = $twig;
         $this->profileUserRepository = $profileUserRepository;
         $this->sectorRepository = $sectorRepository;
         $this->profilRepository = $profilRepository;
+        $this->projectRepository = $projectRepository;
+        $this->profesionalProfileRepository = $profesionalProfileRepository;
         $this->formFactory = $formFactory;
         $this->entityManager = $entityManager;
         $this->flashBag = $flashBag;
@@ -101,13 +116,19 @@ class ProfileUserController extends AbstractController
 
     public function profile($id)
     {
-        $profile = $this->profileUserRepository->find($id);
+        $profile = $this->profileUserRepository->findBy(['user' =>$id]);
+        $projects = $this->projectRepository->findBy(['user' =>$id]);
+        //This don't make sense you have to add it to USER Entity, i mean Prosfesional Repository
+        $profesional = $this->profesionalProfileRepository->findOneBy(['profesionalIdUser' =>$id]);
+        dump($profesional);
 
         return new Response(
             $this->twig->render(
                 'profile/profile.html.twig',
                 [
-                    'profile' => $profile
+                    'profile' => $profile,
+                    'projects' =>$projects,
+                    'profesional'=>$profesional
                 ]
             )
         );

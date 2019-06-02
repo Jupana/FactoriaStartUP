@@ -2,15 +2,22 @@
 
 {% block title %}Detalle Proyecto{% endblock %}
 {% block content %}
+
 <!--Contenido DetalleProyecto-->
+ {% for message in app.flashes('notice') %}
+    <div class="alert alert-success">
+        {{ message }}
+    </div>
+    {% endfor %}
     <div class="row m-t-20">
+   
         <div class="col-8">
             <p class="ver_color fs-20 p-l-5"><b>Informacion personal del promotor del proyecto</b></p>
         </div>
         <div class="col-4">
         {% if is_granted('ROLE_USER') %}
                     <a href="#" data-toggle="modal" data-target="#modalForm_MeInteresa"><p class="bgGris p-r-5 p-l-5 text-center fs-20 m-r-10  ">Me Interesa</p></a>
-                    {% include 'modals/selectPerfil.html.twig' %}            
+                    {% include 'modals/interestProject.html.twig' %}            
                 {% else %}
                     <a href="{{ path('security_login') }}"><p class="bgGris p-r-5 p-l-5 text-center fs-20 m-r-10  ">Me Interesa</p></a>   
                 {% endif %}                                             
@@ -48,7 +55,7 @@
         </div> 
         <div class="col-md-9 col-12">
             <div class="row">
-                <div class="col-md-6 col-12"><span>Nombre del Proyecto:<b>{{ project.ProjectName }}</b></span></div>
+                <div class="col-md-6 col-12 "><span>Nombre del Proyecto:<span class="project-title"><b>{{ project.ProjectName }}</b></span></span></div>
                 <div class="col-md-6 col-12"><span>Publicado el :<b>{{ project.ProjectDate|date("d/m/y")}}</b></span></div>
             </div>
             <div class="row">
@@ -134,28 +141,35 @@
             <p class=" ver_color par fs-20 p-l-5"><b>¿Que aporta el promotor del proyecto?</b></p>
         </div>
         <div class="col-md-12">
-            <span><b>El numero de miembros de este proyecto es de 1 ,y aporta los siguentes perfiles</b></span>
+            <span><b>El numero de miembros de este proyecto es de : {{project.ProjectTeamNumber}}</span>
         </div>
-    </div>    
-    <div class="row m-t-20 ">
-        <div class="col-md-2 col-3"><p class="p-t-10">Comercial/<br/>Contactos</p></div>
-        <div class="col-md-8 col-8 border"style="height:80px;"></div>
+        <div class="col-md-12">
+            <span><b>Aporta los siguentes perfiles :</b></span>
+        </div>
     </div> 
-    <div class="row m-t-20">
-        <div class="col-md-2 col-3 "><p class="p-t-10">Comercial/<br/>Contactos</p></div>
-        <div class="col-md-8 col-8 border"style="height:80px;"></div>
-    </div>  
+   
+    {% for contribute in contributeProject %}
+    <div class="row m-t-20 ">
+        <div class="col-md-3 col-4"><p class="p-t-10">{{contribute.ContributeProfile}} : </p></div>
+        <div class="col-md-7 col-6 border">{{contribute.ContributeDescription}} </div>
+    </div> 
+    {% endfor %}  
     <div class="row m-t-20"> 
         <div class="col-md-12">
             <p class=" ver_color par fs-20 p-l-5"><b>¿Que necesita y que ofrece?</b></p>
         </div>
     </div>
-    <div class="row m-t-20">
-        <div class="col-md-2 col-3"><p class="p-t-10">Comercial/<br/>Contactos<br/>40%Ventas</p></div>
-        <div class="col-md-8 col-8 border"style="height:80px;"></div>
-    </div>             
-    <div class="row m-t-20">
-        <div class="col-md-2 col-3"><p class="p-t-10">Marketing/<br/>25%<br/>Empresa</p></div>
-        <div class="col-md-8 col-8 border"style="height:80px;"></div>
-    </div>    
+   {% for needs in needsProject %}
+    <div class="row m-t-20 ">
+        <div class="col-md-3 col-4"><p class="p-t-10">{{needs.NeedsPerfil}} : </p></div>
+        <div class="col-md-7 col-6 border">
+                {% if needs.NeedsPercent != 0 %}
+                    {{needs.NeedsPercent}}
+                {% endif %}
+                    {{needs.NeedsDeal}} : {{needs.NeedsDescription}}
+        </div>
+    </div> 
+    
+    {% endfor %} 
+    <div class="row m-t-20"></div>     
 {% endblock %}

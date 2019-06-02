@@ -320,25 +320,113 @@ $(document).ready(function() {
         /*<!--FIN showhide Deal  */
 
 /* <!-- START PROJECT INTEREST */
-        $('select#interest_project_interest_profil').change(function(){
-            console.log('Se cambio');
-            console.log($(this).find("option:selected").text());
 
-            let urlDeleteNeedsProfil = Routing.generate("MatchProject");
-            let xhr = new XMLHttpRequest();
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState == 4) {
-                    console.log((xhr.response));
-                }
-            }
+function  arrMatchTxt (profil,dealArr, projectName){
+
+    var deal = dealArr.deal != null ? dealArr.deal:'';
+    var percent = dealArr.percent !=0 ? dealArr.percent+'% de la':''; //Check if Percent is 0
+    var matchText = {
+        'match':{
+            'headerText':'Quieres participar en el proyecto <b>'+projectName+'</b>,que necesita el perfil de <b>'+profil+'</b> con un acuerdo de <b>'+percent+deal+'</b> expone su propuesta:',
+            'descriptionText':'Esto es una propuesta cerrada, pero no la negociación física.<br/> Recuerda, esto establece unas bases para negociar, se coherente con lo que vas a pedir porque puede llevar a malos entendidos y pérdidas de tiempo.'
+            },
+        'noMatchProfilProject':{//Cuando el Proyecto no busca el perfil pero el user lo tiene
+            'headerText':'El proyecto no busca <b>'+profil+'</b>, ¿Quieres ofrecer tu propuesta de todos modos?',
+            'descriptionText':'Esto es una propuesta cerrada, pero no la negociación física, Recuerda, esto establece unas bases para negociar, se coherente con lo que vas a pedir porque puede llevar a malos entendidos y pérdidas de tiempo.'
+            },
+        'noMatchProjectProfil':{//Cuando el Proyecto busca el perfil y el user no lo tiene
+            'headerText':'Quieres participar en el proyecto <b>'+projectName+'</b> que necesita el perfil <b>'+profil+'</b>',
+            'descriptionText':'Esto es una propuesta cerrada, pero no la negociación física, Recuerda, esto establece unas bases para negociar, se coherente con lo que vas a pedir porque puede llevar a malos entendidos y pérdidas de tiempo.'
+        },
+        'subscribeAlready':{
+            'headerText':'Ya te has interesado por este proyecto con este mismo perfil, así que no enviaremos tu interes por este proyecto.<br/>Pero puedes intentarlo con otro perfil si lo deseas.',
+            'descriptionText':''
+        },
+        'noMatch':{ //Ni el use no tiene el perfil ni el proyecto lo necesita
+            'headerText':' Este Proyecto no busca ninguno de tus perfiles ni tampoco busca <b>'+profil+'</b>',
+            'descriptionText':'Puedes ir a datos profesoniales y dar de alta algun perfil que el proyecto demande o puedes intersarte por algun perfil que el proyecto demande'
+        }
+    }
+    return matchText;
+}
+
+function matchPerfilProject(profileSelected,arrMatch){
+
+    var match =arrMatch['matchProfile'].indexOf(profileSelected);
+        if(match != -1){
+            return 'match';   
+        }
+
+    var noMatchProjectProfil =arrMatch['needsProfileProject'].indexOf(profileSelected);
+        if(noMatchProjectProfil != -1){
+            return 'noMatchProjectProfil';   
+        }
+    
+    var noMatchProfilProject =arrMatch['needsProfileProject'].indexOf(profileSelected);
+    var userProfiles =arrMatch['usersProfiles'].indexOf(profileSelected);
+        if( (noMatchProfilProject == -1) && (userProfiles !=-1) ){
+            return 'noMatchProfilProject';   
+        }
+    
+    var noMatchProfilProject =arrMatch['needsProfileProject'].indexOf(profileSelected);
+    var userProfiles =arrMatch['usersProfiles'].indexOf(profileSelected);
+        if( (noMatchProfilProject == -1) && (userProfiles == -1) ){
+                return 'noMatch';   
+        }
+    
+}
+
+
+$('select#interest_project_interest_profil').change(function(){
+          
+            var projectTitle = $('.project-title').text();
+            var profileSelected = $(this).find("option:selected").text();
+            //console.log($(this).find("option:selected").text());
+
+
+            var userid = $('.interestdata').data('userid');
+            var projectid = $('.interestdata').data('projectid');
+           
+            let urlDeleteNeedsProfil = Routing.generate("MatchProject",{userid:userid,projectid:projectid});
+            new Promise(function (resolve, reject) {
+                let xhr = new XMLHttpRequest()
+                // third argument specifies if it's an async request or a sync
+                xhr.addEventListener('load', function () {
+                    if (this.readyState === 4) {
+                        if (this.status === 200) {
+                            resolve(JSON.parse(this.response))
+                        } else {
+                            reject(this.status)
+                        }
+                    }
+                })
+                xhr.open("POST", urlDeleteNeedsProfil)
+                xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest')
+                xhr.send(null)
+            }) // end of the promise
+                .then((data) => {
+                    console.log(data)
+                    var responseType = matchPerfilProject(profileSelected,data);
+                    var deal  = data['profileProjectDeal'][profileSelected];
+                    deal = deal != null ? deal:'';
+                    console.log('deeeal-->'+deal.deal);
+                    var matchTxt = arrMatchTxt(profileSelected,deal,projectTitle);
+                    console.log('Response Type --> '+responseType)
+                    console.log('matchTxt '+matchTxt)
+                    console.log(matchTxt[responseType]['headerText'])
+
+                    //Add the new text for the modal 
+                    
+                    $('.interest-title').append('<p class="interstAppendHeader">'+matchTxt[responseType]['headerText']+'</p>');
+                    $('textarea#interest_project_interest_description').after('<p class="interstAppendDescription">'+matchTxt[responseType]['descriptionText']+'</p>');
+
+                })
+                .catch((error) => {
+                    console.error(error)
+                    //$('.interest-title').append('<p>Ha occurido un error por favor empinza de nuevo</p>');
+                })
+
             
-
-            xhr.open('GET', urlDeleteNeedsProfil, true);
-            xhr.onload = function () {
-               // window.location.replace('/vista_usuario/add_proyecto/step_3/'+proyectId)
-            };
-            xhr.send(null);
-
         })
         $('.profile_project_interest').click(function(){
             $('select#interest-select-profile').change(function(){
@@ -348,7 +436,17 @@ $(document).ready(function() {
         $('.btnEndInterest1').click(function(){
             $('#interest-step-1').addClass('hide-e');
             $('#interest-step-2').removeClass('hide-e');
+            
         })
+
+        $('.btnEndInterest1-Atras').click(function(){
+            $('#interest-step-1').removeClass('hide-e');
+            $('#interest-step-2').addClass('hide-e');
+            $('.interstAppendHeader').remove();
+            $('.interstAppendDescription').remove();
+        })
+
+        
 
         $('select#interest_project_interest_deal').change(function() {
             var arrOption = ['% Empresa','% Ventas'];

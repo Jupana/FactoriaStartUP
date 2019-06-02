@@ -1,0 +1,38 @@
+
+1. No Match
+El proyecto no busca <Marketing> Tienes que poner el Perfil que ha selecionado</Marketing>, ¿Quieres ofrecer tu propuesta de todos modos?
+Tipo de acuerdo .....
+Escribe propuesta
+
+Esto es una propuesta cerrada, pero no la negociación física, Recuerda, esto establece unas bases para negociar, se coherente con lo que vas a pedir porque puede llevar a malos entendidos y pérdidas de tiempo.
+
+2.Te has escrito
+
+Ya te has interesado por este proyecto con este mismo perfil, así que no enviaremos tu interes por este proyecto.
+
+Pero puedes intentarlo con otro perfil si lo deseas.
+
+3.Match
+Quieres participar en el proyecto InfMonc,que necesita el perfil de Legal con un acuerdo de Ventas a 10% y expone en su propuesta:
+
+Esto es una propuesta cerrada, pero no la negociación física.<br/> Recuerda, esto establece unas bases para negociar, se coherente con lo que vas a pedir porque puede llevar a malos entendidos y pérdidas de tiempo.
+
+
+4.Elijes el perfil pero no lo tienes activado
+Quieres participar en el proyecto InfMonc que necesita el perfil Financiero
+
+Pero no tienes activo este perfil...no hay problema, hazlo ahora y se te guardará en datos profesionales.
+
+Perfil ->
+Sector ->
+Description->
+
+Esto es una propuesta cerrada, pero no la negociación física, Recuerda, esto establece unas bases para negociar, se coherente con lo que vas a pedir porque puede llevar a malos entendidos y pérdidas de tiempo.
+
+5.Ni tu tienes el perfil ni el proyecto lo necesita
+
+
+Este Proyecto no busca ninguno de tus perfiles ni tampoco busca Financiacion
+
+Puedes ir a datos profesoniales y dar de alta algun perfil que el proyecto demande o puedes intersarte por algun perfil que el proyecto demande
+

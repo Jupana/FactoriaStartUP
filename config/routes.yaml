@@ -140,9 +140,8 @@ interestSelectPerfil:
         expose: true
 
 MatchProject:
-    path: /match/
+    path: /match/{userid}/{projectid}
     controller: App\Controller\MatchProjectController::getMatch
-    methods:  [GET,POST]
     options:
         expose: true
 

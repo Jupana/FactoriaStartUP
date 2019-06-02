@@ -10,9 +10,9 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 class MatchProjectController extends Controller
 {
     
-    public function getMatch(GetMatchProjects $getMatchProjects){
+    public function getMatch(GetMatchProjects $getMatchProjects,$userid,$projectid){
 
-        return new JsonResponse($getMatchProjects->getMatch(1,9));
+        return new JsonResponse($getMatchProjects->getMatch($userid,$projectid));
     }
     
 }

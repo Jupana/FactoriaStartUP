@@ -15,19 +15,24 @@
         <div class="col-md-7 col-12 p-l-40">
             <div class="row">
                 <div class="col-md-4 col-4 border ">
-                    <div> <img  class="card-img-top" src ="{{ asset('build/img/uploads/users_perfil/' ~ profile.user.getPerfilImg) }}" alt="image"/></div>
+                    <div> <img  class="card-img-top" src ="{{ asset('build/img/uploads/users_perfil/' ~ profile.0.user.getPerfilImg) }}" alt="image"/></div>
                 </div> 
                 <div class="col-md-8 col-8">
-                    <span>Usuario :<b>{{profile.user.Username}}</b></span><br/>
-                    <span>Nombre:<b>{{profile.user.name}}</b></span><br/>
+                    <span>Usuario :<b>{{profile.0.user.Username}}</b></span><br/>
+                    <span>Nombre:<b>{{profile.0.user.name}}</b></span><br/>
                     <span>Proximidad: 4,5km</span><br/>
-                    <span>Email:<b>{{profile.user.email}}</b></span><br/>
-                    <span>Telefono:<b>{{profile.user.phoneNumber}}</b></span><br/>
+                    <span>Email:<b>{{profile.0.user.email}}</b></span><br/>
+                    <span>Telefono:<b>{{profile.0.user.phoneNumber}}</b></span><br/>
                 </div> 
             </div>
         </div>
         <div class="col-md-5 col-12 p-l-40 ">
-            <span>Tiene proyecto: SI bURYTUTI</span>
+            <span>Tiene proyectos:</span>
+            {% for project in projects %}
+                    <p><b>{{project.ProjectName}}</b></p>
+            {% endfor %}
+            
+            <hr/>
             <p>Tu has contactado con el :<a href="#"class="ver_color">Si</a></p>
             <p>El ha contactado contigo:<b>No</b></p>
         </div>
@@ -43,7 +48,11 @@
         </div>
         <div class="col-md-12 ">
             <div  class="border m-r-20"style="height:80px;" >
-                <b>{{profile.description}}</b>
+            {% if profesional.profesionalDescription is defined %}
+                <b>{{profesional.profesionalDescription}}</b>
+            {% else %}
+                <p> El usuario no se ha definido</p> 
+            {% endif %}   
             </div>
         </div>
     </div> 
@@ -54,9 +63,14 @@
     </div> 
      
     <div class="row m-t-20 m-r-10">      
-        <div class="col-md-12 col-8 border"style="height:80px;">
-            <p>Sector:<b>{{ profile.Sector}}</b></strong></p>
-            <p>Perfil:<b>{{ profile.Profil}}</b></strong></p>        
+        <div class="col-md-12 col-8 border" >
+
+            {% for profil in profile %}            
+            <p>Sector:<b>{{ profil.Profil}}</b></strong></p>
+            <p>Perfil:<b>{{ profil.Sector}}</b></strong></p> 
+             <p>Detalle:<b>{{ profil.Description}}</b></strong></p>        
+            <hr/>
+            {% endfor %}
         </div>
     </div> 
     
