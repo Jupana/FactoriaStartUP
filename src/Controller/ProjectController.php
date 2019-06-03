@@ -20,7 +20,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Repository\UserRepository;
 use App\Services\GetProyects;
-use App\Services\GetMatchProjects;
 
 
 class ProjectController extends AbstractController
@@ -134,18 +133,18 @@ class ProjectController extends AbstractController
             )
         );
     }
-    public function project( Request $request, $id,GetMatchProjects  $getMatch)
+    public function project( Request $request, $id)
     {
         $project = $this->projectRepository->find($id);
         $contributeProject = $this->contributeRepository->findBy(['contribute_project'=>$id]);
-        $needProject = $this->needsProjectRepository->findBy(['needs_project'=>$id]);;
-        
+        $needProject = $this->needsProjectRepository->findBy(['needs_project'=>$id]);       
+
         if($this->getuser()){
             $interestProyect = new InterestProject;
             $interestProyect->setInterestDate(new \DateTime());
             $interestProyect->setInterestIdUser($this->getUser()->getID());
             $interestProyect->setInterestProjectOwnerID($project->getUser()->getId());
-            $interestProyect->setInterestIdProject($id);
+            $interestProyect->setInterestIdProject($id);            
             $interestProyect->setInterestStatusContribute(true);
             $interestProyect->setInterestStatusOwner(false);
             
@@ -159,7 +158,6 @@ class ProjectController extends AbstractController
                 $this->flashBag->add('notice', 'Mensaje Enviado');
             }
 
-            $projects = $getMatch->getMatch($this->getUser()->getId(),$id);
     
             return new Response(
                 $this->twig->render(

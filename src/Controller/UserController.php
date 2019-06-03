@@ -6,6 +6,8 @@ use App\Entity\Project;
 use App\Form\UserPersonalInfoType;
 use App\Form\ProfesionalProfileType;
 use App\Form\ProjectNameType;
+use App\Repository\InterestProfileRepository;
+use App\Repository\InterestProjectRepository;
 use App\Repository\ProfileUserRepository;
 use App\Repository\ProfilRepository;
 use App\Repository\SectorRepository;
@@ -70,6 +72,18 @@ class UserController extends AbstractController
     */
     private $flashBag;
 
+    /**
+    * @var InterestProfileRepository
+    */
+    private $interestProfileRepository;
+
+    /**
+    * @var InterestProjectRepository
+    */
+    private $interestProjectRepository;
+
+
+
 
     public function __construct(
         \Twig_Environment $twig, 
@@ -83,7 +97,10 @@ class UserController extends AbstractController
         ContributeRepository $contributeRepository,
         FormFactoryInterface $formFactory,
         EntityManagerInterface $entityManager,
-        FlashBagInterface $flashBag
+        FlashBagInterface $flashBag,
+        InterestProfileRepository $interestProfileRepository,
+        InterestProjectRepository $interestProjectRepository
+
         ) {
         $this->twig = $twig;
         $this->userRepository = $userRepository;
@@ -97,6 +114,8 @@ class UserController extends AbstractController
         $this->flashBag = $flashBag;
         $this->needsProjectRepository = $needsProjectRepository;
         $this->contributeRepository = $contributeRepository;
+        $this->interestProfileRepository = $interestProfileRepository;
+        $this->interestProjectRepository = $interestProjectRepository;
     }
    
     public function index_vista()
@@ -240,11 +259,21 @@ class UserController extends AbstractController
             );
     }
     
+    
     public function datos_propuestas(Request $request): Response
     {
-        $em = $this->getDoctrine()->getManager();
-        return $this->render('user_views/datos_Propuestas.html.twig');
+        $searchprofile = $this->interestProfileRepository->findBy(['user'=>$this->getUser()->getId()]);
+       // $this->interestProjectRepository = $interestProjectRepository;
+        dump($searchprofile);
+
+        return $this->render('user_views/datosPropuestas.html.twig',
+            [
+                'searchprofile'=>$searchprofile
+            ]
+        );
     }
+
+
     public function datos_cuenta(Request $request): Response
     {
         $em = $this->getDoctrine()->getManager();

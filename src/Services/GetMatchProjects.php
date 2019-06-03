@@ -6,22 +6,17 @@ use App\Repository\ProfilRepository;
 use App\Repository\ProjectRepository;
 use App\Repository\ProfileUserRepository;
 use App\Repository\NeedsProjectRepository;
-use Symfony\Component\Serializer\Serializer;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\Serializer\Encoder\JsonEncoder;
-use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+
 
 class GetMatchProjects{
 
     private $projectRepository;
     private $profileUserRepository;
-    private $profilRepository;
     private $needsProjectRepository;
 
 
     public function __construct(ProjectRepository $projectRepository, 
             ProfileUserRepository $profileUserRepository,
-            ProfilRepository $profilRepository,
             NeedsProjectRepository $needsProjectRepository
             )
     {

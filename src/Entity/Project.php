@@ -114,6 +114,7 @@ class Project
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $project_date;
+  
 
     
 
@@ -361,6 +362,6 @@ class Project
         $this->phase_productoFinal = $phase_productoFinal;
 
         return $this;
-    }
+    }    
 
 }

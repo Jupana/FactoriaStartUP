@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -177,11 +178,20 @@ class User implements UserInterface,\Serializable
      */
     private $profiles;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\InterestProfile", mappedBy="user_id", orphanRemoval=true)
+     */
+    private $interest_profile_id;
+
+    
+
 
     public function __construct()
     {
         $this->projects = new ArrayCollection();
         $this->profiles = new ArrayCollection();
+        $this->profile_id = new ArrayCollection();
+        $this->interest_profile_id = new ArrayCollection();
     }
 
 
@@ -542,4 +552,34 @@ class User implements UserInterface,\Serializable
         return $this->projects;
     }
 
+    /**
+     * @return Collection|InterestProfile[]
+     */
+    public function getInterestProfileId(): Collection
+    {
+        return $this->interest_profile_id;
+    }
+
+    public function addInterestProfileId(InterestProfile $interestProfileId): self
+    {
+        if (!$this->interest_profile_id->contains($interestProfileId)) {
+            $this->interest_profile_id[] = $interestProfileId;
+            $interestProfileId->setUserId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeInterestProfileId(InterestProfile $interestProfileId): self
+    {
+        if ($this->interest_profile_id->contains($interestProfileId)) {
+            $this->interest_profile_id->removeElement($interestProfileId);
+            // set the owning side to null (unless already changed)
+            if ($interestProfileId->getUserId() === $this) {
+                $interestProfileId->setUserId(null);
+            }
+        }
+
+        return $this;
+    }
 }

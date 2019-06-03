@@ -1,5 +1,5 @@
   <!--Ventana Pop-Up -->  
-    <div class="modal fade par" id="modalForm_MeInteresa" role="dialog">
+    <div class="modal fade par" id="modalForm_interestProfile" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
                 <!-- Modal Header -->
@@ -11,35 +11,33 @@
                 </div>
                  <!-- Modal Body -->
                 <div class="modal-body">
-                    {{ form_start   (formInterstProject) }}
+                    {{ form_start   (formInterestProfile) }}
                         <!-- Step 1 -->
                     <div id="interest-step-1">
-                        <div class="col-md-12 text-center m-t-10  modal-title interestdata" data-userid='{{app.user.id}}' data-projectid='{{project.id}}'>
+                        <div class="col-md-12 text-center m-t-10  modal-title interestdata " data-usrperfilid={{app.user.id}}>
                      
                             <h4 class="par" id="myModalLabel">Con que perfil quieres interesarte</h4>  
                         </div>
-                            {{ form_row (formInterstProject.interest_profil,{'attr' : { 'id': 'profile_user' }} )}}
-                            <span class="btn-primary btn float-r profile_project_interest btnEndInterest1">Siguiente</span>
+                            {{ form_row (formInterestProfile.interest_project,{'attr' : { 'class': 'projects_user' }} )}}
+                            {{ form_row (formInterestProfile.interest_profile,{'attr' : { 'class': 'profile_user' }}) }}
+                            <span class="btn-primary btn float-r profile_interest_1 btnEndInterest1 " >Siguiente</span>
                     </div>  
                     <!-- Fin Step 1 -->
                     <!-- Step 2 -->
                     <div id="interest-step-2" class="hide-e">
-                        <div class="col-md-12 text-center m-t-10  modal-title interest-title">
+                        <div class="col-md-12 text-center m-t-10  modal-title interest-profile-title">
                             <h4 class="par" id="myModalLabel">Participa en el proyecto</h4> 
                              
-                        </div>
-                            {{ form_row (formInterstProject.interest_sector) }}
-                            {{form_row (formInterstProject.interest_deal) }}
-                            {{ form_row (formInterstProject.interest_percent,{'attr' : { 'class': 'needs_project_needs_percent hide-e' }}) }}                            
-                            {{ form_row (formInterstProject.interest_description) }}
-                            {{ form_row (formInterstProject.interest_percent) }}
+                        </div>                                                      
+                            {{ form_row (formInterestProfile.interest_description) }}
+                            {{ form_row (formInterestProfile.submit) }}
                             <input type="submit" id="submit-form-add" class="btn-primary float-r" style="display:none"/>    
-                            <span class="btn-primary btn float-l profile_project_interest btnEndInterest1-Atras">Atras</span> 
+                            <span class="btn-primary btn float-l profile_interest_2 btnEndInterest1-Atras">Atras</span> 
                                                                      
                     </div>
                     
                     <!-- Fin Step 2 --> 
-                    {{ form_end     (formInterstProject) }}  
+                    {{ form_end     (formInterestProfile) }}  
                 </div>
                 <!-- Modal Footer -->
                 <div class="modal-footer">

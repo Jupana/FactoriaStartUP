@@ -3,12 +3,22 @@
 {% block title %}Detalle Usuario{% endblock %}
 {% block content %}
 <!--Contenido DetalleUsuario-->
+ {% for message in app.flashes('notice') %}
+    <div class="alert alert-success">
+        {{ message }}
+    </div>
+    {% endfor %}
     <div class="row m-t-20">
         <div class="col-md-9 col-8">
             <p class="ver_color fs-20 p-l-5"><b>Informacion Perfil</b></p>
         </div>
         <div class="col-md-3 col-4">
-            <a href="#" data-toggle="modal" data-target="#modalForm_MeInteresa"><p class="bgGris  p-r-5 p-l-5 text-center fs-20 m-r-10  ">Me Interesa</p></a>                                   
+             {% if is_granted('ROLE_USER') %}
+                    <a href="#" data-toggle="modal" data-target="#modalForm_interestProfile"><p class="bgGris p-r-5 p-l-5 text-center fs-20 m-r-10  ">Me Interesa</p></a>
+                    {% include 'modals/interestProfile.html.twig' %}            
+                {% else %}
+                    <a href="{{ path('security_login') }}"><p class="bgGris p-r-5 p-l-5 text-center fs-20 m-r-10  ">Me Interesa</p></a>   
+        {% endif %}                                    
         </div>
     </div>
     <div class="row  m-t-20">    

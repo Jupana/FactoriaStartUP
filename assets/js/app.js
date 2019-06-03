@@ -350,7 +350,7 @@ function  arrMatchTxt (profil,dealArr, projectName){
     return matchText;
 }
 
-function matchPerfilProject(profileSelected,arrMatch){
+function matchProjectProfile(profileSelected,arrMatch){
 
     var match =arrMatch['matchProfile'].indexOf(profileSelected);
         if(match != -1){
@@ -375,7 +375,6 @@ function matchPerfilProject(profileSelected,arrMatch){
         }
     
 }
-
 
 $('select#interest_project_interest_profil').change(function(){
           
@@ -406,7 +405,7 @@ $('select#interest_project_interest_profil').change(function(){
             }) // end of the promise
                 .then((data) => {
                     console.log(data)
-                    var responseType = matchPerfilProject(profileSelected,data);
+                    var responseType = matchProjectProfile(profileSelected,data);
                     var deal  = data['profileProjectDeal'][profileSelected];
                     deal = deal != null ? deal:'';
                     console.log('deeeal-->'+deal.deal);
@@ -425,14 +424,8 @@ $('select#interest_project_interest_profil').change(function(){
                     console.error(error)
                     //$('.interest-title').append('<p>Ha occurido un error por favor empinza de nuevo</p>');
                 })
-
-            
         })
-        $('.profile_project_interest').click(function(){
-            $('select#interest-select-profile').change(function(){
-                console.log($(this).val());                
-            })
-        })
+        
         $('.btnEndInterest1').click(function(){
             $('#interest-step-1').addClass('hide-e');
             $('#interest-step-2').removeClass('hide-e');
@@ -446,16 +439,12 @@ $('select#interest_project_interest_profil').change(function(){
             $('.interstAppendDescription').remove();
         })
 
-        
-
         $('select#interest_project_interest_deal').change(function() {
             var arrOption = ['% Empresa','% Ventas'];
             var showPercent =arrOption.indexOf($(this).val());
             if(showPercent != -1){
-
                 $('.needs_project_needs_percent').removeClass('hide-e');
             }else{
-
                 $('.needs_project_needs_percent').addClass('hide-e');
             }
             
@@ -463,6 +452,93 @@ $('select#interest_project_interest_profil').change(function(){
 
 
 /* Fin PROJECT INTEREST --> */
+
+
+/* <!-- START PROFILE INTEREST */
+
+function  arrProfileMatchTxt (profil){
+    
+    var matchText = {
+        'match':{
+            'headerText':'Quieres contactar a este usuario para su futura tarea en <b>'+profil+'</b>',
+            'descriptionText':'Esto es una propuesta cerrada, pero no la negociación física, Recuerda, esto establece unas bases para negociar, se coherente con lo que vas a pedir porque puede llevar a malos entendidos y pérdidas de tiempo.'
+            },
+        'noMatchProfilProject':{//Cuando el Proyecto no busca el perfil pero el user lo tiene
+            'headerText':'Tu proyecto no busca <b>'+profil+'</b>, ¿Quieres ofrecer tu propuesta de todos modos?',
+            'descriptionText':'Esto es una propuesta cerrada, pero no la negociación física, Recuerda, esto establece unas bases para negociar, se coherente con lo que vas a pedir porque puede llevar a malos entendidos y pérdidas de tiempo.'
+            },
+    }
+    return matchText;
+}
+
+
+function matchProfileProject(profileSelected,arrMatch){
+   
+    var match =arrMatch['needsProfileProject'].indexOf(profileSelected);
+        if( match != -1){
+                return 'match';   
+        }
+
+    var noMatchProfilProject =arrMatch['needsProfileProject'].indexOf(profileSelected);
+        if( noMatchProfilProject == -1){
+            return 'noMatchProfilProject';   
+        }
+}
+
+
+$('.profile_interest_1').click(function() {
+    var projectSelected = $('#interest_profile_interest_project_id option:selected').text();
+    var profileSelected = $('#interest_profile_interest_profile_id option:selected').text();
+
+    var projectSelectedId = $('#interest_profile_interest_project_id option:selected').val();
+    var userId =$('.interestdata').data('usrperfilid');
+    
+    console.log('Project', projectSelected);
+    console.log('Profile', profileSelected);
+    console.log('projectSelectedVal',projectSelectedId);
+    console.log('userId',userId);
+
+            let urlDeleteNeedsProfil = Routing.generate("MatchProject",{userid:userId,projectid:projectSelectedId});
+            new Promise(function (resolve, reject) {
+                let xhr = new XMLHttpRequest()
+                // third argument specifies if it's an async request or a sync
+                xhr.addEventListener('load', function () {
+                    if (this.readyState === 4) {
+                        if (this.status === 200) {
+                            resolve(JSON.parse(this.response))
+                        } else {
+                            reject(this.status)
+                        }
+                    }
+                })
+                xhr.open("POST", urlDeleteNeedsProfil)
+                xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest')
+                xhr.send(null)
+            }) // end of the promise
+                .then((data) => {
+                    console.log(data)
+                    var responseType = matchProfileProject(profileSelected,data);                  
+                    var matchTxtProfile = arrProfileMatchTxt(profileSelected);
+                    console.log('Response Type --> '+responseType)
+                    console.log('matchTxt '+matchTxtProfile)
+                    console.log(matchTxtProfile[responseType]['headerText'])
+
+                    //Add the new text for the modal 
+                    
+                    $('.interest-profile-title').append('<p class="interstAppendHeader">'+matchTxtProfile[responseType]['headerText']+'</p>');
+                    $('textarea#interest_profile_interest_description').after('<p class="interstAppendDescription">'+matchTxtProfile[responseType]['descriptionText']+'</p>');
+
+                })
+                .catch((error) => {
+                    console.error(error)
+                    //$('.interest-title').append('<p>Ha occurido un error por favor empinza de nuevo</p>');
+                })
+
+    
+    
+})
+
+/* FIN PROFILE INTEREST --> */
 
 
 /* FIN Modal Form Script -->*/
