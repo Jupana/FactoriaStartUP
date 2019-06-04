@@ -41,32 +41,39 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                searchprofile
+                                {% set i = 0 %}
+                                {% for searchprofile in searchprofiles %}
                                     <tr >
                                         <td>
-                                            <p>FEHCA</p>
+                                            <p>{{searchprofile.InterestDate|date('d/m/Y') }}</p>
                                         </td>
                                         <td>
-                                            <a  class="ver_color " href="#"><p>USER</p></a>                                            
+                                            <a  class="ver_color " href="/profiles/{{usersSearchData[i].user.id}}"><p>@{{usersSearchData[i].user.userName}}</p></a>                                            
                                         </td>
                                         <td>
-                                            <p>Perfil</p>                                          
+                                            <p>{{usersSearchData[i].userProfile.profileName}}</p>                                          
                                         </td>
                                         <td>
-                                            <a  class="ver_color " href="#"><p>Proyecto</p></a>                                                                                  
+                                            <a class="ver_color " href="#"><p>{{usersSearchData[i].proyect.proyectName}}</p></a>                                                                                  
                                         </td>
                                         <td>
-                                            <p>Por definir</p>
+                                            <p>{{searchprofile.InterestDescription}}</p>
                                         </td>
-                                        <td>                        
-                                             <p>0</p>
+                                        <td>  
+                                            {% if searchprofile.InterestStatus == 0 %}                      
+                                             <p>Pendiente</p>
+                                             {% else %}
+                                             <p>Reunido</p>
+                                             {% endif %}
                                         </td>                                
                                     </tr>
+                                     {% set i = i + 1 %}
+                                 {% endfor %}   
                                 </tbody>     
                             </table> 
                         </div>
                         <div class="col-md-12 m-l-10 ">
-                            <p  class="par1"><b>Proyectos en los que “yo quiero participar.</b></p>           
+                            <p  class="par1"><b>Proyectos en los que “yo quiero participar".</b></p>           
                         </div>
                         <div class="col-md-12 table-responsive">
                             <table class="table   ">
@@ -80,26 +87,33 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                {% set n = 0 %}
+                                {% for searchProject in searchProjects %}
                                     <tr class="">
                                         <td>
-                                            <p>28/03/2016</p><p>28/03/2016</p><p>28/03/2016</p>
+                                            <p>{{searchProject.InterestDate|date('d/m/Y')}}
                                         </td>
                                          <td>
-                                            <a  class="ver_color " href="#"><p>Tirotiro</p></a>
-                                            <a  class="ver_color " href="#"><p>Tirotiro</p></a> 
-                                            <a  class="ver_color " href="#"><p>Tirotiro</p></a>                                       
+                                            <a  class="ver_color " href="/proyectos/{{usersSearchProjectData[n].proyect.id}}"><p>{{usersSearchProjectData[n].proyect.proyectName}}</p></a>                                                                                  
                                         </td>
                                         <td>
-                                            <p>Programador</p> <p>Programador</p><p>Programador</p>                                          
+                                            <p>{{searchProject.InterestProfil}}</p>                                          
                                         </td>
                                        
                                         <td>
-                                            <p>socio:30%</p> <p>socio:30%</p> <p>socio:30%</p>                                        
+                                            <p>{% if searchProject.InterestPercent != 0 %} {{searchProject.InterestPercent}}{% endif %}{{searchProject.InterestDeal}}</p>
+                                                                                   
                                         </td>
                                         <td>                        
-                                             <p>Reunido</p> <p>Reunido</p> <p>Reunido</p>      
+                                             {% if searchProject.InterestStatusOwner == 0 %}                      
+                                                 <p>Pendiente</p>
+                                             {% else %}
+                                                <p>Reunido</p>
+                                             {% endif %}      
                                         </td>                                
                                     </tr>
+                                    {% set n = n + 1 %}
+                                {% endfor %}
                                 </tbody>     
                             </table> 
                         </div>
@@ -123,23 +137,42 @@
                                     <tr>
                                         <th>Fecha</th>
                                         <th>Usuario</th>
-                                        <th>Estado</th>
+                                        <th>Proyecto</th>
+                                        <th>Perfil</th>                                     
+                                        <th>Negociacion</th>
+                                         <th>Estado</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="">
-                                        <td>
-                                            <p>28/03/2016</p><p>28/03/2016</p><p>28/03/2016</p>
-                                        </td>
-                                        <td>
-                                            <a  class="ver_color " href="#"><p>Lolo</p></a>
-                                            <a  class="ver_color " href="#"><p>Lolo</p></a>  
-                                            <a  class="ver_color " href="#"><p>Lolo</p></a>                                        
-                                        </td>
-                                         <td>
-                                            <p>Reunido</p> <p>Reunido</p><p>Reunido</p>                                      
-                                        </td>                                
-                                    </tr>
+                                 {% set k = 0 %}
+
+                                    {% for searchProjectToColaborate in searchProjectsToColaborate %}
+                                        <tr class="">
+                                            <td>
+                                                <p>{{searchProjectToColaborate.InterestDate | date('d/m/Y')}}</p>
+                                            </td>
+                                            <td>
+                                                <a  class="ver_color " href="/profiles/{{userProjectsToColaborate[k].userData.id}}"><p>@{{userProjectsToColaborate[k].userData.userName}}</p></a>                                            
+                                            </td>
+                                            <td>
+                                                <a  class="ver_color " href="/proyectos/{{userProjectsToColaborate[k].proyect.id}}"><p>{{userProjectsToColaborate[k].proyect.proyectName}}</p></a>
+                                            </td> 
+                                            <td>
+                                                <p>{{searchProjectToColaborate.InterestProfil}}</p>
+                                            </td>
+                                            <td>
+                                                 <p>{% if searchProjectToColaborate.InterestPercent != 0 %} {{searchProjectToColaborate.InterestPercent}}{% endif %}{{searchProjectToColaborate.InterestDeal}}</p>
+                                            </td> 
+                                            <td>
+                                                    {% if searchProjectToColaborate.InterestStatusOwner == 0 %}                      
+                                                    <p>Pendiente</p>
+                                                    {% else %}
+                                                        <p>Reunido</p>
+                                                    {% endif %} 
+                                            </td>                                  
+                                        </tr>
+                                        {% set k = k + 1 %}
+                                    {% endfor %}
                                 </tbody>     
                             </table> 
                         </div>
@@ -149,32 +182,43 @@
                             <p  class="par1"><b>Proyectos que Quieren que participe</b></p>           
                         </div>
                         <div class="col-md-12 table-responsive">
-                            <table class="table  ">
+                            <table class="table   ">
                                 <thead class="bgGris">
                                     <tr>
                                         <th>Fecha</th>
-                                        <th>Proyecto</th>                                    
+                                        <th>Proyecto</th>
+                                        <th>Perfil</th>                                     
                                         <th>Negociacion</th>
                                         <th>Estado</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                {% set x = 0 %}
+                                {% for searchProfilePartner in searchProfilesPartner %}
                                     <tr class="">
                                         <td>
-                                            <p>28/03/2016</p><p>28/03/2016</p><p>28/03/2016</p>
+                                            <p>{{searchProfilePartner.InterestDate|date('d/m/Y')}}
                                         </td>
                                          <td>
-                                            <a  class="ver_color " href="#"><p>Tirotiro</p></a>
-                                            <a  class="ver_color " href="#"><p>Tirotiro</p></a> 
-                                            <a  class="ver_color " href="#"><p>Tirotiro</p></a>                                       
+                                            <a  class="ver_color " href="/proyectos/{{usersProfileForPartner[x].proyect.id}}"><p>{{usersProfileForPartner[x].proyect.proyectName}}</p></a>                                                                                  
                                         </td>
                                         <td>
-                                            <p>socio:30%</p> <p>socio:30%</p> <p>socio:30%</p>                                        
+                                            <p>{{usersProfileForPartner[x].userProfile.profileName}}</p>                                      
+                                        </td>
+                                       
+                                        <td>
+                                            <p>{{searchProfilePartner.InterestDescription}}</p>                                                                                   
                                         </td>
                                         <td>                        
-                                             <p>Reunido</p> <p>Reunido</p> <p>Reunido</p>      
+                                             {% if searchProfilePartner.InterestStatus == 0 %}                      
+                                                 <p>Pendiente</p>
+                                             {% else %}
+                                                <p>Reunido</p>
+                                             {% endif %}      
                                         </td>                                
                                     </tr>
+                                    {% set x = x + 1 %}
+                                {% endfor %}
                                 </tbody>     
                             </table> 
                         </div>

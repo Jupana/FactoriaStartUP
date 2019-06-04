@@ -108,7 +108,7 @@ class UserController extends AbstractController
         $this->sectorRepository = $sectorRepository;
         $this->profilRepository = $profilRepository;
         $this->profesionalProfilRespository = $profesionalProfilRespository;
-        $this->projectsUserRepository = $projectsUserRepository;
+        $this->projectsUserRepository = $projectsUserRepository;        
         $this->formFactory = $formFactory;
         $this->entityManager = $entityManager;
         $this->flashBag = $flashBag;
@@ -262,13 +262,91 @@ class UserController extends AbstractController
     
     public function datos_propuestas(Request $request): Response
     {
-        $searchprofile = $this->interestProfileRepository->findBy(['user'=>$this->getUser()->getId()]);
-       // $this->interestProjectRepository = $interestProjectRepository;
-        dump($searchprofile);
+        
+        $searchprofiles = $this->interestProfileRepository->findBy(['user'=>$this->getUser()->getId()]);
+        $searchProfilesPartner = $this->interestProfileRepository->findBy(['user_profile_owner'=>$this->getUser()->getId()]);
+        
+        $searchProjects = $this->interestProjectRepository->findBy(['interest_id_user'=>$this->getUser()->getId()]);
+        $searchProjectsToColaborate = $this->interestProjectRepository->findBy(['interest_project_owner_id'=>$this->getUser()->getId()]);
+              
+        $usersSearchData=[];
+        $i=0;
+        foreach($searchprofiles as $searchprofile){
+            $userSearch =  $this->userRepository->findBy(['id'=>$searchprofile->getUserProfileOwner()]);
+            $usersSearchData[$i]['user']['id'] =$userSearch[0]->getId();
+            $usersSearchData[$i]['user']['userName']=$userSearch[0]->getUsername();
 
+            $userSearchProfil =$this->profilRepository->find($searchprofile->getInterestProfile());
+
+            $usersSearchData[$i]['userProfile']['id'] =$userSearchProfil->getId();
+            $usersSearchData[$i]['userProfile']['profileName']=$userSearchProfil->getName();
+        
+            $userSearchProject =$this->projectsUserRepository->find($searchprofile->getInterestProject());
+
+            $usersSearchData[$i]['proyect']['id'] =$userSearchProject->getId();
+            $usersSearchData[$i]['proyect']['proyectName']=$userSearchProject->getProjectName();
+            
+            $i++;       
+        }
+
+        $usersSearchProjectData=[];
+        $n=0;
+        foreach($searchProjects as $serachProject){
+            $wantSearchProject =  $this->projectsUserRepository->find($serachProject->getInterestIdProject());
+            
+            $usersSearchProjectData[$n]['proyect']['id'] =$wantSearchProject->getId();
+            $usersSearchProjectData[$n]['proyect']['proyectName']=$wantSearchProject->getProjectName();
+            
+            $n++;       
+        }
+
+
+        $userProjectsToColaborate =[];
+        $k=0;
+        foreach($searchProjectsToColaborate as $searchProjectToColaborate){
+            $userSearch = $this->userRepository->find($searchProjectToColaborate->getInterestIdUser());
+            $userProjectsToColaborate[$k]['userData']['id'] = $userSearch->getId();
+            $userProjectsToColaborate[$k]['userData']['userName'] = $userSearch->getUsername();
+            
+            $userSearchProjectToColaborate =$this->projectsUserRepository->find($searchProjectToColaborate->getInterestIdProject());
+            $userProjectsToColaborate[$k]['proyect']['id'] =$userSearchProjectToColaborate->getId();
+            $userProjectsToColaborate[$k]['proyect']['proyectName']=$userSearchProjectToColaborate->getProjectName();
+            
+            $k++;
+        }
+
+
+        $usersProfileForPartner=[];
+        $x=0;
+        foreach($searchProfilesPartner as $searchprofile){
+            $userSearch =  $this->userRepository->findBy(['id'=>$searchprofile->getUserProfileOwner()]);
+            $usersProfileForPartner[$x]['user']['id'] =$userSearch[0]->getId();
+            $usersProfileForPartner[$x]['user']['userName']=$userSearch[0]->getUsername();
+
+            $userSearchProfil =$this->profilRepository->find($searchprofile->getInterestProfile());
+
+            $usersProfileForPartner[$x]['userProfile']['id'] =$userSearchProfil->getId();
+            $usersProfileForPartner[$x]['userProfile']['profileName']=$userSearchProfil->getName();
+        
+            $userSearchProject =$this->projectsUserRepository->find($searchprofile->getInterestProject());
+
+            $usersProfileForPartner[$x]['proyect']['id'] =$userSearchProject->getId();
+            $usersProfileForPartner[$x]['proyect']['proyectName']=$userSearchProject->getProjectName();
+            
+            $x++;       
+        }
+      
         return $this->render('user_views/datosPropuestas.html.twig',
             [
-                'searchprofile'=>$searchprofile
+                'searchprofiles'=>$searchprofiles,
+                'usersSearchData' =>$usersSearchData,                
+                'searchProjects'=>$searchProjects,
+                'usersSearchProjectData'=>$usersSearchProjectData,
+                'searchProjectsToColaborate'=>$searchProjectsToColaborate,
+                'userProjectsToColaborate'=>$userProjectsToColaborate,
+                'searchProfilesPartner'=>$searchProfilesPartner,
+                'usersProfileForPartner'=>$usersProfileForPartner
+
             ]
         );
     }

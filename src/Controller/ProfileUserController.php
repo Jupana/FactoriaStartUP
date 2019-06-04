@@ -124,7 +124,8 @@ class ProfileUserController extends AbstractController
 
             $interestProfile->setUser($this->getUser());
             $interestProfile->setUserProfileOwner($id);
-            $interestProfile->setInterestDate(new \DateTime());           
+            $interestProfile->setInterestDate(new \DateTime()); 
+            $interestProfile->setInterestStatus(false);          
            
             
             $formAddInterestProfile = $this->formFactory->create(InterestProfileType::class, $interestProfile,['userId'=> $this->getuser()->getId(),'profileUserId'=>$id]);

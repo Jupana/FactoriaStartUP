@@ -327,7 +327,8 @@ function  arrMatchTxt (profil,dealArr, projectName){
     var percent = dealArr.percent !=0 ? dealArr.percent+'% de la':''; //Check if Percent is 0
     var matchText = {
         'match':{
-            'headerText':'Quieres participar en el proyecto <b>'+projectName+'</b>,que necesita el perfil de <b>'+profil+'</b> con un acuerdo de <b>'+percent+deal+'</b> expone su propuesta:',
+            //'headerText':'Quieres participar en el proyecto <b>'+projectName+'</b>,que necesita el perfil de <b>'+profil+'</b> con un acuerdo de <b>'+percent+deal+'</b> expone su propuesta:',
+            'headerText':'Quieres participar en el proyecto <b>'+projectName+'</b>,que necesita el perfil de <b>'+profil+'</b>',
             'descriptionText':'Esto es una propuesta cerrada, pero no la negociación física.<br/> Recuerda, esto establece unas bases para negociar, se coherente con lo que vas a pedir porque puede llevar a malos entendidos y pérdidas de tiempo.'
             },
         'noMatchProfilProject':{//Cuando el Proyecto no busca el perfil pero el user lo tiene
