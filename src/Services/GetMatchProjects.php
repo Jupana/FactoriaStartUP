@@ -32,10 +32,12 @@ class GetMatchProjects{
 
         $arrNeedsProfileProject =[];
         $arrNeedsProfileProjectDeal=[];
+        dump($needsProject);
         foreach( $needsProject as $profileNeeds){            
             array_push($arrNeedsProfileProject,$profileNeeds->getNeedsPerfil());
             $arrNeedsProfileProjectDeal[$profileNeeds->getNeedsPerfil()]['deal'] = $profileNeeds->getNeedsDeal();
             $arrNeedsProfileProjectDeal[$profileNeeds->getNeedsPerfil()]['percent']= $profileNeeds->getNeedsPercent();
+            $arrNeedsProfileProjectDeal[$profileNeeds->getNeedsPerfil()]['description']= $profileNeeds->getNeedsDescription();
         }        
        
         $arrUserProfile =[];

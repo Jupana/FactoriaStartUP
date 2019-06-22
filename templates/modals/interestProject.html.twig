@@ -28,23 +28,24 @@
                             <h4 class="par" id="myModalLabel">Participa en el proyecto</h4> 
                              
                         </div>
-                            {{ form_row (formInterstProject.interest_sector) }}
-                            {{form_row (formInterstProject.interest_deal) }}
-                            {{ form_row (formInterstProject.interest_percent,{'attr' : { 'class': 'needs_project_needs_percent hide-e' }}) }}                            
-                            {{ form_row (formInterstProject.interest_description) }}
-                            {{ form_row (formInterstProject.interest_percent) }}
+                                <div class="add-profil-project hide-e">
+                                    {{ form_row (formInterstProject.interest_sector,{'attr' : { 'class': 'needs_project_needs_sector hide-e' }}) }}
+                                    {{form_row (formInterstProject.interest_deal,{'attr' : { 'class': 'needs_project_needs_deal hide-e' }}) }} 
+                                    {{ form_row (formInterstProject.interest_percent,{ 'type':'number' ,'attr' : { 'class': 'needs_project_needs_percent hide-e','placeholder': '5' }}) }} 
+                                </div>                                
+                            {{ form_row (formInterstProject.interest_description,{'attr' : { 'placeholder': 'Cuenta tu propuesta y porque...' }}) }} 
+                             {{ form_row (formInterstProject.submit,{'attr' : { 'class': 'btn-primary float-r' }}) }} 
+
+                            
                             <input type="submit" id="submit-form-add" class="btn-primary float-r" style="display:none"/>    
                             <span class="btn-primary btn float-l profile_project_interest btnEndInterest1-Atras">Atras</span> 
                                                                      
                     </div>
                     
-                    <!-- Fin Step 2 --> 
+                    <!-- Fin Step 2 -->     
                     {{ form_end     (formInterstProject) }}  
                 </div>
-                <!-- Modal Footer -->
-                <div class="modal-footer">
-                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>                            
+                                        
             </div>
         </div>
     </div>

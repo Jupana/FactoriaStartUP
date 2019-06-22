@@ -25,27 +25,35 @@ class InterestProjectType extends AbstractType
                 'placeholder' => 'Selecciona un sector',
                 'choice_label' => function($sector){
                     return $sector->getName();
-                }
+                },
+                'label' => false ,
+                'required'=>false,
             ])
-            ->add('interest_profil',EntityType::class,[
-                'class' => Profil::class,                
-                'placeholder' => 'Selecciona un perfil',                
-                'choice_label' => function($profil){
-                        return $profil->getName(); 
-                    },
-                'required'=>false
-            ])
+           
             ->add('interest_deal',ChoiceType::class,[ 
-                'choices' => [
-                                'Tipo de acuerdo'=>'Tipo de acuerdo',
+                'choices' => [  'Tipo de acuerdo'=>'Tipo de acuerdo',
                                 '% Empresa'=>'% Empresa',
                                 '% Ventas'=>'% Ventas',
                                 'Obra y Servicios'=>'Obra y Servicios',
                                 'Pacto a Futuro'=>'Pacto a Futuro',
                             ], 
+                'label' => false ,
+                'required'=>false,
                 ])
-            ->add('interest_percent',NumberType::class,['required'=>false])
-            ->add('interest_description',TextareaType::class,['required'=>false])
+            ->add('interest_percent',NumberType::class,[               
+                'required'=>false,
+                'label' => false 
+                
+                ])
+            ->add('interest_profil',EntityType::class,[
+                    'class' => Profil::class,                      
+                    'choice_label' => function($profil){
+                            return $profil->getName(); 
+                        },
+                    'required'=>false,
+                    'label' => false 
+                ])
+            ->add('interest_description',TextareaType::class,['required'=>false,'label' => false])
             ->add('submit', SubmitType::class,['label' => 'Enviar']) 
         ;
     }

@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Project;
 use App\Entity\InterestProject;
+use App\Entity\ProfileUser;
 use App\Form\InterestProjectType;
 use App\Repository\ProjectRepository;
 use App\Repository\ProfileUserRepository;
@@ -152,6 +153,22 @@ class ProjectController extends AbstractController
             $formAddInterestProyect->handleRequest($request);
     
             if ($formAddInterestProyect->isSubmitted() && $formAddInterestProyect->isValid()) {
+                
+                /*We create here also a new profile if the user want to add it from MeInteresa you have to REFACTOR this this*/
+                
+                if ($interestProyect->getInterestSector()){
+                    $sectorId = $this->sectorRepository ->findBy(['name'=>$interestProyect->getInterestSector()]);
+                    $profileId = $this->profilRepository ->findBy(['name'=>$interestProyect->getInterestProfil()]);
+               
+                    $profileUser = new ProfileUser();
+                    $profileUser->setUser($this->getuser());
+                    $profileUser->setSector($sectorId[0]);
+                    $profileUser->setProfil($profileId[0]);
+                    $profileUser->setDescription($interestProyect->getInterestDescription());
+                    $profileUser->setprofileDate(new \DateTime());
+                    $this->entityManager->persist($profileUser);
+                }
+            
                 $this->entityManager->persist($interestProyect);
                 $this->entityManager->flush();   
                 
