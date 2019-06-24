@@ -3,7 +3,6 @@
 namespace App\Form;
 
 use App\Entity\InterestProfile;
-use App\Entity\Profil;
 use App\Repository\ProjectRepository;
 use App\Repository\ProfileUserRepository;
 use Symfony\Component\Form\AbstractType;
@@ -12,7 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 
 class InterestProfileType extends AbstractType
 {
@@ -43,26 +42,42 @@ class InterestProfileType extends AbstractType
         
         $profileDropDown =[];
         foreach($profileUser as $profile){
-            $profileDropDown[$profile->getProfil()]=$profile->getId();
+            $profileDropDown[$profile->getProfil()]=$profile->getProfil();
         } 
-
 
         $builder
            
             ->add('interest_project',ChoiceType::class,[ 
             'choices' => $projectDropDown,
-            'label'=>'Selecciona un proyecto'
+            'label' => false ,
             ])
             ->add('interest_profile',ChoiceType::class,[ 
                 'choices' => $profileDropDown,
-                'label'=>'Selecciona el perfil que te interesa'
+                'label' => false ,
                 ])
 
             ->add('interest_description',TextareaType::class,[
                 'required'=>false,
-                'label'=>'Escribe tu propuesta'
+                'label'=>false
                 ]) 
-            ->add('submit', SubmitType::class,['label' => 'Enviar']) 
+            ->add('submit', SubmitType::class,['label' => 'Enviar'])
+            ->add('extra_profil_deal_add',ChoiceType::class,[ 
+                'choices' => [  'Tipo de acuerdo'=>'Tipo de acuerdo',
+                                '% Empresa'=>'% Empresa',
+                                '% Ventas'=>'% Ventas',
+                                'Obra y Servicios'=>'Obra y Servicios',
+                                'Pacto a Futuro'=>'Pacto a Futuro'
+                            ],
+                'mapped'=>false, 
+                'label' => false ,
+                'required'=>false,
+                ])
+            ->add('extra_profil_percent_add',NumberType::class,[               
+                'required'=>false,
+                'label' => false,
+                'mapped'=>false
+                
+                ])     
         ;
     }
 
@@ -70,6 +85,7 @@ class InterestProfileType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => InterestProfile::class,
+            'allow_extra_fields' => true
         ]);
         $resolver->setRequired(array(
             'userId',

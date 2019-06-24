@@ -16,10 +16,13 @@
                     <div id="interest-step-1">
                         <div class="col-md-12 text-center m-t-10  modal-title interestdata " data-usrperfilid={{app.user.id}}>
                      
-                            <h4 class="par" id="myModalLabel">Con que perfil quieres interesarte</h4>  
+                            <h4 class="par" id="myModalLabel">Quieres contactar con el usuario <b>{{profile.0.user.Username}}</b> </h4>  
                         </div>
-                            {{ form_row (formInterestProfile.interest_project,{'attr' : { 'class': 'projects_user' }} )}}
+                            ¿Con que perfil?
                             {{ form_row (formInterestProfile.interest_profile,{'attr' : { 'class': 'profile_user' }}) }}
+                            Para tu proyecto
+                            {{ form_row (formInterestProfile.interest_project,{'attr' : { 'class': 'projects_user' }} )}}
+                            
                             <span class="btn-primary btn float-r profile_interest_1 btnEndInterest1 " >Siguiente</span>
                     </div>  
                     <!-- Fin Step 1 -->
@@ -29,6 +32,8 @@
                             <h4 class="par" id="myModalLabel">Participa en el proyecto</h4> 
                              
                         </div>                                                      
+                            {{ form_row (formInterestProfile.extra_profil_deal_add ,{ 'attr' : { 'class': 'hide-e'}} ) }}
+                            {{ form_row (formInterestProfile.extra_profil_percent_add,{ 'type':'number' ,'attr' : { 'class': 'needs-profile-add-percent hide-e','placeholder': '5' }}) }} 
                             {{ form_row (formInterestProfile.interest_description) }}
                             {{ form_row (formInterestProfile.submit) }}
                             <input type="submit" id="submit-form-add" class="btn-primary float-r" style="display:none"/>    

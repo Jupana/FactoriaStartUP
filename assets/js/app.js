@@ -486,15 +486,53 @@ $('select#interest_project_interest_profil').change(function(){
                         console.log(' ---- No more Profile ----',data['usersProfiles'].length);
                         if(data['usersProfiles'].length >= 4){
                             console.log(' ---- No more Profile ----');
-                            $('#interest_project_interest_description').addClass('hide-e');
+                            
                             $('#interest_project_submit').prop("disabled",true);
+                            $('#interest_project_extra_profile_des').addClass('hide-e');
+
                             headerToAddProject =matchTxt[responseType]['headerTextMax'];
                             descriptionToAddProject = matchTxt[responseType]['descriptionTextMax'];  
                         }else{
                             $('.add-profil-project').removeClass('hide-e');
+                            $('.btnEndAddProfile').removeClass('hide-e');
+                            
                             $('.needs_project_needs_sector').removeClass('hide-e');
+                            $('#interest_project_extra_profile_des').removeClass('hide-e');
+                            
+                            $('#interest_project_submit').addClass('hide-e');
+                                                      
+                            //interest_project_submit hide Send button
                             descriptionToAddProject = '';  
-                        }                        
+                        } 
+                        $('#interest_project_interest_description').addClass('hide-e');                       
+                        
+
+                        $('.btnEndAddProfile').click(function(){                            
+                            $('.add-profil-project').removeClass('hide-e');
+                            $('#interest_project_interest_description').removeClass('hide-e');
+                            $('#interest_project_submit').removeClass('hide-e');
+                            //we hide the form for Description
+                            $('.btnEndAddProfile').addClass('hide-e');
+                            $('.needs_project_needs_sector').addClass('hide-e');
+                            $('#interest_project_extra_profile_des').addClass('hide-e');
+
+                            //We set the text to show
+                            headerToAddProject = deal !='' ? matchTxt['match']['headerTextDeal']:matchTxt['match']['headerText'];
+                            descriptionToAddProject = matchTxt['match']['descriptionText'];    
+                            
+                            //Muy mal , tienes que rehacer este codigo para que no llames 2 veces lo mismo
+                            if(deal != null){
+                                deal = deal;
+                                projectInterestDescriptionToAdd = deal.description;                               
+                            }     
+
+                            $('.interstAppendHeader').remove();
+                            $('.interstAppendDescription').remove();
+                            
+                            $('.interest-title').append('<p class="interstAppendHeader">'+ headerToAddProject+'</p>');
+                            $('textarea#interest_project_interest_description').after('<p class="interstAppendDescription">'+descriptionToAddProject+'</p>');
+                            $('#interest_project_interest_description').val(projectInterestDescriptionToAdd).prop('disabled',true);
+                        })
                         projectInterestDescriptionToAdd=undefined; //We do this to give the oportunity to the user to add his descriptionin and to overwritet the projrct description
                     }
                     if (responseType =='noMatchProfilProject'){
@@ -526,7 +564,9 @@ $('select#interest_project_interest_profil').change(function(){
         $('.btnEndInterest1-Atras').click(function(){
             $('#interest-step-1').removeClass('hide-e');
             $('#interest_project_interest_description').removeClass('hide-e');
+            $('#interest_project_extra_profile_des').addClass('hide-e');
             $('#interest_project_submit').prop("disabled",false);
+            $('#interest_project_submit').removeClass('hide-e');
             $('#interest-step-2').addClass('hide-e');
             $('.add-profil-project').addClass('hide-e');
             $('.needs_project_needs_deal').addClass('hide-e');
@@ -553,16 +593,20 @@ $('select#interest_project_interest_profil').change(function(){
 
 /* <!-- START PROFILE INTEREST */
 
-function  arrProfileMatchTxt (profil){
+function  arrProfileMatchTxt (profil,sector,project,usrProfileName,dealArr){
+
+    var deal = dealArr.deal != null ? dealArr.deal+'</b>':'';
+    var percent = dealArr.percent !='' ? 'ofreciendo un <b>'+dealArr.percent:''; //Check if Percent is 0
+
     
     var matchText = {
         'match':{
-            'headerText':'Quieres contactar a este usuario para su futura tarea en <b>'+profil+'</b>',
-            'descriptionText':'Esto es una propuesta cerrada, pero no la negociación física, Recuerda, esto establece unas bases para negociar, se coherente con lo que vas a pedir porque puede llevar a malos entendidos y pérdidas de tiempo.'
+            'headerText':'Quieres contactar con el usuario <b>'+usrProfileName+'</b>, por su experiencia en <b>'+profil+'</b> en el sector de <b>'+sector+'</b> '+ percent +' '+deal +' y expones en tu propuesta:',
+            'descriptionText':''
             },
         'noMatchProfilProject':{//Cuando el Proyecto no busca el perfil pero el user lo tiene
-            'headerText':'Tu proyecto no busca <b>'+profil+'</b>, ¿Quieres ofrecer tu propuesta de todos modos?',
-            'descriptionText':'Esto es una propuesta cerrada, pero no la negociación física, Recuerda, esto establece unas bases para negociar, se coherente con lo que vas a pedir porque puede llevar a malos entendidos y pérdidas de tiempo.'
+            'headerText':'Para tu proyecto <b>'+project+'</b> no demandas el perfil <b>'+profil+'</b>, pero no hay problema, hazlo ahora y se guardará en el perfil del proyecto.',
+            'descriptionText':''
             },
     }
     return matchText;
@@ -584,16 +628,24 @@ function matchProfileProject(profileSelected,arrMatch){
 
 
 $('.profile_interest_1').click(function() {
-    var projectSelected = $('#interest_profile_interest_project_id option:selected').text();
-    var profileSelected = $('#interest_profile_interest_profile_id option:selected').text();
+    var projectSelected = $('#interest_profile_interest_project option:selected').text();
+    var profileSelected = $('#interest_profile_interest_profile option:selected').text();
+    var profilUserName  =   $('.profiluserId').data('profilusername');
+    var profilUserId  =   $('.profiluserId').data('profiluserid');
+    var profileSector =   $('.profile-sector').data(profileSelected.toLowerCase());
 
-    var projectSelectedId = $('#interest_profile_interest_project_id option:selected').val();
+    var projectSelectedId = $('#interest_profile_interest_project option:selected').val();
+    var profileSelectedId = $('#interest_profile_interest_profile option:selected').val();
     var userId =$('.interestdata').data('usrperfilid');
     
     console.log('Project', projectSelected);
     console.log('Profile', profileSelected);
-    console.log('projectSelectedVal',projectSelectedId);
+    console.log('projectSelected',projectSelectedId);
     console.log('userId',userId);
+    console.log('profilUserId',profilUserId);
+    console.log('profilUserName',profilUserName)
+    console.log('profilSector',profileSector);
+    console.log('profileSelectedId',profileSelectedId);
 
             let urlDeleteNeedsProfil = Routing.generate("MatchProject",{userid:userId,projectid:projectSelectedId});
             new Promise(function (resolve, reject) {
@@ -614,16 +666,31 @@ $('.profile_interest_1').click(function() {
             }) // end of the promise
                 .then((data) => {
                     console.log(data)
+                    var deal  = data['profileProjectDeal'][profileSelected];
+                    deal = deal != null ? deal:'';
+                    
                     var responseType = matchProfileProject(profileSelected,data);                  
-                    var matchTxtProfile = arrProfileMatchTxt(profileSelected);
+                    
+                   // profil,sector,project,usrProfileName,deal
+    
+                    var matchTxtProfile = arrProfileMatchTxt(profileSelected,profileSector,projectSelected,profilUserName,deal);
+                    
                     console.log('Response Type --> '+responseType)
                     console.log('matchTxt '+matchTxtProfile)
                     console.log(matchTxtProfile[responseType]['headerText'])
 
                     //Add the new text for the modal 
                     
-                    $('.interest-profile-title').append('<p class="interstAppendHeader">'+matchTxtProfile[responseType]['headerText']+'</p>');
-                    $('textarea#interest_profile_interest_description').after('<p class="interstAppendDescription">'+matchTxtProfile[responseType]['descriptionText']+'</p>');
+                    if (responseType =='match'){
+                        $('.interest-profile-title').append('<p class="interstAppendHeader">'+matchTxtProfile[responseType]['headerText']+'</p>');
+                        $('textarea#interest_profile_interest_description').after('<p class="interstAppendDescription">'+matchTxtProfile[responseType]['descriptionText']+'</p>');                        
+                        $('#interest_profile_interest_description').val(deal.description).prop('disabled',true);
+                    
+                    }else{
+                        $('.interest-profile-title').append('<p class="interstAppendHeader">'+matchTxtProfile[responseType]['headerText']+'</p>');
+                        $('textarea#interest_profile_interest_description').after('<p class="interstAppendDescription">'+matchTxtProfile[responseType]['descriptionText']+'</p>'); 
+                        $('#interest_profile_extra_profil_deal_add').removeClass('hide-e');                   
+                    }
 
                 })
                 .catch((error) => {
@@ -631,9 +698,27 @@ $('.profile_interest_1').click(function() {
                     //$('.interest-title').append('<p>Ha occurido un error por favor empinza de nuevo</p>');
                 })
 
-    
+                
     
 })
+
+        $('.profile_interest_2').click(function(){
+            $('#interest_profile_interest_description').val('');
+            $('#interest_profile_interest_description').prop('disabled',false);
+            $('#interest_profile_extra_profil_deal_add').addClass('hide-e');
+        })
+
+
+        $('select#interest_profile_extra_profil_deal_add').change(function() {
+            var arrOption = ['% Empresa','% Ventas'];
+            var showPercent =arrOption.indexOf($(this).val());
+            if(showPercent != -1){
+                $('.needs-profile-add-percent').removeClass('hide-e');
+            }else{
+                $('.needs-profile-add-percent').addClass('hide-e');
+            }
+            
+        })
 
 /* FIN PROFILE INTEREST --> */
 

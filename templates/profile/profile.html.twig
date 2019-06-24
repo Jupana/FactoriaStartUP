@@ -28,7 +28,7 @@
                     <div> <img  class="card-img-top" src ="{{ asset('build/img/uploads/users_perfil/' ~ profile.0.user.getPerfilImg) }}" alt="image"/></div>
                 </div> 
                 <div class="col-md-8 col-8">
-                    <span>Usuario :<b>{{profile.0.user.Username}}</b></span><br/>
+                    <span class="profiluserId" data-profiluserId={{profile.0.user.id}} data-profilusername={{profile.0.user.Username}}>Usuario :<b>{{profile.0.user.Username}}</b></span><br/>
                     <span>Nombre:<b>{{profile.0.user.name}}</b></span><br/>
                     <span>Proximidad: 4,5km</span><br/>
                     <span>Email:<b>{{profile.0.user.email}}</b></span><br/>
@@ -76,8 +76,8 @@
         <div class="col-md-12 col-8 border" >
 
             {% for profil in profile %}            
-            <p>Sector:<b>{{ profil.Profil}}</b></strong></p>
-            <p>Perfil:<b>{{ profil.Sector}}</b></strong></p> 
+            <p>Perfil:<b>{{ profil.Profil}}</b></strong></p>
+            <p class='profile-sector' data-{{profil.Profil}}="{{ profil.Sector}}">Sector:<b>{{ profil.Sector}}</b></strong></p> 
              <p>Detalle:<b>{{ profil.Description}}</b></strong></p>        
             <hr/>
             {% endfor %}

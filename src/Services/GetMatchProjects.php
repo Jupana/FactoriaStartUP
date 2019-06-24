@@ -31,8 +31,7 @@ class GetMatchProjects{
         $needsProject = $this->needsProjectRepository->findBy(['needs_project'=>$projectId]);
 
         $arrNeedsProfileProject =[];
-        $arrNeedsProfileProjectDeal=[];
-        dump($needsProject);
+        $arrNeedsProfileProjectDeal=[];        
         foreach( $needsProject as $profileNeeds){            
             array_push($arrNeedsProfileProject,$profileNeeds->getNeedsPerfil());
             $arrNeedsProfileProjectDeal[$profileNeeds->getNeedsPerfil()]['deal'] = $profileNeeds->getNeedsDeal();
@@ -57,11 +56,6 @@ class GetMatchProjects{
         $arrResult['matchProfile'] = $arrMatchPerfile;
        
         return $arrResult;
-
-       
-
-
-       
     }
 
 }

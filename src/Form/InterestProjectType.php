@@ -54,7 +54,12 @@ class InterestProjectType extends AbstractType
                     'label' => false 
                 ])
             ->add('interest_description',TextareaType::class,['required'=>false,'label' => false])
-            ->add('submit', SubmitType::class,['label' => 'Enviar']) 
+            ->add('submit', SubmitType::class,['label' => 'Enviar'])
+            ->add('extra_profile_des',TextareaType::class,[
+                'mapped'=>false,
+                'required'=>false,
+                'label' => false 
+            ]) 
         ;
     }
 
@@ -62,6 +67,7 @@ class InterestProjectType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => InterestProject::class,
+            'allow_extra_fields' => true
         ]);
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Entity\NeedsProject;
 use App\Entity\ProfileUser;
 use App\Entity\InterestProfile;
 use App\Form\InterestProfileType;
@@ -132,6 +133,25 @@ class ProfileUserController extends AbstractController
             $formAddInterestProfile->handleRequest($request);
     
             if ($formAddInterestProfile->isSubmitted() && $formAddInterestProfile->isValid()) {
+
+               $dealToAdd = $formAddInterestProfile->get('extra_profil_deal_add')->getData();
+               $percentToAdd = $formAddInterestProfile->get('extra_profil_percent_add')->getData();
+
+               if($dealToAdd != NULL){
+                 //Otra Mierda, si tiens tiempo tienes que reescribir esto:
+                $projectToUpdate = $this->projectRepository->find($interestProfile->getInterestProject());
+               
+                $newProfileAddFromMatch = new NeedsProject();
+                $newProfileAddFromMatch->setUser($this->getuser());
+                $newProfileAddFromMatch->setNeedsIdProject($projectToUpdate);
+                $newProfileAddFromMatch->setNeedsPerfil($interestProfile->getInterestProfile());
+                $newProfileAddFromMatch->setNeedsDescription($interestProfile->getInterestDescription() );
+                $newProfileAddFromMatch->setNeedsDeal($dealToAdd);
+                $newProfileAddFromMatch->setNeedsPercent($percentToAdd); 
+
+                $newProfileAddFromMatch->setNeedsDate(new \DateTime());
+                $this->entityManager->persist($newProfileAddFromMatch);                
+               }
                 
                 $this->entityManager->persist($interestProfile);
                 $this->entityManager->flush();   

@@ -164,11 +164,11 @@ class ProjectController extends AbstractController
                     $profileUser->setUser($this->getuser());
                     $profileUser->setSector($sectorId[0]);
                     $profileUser->setProfil($profileId[0]);
-                    $profileUser->setDescription($interestProyect->getInterestDescription());
+                    $profileUser->setDescription($formAddInterestProyect->get('extra_profile_des')->getData());
                     $profileUser->setprofileDate(new \DateTime());
                     $this->entityManager->persist($profileUser);
-                }
-            
+                }            
+                
                 $this->entityManager->persist($interestProyect);
                 $this->entityManager->flush();   
                 
