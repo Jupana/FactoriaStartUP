@@ -271,6 +271,7 @@ class UserController extends AbstractController
               
         $usersSearchData=[];
         $i=0;
+        
         foreach($searchprofiles as $searchprofile){
             $userSearch =  $this->userRepository->findBy(['id'=>$searchprofile->getUserProfileOwner()]);
             $usersSearchData[$i]['user']['id'] =$userSearch[0]->getId();

@@ -139,12 +139,14 @@ class ProfileUserController extends AbstractController
 
                if($dealToAdd != NULL){
                  //Otra Mierda, si tiens tiempo tienes que reescribir esto:
+                 $getIdProfile = $this->profilRepository->findBy(['name'=>$interestProfile->getInterestProfile()]);
                 $projectToUpdate = $this->projectRepository->find($interestProfile->getInterestProject());
-               
+                
                 $newProfileAddFromMatch = new NeedsProject();
                 $newProfileAddFromMatch->setUser($this->getuser());
                 $newProfileAddFromMatch->setNeedsIdProject($projectToUpdate);
-                $newProfileAddFromMatch->setNeedsPerfil($interestProfile->getInterestProfile());
+                $newProfileAddFromMatch->setNeedsPerfil($getIdProfile[0]->getId());
+                
                 $newProfileAddFromMatch->setNeedsDescription($interestProfile->getInterestDescription() );
                 $newProfileAddFromMatch->setNeedsDeal($dealToAdd);
                 $newProfileAddFromMatch->setNeedsPercent($percentToAdd); 
