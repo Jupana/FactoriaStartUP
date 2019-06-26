@@ -13,13 +13,14 @@ $shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.2), 0 1px 5px
 html,
 body,img{
   max-width: 100%;
+  height: auto;
 }
 html,
 body {
   overflow-x: hidden;
   -ms-overflow-style: scrollbar;
   -webkit-font-smoothing: antialiased;
-  background:#F4F4F4!important; 
+  background:$white!important; 
   font-family:'Lato',sans-serif;    
   font-size: 15px; 
   line-height: 1.5;
@@ -46,6 +47,7 @@ a {
 	margin: 0px;
 	
   }
+
 
 
 .bgWhite{
@@ -96,6 +98,32 @@ a {
 	
     
  } 
+ /*---Proyect Index--*/
+ .single-featured-proyect {
+    position: relative;
+    z-index: 1;
+    -webkit-transition-duration: 500ms;
+    transition-duration: 500ms;
+    overflow: hidden;
+}
+.single-featured-proyect .proyect-head {
+    position: relative;
+    z-index: 1;
+}
+
+.single-featured-proyect .proyect-content {
+    padding: 30px;
+    border: 1px solid #e1dddd;
+}
+.single-featured-proyect .proyect-content .location {
+    color: #947054;
+    margin-bottom: 25px;
+    font-size: 14px;
+	font-weight: 600;
+	
+}
+
+
   /*---Datos_Personales--*/
   .page-head-line {
     font-weight: 500;;
