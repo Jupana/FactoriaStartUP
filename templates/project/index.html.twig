@@ -9,53 +9,66 @@
     </div>
 {% endfor %}
 <!--Proyectos-->
-    <h1 class="col-md-12 text-center m-t-20 m-b-20 par">Buscar Proyectos </h1>
-      <form class="form-inline m-t-20 m-b-50 form-filter-proyects">
-        <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Perfiles</label>
-        <select class="custom-select my-1 mr-sm-2" id="select-perfil">
-            <option selected>Elije...</option>
-                {% for perfil in opciones_perfil %}             
-                    <option>
-                        {{ perfil.name }}</li>
-                    </option>                 
-                {% endfor %}
-               
-        </select>
-        
-        <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Sectores</label>
-        <select class="custom-select my-1 mr-sm-2" id="select-sector">
-            <option selected>Elije...</option>
-            {% for sector in opciones_sectores %}
-                <option value={{sector.id}}>
-                    {{ sector.name }}</li>
-                </option>    
-            {% endfor %}  
-        </select>        
-        <input type="number" name="km" class="proyect-km" placeholder="Distancia en KM">
-        <button type="button" class="d-none d-sm-block btn btn-sm  btn-outline-secondary my-2 my-xs-0 filter-proyects">Buscar</button>
-    </form> 
-    <div class="row ">
+    <div class="bgWhite">
+        <!--<h1 class="col-md-12 text-center search-title p-t-20">Buscar TU Proyecto de Interes</h1>-->
+        <form class="m-b-50 m-l-20 m-r-20 form-filter-proyects ">
+            <div class="row">
+                <div class="col-12 col-md-4 col-lg-3">
+                    <div class="form-group">
+                        <select class="custom-select form-control " id="select-perfil">
+                            <option selected>Elije Perfil...</option>
+                                {% for perfil in opciones_perfil %}             
+                                    <option>
+                                        {{ perfil.name }}</li>
+                                    </option>                 
+                                {% endfor %}
+                            
+                        </select>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 col-lg-3">
+                    <div class="form-group">        
+                        <select class="custom-select form-control " id="select-sector">
+                            <option selected>Elije Sector...</option>
+                            {% for sector in opciones_sectores %}
+                                <option value={{sector.id}}>
+                                    {{ sector.name }}</li>
+                                </option>    
+                            {% endfor %}  
+                        </select> 
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 col-lg-3">
+                    <div class="form-group">            
+                        <input type="number" name="km" class="proyect-km form-control " placeholder="Distancia en KM">
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 col-lg-3">
+                    <div class="form-group">        
+                        <button type="button" class="btn search-btn filter-proyects">Buscar</button>
+                    </div>
+                </div>
+            </div>             
+        </form>
+    </div>  
+    <div class="row">
         {% for project in projects %} 
         <div class="col-12 col-md-6 col-xl-4"> 
             <div class="single-featured-proyect m-b-50 ">                         
                 <div class="proyect-head">  
                     <img src="img/proyects.png" alt="">
                 </div>
-                <div class="proyect-content">     
-                    <h5>{{ project.ProjectName }}</h5> 
-                    <p class="location"><img src="img/location.png" alt=""><span class="m-l-10">Madrid 28050, no.13 Vilar de Donas</span></p>                                    
-                    <p>Descripcion Proyecto</p>
+                <div class="proyect-content"> 
+                    <div class="d-flex align-items-top justify-content-between">    
+                        <h5>{{ project.ProjectName }}</h5> 
+                        <p>{{ project.ProjectDate|date("d/m/y")}}</p>
+                    </div>  
+                    <p class="sector">Sector: {{ project.ProjectSector}}</p>                                    
+                    <p>Descripcion:</p>
                     <p>{{ project.ProjectShortDescription}}</p> 
-                    <div class="d-flex align-items-end justify-content-between">
-                        <div >
-                            @{{project.user.username}}
-                        </div>
-                        <div>
-                            <span>{{ project.ProjectDate|date("d/m/y")}}</span>
-                        </div>
-                        <div >
-                             <a href="{{ path("detalle_proyecto",{"id": project.id }) }}" class=" ver_color">Ver Mass..</a></br>
-                        </div>
+                    <div class="d-flex align-items-end justify-content-between">           
+                        <div>@{{project.user.username}}</div>         
+                        <div><a href="{{ path("detalle_proyecto",{"id": project.id }) }}" class=" ver_color">Ver Mass..</a></div>           
                     </div>
                      <div>
                         {% if is_granted('edit', project) %} 
