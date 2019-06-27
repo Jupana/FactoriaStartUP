@@ -3,9 +3,11 @@
 {% block vista %}
     <script type="text/javascript">
         window.onload = function() {
-            document.getElementById("op1").style.background="green";
+            document.getElementById("op1").style.background="#000066";
+            document.getElementById("op1").style.color="#fff";
         }
     </script> 
+    
     <div class="row">
         <div class="col-md-12  m-l-20  m-t-20 m-b-20">
             <h4 class="page-head-line">Actualiza tus datos profesionales</h4>
@@ -46,11 +48,11 @@
             </div>
             <div class="col-md-2 p-t-60">
                 {% if profiles|length <= 4 %}
-                <a class="btn-info" data-toggle="modal" data-target="#modalForm" class="select_perfil">
+                <a  data-toggle="modal" data-target="#modalForm" class="select_perfil btn search-btn">
                              Añade Perfil
                 </a>
                 {% else %}
-                <p class="btn-info">Añade Perfil</p>
+                <p class="btn search-btn">Añade Perfil</p>
                  <span class="info">Has llegado al maximos de 4 perfiles</span>
                 {% endif %}
                  

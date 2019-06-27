@@ -10,31 +10,48 @@
     </div>
 {% endfor %}
 <!--Equipos-->
-<h1 class="col-md-12 text-center m-t-20 m-b-20 par">Buscar Equipo</h1>
-    <form class="form-inline m-t-20 m-b-20 form-filter-profiles">
-        <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Perfiles</label>
-        <select class="custom-select my-1 mr-sm-2" id="select-profiles">
-            <option selected>Elije...</option>
-             {% for perfil in opciones_perfil %}
-                <option value={{perfil.id}}>
-                    {{ perfil.name }}</li>
-                </option>    
-            {% endfor %}
-        </select>
-        <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Sectores</label>
-        <select class="custom-select my-1 mr-sm-2" id="select-sector">
-            <option selected>Elije...</option>
-                {% for sector in opciones_sectores %}
-                <option>
-                    {{ sector.name }}</li>
-                </option>    
-                {% endfor %}  
-            </option>       
-        </select>
-        
-        <input type="number" name="km" class="proyect-km" placeholder="Distancia en KM">
-        <button type="button" class="d-none d-sm-block btn btn-sm  btn-outline-secondary my-2 my-xs-0 filter-profiles">Buscar</button>
+<div class="bgWhite">
+    <h1 class="col-md-12 text-center search-title p-t-20">Buscar Equipo para TU Proyecto</h1>
+    <form class="m-b-50 m-l-20 m-r-20 form-filter-profiles">
+         <div class="row">
+                <div class="col-12 col-md-4 col-lg-3">
+                    <div class="form-group">
+                        <select class="custom-select form-control" id="select-profiles">
+                            <option selected>Elije Perfil...</option>
+                            {% for perfil in opciones_perfil %}
+                                <option value={{perfil.id}}>
+                                    {{ perfil.name }}</li>
+                                </option>    
+                            {% endfor %}
+                        </select>
+                   </div>
+                </div>
+                <div class="col-12 col-md-4 col-lg-3">
+                    <div class="form-group">        
+                        <select class="custom-select form-control" id="select-sector">
+                            <option selected>Elije Sector...</option>
+                                {% for sector in opciones_sectores %}
+                                <option>
+                                    {{ sector.name }}</li>
+                                </option>    
+                                {% endfor %}  
+                            </option>       
+                        </select>
+                    </div>
+                </div>         
+                <div class="col-12 col-md-4 col-lg-3">
+                    <div class="form-group">  
+                        <input type="number" name="km" class="proyect-km form-control" placeholder="Distancia en KM">
+                    </div>
+                </div>
+                 <div class="col-12 col-md-4 col-lg-3">
+                    <div class="form-group">          
+                        <button type="button" class="btn search-btn filter-profiles">Buscar</button>
+                    </div>
+               </div>
+         </div>           
     </form> 
+</div>    
     <div class="row ">
         {% for profile in profiles %}
                 <!-- Recojemos todos los perfiles del mismo usuario -->          

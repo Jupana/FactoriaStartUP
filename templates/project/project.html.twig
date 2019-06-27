@@ -30,11 +30,11 @@
                     <div> <img  class="card-img-top" src ="{{ asset('build/img/uploads/users_perfil/' ~ project.user.getPerfilImg) }}" alt="image"/></div>
                 </div> 
                 <div class="col-md-8 col-8">
-                    <span>Usuario :<b>{{project.user.username}}</b></span><br/>
-                    <span>Nombre:<b>{{project.user.name}}</b></span><br/>
+                    <span>Usuario: <b>{{project.user.username}}</b></span><br/>
+                    <span>Nombre: <b>{{project.user.name}}</b></span><br/>
                     <span>Proximidad: 4,5km</span><br/>
-                    <span>Email:<b>{{project.user.email}}</b></span><br/>
-                    <span>Telefono:<b>{{project.user.phoneNumber}}</b></span><br/>
+                    <span>Email: <b>{{project.user.email}}</b></span><br/>
+                    <span>Telefono: <b>{{project.user.phoneNumber}}</b></span><br/>
                 </div> 
             </div>
         </div>
@@ -55,25 +55,25 @@
         </div> 
         <div class="col-md-9 col-12">
             <div class="row">
-                <div class="col-md-6 col-12 "><span>Nombre del Proyecto:<span class="project-title"><b>{{ project.ProjectName }}</b></span></span></div>
-                <div class="col-md-6 col-12"><span>Publicado el :<b>{{ project.ProjectDate|date("d/m/y")}}</b></span></div>
+                <div class="col-md-6 col-12 "><span>Nombre del Proyecto: <span class="project-title"><b>{{ project.ProjectName }}</b></span></span></div>
+                <div class="col-md-6 col-12"><span>Publicado el: <b>{{ project.ProjectDate|date("d/m/y")}}</b></span></div>
             </div>
             <div class="row">
-                <div class="col-md-12 col-12"><span>Definelo en una linea:<b>{{ project.ProjectShortDescription}}</b></span></div>
+                <div class="col-md-12 col-12"><span>Definelo en una linea: <b>{{ project.ProjectShortDescription}}</b></span></div>
             </div>
             <div class="row">
-                <div class="col-md-4 col-12"><span>Facturacion estimada:</span></div>
-                <div class="col-md-2 col-4"><span>año1:<b>{{ project.ProjectAproxFacturation1}}</b></span></div>
-                <div class="col-md-2 col-4"><span>año2:<b>{{ project.ProjectAproxFacturation2}}</b></span></div>
-                <div class="col-md-2 col-4"><span>año3:<b>{{ project.ProjectAproxFacturation3}}</b></span></div>
+                <div class="col-md-4 col-12"><span>Facturacion estimada: </span></div>
+                <div class="col-md-2 col-4"><span>año1: <b>{{ project.ProjectAproxFacturation1}}</b></span></div>
+                <div class="col-md-2 col-4"><span>año2: <b>{{ project.ProjectAproxFacturation2}}</b></span></div>
+                <div class="col-md-2 col-4"><span>año3: <b>{{ project.ProjectAproxFacturation3}}</b></span></div>
             </div> 
             <div class="row">
-                <div class="col-md-4 col-12"><span>Clientes potentiales:</span></div>
-                <div class="col-md-4 col-6"><span>Usarios:<b>{{ project.ProjectPotentialyUsers}}</b></span></div>
-                <div class="col-md-4 col-6"><span>Empresas:<b>{{ project.ProjectPotentialyCompanies}}</b></span></div>
+                <div class="col-md-4 col-12"><span>Clientes potentiales: </span></div>
+                <div class="col-md-4 col-6"><span>Usarios: <b>{{ project.ProjectPotentialyUsers}}</b></span></div>
+                <div class="col-md-4 col-6"><span>Empresas: <b>{{ project.ProjectPotentialyCompanies}}</b></span></div>
             </div> 
             <div class="row">
-                <div class="col-md-12 col-12"><span>Competidores:<b>{{ project.ProjectCompetitors}}</b></span></div>
+                <div class="col-md-12 col-12"><span>Competidores: <b>{{ project.ProjectCompetitors}}</b></span></div>
             </div>        
         </div>
     </div>
@@ -82,7 +82,7 @@
             <p class=" par fs-20 p-l-5"><b>Rezumen ejecutivo</b></p>
         </div>
         <div class="col-md-12 ">
-            <div  class="border m-r-20"style="height:80px;" >
+            <div  class="border p-t-20 p-l-20 p-r-20"style="height:80px;" >
                <b>{{ project.ProjectDescription}}</b>
             </div>
         </div>
