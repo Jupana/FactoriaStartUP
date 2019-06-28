@@ -13,14 +13,14 @@
         </div>
     </div> 
     {{ form_start(form) }}  
-    <div class="box m-l-20 m-r-20 par1 ">
-        <div class="row p-l-10 p-r-10 ">
-            <div class="col-md-3 col-sm-12 ">
-                <div class="img_usuario border" style="min-height:80%;width:100%;">
+    <div class="col-md-12 ">
+        <div class="row">
+            <div class="col-md-3 col-sm-12  shadow_box p-5 ">
+                <div  style="min-height:80%;width:100%;">
                     <img src ="{{ asset('build/img/uploads/users_perfil/' ~ user.getPerfilImg) }}"/>
                 </div>    
                 <div class="p-b-0">
-                    <div class="form-group">
+                    <div class="form-group ">
                         {{form_row(form.perfil_img) }}
                     </div>
                 </div>
@@ -47,7 +47,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 col-sm-12  p-t-10 par1">
+            <div class="col-md-4 col-sm-12  ">
                {{ form_row(form.sex) }}
                 <div class="form-group row">
                     <label for="inputEdad" class="col-3 col-form-label par1">Edad</label>
@@ -59,11 +59,11 @@
         </div>
     </div> 
     <div class="col-12 ">
-        <div class="separador m-t-10 p-t-10 p-b-10 text-center ">
-            <span class=" text-white  par1">Datos de Contacto</span>
+        <div class="bgGris m-t-10 p-t-10 p-b-10 text-center ">
+            <span class="par1">Datos de Contacto</span>
         </div> 
     </div>   
-    <div class=" m-t-20 m-l-20 m-r-20 par1 ">
+    <div class=" m-t-20  shadow_box p-5">
         <div class="row  p-t-10 p-l-10 p-r-10 ">
             <div class="col-md-8 col-sm-12 ">
                 <div class="form-group row">
@@ -84,7 +84,7 @@
             </div>
         </div>
     </div>    
-    <div class=" m-t-20 m-l-20 m-r-20 m-b-10">
+    <div class=" m-t-20  m-b-10 shadow_box p-5">
         <div class="row p-t-10 p-l-10 p-r-10">
             <div class="col-md-6 col-sm-8">
                 <div class="form-group row">

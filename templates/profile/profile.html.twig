@@ -24,24 +24,25 @@
     <div class="row  m-t-20">    
         <div class="col-md-7 col-12 p-l-40">
             <div class="row">
-                <div class="col-md-4 col-4 border ">
+                <div class="col-md-4 col-4 shadow_box p-3 ">
                     <div> <img  class="card-img-top" src ="{{ asset('build/img/uploads/users_perfil/' ~ profile.0.user.getPerfilImg) }}" alt="image"/></div>
                 </div> 
-                <div class="col-md-8 col-8">
+                <div class="col-md-8 col-8 shadow_box p-3 ">
                     <span class="profiluserId" data-profiluserId={{profile.0.user.id}} data-profilusername={{profile.0.user.Username}}>Usuario :<b>{{profile.0.user.Username}}</b></span><br/>
-                    <span>Nombre:<b>{{profile.0.user.name}}</b></span><br/>
+                    <span>Nombre: <b>{{profile.0.user.name}}</b></span><br/>
                     <span>Proximidad: 4,5km</span><br/>
-                    <span>Email:<b>{{profile.0.user.email}}</b></span><br/>
-                    <span>Telefono:<b>{{profile.0.user.phoneNumber}}</b></span><br/>
+                    <span>Email: <b>{{profile.0.user.email}}</b></span><br/>
+                    <span>Telefono: <b>{{profile.0.user.phoneNumber}}</b></span><br/>
                 </div> 
             </div>
         </div>
-        <div class="col-md-5 col-12 p-l-40 ">
-            <span>Tiene proyectos:</span>
-            {% for project in projects %}
-                    <p><b>{{project.ProjectName}}</b></p>
-            {% endfor %}
-            
+        <div class="col-md-5 col-12 p-l-40 border ">
+            <span class="bgGris shadow_box p-3">Tiene los siguientes proyectos:</span>
+            <div class="p-t-10 shadow_box p-3 float-right">
+                {% for project in projects %}
+                    <a href="{{ path("detalle_proyecto",{"id": project.id }) }}" class=" ver_color"><b>{{project.ProjectName}}</b></br></a>               
+                {% endfor %}
+            </div>
             <hr/>
             <p>Tu has contactado con el :<a href="#"class="ver_color">Si</a></p>
             <p>El ha contactado contigo:<b>No</b></p>
@@ -53,10 +54,10 @@
         </div>
     </div> 
     <div class="row m-t-20 margin_top "> 
-        <div class="col-md-12">
+        <div class="col-md-12 ">
             <p class=" par fs-20 p-l-5">Se define como:</p>
         </div>
-        <div class="col-md-12 ">
+        <div class="col-md-12 shadow_box bgGris p-3 ">
             <div  class="border m-r-20"style="height:80px;" >
             {% if profesional.profesionalDescription is defined %}
                 <b>{{profesional.profesionalDescription}}</b>
@@ -72,9 +73,8 @@
         </div>
     </div> 
      
-    <div class="row m-t-20 m-r-10">      
-        <div class="col-md-12 col-8 border" >
-
+    <div class="row m-t-20 m-r-10 shadow_box bgGris p-3">      
+        <div class="col-md-12 col-8 " >
             {% for profil in profile %}            
             <p>Perfil:<b>{{ profil.Profil}}</b></strong></p>
             <p class='profile-sector' data-{{profil.Profil}}="{{ profil.Sector}}">Sector:<b>{{ profil.Sector}}</b></strong></p> 

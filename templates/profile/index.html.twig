@@ -62,13 +62,28 @@
                                 </div>
                                 <div class="card-body ">     
                                     <h4 class="card-title"><br/>{{ profile.name}}</h4>                   
-                                        
-                                        {% set i = 0 %}
-                                        {% for userperfil in profile.perfiles %}
-                                            <p class="card-text">Perfil:{{ userperfil}}</strong></p>
-                                            <p class="card-text">Sector:{{ profile.sectors[i]}}</strong></p>                                            
+                                    <table class="table border ">
+                                        <thead class="bgGris">
+                                            <tr>
+                                                <th>Perfil</th>
+                                                <th>Sector</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% set i = 0 %}
+                                            {% for userperfil in profile.perfiles %}
+                                            <tr>                       
+                                                <td>
+                                                    <p>{{ userperfil}}</p>                                 
+                                                </td>
+                                                <td>
+                                                    <p>{{ profile.sectors[i]}}</p> 
+                                                </td>                          
+                                            </tr>
                                             {% set i = i + 1 %}
-                                        {% endfor %}
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>   
                                     <div class="card-footer">                     
                                         <a href="{{ path('detalle_profile',{"id": profile.user_id }) }}" class=" ver_color 2">Ver Mas...</a></br>                                                
                                     </div>
