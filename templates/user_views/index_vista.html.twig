@@ -50,7 +50,7 @@
             <div class="col-md-6 col-12">
                 <p class="par ver_color fs-20 p-l-5 "><b>Informacion Perfil</b></p>
                 <div class="row p-l-20">
-                    <div class="col-md-4 col-4 border">
+                    <div class="col-md-4 col-4">
                         <div><img src ="{{ asset('build/img/uploads/users_perfil/' ~ user.getPerfilImg) }}"/></div>
                     </div> 
                     <div class="col-md-8 col-8">
@@ -65,7 +65,7 @@
             <div class="col-md-6">
                 <p class="ver_color par fs-20 p-l-5"><b>Datos profesionales</b></p>
                 <span class=" par fs-15 p-l-5">Te defines como:</span>
-                <div  class="border p-3 par1"style="height:130px;" >
+                <div  class="border p-3 par1"style="height:auto;" >
                 
                 {% if profesionalProfile is not null %}
 
@@ -81,8 +81,11 @@
         </div>   
         <div class="row m-t-10 m-r-10 par1">
             <div class="col-md-2 col-3"><p class="p-t-10">Comercial/<br/>Contactos:<br/>Fereteria</p></div>
-            <div class="col-md-10 col-9  border"style="height:80px;"></div>
+            <div class="col-md-10 col-9  border"style="height:80px;">
+          
+            </div>
         </div> 
+       
         <div class="proyect_box m-t-10 m-l-5 m-r-20 ">
             <div class="row ">
                 <div class="col-md-12 par">

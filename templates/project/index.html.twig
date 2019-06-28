@@ -72,10 +72,10 @@
                     </div>
                      <div>
                         {% if is_granted('edit', project) %} 
-                            <a href="{{ path("editar_proyecto",{"id": project.id }) }}" class="btn btn-outline-warning">Modificar</a>
+                            <a href="{{path('add_proyecto',{'id':project.id})}}" class="btn btn-primary">Modificar</a>
                         {% endif %}
                         {% if is_granted('delete', project) %} 
-                            <a href="{{ path("eliminar_proyecto",{"id": project.id }) }}" class="btn btn-outline-danger">Eliminar</a>
+                            <button class="btn btn-secondary  delete-proyect" data-id="{{project.id}}">Eliminar</button>
                         {% endif %}
                     </div>               
                 </div>                                                  
