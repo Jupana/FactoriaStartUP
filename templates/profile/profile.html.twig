@@ -10,22 +10,22 @@
     {% endfor %}
     <div class="row m-t-20">
         <div class="col-md-9 col-8">
-            <p class="ver_color fs-20 p-l-5"><b>Informacion Perfil</b></p>
+            <p class="ver_color fs-20 "><b>Informacion Perfil</b></p>
         </div>
         <div class="col-md-3 col-4">
              {% if is_granted('ROLE_USER') %}
-                    <a href="#" data-toggle="modal" data-target="#modalForm_interestProfile"><p class="bgGris p-r-5 p-l-5 text-center fs-20 m-r-10  ">Me Interesa</p></a>
+                    <a href="#" data-toggle="modal" data-target="#modalForm_interestProfile"><p class="bgAzul text-white fs-20 text-center ">Me Interesa</p></a>
                     {% include 'modals/interestProfile.html.twig' %}            
                 {% else %}
-                    <a href="{{ path('security_login') }}"><p class="bgGris p-r-5 p-l-5 text-center fs-20 m-r-10  ">Me Interesa</p></a>   
+                    <a href="{{ path('security_login') }}"><p>Me Interesa</p></a>   
         {% endif %}                                    
         </div>
     </div>
     <div class="row  m-t-20">    
-        <div class="col-md-7 col-12 p-l-40">
-            <div class="row">
+        <div class="col-md-7 col-12 ">
+            <div class="row marginUser">
                 <div class="col-md-4 col-4 shadow_box p-3 ">
-                    <div> <img  class="card-img-top" src ="{{ asset('build/img/uploads/users_perfil/' ~ profile.0.user.getPerfilImg) }}" alt="image"/></div>
+                    <img  class="card-img-top" src ="{{ asset('build/img/uploads/users_perfil/' ~ profile.0.user.getPerfilImg) }}" alt="image"/>
                 </div> 
                 <div class="col-md-8 col-8 shadow_box p-3 ">
                     <span class="profiluserId" data-profiluserId={{profile.0.user.id}} data-profilusername={{profile.0.user.Username}}>Usuario :<b>{{profile.0.user.Username}}</b></span><br/>
@@ -36,31 +36,32 @@
                 </div> 
             </div>
         </div>
-        <div class="col-md-5 col-12 p-l-40 border ">
+        <div class="col-md-5 col-12 p-l-40">
             <span class="bgGris shadow_box p-3">Tiene los siguientes proyectos:</span>
-            <div class="p-t-10 shadow_box p-3 float-right">
+            <div class="p-t-10 shadow_box p-3 ">
                 {% for project in projects %}
                     <a href="{{ path("detalle_proyecto",{"id": project.id }) }}" class=" ver_color"><b>{{project.ProjectName}}</b></br></a>               
                 {% endfor %}
             </div>
-            <hr/>
-            <p>Tu has contactado con el :<a href="#"class="ver_color">Si</a></p>
-            <p>El ha contactado contigo:<b>No</b></p>
+            <div class="float-right">
+                <p>Tu has contactado con el :<a href="#"class="ver_color">Si</a></p>
+                <p>El ha contactado contigo:<b>No</b></p>
+            </div>    
         </div>
     </div>
     <div class="row m-t-20 margin_top "> 
         <div class="col-md-12">
-            <p class=" ver_color par fs-20 p-l-5"><b>Datos profesionales</b></p>
+            <p class=" ver_color par fs-20 "><b>Datos profesionales</b></p>
         </div>
     </div> 
     <div class="row m-t-20 margin_top "> 
         <div class="col-md-12 ">
-            <p class=" par fs-20 p-l-5">Se define como:</p>
+            <p class=" par fs-20 "><b>Se define como:</b></p>
         </div>
-        <div class="col-md-12 shadow_box bgGris p-3 ">
-            <div  class="border m-r-20"style="height:80px;" >
+        <div class="col-md-12 ">
+            <div  class="bgWhite shadow_box p-3 m-t-20 " >
             {% if profesional.profesionalDescription is defined %}
-                <b>{{profesional.profesionalDescription}}</b>
+                {{profesional.profesionalDescription}}
             {% else %}
                 <p> El usuario no se ha definido</p> 
             {% endif %}   
@@ -69,18 +70,20 @@
     </div> 
     <div class="row m-t-20 margin_top "> 
         <div class="col-md-12">
-            <p class=" par fs-20 p-l-5"><b>Estos son los perfiles profesionales y los sectores en los que tiene experiencia:</b></p>
+            <p class=" par fs-20 "><b>Estos son los perfiles profesionales y los sectores en los que tiene experiencia:</b></p>
         </div>
     </div> 
      
-    <div class="row m-t-20 m-r-10 shadow_box bgGris p-3">      
+    <div class="row m-t-20">      
         <div class="col-md-12 col-8 " >
+            <div class="shadow_box bgGris p-3">
             {% for profil in profile %}            
             <p>Perfil:<b>{{ profil.Profil}}</b></strong></p>
             <p class='profile-sector' data-{{profil.Profil}}="{{ profil.Sector}}">Sector:<b>{{ profil.Sector}}</b></strong></p> 
              <p>Detalle:<b>{{ profil.Description}}</b></strong></p>        
             <hr/>
             {% endfor %}
+            </div>
         </div>
     </div> 
     

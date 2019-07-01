@@ -20,23 +20,39 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="{{ path('proyectos') }}">Proyectos <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="{{ path('proyectos') }}">Proyectos</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link " href="{{ path('profiles') }}">Perfiles <span class="sr-only">(current)</span></a>
+                    <a class="nav-link " href="{{ path('profiles') }}">Perfiles</a>
                 </li>
-                <li class="nav-item dropdown">
+                
+                {% if is_granted('ROLE_USER') %}
+              
+                <li class="nav-item active">
+                    <a class="nav-link " id="op0" href="{{ path('datos_personales') }}">Datos Personales</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" id="op1" href="{{ path('datos_profesionales') }}">Datos Profesionales</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" id="op2" href="{{ path('datos_proyectos') }}">Mis Proyectos</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" id="op3"href="{{ path('datos_propuestas') }}">Mis Propuestas</a>
+                </li>
+                {% endif %}
+                <!--<li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Blog
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ path('noticias') }}">Noticias</a>
+                        <!--<a class="dropdown-item" href="{{ path('noticias') }}">Noticias</a>
                         <a class="dropdown-item" href="{{ path('foro') }}">Foro</a>
                         <a class="dropdown-item" href="{{ path('herramientas') }}">Herramientas</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Something else here</a>
                     </div>
-                </li>
+                </li>-->                
             </ul>
             <form class="form-inline my-2 my-lg-0">
                 {% if is_granted('ROLE_USER') %}

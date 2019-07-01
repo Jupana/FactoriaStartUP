@@ -3,16 +3,16 @@
 {% block vista %} 
   <script type="text/javascript">
         window.onload = function() {
-            document.getElementById("op2").style.background="#000066";
+            document.getElementById("op2").style.background="#0070C0";
             document.getElementById("op2").style.color="#fff";
         }
     </script> 
     <div class="row">
-        <div class="col-md-12 m-l-20 m-t-20 m-b-20 ">
+        <div class="col-md-12 m-b-20 ">
             <h4 class="page-head-line">Actualiza tus proyectos</h4>
         </div>
     </div> 
-    <div class="content_header m-l-20 m-r-20">  
+    <div class="content_header">  
         <div class="row ">
             <div class="col-md-12 fs-17"> 
                 <p class="par"><b>¿Quieres empezar a desarollar tus ideas?</b></p> 
@@ -23,12 +23,12 @@
                     <input class="form-check-input"  type="checkbox" id="" value="">
                 </div> 
             </div> 
-            <div class="parafos col-md-7 m-l-0  fs-15">
+            <div class="parafos col-md-7  fs-15">
                 <p class="par">¿Buscas Socio, Equipo o Colaboradores para llevar a cabo tus proyectos?</p>
             </div>
         </div>            
     </div>
-    <div class="proyectos_publicados m-l-20 m-r-20">
+    <div class="proyectos_publicados">
         <div class="row">
             <div class="col-md-12 par">
                <p>Tienes X proyectos publicados:</p> 
@@ -44,16 +44,16 @@
             </div>
         </div>
     </div>
-     <div class="proyect_box m-l-20 m-r-20 ">
+     <div class="proyect_box">
         <div class="row ">
         {% for project in userProjects %}
             <div class="col-md-3 p-t-10 ">
                 <h5 class="par">{{project.ProjectName}}</h5>
-                <img class="img p-t-10" src="{{ asset('img.png','img') }}" alt="Symfony!"/>
+                <img class="img " src="{{ asset('img.png','img') }}" alt="Symfony!"/>
             </div>
             
             <div class="col-md-9 table-responsive">
-                <table class="table par ">
+                <table class="table par p-3 ">
                     <thead class="bgGris ">
                         <tr>
                             <th>Informe</th>
@@ -63,13 +63,14 @@
                             <th>Eliminar</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr class="border">
+                    <tbody >
+                        <tr >
                             <td>                                 
                                 <a class="ver_color par" href="{{path('add_proyecto',{'id':project.id})}}"><p>Edit</p></a> 
-                                                                     </td>
+                            </td>
                             <td>
                                 <a  class="ver_color par" href="{{path('add_proyecto',{'id':project.id})}}"><p>Idea</p></a>                                       </td>
+                            </td>
                             <td>
                                  {% for userContributeProject in userContributeProjects %}
                                     {% if  userContributeProject.ContributeIdProject.id == project.id %}

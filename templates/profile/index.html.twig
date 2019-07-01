@@ -16,7 +16,7 @@
          <div class="row">
                 <div class="col-12 col-md-4 col-lg-3">
                     <div class="form-group">
-                        <select class="custom-select form-control" id="select-profiles">
+                        <select class="custom-select form-control-search" id="select-profiles">
                             <option selected>Elije Perfil...</option>
                             {% for perfil in opciones_perfil %}
                                 <option value={{perfil.id}}>
@@ -28,7 +28,7 @@
                 </div>
                 <div class="col-12 col-md-4 col-lg-3">
                     <div class="form-group">        
-                        <select class="custom-select form-control" id="select-sector">
+                        <select class="custom-select form-control-search" id="select-sector">
                             <option selected>Elije Sector...</option>
                                 {% for sector in opciones_sectores %}
                                 <option>
@@ -41,7 +41,7 @@
                 </div>         
                 <div class="col-12 col-md-4 col-lg-3">
                     <div class="form-group">  
-                        <input type="number" name="km" class="proyect-km form-control" placeholder="Distancia en KM">
+                        <input type="number" name="km" class="proyect-km form-control-search" placeholder="Distancia en KM">
                     </div>
                 </div>
                  <div class="col-12 col-md-4 col-lg-3">
@@ -60,10 +60,10 @@
                                 <div class="card-header d-none d-sm-block">                     
                                    <img  class="card-img-top" src ="{{ asset('build/img/uploads/users_perfil/' ~ profile.user_img) }}" alt="image"/>
                                 </div>
-                                <div class="card-body ">     
+                                <div class="card-body">     
                                     <h4 class="card-title"><br/>{{ profile.name}}</h4>                   
-                                    <table class="table border ">
-                                        <thead class="bgGris">
+                                    <table class="table">
+                                        <thead class="bgAzul text-white">
                                             <tr>
                                                 <th>Perfil</th>
                                                 <th>Sector</th>

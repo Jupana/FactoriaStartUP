@@ -2,16 +2,18 @@
 
 $colorWhite:#fff;
 $colorbg:#f5f5f5;
+$colorAzul:#0070C0;
+$colorAzul3:#129BFB;/*color derivado logo*/
 /*$color1:#28a745;*/
-$color1:#000066;
-$color2:#17a2b8;
-$color3: #e7ebf3;
+$color1:#0070C0;/*color logo*/
+$color2:#005692;/*color derivado logo*/
+$color3: #f9f9f9;/*color del gris cambiado a lo de Liviu*/
 $colorBorder1:#e7ebf3;
 $colortext: #222121d7;
 $colorbox:#5f5e6141;
 $shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.2), 0 1px 5px 0 rgba(0,0,0,0.12);
 /*$colorBrown:#947054;*/
-$colorBrown: #000066;
+$colorBrown: #0070C0;/*color logo*/
 
 body,img{
   max-width: 100%;
@@ -78,6 +80,17 @@ a {
 .bgAzul{
     background:$color2;	
 }
+.bgAzul2{
+	background:$colorAzul;	
+}
+.colorAzul2{
+	color:$colorAzul;	
+}
+
+.bgAzul3{
+	background:$colorAzul3;
+}
+
 
 .bgGris{
     background:$color3;	
@@ -118,7 +131,7 @@ a {
 	background-color: $colorWhite;
 	  
  } 
- /*---Proyect Index--*/
+ /*---Proyect/Profil Index--*/
  .search-btn {
     position: relative;
     z-index: 1;
@@ -139,7 +152,7 @@ a {
     line-height: 40px;
     
 }
-.form-control {
+.form-control-search {
     background-color: transparent;
     width: 100%;
     height: 50px;
@@ -149,6 +162,21 @@ a {
     margin-bottom: 30px;
     font-weight: 500;
     padding: 0 15px;
+    border: 1px solid #e1dddd;
+}
+
+
+
+.form-control{
+    background-color: transparent;
+    width: 100%;
+    height: 25px;
+    border-radius: 0;
+    font-size: 14px;
+    color: #222121d7;
+    margin-bottom: 10px;
+    font-weight: 500;
+    padding: 0px 10px;
     border: 1px solid #e1dddd;
 }
  .single-featured-proyect {
@@ -164,15 +192,35 @@ a {
 }
 
 .single-featured-proyect .proyect-content {
-    padding: 30px;
+    padding: 10px;
     border: 1px solid #e1dddd;
 }
 .single-featured-proyect .proyect-content .sector {
     color: $colorBrown;
-    margin-bottom: 25px;
     font-size: 20px;
 	font-weight: 500;
 	
+}
+
+.table th, .table td {
+    padding: 0px !important;
+}
+
+p {
+    margin-top: 0.5rem;
+    margin-bottom: 0.1rem;
+}
+.card-footer {
+    padding: 0;
+    
+}
+.marginUser {
+    margin-left: 0px;
+    margin-top: -15px;
+}
+
+textarea.form-control {
+    height: 100px;
 }
 
 

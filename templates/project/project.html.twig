@@ -11,19 +11,19 @@
     {% endfor %}
     <div class="row m-t-20">
         <div class="col-8">
-            <p class="ver_color fs-20 p-l-5"><b>Informacion personal del promotor del proyecto</b></p>
+            <p class="ver_color fs-20 "><b>Informacion personal del promotor del proyecto</b></p>
         </div>
         <div class="col-4">
         {% if is_granted('ROLE_USER') %}
-                    <a href="#" data-toggle="modal" data-target="#modalForm_MeInteresa"><p class="bgGris p-r-5 p-l-5 text-center fs-20 m-r-10  projectInterstMe">Me Interesa</p></a>
+                    <a href="#" data-toggle="modal" data-target="#modalForm_MeInteresa"><p class="bgAzul text-white fs-20 text-center  projectInterstMe">Me Interesa</p></a>
                     {% include 'modals/interestProject.html.twig' %}            
                 {% else %}
-                    <a href="{{ path('security_login') }}"><p class="bgGris p-r-5 p-l-5 text-center fs-20 m-r-10  ">Me Interesa</p></a>   
+                    <a href="{{ path('security_login') }}"><p>Me Interesa</p></a>   
         {% endif %}                                             
         </div>
     </div>
     <div class="row margin_top m-t-20">    
-        <div class="col-md-7 col-12 p-l-40">
+        <div class="col-md-7 col-12">
             <div class="row">
                 <div class="col-md-4 col-4 shadow_box p-3 ">
                     <div> <img  class="card-img-top" src ="{{ asset('build/img/uploads/users_perfil/' ~ project.user.getPerfilImg) }}" alt="image"/></div>
@@ -37,58 +37,60 @@
                 </div> 
             </div>
         </div>
-        <div class="col-md-5 col-12">
-            <span>Contactos previos:</span><br/>
-            <span>Tu has contactado con el :<a href="#"class="ver_color">Si</a></span><br/>
-            <span>El ha contactado contigo:<b>No</b></span><br/>
+        <div class="col-md-5 col-12 ">
+            <div class="float-right">
+                <span>Contactos previos:</span><br/>
+                <span>Tu has contactado con el :<a href="#"class="ver_color">Si</a></span><br/>
+                <span>El ha contactado contigo:<b>No</b></span><br/>
+            </div>    
         </div>
     </div>
     <div class="row m-t-20 margin_top "> 
         <div class="col-md-12">
-            <p class=" ver_color par fs-20 p-l-5"><b>Informacion del proyecto</b></p>
+            <p class=" ver_color par fs-20"><b>Informacion del proyecto</b></p>
         </div>
     </div> 
     <div class="row m-t-20 margin_top "> 
         <div class="col-md-3 col-6 shadow_box p-5 ">
             <img src="{{ asset('img.png','img') }}" alt="Symfony!"/>
         </div> 
-        <div class="col-md-9 col-12 shadow_box p-5 bgGris ">
-            <div class="row">
-                <div class="col-md-6 col-12 "><span>Nombre del Proyecto: <span class="project-title"><b>{{ project.ProjectName }}</b></span></span></div>
-                <div class="col-md-6 col-12"><span>Publicado el: <b>{{ project.ProjectDate|date("d/m/y")}}</b></span></div>
+        <div class="col-md-9 bgGris shadow_box">
+            <div class="row bgAzul2 shadow_box px-2 py-3 text-white">
+                <div class="col-md-6 col-12 "><span>Nombre del Proyecto: <span class="fs-20"><b>{{ project.ProjectName }}</b></span></span></div>
+                <div class="col-md-6 col-12"><span>Publicado el: <b class="fs-20">{{ project.ProjectDate|date("d/m/y")}}</b></span></div>
             </div>
-            <div class="row">
-                <div class="col-md-12 col-12"><span>Definelo en una linea: <b>{{ project.ProjectShortDescription}}</b></span></div>
+            <div class="row px-2">
+                <div class="col-md-12 col-12"><span>Definelo en una linea:</span> <span class="colorAzul2 fs-20">{{ project.ProjectShortDescription}}</span></span></div>
             </div>
-            <div class="row">
-                <div class="col-md-4 col-12"><span>Facturacion estimada: </span></div>
-                <div class="col-md-2 col-4"><span>año1: <b>{{ project.ProjectAproxFacturation1}}€</b></span></div>
-                <div class="col-md-2 col-4"><span>año2: <b>{{ project.ProjectAproxFacturation2}}€</b></span></div>
-                <div class="col-md-2 col-4"><span>año3: <b>{{ project.ProjectAproxFacturation3}}€</b></span></div>
+            <div class="row px-2">
+                <div class="col-md-3 col-12"><span>Facturacion estimada: </span></div>
+                <div class="col-md-3 col-4"><span>año1:<span class="colorAzul2 fs-20"> {{ project.ProjectAproxFacturation1}}€</span></span></div>
+                <div class="col-md-3 col-4"><span>año2: <span class="colorAzul2 fs-20">{{ project.ProjectAproxFacturation2}}€</span></span></div>
+                <div class="col-md-3 col-4"><span>año3: <span class="colorAzul2 fs-20">{{ project.ProjectAproxFacturation3}}€</span></span></div>
             </div> 
-            <div class="row">
-                <div class="col-md-4 col-12"><span>Clientes potentiales: </span></div>
-                <div class="col-md-4 col-6"><span>Usarios: <b>{{ project.ProjectPotentialyUsers}}</b></span></div>
-                <div class="col-md-4 col-6"><span>Empresas: <b>{{ project.ProjectPotentialyCompanies}}</b></span></div>
+            <div class="row px-2">
+                <div class="col-md-3 col-12"><span>Clientes potentiales: </span></div>
+                <div class="col-md-4 col-6"><span>Usarios: <span class="colorAzul2 fs-20">{{ project.ProjectPotentialyUsers}}</span></span></div>
+                <div class="col-md-5 col-6"><span>Empresas: <span class="colorAzul2 fs-20">{{ project.ProjectPotentialyCompanies}}</span></span></div>
             </div> 
-            <div class="row">
-                <div class="col-md-12 col-12"><span>Competidores: <b>{{ project.ProjectCompetitors}}</b></span></div>
+            <div class="row px-2 ">
+                <div class="col-md-12 col-12"><span>Competidores: <span class="colorAzul2 fs-20">{{ project.ProjectCompetitors}}</span></span></div>
             </div>        
         </div>
     </div>
     <div class="row m-t-20 margin_top "> 
         <div class="col-md-12">
-            <p class=" par fs-20 p-l-5"><b>Rezumen ejecutivo</b></p>
+            <p class=" par fs-20 "><b>Rezumen ejecutivo</b></p>
         </div>
-        <div class="col-md-12 ">
-            <div  class="border p-t-20 p-l-20 p-r-20"style="height:80px;" >
-               <b>{{ project.ProjectDescription}}</b>
+        <div class="col-md-12 shadow_box">
+            <div  class=" colorAzul2  p-2" >
+                {{ project.ProjectDescription}}
             </div>
         </div>
     </div> 
     <div class="row m-t-20 margin_top "> 
         <div class="col-md-12 col-12">
-            <p class="fs-20 p-l-5"><b>Fase en la que se encuentra el proyecto</b></p>
+            <p class="fs-20"><b>Fase en la que se encuentra el proyecto</b></p>
         </div>
         {% if project.PhaseIdea == true %}
             <div class="col-md-2 col-4">
@@ -137,7 +139,7 @@
     </div>
     <div class="row m-t-20 margin_top "> 
         <div class="col-md-12">
-            <p class=" ver_color par fs-20 p-l-5"><b>¿Que aporta el promotor del proyecto?</b></p>
+            <p class=" ver_color par fs-20"><b>¿Que aporta el promotor del proyecto?</b></p>
         </div>
         <div class="col-md-12">
             <span><b>El numero de miembros de este proyecto es de : {{project.ProjectTeamNumber}}</span>
@@ -150,7 +152,7 @@
     {% for contribute in contributeProject %}
     <div class="row m-t-20  shadow_box bgGris p-3  ">
         <div class="col-md-3 col-4"><p class="p-t-10">{{contribute.ContributeProfile}} : </p></div>
-        <div class="col-md-7 col-6 border">{{contribute.ContributeDescription}} </div>
+        <div class="col-md-7 col-6 bgWhite p-3">{{contribute.ContributeDescription}} </div>
     </div> 
     {% endfor %}  
     <div class="row m-t-20"> 
@@ -161,7 +163,7 @@
    {% for needs in needsProject %}
     <div class="row m-t-20 shadow_box bgGris p-3 ">
         <div class="col-md-3 col-4"><p class="p-t-10">{{needs.NeedsPerfil}} : </p></div>
-        <div class="col-md-7 col-6 border">
+        <div class="col-md-7 col-6 bgWhite p-3">
                 {% if needs.NeedsPercent != 0 %}
                     {{needs.NeedsPercent}}
                 {% endif %}

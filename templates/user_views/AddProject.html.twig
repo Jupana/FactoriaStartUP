@@ -4,10 +4,11 @@
   <script type="text/javascript">
         window.onload = function() {
             document.getElementById("op2").style.background="green";
+            document.getElementById("op2").style.color="#fff";
         }
     </script> 
     <div class="row">
-        <div class="col-md-12  m-l-20  m-t-20 m-b-20">
+        <div class="col-md-12  m-b-20">
             <h4 class="page-head-line">Añadir Proyecto</h4>
                 <p>&#9679; Esto no es un plan de negocios, se trata de mostrar que has  hechos los deberes y que grado de compromiso tienes con tu proyecto.</p> 
                 <p>&#9679; Recuerda entrar y completar lo que falte para que sea cada vez más atractiva para los demás.</p>
@@ -21,7 +22,7 @@
                     <i class="u-dot-line-v1 g-brd-gray-light-v2--before g-brd-gray-light-v2--after g-mb-15--sm">
                         <span class="u-dot-line-v1__inner g-bg-white g-bg-primary--before g-brd-gray-light-v2 g-brd-primary--hover g-brd-primary--active g-transition--ease-in g-transition-0_2"></span>
                     </i>
-                    <span class="g-hidden-sm-down g-color-black g-font-size-15">Información Proyecto</span>
+                    <span class="g-hidden-sm-down g-color-black g-font-size-15 ">Información Proyecto</span>
                 </a>
 
             </li>
@@ -60,15 +61,15 @@
                         <!-- Step Form Header -->
                       
                         <div class="col-md-12 text-center m-t-10  modal-title">
-                            <h4 class="par" id="myModalLabel">Información Proyecto</h4>  
+                            <h4 class="par colorAzul2" id="myModalLabel">Información Proyecto</h4>  
                         </div>  
-            <div class="nuevo_proyecto m-l-20 m-r-20 m-t-20">
+            <div class="nuevo_proyecto  m-t-20">
                     <div class="row">
                         <div class="mobil col-md-3">
                             <img src="{{ asset('img.png','img') }}" alt="Symfony!"/>
                             <div class="p-b-0">
                                 <div class="form-group">
-                                    <input type="file" class="form-control  p-t-0 p-l-0 p-b-0 par1 "style="height:10%;width:100%;" >
+                                    <input type="file" class="form-control  w-100  par1" >
                                 </div>
                             </div>
                         </div>
@@ -78,8 +79,8 @@
                                 {{form_row (formProfile.project_name,{ 'attr' : { 'class': 'col-md-12'} } )}}
                                 {{form_row (formProfile.project_sector)}}                                
                                 {{form_row (formProfile.project_short_description)}}
-                                    <p for="" class="col-4 col-form-label par1 m-t-25">Facturacion estimada </p>
-                                    <div class="col-8 p-l-0 p-b-5">
+                                    <p for="" class="col-4 col-form-label par1">Facturacion estimada </p>
+                                    <div class="col-8 p-b-5">
                                         <div class="row">
                                             <div class="col-4">
                                                 {{form_row (formProfile.project_aprox_facturation1)}}
@@ -93,7 +94,7 @@
                                         </div>    
                                     </div>
                                     <label for="" class="col-4 col-form-label par1">Clientes Potenciales</label>
-                                    <div class="col-8 p-l-0 p-b-5">
+                                    <div class="col-8  p-b-5">
                                         <div class="row">
                                             {{form_row (formProfile.project_potentialy_users)}}
                                             {{form_row (formProfile.project_potentialy_companies)}}
@@ -108,7 +109,7 @@
                         <div class="col-md-2">
                             <a  id="ver"href="#help"  data-toggle="modal" data-target="#modalHelp"><img src="{{ asset('circulo.png','circulo') }}" alt="Symfony!"/></a>
                         </div>
-                        <div class="col-md-12 m-l-0  fs-15">
+                        <div class="col-md-12  fs-15">
                             <p class="par"><b>Rezumen ejecutivo*</b></p> 
                             
                             {{form_row (formProfile.project_description)}}
@@ -158,7 +159,7 @@
                 <div class="modal-header">
                 </div>
                 <div class="col-md-12 text-center m-t-10  modal-title">
-                    <h4 class="par" id="myModalLabel">Fase Proyecto</h4>  
+                    <h4 class="par colorAzul2" id="myModalLabel">Fase Proyecto</h4>  
                 </div>     
     <div class="col-md-12 m-t-20 par">
         <p><b>¿Como de avanzado se encuentra tu proyecto?</b></p>

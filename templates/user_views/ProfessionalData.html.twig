@@ -3,18 +3,18 @@
 {% block vista %}
     <script type="text/javascript">
           window.onload = function() {
-            document.getElementById("op1").style.background="#000066";
+            document.getElementById("op1").style.background="#0070C0";
             document.getElementById("op1").style.color="#fff";
         }
     </script> 
     <div class="row">
-        <div class="col-md-12  m-l-20  m-t-20 m-b-20">
+        <div class="col-md-12  m-b-20">
             <h4 class="page-head-line">Actualiza tus datos profesionales</h4>
         </div>
     </div> 
-    <div class="content_header m-l-20 m-r-20"> 
+    <div class="content_header"> 
     {{ form_start(form) }}
-        <div class="row p-r-80"> 
+        <div class="row "> 
             <div class="col-md-12 fs-17 m-b-10"> 
                 <p class=""><b>¿Buscas nuevos retos y nuevas colaboraciones?</b></p> 
             </div>
@@ -24,24 +24,23 @@
                     {{ form_row(form.profesionalSearchProject) }}
                 </div> 
             </div> 
-            <div class="afos col-md-7 m-l-0  fs-15">
-                <p class="">¿Quieres tici en proyectos interesantes donde aportar tu experiencia, contactos y demás?</p>
+            <div class="afos col-md-7  fs-15">
+                <p class="">¿Quieres participar en proyectos interesantes donde aportar tu experiencia, contactos y demás?</p>
             </div>
         </div>            
     </div>
-    <div class="content_descripcion m-l-20">  
-        <div class="row p-r-80"> 
+    <div class="content_descripcion ">  
+        <div class="row "> 
             <div class="col-md-12 fs-17 m-b-20"> 
                 <p class=""><b>¿Quien eres? Defínete como persona, como compañero lo bien que trabajas...</b></p> 
             </div>
-            <div class="col-md-12 m-l-0  fs-15">
-            {{ form_row(form.profesionalDescription, {'attr': {'placeholder': 'Descríbete con un máximo de 300 caracteres...'}} ) }}
-               
+            <div class="col-md-12 fs-15">
+               {{ form_row(form.profesionalDescription, {'attr': {'placeholder': 'Descríbete con un máximo de 300 caracteres...'}} ) }}       
             </div>
         </div>        
     </div>
-  <div class="content_sector m-l-20 ">  
-        <div class="row p-r-80"> 
+  <div class="content_sector ">  
+        <div class="row"> 
             <div class="col-md-12 fs-17 m-b-20"> 
                 <p class=""><b>¿Cómo de bueno eres en tu trabajo? Cuéntanos en qué destacas,tus hitos,tus exitos y que sector es el que mejor conoces.</b></p> 
             </div>
@@ -57,8 +56,8 @@
                  
                 
             </div> 
-            <div class="col-md-10  table-responsive m-l-0  fs-15">
-                <table class="table border m-l-30 ">
+            <div class="col-md-10  table-responsive fs-15">
+                <table class="table">
                     <thead class="bgGris">
                         <tr>
                             <th>Perfil</th>
@@ -85,7 +84,7 @@
             </div>
         </div>     
     </div>
-    <div class="col-md-12 m-b-20">        
+    <div class="col-md-12 m-b-20 bgAzul2">        
         <input type='submit' class="btn search-btn  btn-block" value='Guardar datos profesionales'/>
     </div>	
 

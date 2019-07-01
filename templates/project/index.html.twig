@@ -15,7 +15,7 @@
             <div class="row">
                 <div class="col-12 col-md-4 col-lg-3">
                     <div class="form-group">
-                        <select class="custom-select form-control " id="select-perfil">
+                        <select class="custom-select form-control-search " id="select-perfil">
                             <option selected>Elije Perfil...</option>
                                 {% for perfil in opciones_perfil %}             
                                     <option>
@@ -28,7 +28,7 @@
                 </div>
                 <div class="col-12 col-md-4 col-lg-3">
                     <div class="form-group">        
-                        <select class="custom-select form-control " id="select-sector">
+                        <select class="custom-select form-control-search" id="select-sector">
                             <option selected>Elije Sector...</option>
                             {% for sector in opciones_sectores %}
                                 <option value={{sector.id}}>
@@ -40,7 +40,7 @@
                 </div>
                 <div class="col-12 col-md-4 col-lg-3">
                     <div class="form-group">            
-                        <input type="number" name="km" class="proyect-km form-control " placeholder="Distancia en KM">
+                        <input type="number" name="km" class="proyect-km form-control-search " placeholder="Distancia en KM">
                     </div>
                 </div>
                 <div class="col-12 col-md-4 col-lg-3">
@@ -64,12 +64,14 @@
                         <p>{{ project.ProjectDate|date("d/m/y")}}</p>
                     </div>  
                     <p class="sector">Sector: {{ project.ProjectSector}}</p>                                    
-                    <p>Descripcion:</p>
-                    <p>{{ project.ProjectShortDescription}}</p> 
+                    <p>Descripcion:<br/>
+                    {{ project.ProjectShortDescription}}</p> 
+                    <hr/>
                     <div class="d-flex align-items-end justify-content-between">           
                         <div>@{{project.user.username}}</div>         
                         <div><a href="{{ path("detalle_proyecto",{"id": project.id }) }}" class=" ver_color">Ver Mass..</a></div>           
                     </div>
+                    <!--
                      <div>
                         {% if is_granted('edit', project) %} 
                             <a href="{{path('add_proyecto',{'id':project.id})}}" class="btn btn-primary">Modificar</a>
@@ -77,7 +79,7 @@
                         {% if is_granted('delete', project) %} 
                             <button class="btn btn-secondary  delete-proyect" data-id="{{project.id}}">Eliminar</button>
                         {% endif %}
-                    </div>               
+                    </div> -->              
                 </div>                                                  
             </div>
         </div> 
