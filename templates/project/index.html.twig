@@ -45,16 +45,16 @@
                 </div>
                 <div class="col-12 col-md-4 col-lg-3">
                     <div class="form-group">        
-                        <button type="button" class="btn search-btn filter-proyects">Buscar</button>
+                        <button type="button" class="btn btn-primary filter-proyects">Buscar</button>
                     </div>
                 </div>
             </div>             
         </form>
     </div>  
-    <div class="row">
+    <div class="card-columns">
         {% for project in projects %} 
-        <div class="col-12 col-md-6 col-xl-4"> 
-            <div class="single-featured-proyect m-b-50 ">                         
+        <div class="card bgWhite"> 
+            <div class="single-featured-proyect ">                         
                 <div class="proyect-head">  
                     <img src="img/proyects.png" alt="">
                 </div>
@@ -69,7 +69,7 @@
                     <hr/>
                     <div class="d-flex align-items-end justify-content-between">           
                         <div>@{{project.user.username}}</div>         
-                        <div><a href="{{ path("detalle_proyecto",{"id": project.id }) }}" class=" ver_color">Ver Mass..</a></div>           
+                        <div><a href="{{ path("detalle_proyecto",{"id": project.id }) }}" class=" ver_color">Ver Detalle</a></div>           
                     </div>
                     <!--
                      <div>

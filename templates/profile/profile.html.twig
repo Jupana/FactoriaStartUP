@@ -14,10 +14,10 @@
         </div>
         <div class="col-md-3 col-4">
              {% if is_granted('ROLE_USER') %}
-                    <a href="#" data-toggle="modal" data-target="#modalForm_interestProfile"><p class="bgAzul text-white fs-20 text-center ">Me Interesa</p></a>
+                    <a href="#" data-toggle="modal" data-target="#modalForm_interestProfile"><p class="btn-primary  fs-20 text-center">Me Interesa</p></a>
                     {% include 'modals/interestProfile.html.twig' %}            
                 {% else %}
-                    <a href="{{ path('security_login') }}"><p>Me Interesa</p></a>   
+                    <a href="{{ path('security_login') }}"><p class="btn-primary  fs-20 text-center ">Me Interesa</p></a>   
         {% endif %}                                    
         </div>
     </div>

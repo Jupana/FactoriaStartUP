@@ -132,20 +132,19 @@ a {
 	  
  } 
  /*---Proyect/Profil Index--*/
- .search-btn {
+ .btn-primary {
     position: relative;
     z-index: 1;
     min-width: 170px;
-    height: 50px;
-    color: $colorWhite;
+    height: 50px;   
     font-size: 14px;
-    font-weight: 600;
-    background-color: $colorBrown;
+    font-weight: 600;   
     border-radius: 0;
     line-height: 50px;
     padding: 0 30px;
     text-transform: uppercase;
 }
+
 .search-title {
     font-size: 30px;
     color: $colorBrown;
@@ -442,6 +441,14 @@ li:last-child .u-dot-line-v1::after, li:last-child
 
 
 /* FIN CAROUSEL FOR THE MULTI FORM*/
+
+.table th, .table td {
+    padding-left: 10px !important;
+}
+
+
+
+
 
 /*---Media queries--*/
 /*---lg pantalla Mayor de 992px--*/
