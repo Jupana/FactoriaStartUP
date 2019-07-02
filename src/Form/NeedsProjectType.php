@@ -28,8 +28,8 @@ class NeedsProjectType extends AbstractType
                                 'Pacto a Futuro'=>'Pacto a Futuro',
                             ], 
                 ])
-            ->add('needs_percent',NumberType::class,['required'=>false])    
-            ->add('needs_description',TextareaType::class,['required'=>false])
+            ->add('needs_percent',NumberType::class,['label' => 'Porcentaje', 'required'=>false])    
+            ->add('needs_description',TextareaType::class,['label' => 'Descripcion', 'required'=>false])
             ->add('needs_perfil',EntityType::class,[
                 'class' => Profil::class,                
                 'placeholder' => 'Selecciona un perfil',                

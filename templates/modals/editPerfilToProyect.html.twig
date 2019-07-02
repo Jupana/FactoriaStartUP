@@ -30,7 +30,7 @@
                                 %}
                                 {{ form_start (formsProfiles[contribute.id], { 'attr' : { 'id': 'profile_to_project' } }) }}
                                         {#{value:arrProfile[contribute.ContributeProfile] }#}
-                                    {{ form_row  (formsProfiles[contribute.id].contribute_profile) }}
+                                    {{ form_widget (formsProfiles[contribute.id].contribute_profile) }}
                                     {{ form_row (formsProfiles[contribute.id].contribute_description) }}                                             
                                      {{ form_row (formsProfiles[contribute.id].submit , { 'attr' : { 'class': 'btn-primary float-l' } }) }} 
                                      <input type="submit" id="submit-form" class="btn-primary float-l" style="display:none"/>  

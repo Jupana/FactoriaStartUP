@@ -23,10 +23,11 @@ class ContributeType extends AbstractType
                 'choice_label' => function($profil){
                         return $profil->getName(); 
                     },
-                'required'=>false
+                'required'=>false,
+                
             ])    
-            ->add('contribute_description',TextareaType::class,['required'=>false])  
-           ->add('submit', SubmitType::class)
+            ->add('contribute_description',TextareaType::class,['label' => 'Pequeña Descripcion:','required'=>false])  
+           ->add('submit', SubmitType::class,['label'=>'Guardar'])
         ;
     }
 

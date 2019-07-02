@@ -15,8 +15,8 @@
                 <!-- Modal Body -->
                 <div class="modal-body">                                
                             {{ form_start (formsProyects[needProyect.id], { 'attr' : { 'id': 'project_needs' } }) }}
-                                    {{ form_row  (formsProyects[needProyect.id].needs_perfil) }}                                    
-                                    {{ form_row  (formsProyects[needProyect.id].needs_deal) }}
+                                    {{ form_widget  (formsProyects[needProyect.id].needs_perfil) }}                                    
+                                    {{ form_widget  (formsProyects[needProyect.id].needs_deal) }}
                                      {% if needProyect.NeedsDeal in ['% Empresa','% Ventas'] %}
                                                 {{ form_row (formsProyects[needProyect.id].needs_percent)}}
                                     {% else %}
@@ -24,15 +24,13 @@
                                     {% endif %}  
 
                                     {{ form_row (formsProyects[needProyect.id].needs_description) }}                                             
-                                     <input type="submit" id="submit-form" class="btn-primary float-l" style="display:none"/>  
-                            {{ form_end (formsProyects[needProyect.id]) }}
-                                   <div class="col-md-6 ">
+                                     <input type="submit" id="submit-form" class="btn-primary float-l" style="display:none"/>                           
                                     <button type="button" class="btn-primary btn float-r needs-profile-delete" data-id="{{needProyect.id}}" data-proyect-id="{{app.request.get('id')}}">Borrar </button>
-                                </div>
+                             {{ form_end (formsProyects[needProyect.id]) }} 
 
                 </div>
                 <!-- Modal Footer -->
-                <div class="modal-footer">
+                <div class="modal-footer d-none">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-success submitBtn" onclick="submitContactForm()">Guardar</button>
                 </div>

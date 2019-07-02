@@ -18,7 +18,7 @@
                     <a href="#" data-toggle="modal" data-target="#modalForm_MeInteresa"><p class="btn-primary  fs-20 text-center projectInterstMe">Me Interesa</p></a>
                     {% include 'modals/interestProject.html.twig' %}            
                 {% else %}
-                    <a href="{{ path('security_login') }}"><p class="btn-primary  fs-20 text-centerr  projectInterstMe">Me Interesa</p></a>   
+                    <a href="{{ path('security_login') }}"><p class="btn-primary  fs-20 text-center  projectInterstMe">Me Interesa</p></a>   
         {% endif %}                                             
         </div>
     </div>
@@ -55,9 +55,9 @@
             <img src="{{ asset('img.png','img') }}" alt="Symfony!"/>
         </div> 
         <div class="col-md-9 bgGris shadow_box">
-            <div class="row  shadow_box px-2 py-3 ">
-                <div class="col-md-6 col-12 "><span>Nombre del Proyecto: <span class="colorAzul2  fs-20"><b>{{ project.ProjectName }}</b></span></span></div>
-                <div class="col-md-6 col-12"><span>Publicado el: <b class="colorAzul2  fs-20">{{ project.ProjectDate|date("d/m/y")}}</b></span></div>
+            <div class="row  shadow_box bgAzul text-white px-2 py-3 ">
+                <div class="col-md-6 col-12 "><span>Nombre del Proyecto: <span class=" fs-20"><b>{{ project.ProjectName }}</b></span></span></div>
+                <div class="col-md-6 col-12"><span>Publicado el: <b class=" fs-20">{{ project.ProjectDate|date("d/m/y")}}</b></span></div>
             </div>
             <div class="row px-2">
                 <div class="col-md-12 col-12"><span>Definelo en una linea:</span> <span class="colorAzul2 fs-20">{{ project.ProjectShortDescription}}</span></span></div>

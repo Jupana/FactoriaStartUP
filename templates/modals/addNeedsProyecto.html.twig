@@ -15,10 +15,10 @@
                 <!-- Modal Body -->
                 <div class="modal-body">                   
                             {{ form_start (form_New_Proyect_Needs, { 'attr' : { 'id': 'project_needs' } }) }}
-                                    {{ form_row  (form_New_Proyect_Needs.needs_perfil) }}
-                                     {{ form_row  (form_New_Proyect_Needs.needs_deal) }}
+                                    {{ form_widget  (form_New_Proyect_Needs.needs_perfil) }}
+                                     {{ form_widget  (form_New_Proyect_Needs.needs_deal) }}
                                      {% if needsProyectNew.NeedsDeal in ['% Empresa','% Ventas'] %}
-                                                {{ form_row (form_New_Proyect_Needs.needs_percent)}}
+                                                {{ form_widget (form_New_Proyect_Needs.needs_percent)}}
                                     {% else %}
                                             {{ form_row (form_New_Proyect_Needs.needs_percent,{ 'attr' : { 'class': 'hide-e' } })}}
                                     {% endif %}  
@@ -31,7 +31,7 @@
 
                 </div>
                 <!-- Modal Footer -->
-                <div class="modal-footer">
+                <div class="modal-footer d-none">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-success submitBtn" onclick="submitContactForm()">Guardar</button>
                 </div>
