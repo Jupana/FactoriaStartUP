@@ -121,8 +121,13 @@ class ProfileUserController extends AbstractController
 
         
         
+        if($this->getUser()){
+            $distanceUsers = $this->distance($this->getUser()->getLatitud(), $this->getUser()->getLongitud(),$profile[0]->getUser()->getLatitud(), $profile[0]->getUser()->getLongitud());
+        }else{
+            $distanceUsers='0.0';
+        }
+
         
-        $distanceUsers = $this->distance($this->getUser()->getLatitud(), $this->getUser()->getLongitud(),$profile[0]->getUser()->getLatitud(), $profile[0]->getUser()->getLongitud());
       
 
         if($this->getuser()){
