@@ -118,6 +118,11 @@ class ProfileUserController extends AbstractController
       
         //This don't make sense you have to add it to USER Entity, i mean Prosfesional Repository
         $profesional = $this->profesionalProfileRepository->findOneBy(['profesionalIdUser' =>$id]);
+
+        
+        
+        
+        $distanceUsers = $this->distance($this->getUser()->getLatitud(), $this->getUser()->getLongitud(),$profile[0]->getUser()->getLatitud(), $profile[0]->getUser()->getLongitud());
       
 
         if($this->getuser()){
@@ -170,6 +175,7 @@ class ProfileUserController extends AbstractController
                     [
                                           
                         'profile' => $profile,
+                        'distanceUsers'=>$distanceUsers,
                         'projects' =>$projects, 
                         'profesional'=>$profesional, 
                         'formInterestProfile' =>$formAddInterestProfile->createView()
@@ -182,6 +188,7 @@ class ProfileUserController extends AbstractController
                     'profile/profile.html.twig',
                     [
                         'profile' => $profile,
+                        'distanceUsers'=>$distanceUsers,
                         'projects' =>$projects,                       
                         'profesional'=>$profesional
                     ]
@@ -201,4 +208,17 @@ class ProfileUserController extends AbstractController
         return $this->redirectToRoute('profiles');
     }
    
+
+
+    private function distance($lat1, $lon1, $lat2, $lon2) {
+
+        $theta = $lon1 - $lon2;
+        $dist = sin(deg2rad($lat1)) * sin(deg2rad($lat2)) +  cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta));
+        $dist = acos($dist);
+        $dist = rad2deg($dist);
+        $miles = $dist * 60 * 1.1515;
+        $km  = $miles * 1.609344;
+
+        return round( number_format ($km,2) , 1, PHP_ROUND_HALF_UP );
+    }  
 }
