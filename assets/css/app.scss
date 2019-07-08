@@ -106,8 +106,6 @@ a {
 }
 
 
-
-
 /*---Home--*/
 .home{ 
     background-color: $color2;
@@ -178,28 +176,41 @@ a {
     padding: 0px 10px;
     border: 1px solid #e1dddd;
 }
- .single-featured-proyect {
-    position: relative;
-    z-index: 1;
-    -webkit-transition-duration: 500ms;
-    transition-duration: 500ms;
-    overflow: hidden;
-}
-.single-featured-proyect .proyect-head {
-    position: relative;
-    z-index: 1;
-}
 
-.single-featured-proyect .proyect-content {
-    padding: 10px;
-    border: 1px solid #e1dddd;
+.box {
+	position: relative;
+  }
+.box-content {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 100%;
+	width: 100%;
+	opacity: 0;
+	transition: .5s ease;
+	background-color: $colorAzul3;
+  }
+  
+  .box:hover .box-content {
+	opacity: 1;
+  }
+
+  .box.box-logo {
+    position: relative;
+    z-index: 1;
 }
-.single-featured-proyect .proyect-content .sector {
-    color: $colorBrown;
-    font-size: 20px;
-	font-weight: 500;
-	
-}
+  .text-content {
+	color: white;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	text-align: center;
+  }
 
 .table th, .table td {
     padding: 0px !important;
@@ -526,13 +537,22 @@ li:last-child .u-dot-line-v1::after, li:last-child
 	
 	
 	
+	
 }
 /*---lg--*/
 @media (min-width: 1400px){
 	.home{
 		height: 600px !important;
 	}
-  
+	.card-columns {
+		column-count: 4;
+	}
+}
+
+@media (min-width: 1021px){
+	.card-columns {
+		column-count: 4;
+	}
 }
 
 /*---sm--*/
