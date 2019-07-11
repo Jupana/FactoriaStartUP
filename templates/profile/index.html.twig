@@ -55,39 +55,39 @@
 <div class="card-columns">  
     {% for profile in profiles %}
      <!-- Recojemos todos los perfiles del mismo usuario -->             
-        <div class="card bgWhite">                                           
-            <img  class="card-img-top" src ="{{ asset('build/img/uploads/users_perfil/' ~ profile.user_img) }}" alt="image"/>                      
-             <div class="card-body">     
-                <h4 class="card-title"><br/>{{ profile.name}}</h4>                   
-                <div class="card-text">
-                    <table class="table border">
-                        <thead class="bgAzul text-white">
-                            <tr>
-                                <th>Perfil</th>
-                                <th>Sector</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% set i = 0 %}
-                            {% for userperfil in profile.perfiles %}
-                            <tr>                       
-                                <td>
-                                    <p>{{ userperfil}}</p>                                 
-                                </td>
-                                <td>
-                                    <p>{{ profile.sectors[i]}}</p> 
-                                </td>                          
-                            </tr>
-                            {% set i = i + 1 %}
-                            {% endfor %}
-                        </tbody>
-                    </table>  
-                </div>     
-                <div class="card-footer text-center">                     
-                    <a href="{{ path('detalle_profile',{"id": profile.user_id }) }}" class=" ver_color 2 ">Ver Perfil completo</a></br>                                                
-                </div>
-            </div>
-        </div> 
+        <div class="card box bgWhite">                                          
+            <img  class="card-img-top" src ="{{ asset('build/img/uploads/users_perfil/' ~ profile.user_img) }}" alt="image"/> 
+            <h4 class="text-center"><br/>{{ profile.name}}</h4>                       
+            <div class="box-content overflow-auto">  
+                <div class="text-content "> 
+                    <a href="{{ path('detalle_profile',{"id": profile.user_id }) }}">  
+                        <h4>{{ profile.name}}</h4>                                      
+                        <table class="table border">
+                            <thead class="bgAzul text-white">
+                                <tr>
+                                    <th>Perfil</th>
+                                    <th>Sector</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% set i = 0 %}
+                                {% for userperfil in profile.perfiles %}
+                                <tr>                       
+                                    <td>
+                                        <p>{{ userperfil}}</p>                                 
+                                    </td>
+                                    <td>
+                                        <p>{{ profile.sectors[i]}}</p> 
+                                    </td>                          
+                                </tr>
+                                {% set i = i + 1 %}
+                                {% endfor %}
+                            </tbody>
+                        </table> 
+                    </a>    
+                </div>    
+            </div>   
+        </div>
         <!-- FIN Recojemos todos los perfiles del mismo usuario --> 
     {% endfor %}  
 </div>        

@@ -54,36 +54,28 @@
     <div class="card-columns">
         {% for project in projects %} 
         <div class="card bgWhite"> 
-            <div class="single-featured-proyect ">                         
-                <div class="proyect-head">  
+            <div class="box p-3">                                
+                 <div class="box-logo text-center">
+                     <!--aqui hay que cargar el logo del proyecto--> 
                     <img src="img/proyects.png" alt="">
                 </div>
-                <div class="proyect-content"> 
-                    <div class="d-flex align-items-top justify-content-between">    
-                        <h5>{{ project.ProjectName }}</h5> 
-                        <p>{{ project.ProjectDate|date("d/m/y")}}</p>
-                    </div>  
-                    <p class="sector">Sector: {{ project.ProjectSector}}</p>                                    
-                    <p>Descripcion:<br/>
-                    {{ project.ProjectShortDescription}}</p> 
-                    <hr/>
-                    <div class="d-flex align-items-end justify-content-between">           
-                        <div>@{{project.user.username}}</div>         
-                        <div><a href="{{ path("detalle_proyecto",{"id": project.id }) }}" class=" ver_color">Ver Detalle</a></div>           
-                    </div>
-                    <!--
-                     <div>
-                        {% if is_granted('edit', project) %} 
-                            <a href="{{path('add_proyecto',{'id':project.id})}}" class="btn btn-primary">Modificar</a>
-                        {% endif %}
-                        {% if is_granted('delete', project) %} 
-                            <button class="btn btn-secondary  delete-proyect" data-id="{{project.id}}">Eliminar</button>
-                        {% endif %}
-                    </div> -->              
+                <div class=" p-t-10 d-flex align-items-top justify-content-between">    
+                    <h5>{{ project.ProjectName }}</h5> 
+                    <p>{{ project.ProjectDate|date("d/m/y")}}</p>
+                </div>    
+                <div class="box-content overflow-auto"> 
+                    <a href="{{ path("detalle_proyecto",{"id": project.id }) }}">
+                        <div class="text-content ">  
+                            <h5>{{ project.ProjectName }}</h5>           
+                            <p>Sector: {{ project.ProjectSector}}</p>                                    
+                            <p>Descripcion:<br/>
+                            {{ project.ProjectShortDescription}}</p> 
+                        </div> 
+                    </a>                 
                 </div>                                                  
             </div>
         </div> 
         {% endfor %}            
-    </div>
+    </div>            
 {% endblock %}
 
