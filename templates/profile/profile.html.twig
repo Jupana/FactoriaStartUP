@@ -14,10 +14,10 @@
         </div>
         <div class="col-md-3 col-4">
              {% if is_granted('ROLE_USER') %}
-                    <a href="#" data-toggle="modal" data-target="#modalForm_interestProfile"><p class="btn-primary  fs-20 text-center">Me Interesa</p></a>
+                    <a href="#" data-toggle="modal" data-target="#modalForm_interestProfile"><p class="btn btn-primary  fs-20 text-center float-right">Me Interesa</p></a>
                     {% include 'modals/interestProfile.html.twig' %}            
                 {% else %}
-                    <a href="{{ path('security_login') }}"><p class="btn-primary  fs-20 text-center ">Me Interesa</p></a>   
+                    <a href="{{ path('security_login') }}"><p class="btn btn-primary  fs-20 text-center float-right ">Me Interesa</p></a>   
         {% endif %}                                    
         </div>
     </div>
@@ -30,23 +30,27 @@
                 <div class="col-md-8 col-8 shadow_box p-3 ">
                     <span class="profiluserId" data-profiluserId={{profile.0.user.id}} data-profilusername={{profile.0.user.Username}}>Usuario :<b>{{profile.0.user.Username}}</b></span><br/>
                     <span>Nombre: <b>{{profile.0.user.name}}</b></span><br/>
+                    {% if is_granted('ROLE_USER') %}
                     <span>Proximidad: 4,5km</span><br/>
                     <span>Email: <b>{{profile.0.user.email}}</b></span><br/>
                     <span>Telefono: <b>{{profile.0.user.phoneNumber}}</b></span><br/>
+                     {% endif %}
                 </div> 
             </div>
         </div>
         <div class="col-md-5 col-12 p-l-40">
-            <span class="bgGris shadow_box p-3">Tiene los siguientes proyectos:</span>
-            <div class="p-t-10 shadow_box p-3 ">
+            <span class="bgGris shadow_box p-3"><b>Tiene los siguientes proyectos</b>:</span>
+            <div class="p-t-10 shadow_box p-3">
                 {% for project in projects %}
                     <a href="{{ path("detalle_proyecto",{"id": project.id }) }}" class=" ver_color"><b>{{project.ProjectName}}</b></br></a>               
                 {% endfor %}
             </div>
+            {% if is_granted('ROLE_USER') %}
             <div class="float-right">
                 <p>Tu has contactado con el :<a href="#"class="ver_color">Si</a></p>
                 <p>El ha contactado contigo:<b>No</b></p>
-            </div>    
+            </div> 
+            {% endif %}   
         </div>
     </div>
     <div class="row m-t-20 margin_top "> 
@@ -75,7 +79,7 @@
     </div> 
      
     <div class="row m-t-20">      
-        <div class="col-md-12 col-8 " >
+        <div class="col-md-12 " >
             <div class="shadow_box bgGris p-3">
             {% for profil in profile %}            
             <p>Perfil:<b>{{ profil.Profil}}</b></strong></p>

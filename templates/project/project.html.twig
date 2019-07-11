@@ -15,10 +15,10 @@
         </div>
         <div class="col-4">
         {% if is_granted('ROLE_USER') %}
-                    <a href="#" data-toggle="modal" data-target="#modalForm_MeInteresa"><p class="btn-primary  fs-20 text-center projectInterstMe">Me Interesa</p></a>
+                    <a href="#" data-toggle="modal" data-target="#modalForm_MeInteresa"><p class="btn btn-primary  fs-20 text-center projectInterstMe float-right">Me Interesa</p></a>
                     {% include 'modals/interestProject.html.twig' %}            
                 {% else %}
-                    <a href="{{ path('security_login') }}"><p class="btn-primary  fs-20 text-center  projectInterstMe">Me Interesa</p></a>   
+                    <a href="{{ path('security_login') }}"><p class="btn btn-primary  fs-20 text-center  projectInterstMe float-right">Me Interesa</p></a>   
         {% endif %}                                             
         </div>
     </div>
@@ -31,12 +31,15 @@
                 <div class="col-md-8 col-8 shadow_box p-3">
                     <span>Usuario: <b>{{project.user.username}}</b></span><br/>
                     <span>Nombre: <b>{{project.user.name}}</b></span><br/>
+                    {% if is_granted('ROLE_USER') %}
                     <span>Proximidad: 4,5km</span><br/>
                     <span>Email: <b>{{project.user.email}}</b></span><br/>
                     <span>Telefono: <b>{{project.user.phoneNumber}}</b></span><br/>
+                    {% endif %}
                 </div> 
             </div>
         </div>
+        {% if is_granted('ROLE_USER') %}
         <div class="col-md-5 col-12 ">
             <div class="float-right">
                 <span>Contactos previos:</span><br/>
@@ -44,6 +47,7 @@
                 <span>El ha contactado contigo:<b>No</b></span><br/>
             </div>    
         </div>
+          {% endif %}
     </div>
     <div class="row m-t-20 margin_top "> 
         <div class="col-md-12">

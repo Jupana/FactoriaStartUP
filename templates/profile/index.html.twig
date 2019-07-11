@@ -58,7 +58,7 @@
         <div class="card box bgWhite">                                          
             <img  class="card-img-top" src ="{{ asset('build/img/uploads/users_perfil/' ~ profile.user_img) }}" alt="image"/> 
             <h4 class="text-center"><br/>{{ profile.name}}</h4>                       
-            <div class="box-content">  
+            <div class="box-content overflow-auto">  
                 <div class="text-content "> 
                     <a href="{{ path('detalle_profile',{"id": profile.user_id }) }}">  
                         <h4>{{ profile.name}}</h4>                                      

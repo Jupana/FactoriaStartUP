@@ -63,7 +63,7 @@
                     <h5>{{ project.ProjectName }}</h5> 
                     <p>{{ project.ProjectDate|date("d/m/y")}}</p>
                 </div>    
-                <div class="box-content"> 
+                <div class="box-content overflow-auto"> 
                     <a href="{{ path("detalle_proyecto",{"id": project.id }) }}">
                         <div class="text-content ">  
                             <h5>{{ project.ProjectName }}</h5>           
