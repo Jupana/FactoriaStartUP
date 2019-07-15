@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 
 class ProjectType extends AbstractType
@@ -41,7 +42,12 @@ class ProjectType extends AbstractType
             ->add('phase_productoFinal',CheckboxType::class )
             ->add('project_team',CheckboxType::class )
             ->add('project_team_number',NumberType::class,['label' => 'Nr*'])
-           
+            ->add('project_img',FileType::class, 
+            [
+                'label' => false,
+                'data_class' => null
+            ]
+        )
            
            
            // ->add('submit', SubmitType::class,['label'=>'Guardar'])

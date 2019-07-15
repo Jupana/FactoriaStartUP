@@ -53,8 +53,8 @@
             </div>
             
             <div class="col-md-9 table-responsive">
-                <table class="table par p-3 ">
-                    <thead class="bgGris ">
+                <table class="table par">
+                    <thead class="bgGris">
                         <tr>
                             <th>Informe</th>
                             <th>Fase</th>
@@ -88,7 +88,9 @@
                                 <a class="ver_color par" href="{{path('proyectNeeds',{'id':project.id})}}"><p>Edit</p></a>
                             </td>
                             <td>
-                                <button class="ver_color par delete-proyect m-t-10 " data-id="{{project.id}}">SI</button>
+                                <a class="delete" href="{{path('deleteProyect', {'id':project.id})}}">
+                                    <img  src="{{ asset('icons/delete.png','img') }}" alt="Symfony!"/>
+                                </a>
                             </td>
                         </tr>
                     </tbody>     
