@@ -376,9 +376,9 @@ class Project
         return $this->project_img;
     }
 
-    public function setProjectImg($file)
+    public function setProjectImg($project_img): self 
     {
-        $this->project_img = $file;
+        $this->project_img = $project_img;
 
         return $this;
     }

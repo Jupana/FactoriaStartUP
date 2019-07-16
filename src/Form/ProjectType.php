@@ -44,8 +44,10 @@ class ProjectType extends AbstractType
             ->add('project_team_number',NumberType::class,['label' => 'Nr*'])
             ->add('project_img',FileType::class, 
             [
-                'label' => false,
-                'data_class' => null
+                'label' => 'Cambia Imagen Projecto',
+                "data_class"=>null,
+                'required' => false      
+              
             ]
         )
            

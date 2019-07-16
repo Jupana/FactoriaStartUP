@@ -120,6 +120,7 @@ class ProjectController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             $this->entityManager->persist($project);
             $this->entityManager->flush();
 

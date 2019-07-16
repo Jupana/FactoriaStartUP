@@ -46,7 +46,7 @@
         </div>                             
     </nav>  -->          
     {% block vista %}
-    <div class="vistaPredefinida  ">
+    <div class="vistaPredefinida">
         <div class="row">
             <div class="col-md-6 col-12">
                 <p class="par ver_color fs-20 m-b-25 "><b>Informacion Perfil</b></p>
@@ -87,7 +87,7 @@
             </div>
         </div> -->
        
-        <div class="proyect_box ">
+        <div class="proyect_box p-t-20 ">
             <div class="row ">
                 <div class="col-md-12 par">
                     <p class="fs-20 ver_color par p-b-20"><b>Tienes los siguentes proyectos publicados:</b></p> 
@@ -95,9 +95,9 @@
                  {% for project in userProjects %}
                     <div class="col-md-3 p-t-10 ">
                         <h5 class="par">{{project.ProjectName}}</h5>
-                        <img class="img p-t-10" src="{{ asset('img.png','img') }}" alt="Symfony!"/>
+                         <img class="w-50" src ="{{ asset('build/img/uploads/projects_img/' ~ project.getProjectImg) }}"/>
                     </div>
-                    <div class="col-md-9">
+                   <!-- <div class="col-md-9">
                         <table class="table par ">
                             <thead class="bgGris ">
                                 <tr>
@@ -124,7 +124,7 @@
                                 </tr>
                             </tbody>     
                         </table> 
-                    </div>
+                    </div>-->
                 {% endfor %}
                 
             </div>

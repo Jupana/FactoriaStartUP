@@ -243,6 +243,7 @@ class UserController extends AbstractController
         $formNewProject->handleRequest($request);
 
         if($formNewProject->isSubmitted() && $formNewProject->isValid()){
+
             $this->entityManager->persist($newProject);
             $this->entityManager->flush();
 
