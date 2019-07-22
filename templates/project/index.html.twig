@@ -57,7 +57,11 @@
             <div class="box p-3">                                
                  <div class="box-logo text-center">
                      <!--aqui hay que cargar el logo del proyecto--> 
-                    <img src ="{{ asset('build/img/uploads/projects_img/' ~ project.getProjectImg) }}"/>
+                    {% if project.getProjectImg is not empty  %}
+                        <img src ="{{ asset('build/img/uploads/projects_img/' ~ project.getProjectImg) }}"/>
+                    {% else %}
+                        <img src ="{{ asset('build/img/proyecto-fsu.png') }}"/>
+                    {% endif %}    
                 </div>
                 <div class=" p-t-10 d-flex align-items-top justify-content-between">    
                     <p>{{ project.ProjectName }}</p> 
