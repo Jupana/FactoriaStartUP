@@ -3,7 +3,7 @@
 {% block vista %} 
   <script type="text/javascript">
         window.onload = function() {
-            document.getElementById("op2").style.background="green";
+            document.getElementById("op2").style.background="#0070C0";
             document.getElementById("op2").style.color="#fff";
         }
     </script> 
@@ -58,23 +58,23 @@
 
     <!-- Add Form Step 1  -->
             <div class="tab-multi-form"> 
-                        <!-- Step Form Header -->
-                      
+                        <!-- Step Form Header -->                
                         <div class="col-md-12 text-center m-t-10  modal-title">
                             <h4 class="par colorAzul2" id="myModalLabel">Información Proyecto</h4>  
                         </div>  
             <div class="nuevo_proyecto  m-t-20">
                     <div class="row">
-                        <div class="mobil col-md-3">
-                            <img src="{{ asset('img.png','img') }}" alt="Symfony!"/>
-                            <div class="p-b-0">
-                                <div class="form-group">
-                                    <input type="file" class="form-control  w-100  par1" >
+                      
+                            <div  class="col-2">
+                                <img src ="{{ asset('build/img/uploads/projects_img/' ~ project.getProjectImg) }}"/>
+                            </div>    
+                            <div class="col-3 p-b-0">
+                                <div class="form-group ">
+                                     {{form_row (formProfile.project_img,{'enctype':'multipart/form-data'})}}
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-9">
-                            {{form_start (formProfile , { 'attr' : { 'id': 'project_form'} }) }}
+                                   
+                        <div class="col-md-12">
                                 <div class="row step-1">
                                 {{form_row (formProfile.project_name,{ 'attr' : { 'class': 'col-md-12'} } )}}
                                 {{form_row (formProfile.project_sector)}}                                
@@ -231,5 +231,4 @@
     <span class="step"></span>    
   </div> 
 <!-- FIN navegation Multi Form  -->
-
 {% endblock %} 

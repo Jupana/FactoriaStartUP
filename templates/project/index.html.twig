@@ -57,16 +57,16 @@
             <div class="box p-3">                                
                  <div class="box-logo text-center">
                      <!--aqui hay que cargar el logo del proyecto--> 
-                    <img src="img/proyects.png" alt="">
+                    <img src ="{{ asset('build/img/uploads/projects_img/' ~ project.getProjectImg) }}"/>
                 </div>
                 <div class=" p-t-10 d-flex align-items-top justify-content-between">    
-                    <h5>{{ project.ProjectName }}</h5> 
+                    <p>{{ project.ProjectName }}</p> 
                     <p>{{ project.ProjectDate|date("d/m/y")}}</p>
                 </div>    
                 <div class="box-content overflow-auto"> 
                     <a href="{{ path("detalle_proyecto",{"id": project.id }) }}">
-                        <div class="text-content ">  
-                            <h5>{{ project.ProjectName }}</h5>           
+                        <div class="text-content colorAzul">  
+                            <!--<h5>{{ project.ProjectName }}</h5> -->          
                             <p>Sector: {{ project.ProjectSector}}</p>                                    
                             <p>Descripcion:<br/>
                             {{ project.ProjectShortDescription}}</p> 

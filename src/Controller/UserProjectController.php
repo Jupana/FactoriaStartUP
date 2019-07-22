@@ -20,6 +20,7 @@ use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
 
 class UserProjectController extends AbstractController
@@ -80,8 +81,16 @@ class UserProjectController extends AbstractController
         $formNewProject->handleRequest($request);
 
         if ($formNewProject->isSubmitted() && $formNewProject->isValid()) {
+                
+                $file = $formNewProject["project_img"]->getData();
+                $fileName = md5(uniqid()).'.'.$file->guessExtension();
+                $file->move($this->getParameter('imgProjects'), $fileName);
+              
+                $newProject->setProjectImg($fileName);
+        
                 $this->entityManager->persist($newProject);
-                $this->entityManager->flush();          
+                $this->entityManager->flush(); 
+
                 return $this->redirect('/vista_usuario/add_proyecto/step_2/'.$id); 
         }
         return $this->render('user_views/AddProject.html.twig',

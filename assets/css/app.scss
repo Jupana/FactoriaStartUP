@@ -83,8 +83,8 @@ a {
 .bgAzul2{
 	background:$colorAzul;	
 }
-.colorAzul2{
-	color:$colorAzul;	
+.colorAzul{
+	color:$colorAzul3;	
 }
 
 .bgAzul3{
@@ -179,7 +179,7 @@ a {
 	width: 100%;
 	opacity: 0;
 	transition: .5s ease;
-	background-color: $colorAzul3;
+	background-color: $colorWhite;
   }
   
   .box:hover .box-content {
@@ -191,18 +191,17 @@ a {
     z-index: 1;
 }
   .text-content {
-	color: white;
 	position: absolute;
-	top: 50%;
-	left: 50%;
-	-webkit-transform: translate(-50%, -50%);
-	-ms-transform: translate(-50%, -50%);
-	transform: translate(-50%, -50%);
-	text-align: center;
+	left: 10%;
+	
   }
 
 .table th, .table td {
     padding: 0px !important;
+}
+
+.delete img{
+	width:50px;
 }
 
 p {
@@ -281,7 +280,7 @@ textarea.form-control {
   
   /* Mark the steps that are finished and valid: */
   .step.finish {
-	background-color: #4CAF50;
+	background-color: $colorAzul;
   }
 
   .hide-e{
@@ -427,7 +426,7 @@ li:last-child .u-dot-line-v1::after, li:last-child
 
 
 .g-bg-primary--before::before, .g-bg-primary--after::after {
-    background-color: #72c02c !important;
+    background-color: $colorAzul !important;
 }
 
 

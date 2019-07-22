@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Bazinga\GeocoderBundle\Mapping\Annotations as Geocoder;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ProjectRepository")
@@ -115,7 +117,12 @@ class Project
      */
     private $project_date;
   
-
+      /**
+     * @ORM\Column(type="string", nullable=true,name="project_img")
+     * @Assert\Image
+     * @Assert\File(maxSize = "2M")
+     */
+    private $project_img;
     
 
     public function __construct() 
@@ -362,6 +369,18 @@ class Project
         $this->phase_productoFinal = $phase_productoFinal;
 
         return $this;
-    }    
+    }  
+    
+    public function getProjectImg()
+    {
+        return $this->project_img;
+    }
+
+    public function setProjectImg($project_img): self 
+    {
+        $this->project_img = $project_img;
+
+        return $this;
+    }
 
 }
