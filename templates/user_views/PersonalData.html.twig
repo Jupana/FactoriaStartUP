@@ -150,5 +150,38 @@
         <input type="submit" class="btn btn-block btn-primary par1 " value="Guardar datos personales"/>
     </div>
       
-     {{ form_end(form) }}  
+     {{ form_end(form) }}
+     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmQm7vyUCKhZ_rxCyM8kTtxSN4YfDNc3M&libraries=places"></script>
+ <script type="text/javascript">
+        
+        /**GOOGLE MAPS AUTOCOMPLETE */
+
+        var street = document.getElementById('user_personal_info_street_name');
+        var city = document.getElementById('user_personal_info_city');
+        var province = document.getElementById('user_personal_info_province');
+        var country = document.getElementById('user_personal_info_country');
+        var zipCode = document.getElementById('user_personal_info_postal_code');
+
+        var autocomplete = new google.maps.places.Autocomplete(street);
+        autocomplete.setTypes(['address']);
+        autocomplete.addListener('place_changed', function() {         
+          
+        var place = autocomplete.getPlace();
+          
+        var uAdrress =place.address_components[0] != undefined ? place.address_components[0].long_name :'';
+        var uCity =place.address_components[1] != undefined ? place.address_components[1].long_name :'';
+        var uProvince =place.address_components[2] != undefined ? place.address_components[2].long_name :'';
+        var uCountry = place.address_components[4] != undefined ? place.address_components[4].long_name :'';
+        var uZipCode = place.address_components[5]  != undefined ? place.address_components[5].long_name :'';
+          
+        street.value = uAdrress;
+        city.value = uCity;
+        province.value = uProvince;        
+        country.value = uCountry;
+        zipCode.value = uZipCode;
+
+        });
+
+/** FIN GOOGLE MAPS AUTOCOMPLETE */
+    </script>      
 {% endblock %}  
