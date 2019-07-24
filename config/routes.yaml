@@ -158,4 +158,8 @@ noticias:
     controller: App\Controller\NoticiasController::index  
 noticia:
     path: /noticias/id_noticia
-    controller: App\Controller\NoticiasController::noticias                             
+    controller: App\Controller\NoticiasController::noticias
+    
+admin_projects:
+    path: /admin_projects
+    controller: App\Controller\AdminProjectsController::index
