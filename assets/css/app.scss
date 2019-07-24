@@ -166,52 +166,6 @@ a {
     border: 1px solid #e1dddd;
 }
 
-.box {
-	position: relative;
-  }
-.box-content {
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	height: 100%;
-	width: 100%;
-	opacity: 0;
-	transition: .5s ease;
-	background-color: $colorWhite;
-  }
-  
-  .box:hover .box-content {
-	opacity: 1;
-  }
-
-  .box.box-logo {
-    position: relative;
-    z-index: 1;
-}
-  .text-content {
-	position: absolute;
-	left: 10%;
-	
-  }
-
-.table th, .table td {
-    padding: 0px !important;
-}
-
-.delete img{
-	width:50px;
-}
-
-p {
-    margin-top: 0.5rem;
-    margin-bottom: 0.1rem;
-}
-.card-footer {
-    padding: 0;
-    
-}
 .marginUser {
     margin-left: 0px;
     margin-top: -15px;
@@ -220,6 +174,70 @@ p {
 textarea.form-control {
     height: 100px;
 }
+ /*Card Css*/
+  .cardBlock{
+	height:286px;
+  }
+  .imageCard {
+	height:200px; 
+	width:100%;
+	
+  }
+  
+  .mainCard:hover {
+	transform: translateY(-200px);
+	transition: transform 1s;	
+	opacity: 1;
+	background-color:$colorWhite;
+	height:286px;
+	width:100%;
+
+  }
+  .mainCard .revealCard {
+    visibility: hidden;
+    height: 0;
+	padding: 0;
+
+}
+
+.mainCard:hover .revealCard {
+    visibility: visible;
+}
+.tableCard{
+	height:170px;
+	overflow-y: scroll;
+	overflow-x:hidden;
+
+	
+}
+
+#style-scroll::-webkit-scrollbar-track
+{
+	background-color: #F5F5F5;
+	border-radius: 10px;
+}
+
+#style-scroll::-webkit-scrollbar
+{
+	width: 10px;
+	background-color: #F5F5F5;
+}
+
+#style-scroll::-webkit-scrollbar-thumb
+{
+	background-color: #3366FF;
+	border-radius: 10px;
+	background-image: -webkit-linear-gradient(0deg,
+	                                          rgba(255, 255, 255, 0.5) 25%,
+											  transparent 25%,
+											  transparent 50%,
+											  rgba(255, 255, 255, 0.5) 50%,
+											  rgba(255, 255, 255, 0.5) 75%,
+											  transparent 75%,
+											  transparent);
+}
+
+
 
 
   /*---Datos_Personales--*/
@@ -252,6 +270,10 @@ textarea.form-control {
 /* Css by Liviu*/
 .step-1 .form-group{
 	width:100%;
+}
+/*---Proyectos--*/
+.sizeDelete{
+	width:40px;
 }
 
 #prevBtn {
@@ -535,9 +557,7 @@ li:last-child .u-dot-line-v1::after, li:last-child
 }
 
 @media (min-width: 1021px){
-	.card-columns {
-		column-count: 4;
-	}
+	
 	.btn-primary {
 		position: relative;
 		z-index: 1;

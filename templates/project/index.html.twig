@@ -50,36 +50,36 @@
                 </div>
             </div>             
         </form>
-    </div>  
-    <div class="card-columns">
-        {% for project in projects %} 
-        <div class="card bgWhite"> 
-            <div class="box p-3">                                
-                 <div class="box-logo text-center">
-                     <!--aqui hay que cargar el logo del proyecto--> 
+    </div> 
+    <div class="row">
+         {% for project in projects %}  
+        <div class="col-md-3 m-b-15"> 
+            <div class="cardBlock shadow_box" >         
+                <div class="imageCard p-3">
                     {% if project.getProjectImg is not empty  %}
                         <img src ="{{ asset('build/img/uploads/projects_img/' ~ project.getProjectImg) }}"/>
                     {% else %}
-                        <img src ="{{ asset('build/img/proyecto-fsu.png') }}"/>
+                        <img src ="{{ asset('build/img/proyecto-fsu.png') }}">
                     {% endif %}    
-                </div>
-                <div class=" p-t-10 d-flex align-items-top justify-content-between">    
-                    <p>{{ project.ProjectName }}</p> 
-                    <p>{{ project.ProjectDate|date("d/m/y")}}</p>
-                </div>    
-                <div class="box-content overflow-auto"> 
-                    <a href="{{ path("detalle_proyecto",{"id": project.id }) }}">
-                        <div class="text-content colorAzul">  
-                            <!--<h5>{{ project.ProjectName }}</h5> -->          
-                            <p>Sector: {{ project.ProjectSector}}</p>                                    
-                            <p>Descripcion:<br/>
-                            {{ project.ProjectShortDescription}}</p> 
-                        </div> 
-                    </a>                 
-                </div>                                                  
+                </div>                
+                <div class="mainCard p-3">        
+                    <p><b>{{ project.ProjectName }}</b></p>
+                    <p >{{ project.ProjectDate|date("d/m/y")}}</p>        
+                    <div class="revealCard">
+                        <hr/> 
+                        <p>Sector: {{ project.ProjectSector}}</p>                                    
+                        <p>Descripcion:<br/>
+                            {{ project.ProjectShortDescription}}
+                        </p> 
+                        <div class="colorAzul">
+                             <hr/> 
+                            <a href="{{ path("detalle_proyecto",{"id": project.id }) }}">Ir a Detalle</a>
+                        </div>
+                    </div>
+                </div> 
             </div>
-        </div> 
-        {% endfor %}            
-    </div>            
+        </div>
+        {% endfor %} 
+    </div>         
 {% endblock %}
 
