@@ -52,46 +52,47 @@
          </div>           
     </form> 
 </div>    
-<div class="card-columns">  
-    {% for profile in profiles %}
-     <!-- Recojemos todos los perfiles del mismo usuario -->             
-        <div class="card box bgWhite">                                          
-            <img  class="card-img-top" src ="{{ asset('build/img/uploads/users_perfil/' ~ profile.user_img) }}" alt="image"/> 
-            <h4 class="text-center"><br/>{{ profile.name}}</h4>                       
-            <div class="box-content overflow-auto">  
-                <div class="text-content "> 
-                    <a href="{{ path('detalle_profile',{"id": profile.user_id }) }}">  
-                        <h4>{{ profile.name}}</h4>                                      
-                        <table class="table border">
-                            <thead class="bgAzul text-white">
-                                <tr>
-                                    <th>Perfil</th>
-                                    <th>Sector</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% set i = 0 %}
-                                {% for userperfil in profile.perfiles %}
-                                <tr>                       
-                                    <td>
-                                        <p>{{ userperfil}}</p>                                 
-                                    </td>
-                                    <td>
-                                        <p>{{ profile.sectors[i]}}</p> 
-                                    </td>                          
-                                </tr>
-                                {% set i = i + 1 %}
-                                {% endfor %}
-                            </tbody>
-                        </table> 
-                    </a>    
-                </div>    
-            </div>   
+<div class="row">
+        {% for profile in profiles %}
+        <div class="col-md-3 m-b-15"> 
+            <div class="cardBlock shadow_box" >         
+                <div class="imageCard p-3">
+                     <img  class="card-img-top" src ="{{ asset('build/img/uploads/users_perfil/' ~ profile.user_img) }}" alt="image"/>                  
+                </div>                    
+                <div class="mainCard p-3">        
+                    <p class="fs-20"><b>{{ profile.name}}</b></p>       
+                    <div class="revealCard ">
+                            <table class="table table-responsive tableCard border" id="style-scroll">
+                                <thead class="bgAzul text-white">
+                                    <tr>
+                                        <th>Perfil</th>
+                                        <th>Sector</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% set i = 0 %}
+                                    {% for userperfil in profile.perfiles %}
+                                    <tr>                       
+                                        <td>
+                                            <p>{{ userperfil}}</p>                                 
+                                        </td>
+                                        <td>
+                                            <p>{{ profile.sectors[i]}}</p> 
+                                        </td>                          
+                                    </tr>
+                                    {% set i = i + 1 %}
+                                    {% endfor %}
+                                </tbody>
+                        </table>    
+                    <div class="colorAzul">            
+                        <a href="{{ path('detalle_profile',{"id": profile.user_id }) }}">Ir a Perfil</a>
+                    </div>
+               </div> 
+            </div> 
         </div>
-        <!-- FIN Recojemos todos los perfiles del mismo usuario --> 
-    {% endfor %}  
-</div>        
-    <!--Ventana Pop-Up -->         
+    </div>
+    {% endfor %} 
+</div>  
 {% endblock %}
 
  
