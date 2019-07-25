@@ -203,8 +203,12 @@ textarea.form-control {
 .mainCard:hover .revealCard {
     visibility: visible;
 }
+
+.click{
+	width:20px;
+}
 .tableCard{
-	height:170px;
+	height:200px;
 	overflow-y: scroll;
 	overflow-x:hidden;
 

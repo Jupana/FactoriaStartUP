@@ -59,8 +59,15 @@
                 <div class="imageCard p-3">
                      <img  class="card-img-top" src ="{{ asset('build/img/uploads/users_perfil/' ~ profile.user_img) }}" alt="image"/>                  
                 </div>                    
-                <div class="mainCard p-3">        
-                    <p class="fs-20"><b>{{ profile.name}}</b></p>       
+                <div class="mainCard p-3">  
+                    <div class="d-flex align-items-top justify-content-between">  
+                        <p class="fs-20"><b>{{ profile.name}}</b></p>   
+                        <p>
+                            <a href="{{ path('detalle_profile',{"id": profile.user_id }) }}">
+                                <img class="click" src ="{{ asset('build/img/click.png') }}">
+                            </a>    
+                        </p>  
+                    </div>            
                     <div class="revealCard ">
                             <table class="table table-responsive tableCard border" id="style-scroll">
                                 <thead class="bgAzul text-white">
@@ -84,13 +91,10 @@
                                     {% endfor %}
                                 </tbody>
                         </table>    
-                    <div class="colorAzul">            
-                        <a href="{{ path('detalle_profile',{"id": profile.user_id }) }}">Ir a Perfil</a>
-                    </div>
-               </div> 
-            </div> 
+                     </div> 
+                 </div> 
+            </div>
         </div>
-    </div>
     {% endfor %} 
 </div>  
 {% endblock %}

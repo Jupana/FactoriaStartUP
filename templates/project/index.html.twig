@@ -64,17 +64,20 @@
                 </div>                
                 <div class="mainCard p-3">        
                     <p><b>{{ project.ProjectName }}</b></p>
-                    <p >{{ project.ProjectDate|date("d/m/y")}}</p>        
+                    <div class="d-flex align-items-top justify-content-between">  
+                        <p >{{ project.ProjectDate|date("d/m/y")}}</p> 
+                        <p>
+                            <a href="{{ path("detalle_proyecto",{"id": project.id }) }}">
+                                <img class="click" src ="{{ asset('build/img/click.png') }}">
+                            </a>    
+                        </p>  
+                    </div>         
                     <div class="revealCard">
                         <hr/> 
                         <p>Sector: {{ project.ProjectSector}}</p>                                    
                         <p>Descripcion:<br/>
                             {{ project.ProjectShortDescription}}
                         </p> 
-                        <div class="colorAzul">
-                             <hr/> 
-                            <a href="{{ path("detalle_proyecto",{"id": project.id }) }}">Ir a Detalle</a>
-                        </div>
                     </div>
                 </div> 
             </div>
