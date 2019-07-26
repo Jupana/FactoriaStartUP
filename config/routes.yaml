@@ -55,7 +55,7 @@ proyectos_filter:
 
 profiles:
     path: /profiles
-    controller: App\Controller\ProfileUserController::indexProfile 
+    controller: App\Controller\ProfileUserController::indexProfile
 profiles_filter:
     path: /profiles/{profiles}/{km}/{lat}/{long}
     controller: App\Controller\ProfileUserController::indexProfileFilter
