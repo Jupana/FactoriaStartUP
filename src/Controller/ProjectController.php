@@ -21,6 +21,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Repository\UserRepository;
 use App\Services\GetProyects;
+use App\Services\SendMailProjectInteres;
+
+
 
 
 class ProjectController extends AbstractController
@@ -135,7 +138,7 @@ class ProjectController extends AbstractController
             )
         );
     }
-    public function project( Request $request, $id)
+    public function project( Request $request, $id, SendMailProjectInteres $sendMailProjectInteres)
     {
         $project = $this->projectRepository->find($id);
         $contributeProject = $this->contributeRepository->findBy(['contribute_project'=>$id]);
@@ -160,7 +163,8 @@ class ProjectController extends AbstractController
                 if ($interestProyect->getInterestSector()){
                     $sectorId = $this->sectorRepository ->findBy(['name'=>$interestProyect->getInterestSector()]);
                     $profileId = $this->profilRepository ->findBy(['name'=>$interestProyect->getInterestProfil()]);
-               
+                    
+                    //Here we add new Profile for User if he don't has it
                     $profileUser = new ProfileUser();
                     $profileUser->setUser($this->getuser());
                     $profileUser->setSector($sectorId[0]);
@@ -168,8 +172,24 @@ class ProjectController extends AbstractController
                     $profileUser->setDescription($formAddInterestProyect->get('extra_profile_des')->getData());
                     $profileUser->setprofileDate(new \DateTime());
                     $this->entityManager->persist($profileUser);
-                }            
+                }
+
+                 $mailInterestProject =[
+                     'userName'=>$this->getUser()->getUsername(),
+                     'userMail' =>$this->getUser()->getEmail(),
+                     'ownerName'=>$project->getUser()->getUsername(),
+                     'ownerMail' =>$project->getUser()->getEmail(),
+                     'projectName' =>$project->getProjectName(),
+                     'sectorInterest'=>$interestProyect->getInterestSector(),
+                     'perfilInterest'=>$interestProyect->getInterestProfil(),
+                     'dealInterest'=>$interestProyect->getInterestDeal(),
+                     'percentInterest'=>$interestProyect->getInterestPercent(),
+                     'descriptionInterest'=>$interestProyect->getInterestDescription(),
+
+                 ];                         
                 
+                $sendMailProjectInteres->mailSend($mailInterestProject);
+
                 $this->entityManager->persist($interestProyect);
                 $this->entityManager->flush();   
                 

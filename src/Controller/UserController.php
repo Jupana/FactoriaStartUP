@@ -272,7 +272,7 @@ class UserController extends AbstractController
               
         $usersSearchData=[];
         $i=0;
-        
+
         foreach($searchprofiles as $searchprofile){
             $userSearch =  $this->userRepository->findBy(['id'=>$searchprofile->getUserProfileOwner()]);
             $usersSearchData[$i]['user']['id'] =$userSearch[0]->getId();
@@ -282,11 +282,13 @@ class UserController extends AbstractController
 
             $usersSearchData[$i]['userProfile']['id'] =$userSearchProfil->getId();
             $usersSearchData[$i]['userProfile']['profileName']=$userSearchProfil->getName();
-        
+
             $userSearchProject =$this->projectsUserRepository->find($searchprofile->getInterestProject());
 
-            $usersSearchData[$i]['proyect']['id'] =$userSearchProject->getId();
-            $usersSearchData[$i]['proyect']['proyectName']=$userSearchProject->getProjectName();
+            if($userSearchProject){
+                $usersSearchData[$i]['proyect']['id'] =$userSearchProject->getId();
+                $usersSearchData[$i]['proyect']['proyectName']=$userSearchProject->getProjectName();
+            }
             
             $i++;       
         }
