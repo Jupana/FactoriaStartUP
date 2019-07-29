@@ -21,7 +21,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Repository\UserRepository;
 use App\Services\GetProyects;
-use App\Services\SendMailProjectInteres;
+use App\Services\SendMailInterest;
 
 
 
@@ -138,7 +138,7 @@ class ProjectController extends AbstractController
             )
         );
     }
-    public function project( Request $request, $id, SendMailProjectInteres $sendMailProjectInteres)
+    public function project( Request $request, $id, SendMailInterest $sendMailProjectInterest)
     {
         $project = $this->projectRepository->find($id);
         $contributeProject = $this->contributeRepository->findBy(['contribute_project'=>$id]);
@@ -188,7 +188,7 @@ class ProjectController extends AbstractController
 
                  ];                         
                 
-                $sendMailProjectInteres->mailSend($mailInterestProject);
+                $sendMailProjectInterest->sendMailProject($mailInterestProject);
 
                 $this->entityManager->persist($interestProyect);
                 $this->entityManager->flush();   

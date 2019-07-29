@@ -12,6 +12,7 @@ use App\Repository\ProfilRepository;
 use App\Repository\SectorRepository;
 use App\Repository\ProjectRepository;
 use App\Repository\ProfesionalProfileRepository;
+use App\Repository\NeedsProjectRepository;
 use App\Services\GetProfile;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\FormFactoryInterface;
@@ -19,6 +20,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Services\SendMailInterest;
 
 
 
@@ -70,10 +72,17 @@ class ProfileUserController extends AbstractController
     */
     private $flashBag;
 
+    /**
+    * @var NeedsProjectRepository
+    */
+    private $projectNeedsRepo;
+
+    
+
 
     public function __construct(
         \Twig_Environment $twig, ProfileUserRepository $profileUserRepository, ProfilRepository $profilRepository, SectorRepository $sectorRepository,
-        FormFactoryInterface $formFactory,EntityManagerInterface $entityManager,ProfesionalProfileRepository $profesionalProfileRepository,ProjectRepository $projectRepository,
+        FormFactoryInterface $formFactory,EntityManagerInterface $entityManager,ProfesionalProfileRepository $profesionalProfileRepository,ProjectRepository $projectRepository,NeedsProjectRepository $projectNeedsRepo,
         FlashBagInterface $flashBag
         ) {
         $this->twig = $twig;
@@ -85,6 +94,7 @@ class ProfileUserController extends AbstractController
         $this->formFactory = $formFactory;
         $this->entityManager = $entityManager;
         $this->flashBag = $flashBag;
+        $this->projectNeedsRepo = $projectNeedsRepo;
     }
 
 
@@ -111,15 +121,13 @@ class ProfileUserController extends AbstractController
             return new Response($html);
     } 
 
-    public function profile(Request $request, $id)
+    public function profile(Request $request, $id, SendMailInterest $sendMailProfileInterest)
     {
         $profile = $this->profileUserRepository->findBy(['user' =>$id]);
         $projects = $this->projectRepository->findBy(['user' =>$id]);
       
         //This don't make sense you have to add it to USER Entity, i mean Prosfesional Repository
         $profesional = $this->profesionalProfileRepository->findOneBy(['profesionalIdUser' =>$id]);
-
-        
         
         if($this->getUser()){
             $distanceUsers = $this->distance($this->getUser()->getLatitud(), $this->getUser()->getLongitud(),$profile[0]->getUser()->getLatitud(), $profile[0]->getUser()->getLongitud());
@@ -127,17 +135,12 @@ class ProfileUserController extends AbstractController
             $distanceUsers='0.0';
         }
 
-        
-      
-
         if($this->getuser()){
-            $interestProfile = new InterestProfile();
-
+            $interestProfile = new InterestProfile();            
             $interestProfile->setUser($this->getUser());
             $interestProfile->setUserProfileOwner($id);
             $interestProfile->setInterestDate(new \DateTime()); 
             $interestProfile->setInterestStatus(false);          
-           
             
             $formAddInterestProfile = $this->formFactory->create(InterestProfileType::class, $interestProfile,['userId'=> $this->getuser()->getId(),'profileUserId'=>$id]);
             $formAddInterestProfile->handleRequest($request);
@@ -146,11 +149,12 @@ class ProfileUserController extends AbstractController
 
                $dealToAdd = $formAddInterestProfile->get('extra_profil_deal_add')->getData();
                $percentToAdd = $formAddInterestProfile->get('extra_profil_percent_add')->getData();
+               $getIdProfile = $this->profilRepository->findBy(['name'=>$interestProfile->getInterestProfile()]);
+               $projectToUpdate = $this->projectRepository->find($interestProfile->getInterestProject());
+               $projectAllNeeds = $this->projectNeedsRepo->findBy(['needs_project'=>$projectToUpdate->getId(),'needs_perfil' =>$getIdProfile[0]->getName()]);
 
                if($dealToAdd != NULL){
                  //Otra Mierda, si tiens tiempo tienes que reescribir esto:
-                $getIdProfile = $this->profilRepository->findBy(['name'=>$interestProfile->getInterestProfile()]);
-                $projectToUpdate = $this->projectRepository->find($interestProfile->getInterestProject());
                 
                 $newProfileAddFromMatch = new NeedsProject();
                 $newProfileAddFromMatch->setUser($this->getuser());
@@ -162,11 +166,27 @@ class ProfileUserController extends AbstractController
                 $newProfileAddFromMatch->setNeedsPercent($percentToAdd); 
 
                 $newProfileAddFromMatch->setNeedsDate(new \DateTime());
-                $this->entityManager->persist($newProfileAddFromMatch);                
+                $this->entityManager->persist($newProfileAddFromMatch);                                
                }
+                              
+               $mailInterestProfile =[
+                'userName'=>$this->getUser()->getUsername(),
+                'userMail' =>$this->getUser()->getEmail(),
+                'ownerName'=>$profile[0]->getUser()->getUsername(),
+                'ownerMail' =>$profile[0]->getUser()->getEmail(),
+                'profileName' =>$getIdProfile[0]->getName(),
+                'projectInterest'=>$projectToUpdate->getProjectName(),
+                'dealInterest'=>$dealToAdd ?? $projectAllNeeds[0]->getNeedsDeal(),
+                'percentInterest'=>$percentToAdd ?? $projectAllNeeds[0]->getNeedsPercent(),                
+                'descriptionInterest'=>$projectAllNeeds[0]->getNeedsDescription(),
+
+               ];                
+
+               $sendMailProfileInterest->sendMailProfil($mailInterestProfile);
                 
-               //Otra Mierda transformas el Profil name to ID
-                $interestProfile->setInterestProfile($getIdProfile[0]->getId());
+               //Otra Mierda transformas el Profil name to ID               
+               $interestProfile->setInterestProfile($getIdProfile[0]->getId());
+
                 $this->entityManager->persist($interestProfile);
                 $this->entityManager->flush();   
                 
