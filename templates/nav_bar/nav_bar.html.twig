@@ -4,11 +4,11 @@
     <div class="flex-row justify-content-around border-bottom border-secondary">
         <div class="col-2  col-xl-4"> 
             <!-- Logo working -->
-            <img class="img-fluid float-left" alt="Responsive image" src="{{ asset('logo.png','imagenlogo') }}"> 
+            <img class="img-fluid float-left" alt="Responsive image" src ="{{ asset('build/img/logo.png') }}"> 
          </div>               
         <div class="col-7 col-md-10 col-xl-8">                           
             <!-- Banner working -->
-            <img class="img-fluid float-right" alt="Responsive image" src="{{ asset('banner.png','banner') }}">           
+            <img class="img-fluid float-right" alt="Responsive image" src ="{{ asset('build/img/banner.png') }}">           
         </div> 
     </div>
     <nav class="navbar navbar-expand-lg navbar-light">
@@ -56,7 +56,13 @@
             </ul>
             <form class="form-inline my-2 my-lg-0">
                 {% if is_granted('ROLE_USER') %}
-                    <a class="nav-link" href="{{ path('vista_usuario') }}">{{ app.user.username}}</a>       
+                    <a class="fs-18" href="{{ path('vista_usuario') }}">{{ app.user.username}}</a> 
+                    <a tabindex="0" role="button" rel="popover" data-placement="bottom" data-toggle="popover" href="#" >
+                       <div class="icono-notification">
+                            <img class="notification rounded-circle" src ="{{ asset('build/img/uploads/users_perfil/' ~ app.user.getPerfilImg) }}"/>
+                            <div class="icono-encima bg-danger text-white fs-10">4</div>
+                        </div>
+                    </a>       
                     <a class="btn btn-outline-secondary my-2 my-sm-0" href="{{ path('security_logout') }}">Deconectate</a>       
                 {% else %}
                     <a class="btn btn-outline-secondary my-2 my-sm-0" href="{{ path('security_login') }}">Iniciar/Registrar</a>
@@ -64,6 +70,75 @@
             </form>
         </div>
     </nav>   
-</div>    
+</div> 
+
+<!-- Content for Popover  -->
+<div class="popover d-none" id="popover_content">
+    <div class="data-content" >  
+        <div class="container-fluid"> 
+            <div class="row m-t-15">
+                <div class="activity_item ">
+                    <div class="row">
+                        <div class="col-md-3">
+                             <img class="rounded-circle" src ="{{ asset('build/img/uploads/users_perfil/' ~ app.user.getPerfilImg) }}"/>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="d-flex align-items-top justify-content-between">
+                                <span>Nicol</span>
+                                <span>20/07/19</span>        
+                            </div>
+                            <span class="text-muted">Algo de mensaje...</spaN>
+                        </div>               
+                    </div><hr/>                  
+                </div> 
+                  <div class="activity_item ">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <img class="rounded-circle" src ="{{ asset('build/img/liviu.png') }}"/>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="d-flex align-items-top justify-content-between">
+                                <span>Liviu</span>
+                                <span>05/07/19</span>        
+                            </div>
+                            <span class="text-muted">Algo de mensaje...</spaN>
+                        </div>               
+                    </div><hr/>                  
+                </div>
+                 <div class="activity_item ">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <img class="rounded-circle" src ="{{ asset('build/img/uploads/users_perfil/' ~ app.user.getPerfilImg) }}"/>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="d-flex align-items-top justify-content-between">
+                                <span>Nicol</span>
+                                <span>20/07/19</span>        
+                            </div>
+                            <span class="text-muted">Algo de mensaje...</spaN>
+                        </div>               
+                    </div><hr/>                  
+                </div> 
+                  <div class="activity_item ">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <img class="rounded-circle" src ="{{ asset('build/img/liviu.png') }}"/>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="d-flex align-items-top justify-content-between">
+                                <span>Liviu</span>
+                                <span>05/07/19</span>        
+                            </div>
+                            <span class="text-muted">Algo de mensaje...</spaN>
+                        </div>               
+                    </div><hr/>                  
+                </div>
+                <div class="col-md-12 ">
+                    <div class="colorAzul text-center fs-15 p-3"><a href="{{ path('foro') }}">Ver Todo</a></div>
+                </div>
+            </div>                                    
+        </div>         
+    </div>
+</div> 
 {% endblock %}
 

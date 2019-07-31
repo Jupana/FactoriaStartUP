@@ -15,10 +15,17 @@ require('bootstrap');
 // or you can include specific pieces
 require('bootstrap/js/dist/tooltip');
 require('bootstrap/js/dist/popover');
+require('bootstrap/js/dist/util.js')
 
-$(document).ready(function() {
-    $('[data-toggle="popover"]').popover();
-});
+$(function(){
+    $('[rel=popover]').popover({ 
+      html : true ,
+      container: 'body',
+      content: function() {
+        return $('#popover_content').html();
+      }
+    });
+  });
 
     /*==================================================================
     [ Validate LOGIN ]*/
