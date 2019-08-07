@@ -27,3 +27,7 @@
 /.vscode/
 /phpunit.xml.dist
 /yarn-error.log 
+
+###> liip/imagine-bundle ###
+/public/media/cache/
+###< liip/imagine-bundle ###

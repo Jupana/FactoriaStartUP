@@ -23,7 +23,7 @@ require('@fortawesome/fontawesome-free/js/all.js');
 $(document).ready(function() {
     $('[data-toggle="popover"]').popover();
     $('.slick-projects').slick({
-        slidesToShow: 3,
+        slidesToShow: 2,
         slidesToScroll: 1,
         dots: true,
         variableWidth: true,

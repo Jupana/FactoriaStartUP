@@ -13,31 +13,50 @@
 
 <!-- Carousel -->
 <div class="row">
+<!--First slide-->
     <div class="col-lg-6">    
-     <!--First slide-->
         <div class="row p-t-15 slick-projects slider">
             {% for project in projects %}              
-            <div class="col-md-6">
+            <div>
                 <div class="shadow_box"> 
-                <div class="img-slicknmb">               
-                 {% if project.getProjectImg is not empty  %}
-                        <img class="card-img-top" src ="{{ asset('build/img/uploads/projects_img/' ~ project.getProjectImg | imagine_filter('my_thumb')) }}"/>
+                    {% if project.getProjectImg is not empty  %}
+                        <img class="card-img-top" src ="{{ asset('build/img/uploads/projects_img/' ~ project.getProjectImg) | imagine_filter('my_thumb') }}"/>
                     {% else %}
-                        <img class="card-img-top" src ="{{ asset('build/img/uploads/projects_img/8bd59024872918f349f730b3e1d62bfc.jpeg') }}">
+                        <img class="card-img-top" src ="{{ asset('build/img/uploads/projects_img/8bd59024872918f349f730b3e1d62bfc.jpeg') | imagine_filter('my_thumb') }}">
                     {% endif %} 
-                </div>
-                <div class="card-body">
-                    <h4 class="card-title">Card title</h4>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                    card's content.</p>
-                    <a class="btn">Button</a>
-                </div>
+                    <div class="card-body">
+                        <h4 class="card-title">Card title</h4>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
+                        <a class="btn">Button</a>
+                    </div>                         
                 </div>
             </div>           
                {% endfor %} 
-        </div>             
-            <a href="javascript:void(0)" class="slick-prev" style="display: block;"><i class="fas fa-chevron-left"></i></a>
-            <a href="javascript:void(0)" class="slick-next" style="display: block;"><i class="fas fa-chevron-right"></i></a>      
+        </div>  
+    </div>
+    <!--Second slide-->
+    <div class="col-lg-6">    
+        <div class="row p-t-15 slick-projects slider">
+            {% for project in projects %}              
+            <div>
+                <div class="shadow_box"> 
+                    {% if project.getProjectImg is not empty  %}
+                        <img class="card-img-top" src ="{{ asset('build/img/uploads/projects_img/' ~ project.getProjectImg) | imagine_filter('my_thumb') }}"/>
+                    {% else %}
+                        <img class="card-img-top" src ="{{ asset('build/img/uploads/projects_img/8bd59024872918f349f730b3e1d62bfc.jpeg') | imagine_filter('my_thumb') }}">
+                    {% endif %} 
+               
+                    <div class="card-body">
+                        <h4 class="card-title">Card title</h4>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
+                        <a class="btn">Button</a>
+                    </div>
+                </div>
+            </div>           
+               {% endfor %} 
+        </div>  
     </div>
 </div><!-- Fin ROW-->
 <!-- Fin Carousel-->

@@ -17,5 +17,5 @@ return [
     Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle::class => ['dev' => true, 'test' => true],
     FOS\JsRoutingBundle\FOSJsRoutingBundle::class => ['all' => true],
     Bazinga\GeocoderBundle\BazingaGeocoderBundle::class => ['all' => true],
-    Liip\ImagineBundle\LiipImagineBundle::class=>['all'=>true]
+    Liip\ImagineBundle\LiipImagineBundle::class => ['all' => true],
 ];
