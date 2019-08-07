@@ -2,15 +2,45 @@
 
 {% block content %}
 <!--Contenido HOME-->
-    <div class="flex-row justify-content-around   p-t-200">
-		<div class=" col-xs-6 home home-item">
-            <a class=""  href="{{ path('profiles') }}">Busco equipo</a>  
+    <div class="flex-row justify-content-around p-t-15">
+		<div class=" col-xs-6 home-item">
+            <button class="bt-home"><a class=""  href="{{ path('profiles') }}">Busco equipo</a></button>  
         </div>
-        <div class="col-xs-6 home home-item">
-            <a class="" href="{{ path('proyectos') }}">Busco Proyecto</a>                                            
+        <div class="col-xs-6 home-item">
+            <button class="bt-home"><a class="" href="{{ path('proyectos') }}">Busco Proyecto</a></button>
         </div> 
-    </div>                   
+    </div> 
+
+<!-- Carousel -->
+<div class="row">
+    <div class="col-lg-6">    
+     <!--First slide-->
+        <div class="row p-t-15 slick-projects slider">
+            {% for project in projects %}              
+            <div class="col-md-6">
+                <div class="shadow_box"> 
+                <div class="img-slicknmb">               
+                 {% if project.getProjectImg is not empty  %}
+                        <img class="card-img-top" src ="{{ asset('build/img/uploads/projects_img/' ~ project.getProjectImg | imagine_filter('my_thumb')) }}"/>
+                    {% else %}
+                        <img class="card-img-top" src ="{{ asset('build/img/uploads/projects_img/8bd59024872918f349f730b3e1d62bfc.jpeg') }}">
+                    {% endif %} 
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title">Card title</h4>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                    card's content.</p>
+                    <a class="btn">Button</a>
+                </div>
+                </div>
+            </div>           
+               {% endfor %} 
+        </div>             
+            <a href="javascript:void(0)" class="slick-prev" style="display: block;"><i class="fas fa-chevron-left"></i></a>
+            <a href="javascript:void(0)" class="slick-next" style="display: block;"><i class="fas fa-chevron-right"></i></a>      
+    </div>
+</div><!-- Fin ROW-->
+<!-- Fin Carousel-->
+               
 
 {% endblock %}
-
-

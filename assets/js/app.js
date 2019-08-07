@@ -5,6 +5,7 @@ php bin/console fos:js-routing:dump --format=json --target=assets/js/js_routes.j
 */
 
 import Routes from './js_routes.json'
+import 'slick-carousel';
 Routing.setRoutingData(Routes)
 const $ = require('jquery');
 
@@ -15,9 +16,20 @@ require('bootstrap');
 // or you can include specific pieces
 require('bootstrap/js/dist/tooltip');
 require('bootstrap/js/dist/popover');
+require('slick-carousel');
+require('@fortawesome/fontawesome-free/css/all.min.css');
+require('@fortawesome/fontawesome-free/js/all.js');
 
 $(document).ready(function() {
     $('[data-toggle="popover"]').popover();
+    $('.slick-projects').slick({
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        dots: true,
+        variableWidth: true,
+       // autoplay: true,
+       // autoplaySpeed: 2000,        
+      });  
 });
 
     /*==================================================================
@@ -780,6 +792,8 @@ $('.profile_interest_1').click(function() {
         }
 
 /* FIN function for Multi Step Form into addProyect -->*/
+
+
 
 /**/ 
 })(jQuery);    

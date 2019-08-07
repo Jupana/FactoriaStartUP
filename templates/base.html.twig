@@ -4,7 +4,7 @@
         <meta charset="UTF-8" >
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <title>{% block title %}Factoria StartUp!{% endblock %}</title> 
-        <link rel="stylesheet" href="{{ asset('build/css/app.css') }}">      
+        <link rel="stylesheet" href="{{ asset('build/css/app.css') }}">    
         {% block stylesheets %}{% endblock %}
     </head>
     <body>  
@@ -24,7 +24,7 @@
         <footer class="bgAzul text-white">
 		    {% include 'footer/footer.html.twig' %}          
 		</footer>                           
-        <script src="{{ asset('build/js/app.js') }}"></script>     
+        <script src="{{ asset('build/js/app.js') }}"></script>   
         {% block javascripts %}{% endblock %}
     </body>
 </html>

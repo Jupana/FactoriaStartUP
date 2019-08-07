@@ -163,3 +163,6 @@ noticia:
 admin_projects:
     path: /admin_projects
     controller: App\Controller\AdminProjectsController::index
+
+_liip_imagine:
+    resource: "@LiipImagineBundle/Resources/config/routing.yaml"

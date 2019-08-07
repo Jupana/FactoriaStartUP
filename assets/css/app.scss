@@ -1,5 +1,9 @@
 @import '~bootstrap/scss/bootstrap';
 
+$slick-font-path: "~slick-carousel/slick/fonts/";
+$slick-loader-path: "~slick-carousel/slick/";
+@import '~slick-carousel/slick/slick', '~slick-carousel/slick/slick-theme';
+
 $colorWhite:#fff;
 $colorbg:#f5f5f5;
 $colorAzul:#0070C0;
@@ -8,6 +12,7 @@ $colorAzul3:#129BFB;/*color derivado logo*/
 $color1:#0070C0;/*color logo*/
 $color2:#005692;/*color derivado logo*/
 $color3: #f9f9f9;/*color del gris cambiado a lo de Liviu*/
+$color4:#014474;/*color derivado logo hover*/
 $colorBorder1:#e7ebf3;
 $colortext: #222121d7;
 $colorbox:#5f5e6141;
@@ -107,15 +112,19 @@ a {
 
 
 /*---Home--*/
-.home{ 
-    background-color: $color2;
-    height: 500px;
-	box-shadow:$shadow;
-	margin-right:-15px;
-	margin-left:-15px;
 
-	
-} 
+.bt-home {
+	background-color:$color2;
+	border-color:$color2;
+	border-radius: 0.25rem;
+}
+.bt-home:hover {
+	cursor: pointer;
+	background-color:$color4;
+	border-color:$color4;
+
+}
+
 .home-item a{ 
     text-decoration:none;
     color:white;
@@ -554,11 +563,7 @@ li:last-child .u-dot-line-v1::after, li:last-child
 	
 }
 /*---lg--*/
-@media (min-width: 1400px){
-	.home{
-		height: 600px !important;
-	}
-}
+
 
 @media (min-width: 1021px){
 	
@@ -3563,6 +3568,28 @@ li:last-child .u-dot-line-v1::after, li:last-child
 	right: 0px;
 	bottom: 0px;
 }
+
+.slick-track
+{
+    display: flex !important;
+}
+
+.slick-slide
+{
+    height: inherit !important;
+}
+ .slick-prev { position: absolute; color: $color2; display: block; height: 40px; width: 30px; top: 50%; margin-top: -20px; left: -25px; padding: 0px; }
+ .slick-next { position: absolute; color: $color2; display: block; height: 40px; width: 30px; top: 50%; margin-top: -20px; right: -25px; padding: 0px; }
+ .slick-prev:focus { outline: none }
+ .slick-next:focus { outline: none }
+ .img-slick{
+	 width:35%!important;
+ }
+.card-img-top{
+	object-fit: cover;
+}
+ 
+
 
 
 
