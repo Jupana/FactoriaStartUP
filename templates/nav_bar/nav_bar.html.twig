@@ -4,7 +4,9 @@
     <div class="flex-row justify-content-around border-bottom border-secondary">
         <div class="col-2  col-xl-4"> 
             <!-- Logo working -->
-            <img class="img-fluid float-left" alt="Responsive image" src ="{{ asset('build/img/logo.png') }}"> 
+            <a href="/">
+                <img class="img-fluid float-left" alt="Responsive image" src ="{{ asset('build/img/logo.png') }}"> 
+            </a>
          </div>               
         <div class="col-7 col-md-10 col-xl-8">                        
             <!-- Banner working -->                     
@@ -71,7 +73,7 @@
         </div>
     </nav>   
 </div> 
-
+{% if is_granted('ROLE_USER') %}
 <!-- Content for Popover  -->
 <div class="popover d-none" id="popover_content">
     <div class="data-content" >  
@@ -139,6 +141,7 @@
             </div>                                    
         </div>         
     </div>
-</div> 
+</div>
+{% endif %} 
 {% endblock %}
 

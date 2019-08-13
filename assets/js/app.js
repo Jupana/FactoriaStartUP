@@ -21,7 +21,14 @@ require('@fortawesome/fontawesome-free/css/all.min.css');
 require('@fortawesome/fontawesome-free/js/all.js');
 
 $(document).ready(function() {
-    $('[data-toggle="popover"]').popover();
+    $('[rel=popover]').popover({ 
+        html : true ,
+        container: 'body',
+        content: function() {
+          return $('#popover_content').html();
+        }
+      });
+    
     $('.slick-projects').slick({
         slidesToShow: 2,
         slidesToScroll: 1,
