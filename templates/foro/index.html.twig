@@ -3,7 +3,7 @@
 {% block title %}Herramientas{% endblock %}
 
 {% block content %}
-    Foro
+   <!-- Foro
     <div class="row p-t-10">
         <div class="col-md-3 col-12">
             <p class="bgAzul m-b-2 text-white text-center ">Todos</p>
@@ -61,6 +61,126 @@
                 </div>        
             </div>
         </div>
-    </div>           
+    </div>  -->
+
+    <!--Vista Notificaciones-Mensajes-->
+     <div class="vista_mensajes">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                        <h4 class="p-t-20 p-b-20 font-weight-bold">Mensajes</h4>
+                        <a href="#">
+                            <div class="user_mensaje shadow_box p-3 m-b-20">
+                                <div class="row mb-n3">
+                                    <div class="col-md-3"> 
+                                        <img class="rounded-circle" src ="{{ asset('build/img/uploads/users_perfil/' ~ app.user.getPerfilImg) }}"/>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <h5>Micheal McCoy</h5>
+                                        <p><span class="map size_iconStar">Guadalupe</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#"> 
+                            <div class="user_mensaje shadow_box p-3 m-b-20">
+                                <div class="row mb-n3">
+                                    <div class="col-md-3"> 
+                                        <img class="rounded-circle" src ="{{ asset('build/img/liviu.png') }}"/>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <h5>Micheal McCoy</h5>
+                                        <p><span class="map size_iconStar">Guadalupe</span></p>
+                                    </div>
+                                </div>
+                            </div> 
+                        </a> 
+                           <a href="#">
+                            <div class="user_mensaje shadow_box p-3 m-b-20">
+                                <div class="row mb-n3">
+                                    <div class="col-md-3"> 
+                                        <img class="rounded-circle" src ="{{ asset('build/img/uploads/users_perfil/' ~ app.user.getPerfilImg) }}"/>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <h5>Micheal McCoy</h5>
+                                        <p><span class="map size_iconStar">Guadalupe</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#"> 
+                            <div class="user_mensaje shadow_box p-3 m-b-20">
+                                <div class="row mb-n3">
+                                    <div class="col-md-3"> 
+                                        <img class="rounded-circle" src ="{{ asset('build/img/liviu.png') }}"/>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <h5>Micheal McCoy</h5>
+                                        <p><span class="map size_iconStar">Guadalupe</span></p>
+                                    </div>
+                                </div>
+                            </div> 
+                        </a>   
+                </div>
+                <div class="col-md-7 border-left m-t-30 m-b-30">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <img class="rounded-circle"  src ="{{ asset('build/img/proyecto-fsu.png') }}">
+                        </div>
+                        <div class="col-md-10 p-t-20">
+                            <div class="fs-30 font-weight-bold"><span>Proyecto NAME o Mensaje TITULO</span></div>   
+                        </div>
+                    </div>     
+                 <!--Aqui habria que hacer un template para el mensaje a sacar a la vista-->
+                  <div class="mesgs text-dark fs-20">
+                    <div class="msg_history">
+                        <div class="incoming_msg">
+                            <div class="incoming_msg_img"> 
+                                <img class="rounded-circle" src="{{ asset('img/Captura18.png') }}" alt=""> 
+                            </div>
+                                <div class="received_msg ">
+                                    <div class="received_withd_msg">
+                                        <p>How many days do you think will take us to doscover Paris??</p>
+                                        <span class="time_date">10 min ago</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="outgoing_msg">
+                                <div class="sent_msg">
+                                    <p class="border font-weight-bold">OK,sounds great! I`ll start organising the flight tickets first.</p>
+                                    <span class="time_date">2 houres ago</span> 
+                                </div>
+                            </div>
+                            <div class="incoming_msg">
+                                <div class="incoming_msg_img"> 
+                                    <img class="rounded-circle" src="{{ asset('img/Captura18.png') }}" alt=""> 
+                                </div>
+                                <div class="received_msg">
+                                    <div class="received_withd_msg">
+                                        <p>ok,sounds good!!you`re amazing.I want to invite all my fiends!!!</p>
+                                        <span class="time_date">10 min ago</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="outgoing_msg">
+                                <div class="sent_msg">
+                                    <p class="border font-weight-bold">ok will go to doscover Paris </p>
+                                    <span class="time_date">10 min ago</span> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>  
+                </div>
+            </div>  
+        </div>
+    </div>
+            
+
+
+
+
+
+
+
 {% endblock %}
 

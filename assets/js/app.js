@@ -31,6 +31,17 @@ $(document).ready(function() {
        // autoplaySpeed: 2000,        
       });  
 });
+require('bootstrap/js/dist/util.js')
+
+$(function(){
+    $('[rel=popover]').popover({ 
+      html : true ,
+      container: 'body',
+      content: function() {
+        return $('#popover_content').html();
+      }
+    });
+  });
 
     /*==================================================================
     [ Validate LOGIN ]*/

@@ -1,7 +1,7 @@
     <!--Contenido Footer-->
 {% block footer %}
-    <div class="container  ">
-        <div class="row p-t-10">       
+    <div class="container">
+        <div class="row p-3">       
             <div class="col-md-4 col-12">
                 <span class="text_header">COMPANY</span>
                 <div class="row">
@@ -14,19 +14,18 @@
                 </div>    
             </div>
             <div class=" col-md-4 col-12">
-                <span class="text_header ">SOCIALS</span>
                 <div class="row p-t-10">
                     <div class="socials col-md-2 col-2 m-b-10">
-                        <a  href="" target="_blank"><img alt="facebook" src="https://www.solodev.com/assets/footer/facebook-white.png"></a>
+                        <a  href="" target="_blank"><img alt="facebook" src ="{{ asset('build/img/icons/facebook.png') }}"></a>
                      </div>
                     <div class="socials col-md-2 col-2 m-b-10">
-                        <a href="" target="_blank"><img alt="twitter" src="https://www.solodev.com/assets/footer/twitter-white.png"></a>                 
+                        <a href=""><img alt="twitter"src ="{{ asset('build/img/icons/twiter.png') }}"></a>                 
                     </div>
                     <div class="socials col-md-2 col-2 m-b-10">
-                      <a href="" target="_blank"><img alt="youtube" src="https://www.solodev.com/assets/footer/youtube-white.png"></a>
+                      <a href="" ><img alt="linkedln" src ="{{ asset('build/img/icons/linkedin.png') }}"></a>
                     </div>
                     <div class="socials col-md-2 col-2 m-b-10">
-                      <a href="" target="_blank"><img alt="instagram" src="https://www.solodev.com/assets/footer/instagram-white.png"></a>
+                      <a href="" ><img alt="instagram" src ="{{ asset('build/img/icons/instagram.png') }}"></a>
                     </div>
                 </div>
             </div>
@@ -34,12 +33,10 @@
                 <span class="text_header">CONTACTOS</span>     
                 <p  class="text_f m-t-10">Telefono: 999 999 999</br>
                 <a  class="text_f">info@factoriastartup.com</a></p>         
-            </div>
-        </div> 
-        <div class="row">
+            </div>   
             <div class="offset-md-4 col-md-4 offset-md-4">    
                 <p class="text_f text-white">Copyright © 2019 FactoriaStartUp</p>
             </div> 
-        </div>             
+         </div>          
     </div> 
 {% endblock %} 

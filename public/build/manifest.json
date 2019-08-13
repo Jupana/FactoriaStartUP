@@ -35,6 +35,7 @@
   "build/img/icons/icon-face.png": "/build/img/icons/icon-face.png",
   "build/img/icons/icon-google.png": "/build/img/icons/icon-google.png",
   "build/img/icons/map-marker.png": "/build/img/icons/map-marker.png",
+  "build/img/icons/notification.png": "/build/img/icons/notification.png",
   "build/img/icons/symbol-01.png": "/build/img/icons/symbol-01.png",
   "build/img/img.png": "/build/img/img.png",
   "build/img/logo.png": "/build/img/logo.png",
@@ -93,5 +94,11 @@
   "build/img/uploads/users_perfil/nicolNew-f46d9fd0c3acdd977fc864b904e30278.jpeg": "/build/img/uploads/users_perfil/nicolNew-f46d9fd0c3acdd977fc864b904e30278.jpeg",
   "build/img/uploads/users_perfil/trabajo-2df765a027db8463758c4fa32e7ad4ba.jpeg": "/build/img/uploads/users_perfil/trabajo-2df765a027db8463758c4fa32e7ad4ba.jpeg",
   "build/img/uploads/users_perfil/trabajo-45e7d30d92a9a64ee3e043e5494c20e3.png": "/build/img/uploads/users_perfil/trabajo-45e7d30d92a9a64ee3e043e5494c20e3.png",
-  "build/img/uploads/users_perfil/trabajo-f512451351846f81b04e0a37eeeb552d.png": "/build/img/uploads/users_perfil/trabajo-f512451351846f81b04e0a37eeeb552d.png"
+  "build/img/uploads/users_perfil/trabajo-f512451351846f81b04e0a37eeeb552d.png": "/build/img/uploads/users_perfil/trabajo-f512451351846f81b04e0a37eeeb552d.png",
+  "build/img/icons/facebook.png": "/build/img/icons/facebook.png",
+  "build/img/icons/instagram.png": "/build/img/icons/instagram.png",
+  "build/img/icons/linkedin.png": "/build/img/icons/linkedin.png",
+  "build/img/icons/twiter.png": "/build/img/icons/twiter.png",
+  "build/img/icons/youtube.png": "/build/img/icons/youtube.png",
+  "build/img/proyecto-fsu.png": "/build/img/proyecto-fsu.png"
 }

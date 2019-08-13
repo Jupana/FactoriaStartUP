@@ -110,6 +110,27 @@ a {
 	
 }
 
+.notification{
+	width:50px;
+	padding:5px;
+}
+
+.icono-notification{
+    position: relative;
+    display: inline-block; 
+}
+ 
+.icono-encima{
+	position: absolute;
+    top: 1px;
+    right: 1px;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    padding: 2px;
+}
+
 
 /*---Home--*/
 
