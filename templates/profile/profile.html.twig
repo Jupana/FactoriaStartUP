@@ -45,15 +45,16 @@
                 {% for project in projects %}
                     <a href="{{ path("detalle_proyecto",{"id": project.id }) }}" class=" ver_color"><b>{{project.ProjectName}}</b></br></a>               
                 {% endfor %}
-            </div>
-            {% if is_granted('ROLE_USER') %}
-            <div class="float-right">
-                <p>Tu has contactado con el :<a href="#"class="ver_color">Si</a></p>
-                <p>El ha contactado contigo:<b>No</b></p>
-            </div> 
-            {% endif %}   
+            </div>            
         </div>
     </div>
+    {% if is_granted('ROLE_USER') %}
+        <div class="row m-t-20 col-md-12">
+                <p>Tu has contactado con el :<a href="#"class="ver_color">Si</a></p>
+                <p>El ha contactado contigo:<b>No</b></p>
+        </div> 
+    {% endif %}   
+    
     <div class="row m-t-20 margin_top "> 
         <div class="col-md-12">
             <p class=" ver_color par fs-20 "><b>Datos profesionales</b></p>

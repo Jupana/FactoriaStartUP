@@ -13,6 +13,7 @@ use App\Repository\SectorRepository;
 use App\Repository\ProjectRepository;
 use App\Repository\ProfesionalProfileRepository;
 use App\Repository\NeedsProjectRepository;
+use App\Repository\InterestProfileRepository;
 use App\Services\GetProfile;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\FormFactoryInterface;
@@ -77,13 +78,17 @@ class ProfileUserController extends AbstractController
     */
     private $projectNeedsRepo;
 
-    
+    /**
+     * @var InterestProfileRepository
+     */
+
+     private $interestProfileRepository;
 
 
     public function __construct(
         \Twig_Environment $twig, ProfileUserRepository $profileUserRepository, ProfilRepository $profilRepository, SectorRepository $sectorRepository,
         FormFactoryInterface $formFactory,EntityManagerInterface $entityManager,ProfesionalProfileRepository $profesionalProfileRepository,ProjectRepository $projectRepository,NeedsProjectRepository $projectNeedsRepo,
-        FlashBagInterface $flashBag
+        FlashBagInterface $flashBag,InterestProfileRepository $interestProfileRepository
         ) {
         $this->twig = $twig;
         $this->profileUserRepository = $profileUserRepository;
@@ -95,6 +100,7 @@ class ProfileUserController extends AbstractController
         $this->entityManager = $entityManager;
         $this->flashBag = $flashBag;
         $this->projectNeedsRepo = $projectNeedsRepo;
+        $this->interestProfileRepository = $interestProfileRepository;
     }
 
 
@@ -144,7 +150,7 @@ class ProfileUserController extends AbstractController
             
             $formAddInterestProfile = $this->formFactory->create(InterestProfileType::class, $interestProfile,['userId'=> $this->getuser()->getId(),'profileUserId'=>$id]);
             $formAddInterestProfile->handleRequest($request);
-    
+
             if ($formAddInterestProfile->isSubmitted() && $formAddInterestProfile->isValid()) {
 
                $dealToAdd = $formAddInterestProfile->get('extra_profil_deal_add')->getData();
@@ -153,8 +159,10 @@ class ProfileUserController extends AbstractController
                $projectToUpdate = $this->projectRepository->find($interestProfile->getInterestProject());
                $projectAllNeeds = $this->projectNeedsRepo->findBy(['needs_project'=>$projectToUpdate->getId(),'needs_perfil' =>$getIdProfile[0]->getName()]);
 
+               
                if($dealToAdd != NULL){
-                 //Otra Mierda, si tiens tiempo tienes que reescribir esto:
+                 //Otra Mierda, si tiens tiempo tienes que reescribir esto
+                 
                 
                 $newProfileAddFromMatch = new NeedsProject();
                 $newProfileAddFromMatch->setUser($this->getuser());
@@ -186,6 +194,7 @@ class ProfileUserController extends AbstractController
                 
                //Otra Mierda transformas el Profil name to ID               
                $interestProfile->setInterestProfile($getIdProfile[0]->getId());
+               $interestProfile->setInterestDescription($projectAllNeeds[0]->getNeedsDescription());
 
                 $this->entityManager->persist($interestProfile);
                 $this->entityManager->flush();   

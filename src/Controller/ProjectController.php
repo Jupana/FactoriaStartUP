@@ -190,6 +190,8 @@ class ProjectController extends AbstractController
                 
                 $sendMailProjectInterest->sendMailProject($mailInterestProject);
 
+                dump($interestProyect);
+
                 $this->entityManager->persist($interestProyect);
                 $this->entityManager->flush();   
                 
