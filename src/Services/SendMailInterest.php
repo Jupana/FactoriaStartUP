@@ -29,10 +29,11 @@ class SendMailInterest{
     }
 
     public function sendMailProfil($mailInterestProfil){
+        dump($mailInterestProfil);
         
         
         /** SEND USER MAIL */
-        $message = (new \Swift_Message('Factoria Start Up: A '.ucfirst($mailInterestProfil['userName'].' le interesa tu perfil '.ucfirst($mailInterestProfil['profileName']))))
+        $message = (new \Swift_Message('Factoria Start Up: A '.ucfirst($mailInterestProfil['userName'].' le interesa tu perfil '.ucfirst($mailInterestProfil['profileName']->getName() ))))
         ->setFrom('liviuromania@gmail.com')
         ->setTo($mailInterestProfil['ownerMail'])
         ->setBody(

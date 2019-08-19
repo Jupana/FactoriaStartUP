@@ -37,25 +37,24 @@ class InterestProfileType extends AbstractType
         
         $projectDropDown =[];
         foreach($projects as $project){
-            $projectDropDown[$project->getProjectName()]=$project->getId();
+            $projectDropDown[$project->getProjectName()]=$project;
         }
         
-        $profileDropDown =[];
-        foreach($profileUser as $profile){
-            $profileDropDown[$profile->getProfil()]=$profile->getProfil();
+        $profileDropDown =[];        
+        foreach($profileUser as $profile){            
+            $profileDropDown[$profile->getProfil()->getName()]= $profile->getProfil();
         } 
 
-        $builder
-           
-            ->add('interest_project',ChoiceType::class,[ 
-            'choices' => $projectDropDown,
-            'label' => false ,
-            ])
+        $builder          
+            
             ->add('interest_profile',ChoiceType::class,[ 
                 'choices' => $profileDropDown,
                 'label' => false ,
                 ])
-
+            ->add('interest_project',ChoiceType::class,[ 
+                    'choices' => $projectDropDown,
+                    'label' => false ,
+                    ])    
             ->add('interest_description',TextareaType::class,[
                 'required'=>false,
                 'label'=>false

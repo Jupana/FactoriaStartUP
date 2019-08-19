@@ -69,12 +69,12 @@
                         {% for profile in profiles %}
                             <tr>                       
                                 <td>
-                                    <p>{{ profile.profil}}</p>                                 
+                                    <p>{{ profile.profil.name}}</p>                                 
                                 </td>
                                 <td>
                                     <p>{{profile.sector}}</p>    
                                 <td>
-                                    <a data-toggle="modal" data-target="#modalForm" data-profil="{{profile.profil}}" data-sector="{{profile.sector}}" data-id="{{profile.id}}" class="ver_color select_perfil" 
+                                    <a data-toggle="modal" data-target="#modalForm" data-profil="{{profile.profil.name}}" data-sector="{{profile.sector}}" data-id="{{profile.id}}" class="ver_color select_perfil" 
                                     href="#{{ profile.id  }}"><p>Ver</p></a> 
                                               
                             </tr>

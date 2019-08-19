@@ -352,9 +352,11 @@ $(function(){
 /* <!-- START PROJECT INTEREST */
 
 function  arrMatchTxt (profil,dealArr, projectName){
+    console.log(dealArr);
+    console.log('Perceeeent',dealArr.precent);
 
     var deal = dealArr.deal != null ? dealArr.deal:'';
-    var percent = dealArr.percent !=0 ? dealArr.percent:''; //Check if Percent is 0
+    var percent = dealArr.percent != undefined ? dealArr.percent:''; //Check if Percent is 0
     var matchText = {
         'match':{
             'headerTextDeal':'Quieres participar en el proyecto <b>'+projectName+'</b>,con tu perfil de <b>'+profil+'</b> con un acuerdo de <b>'+percent+deal+'</b> y exponen en su propuesta:',
@@ -448,10 +450,9 @@ $('.projectInterstMe').click(function(){
                 xhr.send(null)
             }) // end of the promise
                 .then((data) => {
-                    //we create the dropdown
+                    //we create the dropdown                    
                     projectProfilDropdown  = data['needsProfileProject'];
-                    $.merge(projectProfilDropdown,data['usersProfiles']);
-                    console.log('Before unique DropDwon',projectProfilDropdown);
+                    $.merge(projectProfilDropdown,data['usersProfiles']);                    
                     projectProfilDropdown = Array.from(new Set(projectProfilDropdown));
 
                     $("select#interest_project_interest_profil option").remove();
@@ -503,6 +504,9 @@ $('select#interest_project_interest_profil').change(function(){
                     }                  
                     
                     console.log('deeeal-->'+deal.deal);
+                    console.log('profileSelected-->'+profileSelected);
+                    console.log('deeeal VVVVV-->'+deal);
+                    console.log('projectTitle-->'+projectTitle);
                     
                     var matchTxt = arrMatchTxt(profileSelected,deal,projectTitle);
                     console.log('Response Type --> '+responseType)

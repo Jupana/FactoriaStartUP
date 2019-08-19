@@ -27,7 +27,7 @@
                 <div class="busco">
                     <div class="row">
                         <div class="col-md-12 ">
-                            <p class=""><b>Usuarios que “yo busco a mis proyectos</b></p>           
+                            <p class=""><b>Usuarios que “yo busco a mis proyectos".</b></p>           
                         </div>
                         <div class="col-md-12 table-responsive">
                             <table class="table ">
@@ -39,6 +39,7 @@
                                         <th>Proyecto</th>
                                         <th>Negociacion</th>
                                         <th>Estado</th>
+                                        <th>Eliminar</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -66,7 +67,12 @@
                                              {% else %}
                                              <p>Reunido</p>
                                              {% endif %}
-                                        </td>                                
+                                        </td>
+                                        <td>
+                                           <a class="delete" href="{{path('deleteProfileInterest', {'id':searchprofile.id})}}">
+                                                <img class="sizeDelete" src="{{ asset('icons/delete.png','img') }}" alt="Eliminar!"/>
+                                           </a>                              
+                                        </td>
                                     </tr>
                                      {% set i = i + 1 %}
                                  {% endfor %}   
@@ -85,6 +91,7 @@
                                         <th>Perfil</th>                                     
                                         <th>Negociacion</th>
                                         <th>Estado</th>
+                                        <th>Eliminar</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -98,7 +105,7 @@
                                             <a  class="ver_color " href="/proyectos/{{usersSearchProjectData[n].proyect.id}}"><p>{{usersSearchProjectData[n].proyect.proyectName}}</p></a>                                                                                  
                                         </td>
                                         <td>
-                                            <p>{{searchProject.InterestProfil}}</p>                                          
+                                            <p>{{searchProject.InterestProfil.name}}</p>                                          
                                         </td>
                                        
                                         <td>
@@ -111,6 +118,11 @@
                                              {% else %}
                                                 <p>Reunido</p>
                                              {% endif %}      
+                                        </td>
+                                        <td>  
+                                          <a class="delete" href="{{path('deleteProjectInterest', {'id':searchProject.id})}}">
+                                                <img class="sizeDelete" src="{{ asset('icons/delete.png','img') }}" alt="Eliminar!"/>
+                                           </a>                               
                                         </td>                                
                                     </tr>
                                     {% set n = n + 1 %}
@@ -159,7 +171,7 @@
                                                 <a  class="ver_color " href="/proyectos/{{userProjectsToColaborate[k].proyect.id}}"><p>{{userProjectsToColaborate[k].proyect.proyectName}}</p></a>
                                             </td> 
                                             <td>
-                                                <p>{{searchProjectToColaborate.InterestProfil}}</p>
+                                                <p>{{searchProjectToColaborate.InterestProfil.name}}</p>
                                             </td>
                                             <td>
                                                  <p>{% if searchProjectToColaborate.InterestPercent != 0 %} {{searchProjectToColaborate.InterestPercent}}{% endif %}{{searchProjectToColaborate.InterestDeal}}</p>

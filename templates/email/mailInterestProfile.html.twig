@@ -149,7 +149,7 @@
 													<table width="100%" border="0" cellspacing="0" cellpadding="0">
 														<tr>
 															<td class="h3 pb10" style="color:#000000; font-family:'Playfair Display', Georgia, serif; font-size:22px; line-height:32px; text-align:left; padding-bottom:10px;">
-                                                                <multiline>Hola <b>{{dataMail.ownerName}}</b> , el usuario <b>{{dataMail.userName|capitalize}}</b> se intereso por tu perfil <b>{{dataMail.profileName|capitalize}}</b>. </multiline>
+                                                                <multiline>Hola <b>{{dataMail.ownerName}}</b> , el usuario <b>{{dataMail.userName|capitalize}}</b> se intereso por tu perfil <b>{{dataMail.profileName.name|capitalize}}</b>. </multiline>
                                                             </td>
 														</tr>
 														<tr>
@@ -160,7 +160,7 @@
 															<td class="text" style="color:#999999; font-family:Arial, sans-serif; font-size:14px; line-height:26px; text-align:left;">
                                                                 <multiline>
                                                                             {% if dataMail.projectInterest == true %}
-                                                                                <b>Te necesita para el proyecto:</b> {{dataMail.projectInterest}}<br/>
+                                                                                <b>Te necesita para el proyecto:</b> {{dataMail.projectInterest.ProjectName}}<br/>
                                                                             {% endif %}                                                                         
                                                                             {% if dataMail.dealInterest == true %}
                                                                                 <b>Tipó de Acuerdo:</b> {{dataMail.dealInterest}}<br/>

@@ -87,7 +87,7 @@ class ProfileUser
         return $this;
     }
 
-    public function getProfil(): ?String
+    public function getProfil()
     {
         return $this->profil;
     }

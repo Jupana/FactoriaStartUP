@@ -14,9 +14,8 @@
                     {{ form_start   (formInterestProfile) }}
                         <!-- Step 1 -->
                     <div id="interest-step-1">
-                        <div class="col-md-12 text-center m-t-10  modal-title interestdata " data-usrperfilid={{app.user.id}}>
-                     
-                            <h4 class="par" id="myModalLabel">Quieres contactar con el usuario <b>{{profile.0.user.Username}}</b> </h4>  
+                        <div class="col-md-12 text-center m-t-10  modal-title interestdata " data-usrperfilid={{app.user.id}}>                            
+                            <h4 class="par" id="myModalLabel">Quieres contactar con el usuario <b>{{profile.0.user.username}}</b> </h4>  
                         </div>
                             ¿Con que perfil?
                             {{ form_row (formInterestProfile.interest_profile,{'attr' : { 'class': 'profile_user' }}) }}

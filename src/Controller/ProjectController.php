@@ -162,8 +162,8 @@ class ProjectController extends AbstractController
                 
                 if ($interestProyect->getInterestSector()){
                     $sectorId = $this->sectorRepository ->findBy(['name'=>$interestProyect->getInterestSector()]);
-                    $profileId = $this->profilRepository ->findBy(['name'=>$interestProyect->getInterestProfil()]);
-                    
+                    $profileId = $this->profilRepository ->findBy(['name'=>$interestProyect->getInterestProfil()->getName()]);
+                    dump($sectorId,$interestProyect->getInterestProfil(),$profileId);
                     //Here we add new Profile for User if he don't has it
                     $profileUser = new ProfileUser();
                     $profileUser->setUser($this->getuser());
@@ -188,9 +188,7 @@ class ProjectController extends AbstractController
 
                  ];                         
                 
-                $sendMailProjectInterest->sendMailProject($mailInterestProject);
-
-                dump($interestProyect);
+                $sendMailProjectInterest->sendMailProject($mailInterestProject);                
 
                 $this->entityManager->persist($interestProyect);
                 $this->entityManager->flush();   

@@ -24,24 +24,25 @@ class InterestProfile
 
 
     /**
-     * @ORM\Column(type="integer", nullable=false)
-     * 
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="user_profile_owner")
      */
+    
     private $user_profile_owner;
 
 
 
     /**
-     * @ORM\Column(type="string", length=300, nullable=false)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Profil", inversedBy="interest_profil")
      * 
      */
 
     private $interest_profile;
 
     /**
-     * @ORM\Column(type="string", length=300, nullable=false)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Project", inversedBy="interest_project")
      * 
      */
+    
     private $interest_project;
 
     /**
@@ -81,7 +82,7 @@ class InterestProfile
         return $this->user_profile_owner;
     }
 
-    public function setUserProfileOwner($user_profile_owner)
+    public function setUserProfileOwner(User $user_profile_owner) :self
     {
         $this->user_profile_owner = $user_profile_owner;
 
@@ -93,7 +94,7 @@ class InterestProfile
         return $this->interest_profile;
     }
 
-    public function setInterestProfile($interest_profile)
+    public function setInterestProfile(Profil $interest_profile) :self
     {
         $this->interest_profile = $interest_profile;
 
@@ -105,7 +106,7 @@ class InterestProfile
         return $this->interest_project;
     }
 
-    public function setInterestProject($interest_project)
+    public function setInterestProject(Project $interest_project) :self
     {
         $this->interest_project = $interest_project;
 

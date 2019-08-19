@@ -50,8 +50,15 @@
     </div>
     {% if is_granted('ROLE_USER') %}
         <div class="row m-t-20 col-md-12">
-                <p>Tu has contactado con el :<a href="#"class="ver_color">Si</a></p>
-                <p>El ha contactado contigo:<b>No</b></p>
+                <p>Tu has contactado con el para los siguientes perfile:
+                    
+                    {% for profileInterest in profilesInterest %}                        
+                        {{ profileInterest.interestProfile.name }} /                     
+                    {% endfor %}
+                
+                </p>
+                
+                <p> El ha contactado contigo:<b>No</b></p>
         </div> 
     {% endif %}   
     
@@ -83,9 +90,9 @@
     <div class="row m-t-20">      
         <div class="col-md-12 " >
             <div class="shadow_box bgGris p-3">
-            {% for profil in profile %}            
-            <p>Perfil:<b>{{ profil.Profil}}</b></strong></p>
-            <p class='profile-sector' data-{{profil.Profil}}="{{ profil.Sector}}">Sector:<b>{{ profil.Sector}}</b></strong></p> 
+            {% for profil in profile %}                        
+            <p>Perfil:<b>{{ profil.profil.name}}</b></strong></p>
+            <p class='profile-sector' data-{{profil.profil.name}}="{{ profil.Sector}}">Sector:<b>{{ profil.Sector}}</b></strong></p> 
              <p>Detalle:<b>{{ profil.Description}}</b></strong></p>        
             <hr/>
             {% endfor %}

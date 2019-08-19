@@ -90,14 +90,19 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            {% for needProyect in needsProyect %}
-                            
+                            {% for needProyect in needsProyect %}                            
                                 <tr>
                                     <td>
-                                        <p>{{needProyect.NeedsPerfil}}</p>
+                                        <p>{{needProyect.NeedsPerfil.name}}</p>
                                     </td>
                                     <td>
-                                        <p>{{needProyect.NeedsDeal}}</p>                                                                              
+                                        <p>
+                                            {% if needProyect.needsPercent is not null %}    
+                                                {{needProyect.needsPercent}}
+                                            {% endif %}
+                                            {{needProyect.NeedsDeal}}
+                                        
+                                        </p>                                                                              
                                     </td>
                                     <td>                                        
                                         

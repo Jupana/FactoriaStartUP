@@ -33,7 +33,8 @@ class Contribute
     private $contribute_project;
 
     /**
-     * @ORM\Column(type="string", length=3000, nullable=true)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Profil", inversedBy="contribute_perfil")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $contribute_profile;
 
@@ -76,12 +77,12 @@ class Contribute
         return $this;
     }
 
-    public function getContributeProfile(): ?string
+    public function getContributeProfile()
     {
         return $this->contribute_profile;
     }
 
-    public function setContributeProfile(?string $contributeProfile): self
+    public function setContributeProfile(Profil $contributeProfile): self
     {
         $this->contribute_profile = $contributeProfile;
         return $this;

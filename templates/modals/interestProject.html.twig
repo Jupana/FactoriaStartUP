@@ -16,7 +16,8 @@
                     <div id="interest-step-1">
                         <div class="col-md-12 text-center m-t-10  modal-title interestdata" data-userid='{{app.user.id}}' data-projectid='{{project.id}}'>
                      
-                            <h4 class="par" id="myModalLabel">Con que perfil quieres interesarte</h4>  
+                            <h4 class="par" id="myModalLabel">Con que perfil quieres interesarte</h4> 
+                             {{dump(formInterstProject)}}
                         </div>
                             {{ form_row (formInterstProject.interest_profil,{'attr' : { 'id': 'profile_user' }} )}}
                             <span class="btn-primary btn float-r profile_project_interest btnEndInterest1">Siguiente</span>

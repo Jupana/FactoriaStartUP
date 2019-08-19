@@ -76,7 +76,7 @@ class GetProfile{
             }
 
             $prepareProfiles = [];
-            $i=0;
+            $i=0;            
             foreach($profiles as $item){
                                
                 $user = $item->getUser()->getId();

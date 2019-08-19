@@ -29,19 +29,22 @@ class GetMatchProjects{
     public function getMatch($userId, $projectId){        
         $profilesUser = $this->profileUserRepository->findBy(['user'=>$userId]);
         $needsProject = $this->needsProjectRepository->findBy(['needs_project'=>$projectId]);
+        dump($profilesUser);
+        dump($needsProject);
 
         $arrNeedsProfileProject =[];
         $arrNeedsProfileProjectDeal=[];        
-        foreach( $needsProject as $profileNeeds){            
-            array_push($arrNeedsProfileProject,$profileNeeds->getNeedsPerfil());
-            $arrNeedsProfileProjectDeal[$profileNeeds->getNeedsPerfil()]['deal'] = $profileNeeds->getNeedsDeal();
-            $arrNeedsProfileProjectDeal[$profileNeeds->getNeedsPerfil()]['percent']= $profileNeeds->getNeedsPercent();
-            $arrNeedsProfileProjectDeal[$profileNeeds->getNeedsPerfil()]['description']= $profileNeeds->getNeedsDescription();
+        foreach( $needsProject as $profileNeeds){ 
+                       
+            array_push($arrNeedsProfileProject,$profileNeeds->getNeedsPerfil()->getName());
+            $arrNeedsProfileProjectDeal[$profileNeeds->getNeedsPerfil()->getName()]['deal'] = $profileNeeds->getNeedsDeal();
+            $arrNeedsProfileProjectDeal[$profileNeeds->getNeedsPerfil()->getName()]['percent']= $profileNeeds->getNeedsPercent();
+            $arrNeedsProfileProjectDeal[$profileNeeds->getNeedsPerfil()->getName()]['description']= $profileNeeds->getNeedsDescription();
         }        
        
         $arrUserProfile =[];
         foreach( $profilesUser as $profileUser){         
-            array_push($arrUserProfile,$profileUser->getProfil());
+            array_push($arrUserProfile,$profileUser->getProfil()->getName());
         }
         
         $arrMatchPerfile=[];
@@ -50,6 +53,8 @@ class GetMatchProjects{
                 array_push($arrMatchPerfile,$userProfile);
             }
         }
+        dump($arrNeedsProfileProject);
+        dump($arrUserProfile);
         $arrResult['needsProfileProject'] = $arrNeedsProfileProject;
         $arrResult['profileProjectDeal'] = $arrNeedsProfileProjectDeal;
         $arrResult['usersProfiles'] = $arrUserProfile;

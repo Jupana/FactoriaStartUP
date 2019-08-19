@@ -73,18 +73,22 @@
                             <td>
                                 <a  class="ver_color par" href="{{path('add_proyecto',{'id':project.id})}}"><p>Idea</p></a>                                       </td>
                             </td>
-                            <td>
+                            <td>                            
                                  {% for userContributeProject in userContributeProjects %}
                                     {% if  userContributeProject.ContributeIdProject.id == project.id %}
-                                            <p>{{ userContributeProject.ContributeProfile }}</p>
+                                            {% if  userContributeProject.ContributeProfile is not null %}        
+                                            <p>{{ userContributeProject.ContributeProfile.name }}</p>
+                                            {% endif %}
                                     {% endif %}                              
                                 {% endfor %}
                                 <a class="ver_color par" href="{{path('addPerfilToProyect',{'id':project.id})}}"><p>Edit</p></a>
                             </td>
-                            <td>
+                            <td>                            
                                 {% for userNeedsProject in userNeedsProjects %}
                                     {% if  userNeedsProject.NeedsIdProject.id == project.id %}
-                                            <p>{{ userNeedsProject.NeedsPerfil }}  /  {{ userNeedsProject.NeedsPercent }}  {{ userNeedsProject.NeedsDeal }}</p>
+                                        {% if  userNeedsProject.NeedsPerfil is not null %}        
+                                            <p>{{ userNeedsProject.NeedsPerfil.name }}  /  {{ userNeedsProject.NeedsPercent }}  {{ userNeedsProject.NeedsDeal }}</p>
+                                        {% endif %}    
                                     {% endif %}                  
                                 {% endfor %}
                                 <a class="ver_color par" href="{{path('proyectNeeds',{'id':project.id})}}"><p>Edit</p></a>

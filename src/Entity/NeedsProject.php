@@ -29,7 +29,8 @@ class NeedsProject
     private $needs_project;
 
     /**
-     * @ORM\Column(type="string", length=3000, nullable=true)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Profil", inversedBy="needs_perfil")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $needs_perfil;
 
@@ -90,15 +91,14 @@ class NeedsProject
         return $this;
     }
 
-    public function getNeedsPerfil(): ?string
+    public function getNeedsPerfil()
     {
         return $this->needs_perfil;
     }
 
-    public function setNeedsPerfil( $needs_perfil): self
+    public function setNeedsPerfil(Profil $needs_perfil): self
     {
         $this->needs_perfil = $needs_perfil;
-
         return $this;
     }
 

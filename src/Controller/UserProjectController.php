@@ -100,14 +100,6 @@ class UserProjectController extends AbstractController
             ]
         );
     }
-    
-    public function deleteProyect(Project $project)
-    {
-        $this->entityManager->remove($project);
-        $this->entityManager->flush();
-        
-        return $this->redirectToRoute('datos_proyectos');
-    }
 
     public function addPerfilToProyect (Request $request, int $id=null){
        
@@ -146,6 +138,7 @@ class UserProjectController extends AbstractController
             $this->entityManager->flush();
             return $this->redirectToRoute('proyectNeeds',['id'=>$id]);
         }
+        dump($contributeExist);
         return $this->render('user_views/addProject_steps/_step3.html.twig',
             [
                 'form_New_Contribute' =>$formNewContribute->createView(),

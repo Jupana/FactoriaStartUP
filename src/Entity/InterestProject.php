@@ -2,8 +2,6 @@
 
 namespace App\Entity;
 
-use App\Entity\Project;
-use App\Entity\Profil;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -38,13 +36,13 @@ class InterestProject
 
     /** 
      * @ORM\ManyToOne(targetEntity="App\Entity\Sector", inversedBy="interest_sector")
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * 
      */
     private $interest_sector;
 
     /** 
      * @ORM\ManyToOne(targetEntity="App\Entity\Profil", inversedBy="interest_profil")
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * 
      */
     private $interest_profil;
 
@@ -122,12 +120,12 @@ class InterestProject
         return $this;
     }
 
-    public function getInterestProfil(): ?string
+    public function getInterestProfil()
     {
         return $this->interest_profil;
     }
 
-    public function setInterestProfil(?string $interest_profil): self
+    public function setInterestProfil(Profil $interest_profil): self
     {
         $this->interest_profil = $interest_profil;
 
@@ -139,7 +137,7 @@ class InterestProject
         return $this->interest_sector;
     }
 
-    public function setInterestSector(?string $interest_sector): self
+    public function setInterestSector(Sector $interest_sector): self
     {
         $this->interest_sector = $interest_sector;
 

@@ -60,7 +60,7 @@
         </div> 
         <div class="col-md-9 bgGris shadow_box">
             <div class="row  shadow_box bgAzul text-white px-2 py-3 ">
-                <div class="col-md-6 col-12 "><span>Nombre del Proyecto: <span class=" fs-20"><b>{{ project.ProjectName }}</b></span></span></div>
+                <div class="col-md-6 col-12 "><span>Nombre del Proyecto: <span class=" fs-20 project-title"><b>{{ project.ProjectName }}</b></span></span></div> 
                 <div class="col-md-6 col-12"><span>Publicado el: <b class=" fs-20">{{ project.ProjectDate|date("d/m/y")}}</b></span></div>
             </div>
             <div class="row px-2">
@@ -155,7 +155,7 @@
    
     {% for contribute in contributeProject %}
     <div class="row m-t-20  shadow_box bgGris p-3  ">
-        <div class="col-md-3 col-4"><p class="p-t-10">{{contribute.ContributeProfile}} : </p></div>
+        <div class="col-md-3 col-4"><p class="p-t-10">{{contribute.ContributeProfile.name}} : </p></div>
         <div class="col-md-7 col-6 bgWhite p-3">{{contribute.ContributeDescription}} </div>
     </div> 
     {% endfor %}  
@@ -166,7 +166,7 @@
     </div>
    {% for needs in needsProject %}
     <div class="row m-t-20 shadow_box bgGris p-3 ">
-        <div class="col-md-3 col-4"><p class="p-t-10">{{needs.NeedsPerfil}} : </p></div>
+        <div class="col-md-3 col-4"><p class="p-t-10">{{needs.NeedsPerfil.name}} : </p></div>
         <div class="col-md-7 col-6 bgWhite p-3">
                 {% if needs.NeedsPercent != 0 %}
                     {{needs.NeedsPercent}}

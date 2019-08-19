@@ -82,11 +82,24 @@ add_proyecto:
     controller: App\Controller\UserProjectController::add_proyecto
 
 deleteProyect:
-    path: /vista_usuario/delete_proyecto/{id}
-    controller: App\Controller\UserProjectController::deleteProyect
+    path: /delete-proyecto/{id}
+    controller: App\Controller\UserController::deleteProyect
     methods:  [GET,POST]
     options:
-        expose: true    
+        expose: true
+        
+deleteProfileInterest:
+    path: /delete-profile-interest/{id}
+    controller: App\Controller\UserController::deleteProfileInterest
+    methods:  [GET,POST]
+    options:
+        expose: true
+deleteProjectInterest:
+    path: /delete-project-interest/{id}
+    controller: App\Controller\UserController::deleteProjectInterest
+    methods:  [GET,POST]
+    options:
+        expose: true        
 
 addPerfilToProyect:   
     path: /vista_usuario/add_proyecto/step_2/{id}
@@ -128,9 +141,6 @@ datos_proyectos:
 datos_propuestas:
     path: /vista_usuario/datos_propuestas
     controller: App\Controller\UserController::datos_propuestas  
-datos_cuenta:
-    path: /vista_usuario/datos_cuenta
-    controller: App\Controller\UserController::datos_cuenta
 
 interestSelectPerfil:
     path: /proyect/{id}/interest-profile-select

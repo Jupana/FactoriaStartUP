@@ -67,21 +67,19 @@
                         <table class="table border par1 ">
                             <thead>
                                 <tr>
-                                    <th>Perfil</th>
-                                    <th>Sector</th>
+                                    <th>Perfil</th>                                    
                                     <th>Descripción</th>
                                 </tr>
                             </thead>
                             <tbody>
                            
                             {% for contribute in contributeProject %}
-                                <tr>
+                                <tr>                               
                                     <td>
-                                        <p>{{contribute.ContributeProfile}}</p>
-                                    </td>
-                                    <td>
-                                        <p>Distribucion y Venta</p>                                     
-                                    </td>
+                                        {% if contribute.contributeProfile is not null %}
+                                        <p>{{contribute.contributeProfile.name}}</p>
+                                        {% endif %}
+                                    </td>                                    
                                     <td>
                                         <p>{{contribute.ContributeDescription}}</p>
                                         <a class="ver_color par1" data-toggle="modal" data-target="#modalForm-{{contribute.id}}" href="#"><p>ver</p></a>

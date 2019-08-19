@@ -1,6 +1,8 @@
 <?php
 namespace App\Controller;
 
+use App\Entity\InterestProfile;
+use App\Entity\InterestProject;
 use App\Entity\ProfesionalProfile;
 use App\Entity\Project;
 use App\Form\UserPersonalInfoType;
@@ -240,7 +242,7 @@ class UserController extends AbstractController
         $userContributeProjects = $this->contributeRepository->findBy(['user'=> $user->getId()]);
         
         $formNewProject = $this->createForm(ProjectNameType::class,$newProject);
-        $formNewProject->handleRequest($request);
+        $formNewProject->handleRequest($request);         
 
         if($formNewProject->isSubmitted() && $formNewProject->isValid()){
 
@@ -248,7 +250,8 @@ class UserController extends AbstractController
             $this->entityManager->flush();
 
             return $this->redirectToRoute('add_proyecto',['id'=>$newProject->getid()]);
-        }
+        }        
+        
         return $this->render('user_views/datos_Proyectos.html.twig',
                     [
                         'formAddProject' =>$formNewProject->createView(),
@@ -275,6 +278,8 @@ class UserController extends AbstractController
 
         foreach($searchprofiles as $searchprofile){
             $userSearch =  $this->userRepository->findBy(['id'=>$searchprofile->getUserProfileOwner()]);
+          
+           if($userSearch){
             $usersSearchData[$i]['user']['id'] =$userSearch[0]->getId();
             $usersSearchData[$i]['user']['userName']=$userSearch[0]->getUsername();
 
@@ -282,10 +287,10 @@ class UserController extends AbstractController
 
             $usersSearchData[$i]['userProfile']['id'] =$userSearchProfil->getId();
             $usersSearchData[$i]['userProfile']['profileName']=$userSearchProfil->getName();
+           } 
 
-            $userSearchProject =$this->projectsUserRepository->find($searchprofile->getInterestProject());
-
-            if($userSearchProject){
+            if($searchprofile->getInterestProject()){
+                $userSearchProject =$this->projectsUserRepository->find($searchprofile->getInterestProject()->getId());
                 $usersSearchData[$i]['proyect']['id'] =$userSearchProject->getId();
                 $usersSearchData[$i]['proyect']['proyectName']=$userSearchProject->getProjectName();
             }
@@ -338,8 +343,7 @@ class UserController extends AbstractController
             $usersProfileForPartner[$x]['proyect']['proyectName']=$userSearchProject->getProjectName();
             
             $x++;       
-        }
-      
+        }        
         return $this->render('user_views/datosPropuestas.html.twig',
             [
                 'searchprofiles'=>$searchprofiles,
@@ -355,13 +359,40 @@ class UserController extends AbstractController
         );
     }
 
-
-    public function datos_cuenta(Request $request): Response
+    public function deleteProyect(Project $project)    
     {
-        $em = $this->getDoctrine()->getManager();
-        return $this->render('user_views/datos_Cuenta.html.twig');
+        
+        $needProjects = $this->needsProjectRepository->findBy(['needs_project'=>$project->getId()]);
+        $contributes  = $this->contributeRepository->findBy(['contribute_project'=>$project->getId()]);
+        
+        foreach($needProjects as $needProject){
+            $this->entityManager->remove($needProject);    
+        }
+        
+        foreach($contributes as $contribute){
+            $this->entityManager->remove($contribute);    
+        }
+        $this->entityManager->remove($project);
+        $this->entityManager->flush();
+        
+        return $this->redirectToRoute('datos_proyectos');
     }
 
+    public function deleteProjectInterest(InterestProject $id){        
+
+        $this->entityManager->remove($id);
+        $this->entityManager->flush();
+        
+        return $this->redirectToRoute('datos_propuestas');
+    }
+
+    public function deleteProfileInterest(InterestProfile $id){        
+
+        $this->entityManager->remove($id);
+        $this->entityManager->flush();
+        
+        return $this->redirectToRoute('datos_propuestas');
+    }
 
     /**
      * @return string
