@@ -34,6 +34,7 @@ $(document).ready(function() {
         slidesToScroll: 1,
         dots: true,
         variableWidth: true,
+        arrows : false,
        // autoplay: true,
        // autoplaySpeed: 2000,        
       });  

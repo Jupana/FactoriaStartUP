@@ -19,11 +19,13 @@
             {% for project in projects %}              
             <div>
                 <div class="shadow_box"> 
-                    {% if project.getProjectImg is not empty  %}
-                        <img class="card-img-top" src ="{{ asset('build/img/uploads/projects_img/' ~ project.getProjectImg) | imagine_filter('my_thumb') }}"/>
-                    {% else %}
-                        <img class="card-img-top" src ="{{ asset('build/img/uploads/projects_img/8bd59024872918f349f730b3e1d62bfc.jpeg') | imagine_filter('my_thumb') }}">
-                    {% endif %} 
+                    <div class="img-container">
+                        {% if project.getProjectImg is not empty  %}
+                            <img class="card-img-top" src ="{{ asset('build/img/uploads/projects_img/' ~ project.getProjectImg) | imagine_filter('my_thumb') }}"/>
+                        {% else %}
+                            <img class="card-img-top" src ="{{ asset('build/img/uploads/projects_img/8bd59024872918f349f730b3e1d62bfc.jpeg') | imagine_filter('my_thumb') }}">
+                        {% endif %} 
+                    </div>
                     <div class="card-body">
                         <h4 class="card-title">Card title</h4>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
@@ -41,12 +43,13 @@
             {% for project in projects %}              
             <div>
                 <div class="shadow_box"> 
-                    {% if project.getProjectImg is not empty  %}
-                        <img class="card-img-top" src ="{{ asset('build/img/uploads/projects_img/' ~ project.getProjectImg) | imagine_filter('my_thumb') }}"/>
-                    {% else %}
-                        <img class="card-img-top" src ="{{ asset('build/img/uploads/projects_img/8bd59024872918f349f730b3e1d62bfc.jpeg') | imagine_filter('my_thumb') }}">
-                    {% endif %} 
-               
+                    <div class="img-container">
+                        {% if project.getProjectImg is not empty  %}
+                            <img class="card-img-top" src ="{{ asset('build/img/uploads/projects_img/' ~ project.getProjectImg) | imagine_filter('my_thumb') }}"/>
+                        {% else %}
+                            <img class="card-img-top" src ="{{ asset('build/img/uploads/projects_img/8bd59024872918f349f730b3e1d62bfc.jpeg') | imagine_filter('my_thumb') }}">
+                        {% endif %} 
+                    </div>
                     <div class="card-body">
                         <h4 class="card-title">Card title</h4>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the

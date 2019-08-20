@@ -3610,6 +3610,11 @@ li:last-child .u-dot-line-v1::after, li:last-child
  }
 .card-img-top{
 	object-fit: cover;
+	width: auto;
+	margin:auto;
+}
+.img-container{
+	min-height: 100px;
 }
  
 
