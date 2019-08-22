@@ -22,8 +22,8 @@ class SecurityController
      * @Route("/login", name="security_login")
      */
     public function login(AuthenticationUtils $authenticationUtils)
-    {
-       
+    {  
+          
         return new Response($this->twig->render
         ('security/login.html.twig', 
             [
@@ -31,6 +31,8 @@ class SecurityController
                 'error'         => $authenticationUtils->getLastAuthenticationError()
             ]
         ));
+
+      
     }
 
     /**

@@ -61,4 +61,11 @@ class AdminProjectsController extends AbstractController
         );       
     }
 
+    public function index_coworker()
+    {
+            return $this->render('admin/coworker.html.twig', [
+                'controller_name' => 'ForoController',
+            ]);
+
+    }
 }

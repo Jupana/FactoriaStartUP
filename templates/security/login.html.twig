@@ -20,7 +20,14 @@
 				<button type="submit" id="Login" name="Login" class="btn btn-sm btn-outline-secondary">Entra en tu perfil</button>
 			</div>
 			<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-			<input type="hidden" name="_target_path" value="{{ app.request.get('redirect_to') }}">
+
+			<input type="hidden" name="_target_path" {% if ( last_username == 'admin') %} 
+																value="{{ path('admin_projects') }}"			
+															{% else %}	
+																value="{{ app.request.get('redirect_to') }}"
+															{% endif %} 	
+																>
+
 			<div class="w-full text-center p-t-55">
 				<span>
 					No estas dado de alta?

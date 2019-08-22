@@ -169,10 +169,14 @@ noticias:
 noticia:
     path: /noticias/id_noticia
     controller: App\Controller\NoticiasController::noticias
-    
+
+   
 admin_projects:
     path: /admin_projects
     controller: App\Controller\AdminProjectsController::index
+admin_coworker:
+    path: /admin_projects/admin_coworker
+    controller: App\Controller\AdminProjectsController::index_coworker    
 
 _liip_imagine:
     resource: "@LiipImagineBundle/Resources/config/routing.yaml"
