@@ -48,19 +48,7 @@
             </div>            
         </div>
     </div>
-    {% if is_granted('ROLE_USER') %}
-        <div class="row m-t-20 col-md-12">
-                <p>Tu has contactado con el para los siguientes perfile:
-                    
-                    {% for profileInterest in profilesInterest %}                        
-                        {{ profileInterest.interestProfile.name }} /                     
-                    {% endfor %}
-                
-                </p>
-                
-                <p> El ha contactado contigo:<b>No</b></p>
-        </div> 
-    {% endif %}   
+     
     
     <div class="row m-t-20 margin_top "> 
         <div class="col-md-12">
@@ -84,6 +72,19 @@
     <div class="row m-t-20 margin_top "> 
         <div class="col-md-12">
             <p class=" par fs-20 "><b>Estos son los perfiles profesionales y los sectores en los que tiene experiencia:</b></p>
+             {% if is_granted('ROLE_USER') %}
+            <div class="row m-t-20 col-md-12">
+                <p>Tu has contactado con el para los siguientes perfile:
+                    
+                    {% for profileInterest in profilesInterest %}                        
+                        <b>{{ profileInterest.interestProfile.name }} </b>/                     
+                    {% endfor %}
+                
+                </p>
+                
+                <p> El ha contactado contigo:<b>No</b></p>
+        </div> 
+    {% endif %} 
         </div>
     </div> 
      

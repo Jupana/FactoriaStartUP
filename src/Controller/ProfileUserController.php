@@ -7,6 +7,7 @@ use App\Entity\NeedsProject;
 use App\Entity\ProfileUser;
 use App\Entity\InterestProfile;
 use App\Form\InterestProfileType;
+use App\Entity\Notification;
 use App\Repository\UserRepository;
 use App\Repository\ProfileUserRepository;
 use App\Repository\ProfilRepository;
@@ -15,6 +16,7 @@ use App\Repository\ProjectRepository;
 use App\Repository\ProfesionalProfileRepository;
 use App\Repository\NeedsProjectRepository;
 use App\Repository\InterestProfileRepository;
+use App\Repository\NotificationRepository;
 use App\Services\GetProfile;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\FormFactoryInterface;
@@ -92,11 +94,18 @@ class ProfileUserController extends AbstractController
 
      private $userRepository; 
 
+     /**
+      * @var NotificationRepository       
+      */
+
+      private $notificationRepository;
+     
+
 
     public function __construct(
         \Twig_Environment $twig, ProfileUserRepository $profileUserRepository, ProfilRepository $profilRepository, SectorRepository $sectorRepository,
         FormFactoryInterface $formFactory,EntityManagerInterface $entityManager,ProfesionalProfileRepository $profesionalProfileRepository,ProjectRepository $projectRepository,NeedsProjectRepository $projectNeedsRepo,
-        FlashBagInterface $flashBag,InterestProfileRepository $interestProfileRepository, UserRepository $userRepository
+        FlashBagInterface $flashBag,InterestProfileRepository $interestProfileRepository, UserRepository $userRepository, NotificationRepository $notificationRepository
         ) {
         $this->twig = $twig;
         $this->profileUserRepository = $profileUserRepository;
@@ -110,6 +119,7 @@ class ProfileUserController extends AbstractController
         $this->projectNeedsRepo = $projectNeedsRepo;
         $this->interestProfileRepository = $interestProfileRepository;
         $this->userRepository = $userRepository;
+        $this->notificationRepository =$notificationRepository;
     }
 
 
@@ -141,7 +151,9 @@ class ProfileUserController extends AbstractController
         $profile = $this->profileUserRepository->findBy(['user' =>$id]);
         $projects = $this->projectRepository->findBy(['user' =>$id]);
         $profilesInterest = $this->interestProfileRepository->findBy(['user'=>$this->getUser(),'user_profile_owner'=>$id]);
-        dump($profilesInterest);
+
+        
+        
       
         //This don't make sense you have to add it to USER Entity, i mean Prosfesional Repository
         $profesional = $this->profesionalProfileRepository->findOneBy(['profesionalIdUser' =>$id]);
@@ -168,8 +180,7 @@ class ProfileUserController extends AbstractController
            
                $dealToAdd = $formAddInterestProfile->get('extra_profil_deal_add')->getData();
                $percentToAdd = $formAddInterestProfile->get('extra_profil_percent_add')->getData();                              
-               $projectAllNeeds = $this->projectNeedsRepo->findBy(['needs_project'=>$interestProfile->getInterestProject()->getId()]);
-               dump($interestProfile->getInterestProject(),$projectAllNeeds); 
+               $projectAllNeeds = $this->projectNeedsRepo->findBy(['needs_project'=>$interestProfile->getInterestProject()->getId()]);                
                
                if($dealToAdd != NULL){                 
                 
@@ -185,7 +196,14 @@ class ProfileUserController extends AbstractController
                 $newProfileAddFromMatch->setNeedsDate(new \DateTime());
                 $this->entityManager->persist($newProfileAddFromMatch);                                
                }
-                          
+                    
+               $createNotifiation =  new Notification();
+               $createNotifiation->setUser($userProfileOwner);
+               $createNotifiation->setType('profile_interest');
+               $createNotifiation->setEntity($interestProfile->getInterestProfile()->getId());
+               $createNotifiation->setSeen(false);
+               $createNotifiation->setTime(new \DateTime());
+
                $mailInterestProfile =[
                 'userName'=>$this->getUser()->getUsername(),
                 'userMail' =>$this->getUser()->getEmail(),
@@ -203,11 +221,16 @@ class ProfileUserController extends AbstractController
                $interestProfile->setInterestProfile($interestProfile->getInterestProfile());
                $interestProfile->setInterestDescription($interestProfile->getInterestDescription());
 
+              
+
                 $this->entityManager->persist($interestProfile);
+                $this->entityManager->persist($createNotifiation);
                 $this->entityManager->flush();   
                 
                 $this->flashBag->add('notice', 'Mensaje Enviado');
             }
+
+            
            
             return new Response(
                 $this->twig->render(
@@ -219,7 +242,7 @@ class ProfileUserController extends AbstractController
                         'projects' =>$projects, 
                         'profesional'=>$profesional, 
                         'formInterestProfile' =>$formAddInterestProfile->createView(),
-                        'profilesInterest'=>$profilesInterest,
+                        'profilesInterest'=>$profilesInterest,                        
                     ]
                 )
             );
@@ -261,5 +284,16 @@ class ProfileUserController extends AbstractController
         $km  = $miles * 1.609344;
 
         return round( number_format ($km,2) , 1, PHP_ROUND_HALF_UP );
-    }  
+    }
+    
+    
+    public function notificationCount($id){
+        $user = $this->userRepository->find(['id'=>$id]);        
+        $result['not_count'] = $user->getNotifications()->count();
+
+
+        return new Response(json_encode($result));
+        
+    }
+ 
 }

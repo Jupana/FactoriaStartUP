@@ -101,7 +101,7 @@ class Notification
         return $this->time;
     }
 
-    public function setTime(\DateTimeInterface $ti): self
+    public function setTime(\DateTimeInterface $time): self
     {
         $this->time = $time;
 

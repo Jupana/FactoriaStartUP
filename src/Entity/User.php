@@ -184,8 +184,15 @@ class User implements UserInterface,\Serializable
     private $interest_profile_id;
 
     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\InterestProject", mappedBy="interest_user", orphanRemoval=true)
+     */
+
+    private $interest_project_id;
+
+    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Notification", mappedBy="user", orphanRemoval=true)
      */
+
     private $notifications;
 
     /**
@@ -588,6 +595,37 @@ class User implements UserInterface,\Serializable
             // set the owning side to null (unless already changed)
             if ($interestProfileId->getUserId() === $this) {
                 $interestProfileId->setUserId(null);
+            }
+        }
+
+        return $this;
+    }
+
+     /**
+     * @return Collection|InterestProject[]
+     */
+    public function getInterestProjectId(): Collection
+    {
+        return $this->interest_project_id;
+    }
+
+    public function addInterestProjectId(InterestProject $interestProjectId): self
+    {
+        if (!$this->interest_project_id->contains($interestProjectId)) {
+            $this->interest_project_id[] = $interestProjectId;
+            $interestProjectId->setUserId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeInterestProjectId(InterestProfile $interestProjectId): self
+    {
+        if ($this->interest_project_id->contains($interestProjectId)) {
+            $this->interest_project_id->removeElement($interestProjectId);
+            // set the owning side to null (unless already changed)
+            if ($interestProjectId->getUserId() === $this) {
+                $interestProjectId->setUserId(null);
             }
         }
 

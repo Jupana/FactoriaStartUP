@@ -18,21 +18,19 @@ class InterestProject
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="interest_user_id")
-     * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="interest_user")
      */
-    private $interest_id_user;
+    private $interest_user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Project", inversedBy="interest_project_id")
-     * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Project", inversedBy="interest_project")
      */
-    private $interest_id_project;
+    private $interest_project;
 
-     /**     * 
-     * @ORM\Column(type="integer")
+     /**      
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="interest_project_owner")
      */
-    private $interest_project_owner_id;
+    private $interest_project_owner;
 
     /** 
      * @ORM\ManyToOne(targetEntity="App\Entity\Sector", inversedBy="interest_sector")
@@ -84,38 +82,38 @@ class InterestProject
         return $this->id;
     }
 
-    public function getInterestIdUser(): ?int
+    public function getInterestIdUser(): ?User
     {
-        return $this->interest_id_user;
+        return $this->interest_user;
     }
 
-    public function setInterestIdUser(int $interest_id_user): self
+    public function setInterestIdUser(User $interest_user): self
     {
-        $this->interest_id_user = $interest_id_user;
+        $this->interest_user = $interest_user;
 
         return $this;
     }
 
-    public function getInterestProjectOwnerID(): ?int
+    public function getInterestProjectOwnerID(): ?User
     {
-        return $this->interest_project_owner_id;;
+        return $this->interest_project_owner;
     }
 
-    public function setInterestProjectOwnerID(int $interest_project_owner_id): self
+    public function setInterestProjectOwnerID(User $interest_project_owner): self
     {
-        $this->interest_project_owner_id = $interest_project_owner_id;
+        $this->interest_project_owner = $interest_project_owner;
 
         return $this;
     }
 
-    public function getInterestIdProject(): ?int
+    public function getInterestIdProject(): ?Project
     {
-        return $this->interest_id_project;
+        return $this->interest_project;
     }
 
-    public function setInterestIdProject(int $interest_id_project): self
+    public function setInterestIdProject(Project $interest_project): self
     {
-        $this->interest_id_project = $interest_id_project;
+        $this->interest_project = $interest_project;
 
         return $this;
     }
@@ -132,7 +130,7 @@ class InterestProject
         return $this;
     }
 
-    public function getInterestSector(): ?string
+    public function getInterestSector(): ?Sector
     {
         return $this->interest_sector;
     }

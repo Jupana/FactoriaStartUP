@@ -57,12 +57,13 @@
                 </li>-->                
             </ul>
             <form class="form-inline my-2 my-lg-0">
-                {% if is_granted('ROLE_USER') %}
-                    <a class="fs-18" href="{{ path('vista_usuario') }}">{{ app.user.username}}</a> 
+                     
+                {% if is_granted('ROLE_USER') %}                 
+                    <a class="fs-18 fsu-username" href="{{ path('vista_usuario') }}" data-fsu-username="{{app.user.id}}">{{ app.user.username}}</a> 
                     <a tabindex="0" role="button" rel="popover" data-placement="bottom" data-toggle="popover" href="#" >
                        <div class="icono-notification">
                             <img class="notification rounded-circle" src ="{{ asset('build/img/uploads/users_perfil/' ~ app.user.getPerfilImg) }}"/>
-                            <div class="icono-encima bg-danger text-white fs-10">4</div>
+                            <div class="icono-encima bg-danger text-white fs-10 not-count"></div>
                         </div>
                     </a>       
                     <a class="btn btn-outline-secondary my-2 my-sm-0" href="{{ path('security_logout') }}">Deconectate</a>       

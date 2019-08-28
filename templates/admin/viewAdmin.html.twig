@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vista Administrator{% endblock %}
+
+{% block content %}
+    <div class="row p-t-10">
+       <div class="col-md-3 col-12">
+            {% include 'nav_bar/nav_barAdmin.html.twig' %}
+       </div>
+        <div class="col-md-9 col-12">       
+            {% block contentAdmin %}{% endblock %}
+        </div>
+    </div> 
+        
+{% endblock %}
+

@@ -138,7 +138,7 @@ class UserProjectController extends AbstractController
             $this->entityManager->flush();
             return $this->redirectToRoute('proyectNeeds',['id'=>$id]);
         }
-        dump($contributeExist);
+        
         return $this->render('user_views/addProject_steps/_step3.html.twig',
             [
                 'form_New_Contribute' =>$formNewContribute->createView(),

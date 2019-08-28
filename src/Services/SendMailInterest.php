@@ -29,7 +29,6 @@ class SendMailInterest{
     }
 
     public function sendMailProfil($mailInterestProfil){
-        dump($mailInterestProfil);
         
         
         /** SEND USER MAIL */

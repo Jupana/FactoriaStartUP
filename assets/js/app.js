@@ -37,7 +37,20 @@ $(document).ready(function() {
         arrows : false,
        // autoplay: true,
        // autoplaySpeed: 2000,        
-      });  
+      }); 
+      var fsuId = $('.fsu-username').data("fsu-username");
+      console.log(fsuId);
+      $.get("/count_notification/"+fsuId)
+      .done(function(response) {
+        var data = JSON.parse(response);
+        if(data.not_count !== '0'){
+            $('.not-count').text(data.not_count);
+        }
+      })
+  .fail(function(response) {
+      console.log('Fallo Count Notification')
+  });  
+
 });
 require('bootstrap/js/dist/util.js')
 
@@ -815,6 +828,7 @@ $('.profile_interest_1').click(function() {
         }
 
 /* FIN function for Multi Step Form into addProyect -->*/
+
 
 
 

@@ -26,7 +26,7 @@ security:
                     #use_referer: true
                     #failure_path: 
                 #username_parameter: _username
-                #password_parameter: _password        
+                #password_parameter: _password         
             logout:
                 path: security_logout
                 target: index       

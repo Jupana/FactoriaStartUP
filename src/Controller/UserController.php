@@ -270,8 +270,8 @@ class UserController extends AbstractController
         $searchprofiles = $this->interestProfileRepository->findBy(['user'=>$this->getUser()->getId()]);
         $searchProfilesPartner = $this->interestProfileRepository->findBy(['user_profile_owner'=>$this->getUser()->getId()]);
         
-        $searchProjects = $this->interestProjectRepository->findBy(['interest_id_user'=>$this->getUser()->getId()]);
-        $searchProjectsToColaborate = $this->interestProjectRepository->findBy(['interest_project_owner_id'=>$this->getUser()->getId()]);
+        $searchProjects = $this->interestProjectRepository->findBy(['interest_user'=>$this->getUser()]);
+        $searchProjectsToColaborate = $this->interestProjectRepository->findBy(['interest_project_owner'=>$this->getUser()->getId()]);
               
         $usersSearchData=[];
         $i=0;

@@ -17,8 +17,7 @@ class DefaultController extends Controller
             
         $projects = $projects->findAll() ;
         \shuffle($projects);
-        $projects = array_slice($projects,0,6);
-        dump($projects);
+        $projects = array_slice($projects,0,6);        
         
         $html = $this->render('default/index.html.twig', [
             'projects' => $projects,            
