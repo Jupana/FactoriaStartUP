@@ -179,9 +179,19 @@ class User implements UserInterface,\Serializable
     private $profiles;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\InterestProfile", mappedBy="user_id", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\InterestProfile", mappedBy="user", orphanRemoval=true)
      */
     private $interest_profile_id;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Notification", mappedBy="user", orphanRemoval=true)
+     */
+    private $notifications;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Contribute", mappedBy="user", orphanRemoval=true)
+     */
+    private $contribute;
 
     
 
@@ -192,6 +202,7 @@ class User implements UserInterface,\Serializable
         $this->profiles = new ArrayCollection();
         $this->profile_id = new ArrayCollection();
         $this->interest_profile_id = new ArrayCollection();
+        $this->notifications = new ArrayCollection();
     }
 
 
@@ -577,6 +588,68 @@ class User implements UserInterface,\Serializable
             // set the owning side to null (unless already changed)
             if ($interestProfileId->getUserId() === $this) {
                 $interestProfileId->setUserId(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Contribute[]
+     */
+    public function getContribute(): Collection
+    {
+        return $this->contribute;
+    }
+
+    public function addContribute(Contribute $contribute): self
+    {
+        if (!$this->contribute->contains($contribute)) {
+            $this->contribute[] = $contribute;
+            $contribute->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeContribute(Contribute $contribute): self
+    {
+        if ($this->contribute->contains($contribute)) {
+            $this->contribute->removeElement($contribute);
+            // set the owning side to null (unless already changed)
+            if ($contribute->getUser() === $this) {
+                $contribute->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+     /**
+     * @return Collection|Notification[]
+     */
+    public function getNotifications(): Collection
+    {
+        return $this->notifications;
+    }
+
+    public function addNotification(Notification $notification): self
+    {
+        if (!$this->notifications->contains($notification)) {
+            $this->notifications[] = $notification;
+            $notification->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeNotification(Notification $notification): self
+    {
+        if ($this->notifications->contains($notification)) {
+            $this->notifications->removeElement($notification);
+            // set the owning side to null (unless already changed)
+            if ($notification->getUser() === $this) {
+                $notification->setUser(null);
             }
         }
 

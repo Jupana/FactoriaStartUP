@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Project;
 use App\Entity\InterestProject;
+use App\Entity\Notification;
 use App\Entity\ProfileUser;
 use App\Form\InterestProjectType;
 use App\Repository\ProjectRepository;
@@ -196,6 +197,15 @@ class ProjectController extends AbstractController
                 $this->flashBag->add('notice', 'Mensaje Enviado');
             }
 
+
+            dump($this->getUser());
+            dump('Contribute',$this->getUser()->getContribute()->getValues());
+            dump('Notifications',$this->getUser()->getNotifications()->getValues());
+            dump('InteresProfileID',$this->getUser()->getInterestProfileId()->getValues());
+            //dump('Contribute',$this->getUser()->getContribute()->getValues()[0]->getContributeIdProject()->getId());
+            //dump('InteresProfileID',$this->getUser()->getInterestProfileId()->getValues());
+            //dump('Projects',$this->getUser()->getProjects()->getValues());
+            //dump($this->getUser()->getNotifications()->getIterator());            
     
             return new Response(
                 $this->twig->render(
@@ -204,7 +214,8 @@ class ProjectController extends AbstractController
                         'project' => $project,
                         'contributeProject' => $contributeProject,
                         'needsProject' =>$needProject,
-                        'formInterstProject' =>$formAddInterestProyect->createView()
+                        'formInterstProject' =>$formAddInterestProyect->createView(),
+                        
                     ]
                 )
             );
@@ -216,6 +227,7 @@ class ProjectController extends AbstractController
                         'project' => $project,
                         'contributeProject' => $contributeProject,
                         'needsProject' =>$needProject,
+                        
                     ]
                 )
             );
@@ -243,5 +255,10 @@ class ProjectController extends AbstractController
                 'opciones_perfil' => $this->profilRepository->findAll() 
             ]);
             return new Response($html);
-    }     
+    }
+    
+    public function getInterestProyectBefore(){
+
+
+    }
 }

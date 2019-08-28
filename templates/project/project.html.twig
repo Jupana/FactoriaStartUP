@@ -151,11 +151,10 @@
         <div class="col-md-12">
             <span><b>Aporta los siguentes perfiles :</b></span>
         </div>
-    </div> 
-   
+    </div>    
     {% for contribute in contributeProject %}
     <div class="row m-t-20  shadow_box bgGris p-3  ">
-        <div class="col-md-3 col-4"><p class="p-t-10">{{contribute.ContributeProfile.name}} : </p></div>
+        <div class="col-md-3 col-4"><p class="p-t-10">{% if contribute.ContributeProfile %} {{contribute.ContributeProfile.name}} {% endif %} : </p></div>
         <div class="col-md-7 col-6 bgWhite p-3">{{contribute.ContributeDescription}} </div>
     </div> 
     {% endfor %}  
@@ -166,7 +165,7 @@
     </div>
    {% for needs in needsProject %}
     <div class="row m-t-20 shadow_box bgGris p-3 ">
-        <div class="col-md-3 col-4"><p class="p-t-10">{{needs.NeedsPerfil.name}} : </p></div>
+        <div class="col-md-3 col-4"><p class="p-t-10">{% if needs.NeedsPerfil %}{{needs.NeedsPerfil.name}} {% endif %} : </p></div>
         <div class="col-md-7 col-6 bgWhite p-3">
                 {% if needs.NeedsPercent != 0 %}
                     {{needs.NeedsPercent}}
