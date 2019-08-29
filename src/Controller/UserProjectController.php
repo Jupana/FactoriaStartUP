@@ -91,7 +91,7 @@ class UserProjectController extends AbstractController
 
                 return $this->redirect('/user/add-project/profile/'.$id); 
         }
-        return $this->render('user/AddProject.html.twig',
+        return $this->render('user/add-project.html.twig',
             [
                 'formProfile' =>$formNewProject->createView(),
                 'project'=>$newProject
@@ -232,7 +232,7 @@ class UserProjectController extends AbstractController
         $formEditProfile = $this->formFactory->create(ProfileUserType::class, $profileUser);
         $formEditProfile->handleRequest($request);
 
-        return $this->render('modals/FormProfile.html.twig',
+        return $this->render('modals/form-profile.html.twig',
             [
                 'formProfile' =>$formEditProfile->createView(),
                 'profileUser'=>$profileUser

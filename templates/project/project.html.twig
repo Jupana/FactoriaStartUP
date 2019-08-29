@@ -20,7 +20,7 @@
                         <a href="{{ path('proposals-info')}}" ><p class="btn btn-outline-secondary  fs-20 text-center projectInterstMe float-right">Ver Conversaciones</p></a>
                     {% else %}
                         <a href="#" data-toggle="modal" data-target="#modalForm_MeInteresa"><p class="btn btn-primary  fs-20 text-center projectInterstMe float-right">Me Interesa</p></a>
-                        {% include 'modals/interestProject.html.twig' %}                            
+                        {% include 'modals/interest-project.html.twig' %}                            
                     {% endif %}                    
                 {% else %}
                     <a href="{{ path('security_login') }}"><p class="btn btn-primary  fs-20 text-center  projectInterstMe float-right">Me Interesa</p></a>   

@@ -83,7 +83,7 @@ class SingelProfileController extends AbstractController
             $this->entityManager->flush();
             return $this->redirectToRoute('user/professional-info');
         }
-        return $this->render('modals/formProfile.html.twig',
+        return $this->render('modals/form-profile.html.twig',
             [
                 'formProfile' =>$formAddProfile->createView(),
                 'profileUser' =>$profileUser
@@ -107,7 +107,7 @@ class SingelProfileController extends AbstractController
         $formEditProfile = $this->formFactory->create(ProfileUserType::class, $profileUser);
         $formEditProfile->handleRequest($request);
 
-        return $this->render('modals/formProfile.html.twig',
+        return $this->render('modals/form-profile.html.twig',
             [
                 'formProfile' =>$formEditProfile->createView(),
                 'profileUser'=>$profileUser

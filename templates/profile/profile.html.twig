@@ -15,7 +15,7 @@
         <div class="col-md-3 col-4">
              {% if is_granted('ROLE_USER') %}
                     <a href="#" data-toggle="modal" data-target="#modalForm_interestProfile"><p class="btn btn-primary  fs-20 text-center float-right">Me Interesa</p></a>
-                    {% include 'modals/interestProfile.html.twig' %}            
+                    {% include 'modals/interest-profile.html.twig' %}            
                 {% else %}
                     <a href="{{ path('security_login') }}"><p class="btn btn-primary  fs-20 text-center float-right ">Me Interesa</p></a>   
         {% endif %}                                    
@@ -117,6 +117,6 @@
         </div>    
     </div>         
   
-     {% include 'modals/MeInteresa.html.twig' %}    
+     {% include 'modals/interest-me.html.twig' %}    
 {% endblock %}
 

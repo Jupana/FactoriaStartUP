@@ -187,7 +187,7 @@ class UserController extends AbstractController
             return $this->redirectToRoute('personal-info');
 
         }
-        return $this->render('user/PersonalData.html.twig',
+        return $this->render('user/personal-info.html.twig',
             ['user' =>$user,
             'form' =>$form->createView()
             ]);
@@ -219,7 +219,7 @@ class UserController extends AbstractController
             return $this->redirectToRoute('user/professional-info');
         }
         
-        return $this->render('user/ProfessionalData.html.twig',
+        return $this->render('user/professional-info.html.twig',
             [
                 'profesionalProfile' =>$profesionalProfile,
                 'form' =>$form->createView(),
@@ -344,7 +344,7 @@ class UserController extends AbstractController
             
             $x++;       
         }        
-        return $this->render('user/datosPropuestas.html.twig',
+        return $this->render('user/proposals-info.html.twig',
             [
                 'searchprofiles'=>$searchprofiles,
                 'usersSearchData' =>$usersSearchData,                

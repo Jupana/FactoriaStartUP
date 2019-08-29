@@ -2,10 +2,10 @@ index:
     path: /
     controller: App\Controller\DefaultController::index 
    
-admin_projects:
+admin-projects:
     path: /admin_projects
     controller: App\Controller\AdminProjectsController::index
-admin_coworker:
+admin-coworker:
     path: /admin_projects/admin_coworker
     controller: App\Controller\AdminProjectsController::index_coworker 
 

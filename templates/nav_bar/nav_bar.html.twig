@@ -22,10 +22,10 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="{{ path('projects') }}">projects</a>
+                    <a class="nav-link" href="{{ path('projects') }}">Proyectos</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link " href="{{ path('profiles') }}">Profilees</a>
+                    <a class="nav-link " href="{{ path('profiles') }}">Perfiles</a>
                 </li>
                 
                 {% if is_granted('ROLE_USER') %}
@@ -37,7 +37,7 @@
                     <a class="nav-link" id="op1" href="{{ path('professional-info') }}">Datos Profesionales</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" id="op2" href="{{ path('projects-info') }}">Mis projects</a>
+                    <a class="nav-link" id="op2" href="{{ path('projects-info') }}">Mis proyectos</a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" id="op3"href="{{ path('proposals-info') }}">Mis Propuestas</a>

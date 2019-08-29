@@ -46,7 +46,7 @@ class ContributeController extends AbstractController{
             $this->entityManager->flush($contribute);
         }
 
-        return $this->render('modals/formProfile.html.twig',
+        return $this->render('modals/form-profile.html.twig',
             [
                 'formAddContribute' =>$formAddContribute->createView(),
             

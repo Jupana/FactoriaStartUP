@@ -215,9 +215,17 @@ class User implements UserInterface,\Serializable
 
     public function getRoles()
     {
-        return [
-            'ROLE_USER'
-        ];
+        if($this->username =='admin'){
+            return [
+                'ROLE_ADMIN'
+            ];
+    
+        }else{
+            return [
+                'ROLE_USER'
+            ];
+        }
+
     }
 
     public function getPassword()

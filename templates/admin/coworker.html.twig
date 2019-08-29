@@ -1,9 +1,9 @@
-{% extends 'admin/viewAdmin.html.twig' %}
+{% extends 'admin/view-admin.html.twig' %}
 
 {% block contentAdmin %}
 
 <!--Admin projects-->
-{% if is_granted('ROLE_USER') and (app.user.username == 'admin') %}
+{% if is_granted('ROLE_ADMIN') and (app.user.username == 'admin') %}
     <div class="row">
         <div class="col-md-12">
             <div class="well well-sm">

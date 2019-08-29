@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+
 class AdminProjectsController extends AbstractController
 {   
     /**
@@ -45,10 +46,11 @@ class AdminProjectsController extends AbstractController
         $this->formFactory = $formFactory;
         $this->entityManager = $entityManager;        
     }
-
+  
     public function index()
     {
         $projects = $this->projectRepository->findAll();
+        dump($this->getUser()->getRoles());
     
         return new Response(
             $this->twig->render(
@@ -62,9 +64,7 @@ class AdminProjectsController extends AbstractController
 
     public function index_coworker()
     {
-            return $this->render('admin/coworker.html.twig', [
-                'controller_name' => 'ForoController',
-            ]);
+            return $this->render('admin/coworker.html.twig');
 
     }
 }
