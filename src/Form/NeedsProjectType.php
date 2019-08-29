@@ -30,15 +30,15 @@ class NeedsProjectType extends AbstractType
                 ])
             ->add('needs_percent',NumberType::class,['label' => 'Porcentaje', 'required'=>false])    
             ->add('needs_description',TextareaType::class,['label' => 'Descripcion', 'required'=>false])
-            ->add('needs_perfil',EntityType::class,[
+            ->add('needs_Profile',EntityType::class,[
                 'class' => Profil::class,                
-                'placeholder' => 'Selecciona un perfil',                
+                'placeholder' => 'Selecciona un Profile',                
                 'choice_label' => function($profil){
                         return $profil->getName(); 
                     },
                 'required'=>false
             ]) 
-            ->add('submit', SubmitType::class,['label' => 'Guardar Perfil'])   
+            ->add('submit', SubmitType::class,['label' => 'Guardar Profile'])   
         ;
     }
 

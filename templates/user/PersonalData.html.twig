@@ -1,4 +1,4 @@
-{% extends 'user_views/index_vista.html.twig' %}
+{% extends 'user/index.html.twig' %}
 
 {% block vista %}
     <script type="text/javascript">
@@ -17,11 +17,11 @@
         <div class="row">
             <div class="col-md-3 col-sm-12  shadow_box p-3">
                 <div  w-100>
-                    <img src ="{{ asset('build/img/uploads/users_perfil/' ~ user.getPerfilImg) }}"/>
+                    <img src ="{{ asset('build/img/uploads/users_Profile/' ~ user.getProfileImg) }}"/>
                 </div>    
                 <div class="p-b-0">
                     <div class="form-group ">
-                        {{form_row(form.perfil_img) }}
+                        {{form_row(form.Profile_img) }}
                     </div>
                 </div>
             </div>   

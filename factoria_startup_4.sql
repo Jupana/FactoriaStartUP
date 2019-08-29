@@ -171,7 +171,7 @@ CREATE TABLE `fsu_projects` (
 
 LOCK TABLES `fsu_projects` WRITE;
 /*!40000 ALTER TABLE `fsu_projects` DISABLE KEYS */;
-INSERT INTO `fsu_projects` VALUES (1,1,NULL,'Project de Prueba',NULL,'Some text 66',0,0,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-04-13 20:04:00',NULL,NULL,NULL),(2,1,NULL,'Project de Prueba',NULL,'Some text 83',0,0,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-04-13 20:04:00',NULL,NULL,NULL),(3,1,NULL,'Project de Prueba',NULL,'Some text 63',0,0,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-04-13 20:04:00',NULL,NULL,NULL),(4,1,NULL,'Project de Prueba',NULL,'Some text 50',0,0,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-04-13 20:04:00',NULL,NULL,NULL),(5,1,NULL,'Project Cinco','la descripcion corta','New text, New text, New text',0,0,0,0,'25','20','2500','2500','2500','10',NULL,NULL,'2019-04-13 20:04:00',NULL,NULL,NULL),(6,1,NULL,'Siuuu',NULL,NULL,0,0,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL),(7,1,NULL,'Proyecto nuevo',NULL,NULL,0,0,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL),(8,1,NULL,'GetId',NULL,NULL,0,0,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL),(9,1,NULL,'GetId',NULL,NULL,0,0,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL);
+INSERT INTO `fsu_projects` VALUES (1,1,NULL,'Project de Prueba',NULL,'Some text 66',0,0,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-04-13 20:04:00',NULL,NULL,NULL),(2,1,NULL,'Project de Prueba',NULL,'Some text 83',0,0,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-04-13 20:04:00',NULL,NULL,NULL),(3,1,NULL,'Project de Prueba',NULL,'Some text 63',0,0,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-04-13 20:04:00',NULL,NULL,NULL),(4,1,NULL,'Project de Prueba',NULL,'Some text 50',0,0,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-04-13 20:04:00',NULL,NULL,NULL),(5,1,NULL,'Project Cinco','la descripcion corta','New text, New text, New text',0,0,0,0,'25','20','2500','2500','2500','10',NULL,NULL,'2019-04-13 20:04:00',NULL,NULL,NULL),(6,1,NULL,'Siuuu',NULL,NULL,0,0,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL),(7,1,NULL,'project nuevo',NULL,NULL,0,0,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL),(8,1,NULL,'GetId',NULL,NULL,0,0,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL),(9,1,NULL,'GetId',NULL,NULL,0,0,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `fsu_projects` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -225,9 +225,9 @@ CREATE TABLE `fsu_users` (
   `user_postal_code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `user_provincie` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `user_country` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `user_perfil_img` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_Profile_img` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `user_team_search` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `user_proyect_search` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_Project_search` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `user_phone_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `user_inscription_date` datetime DEFAULT NULL,
   `user_latitud` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -282,7 +282,7 @@ DROP TABLE IF EXISTS `needs_project`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `needs_project` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `needs_perfil_id` int(11) DEFAULT NULL,
+  `needs_Profile_id` int(11) DEFAULT NULL,
   `needs_id` int(11) NOT NULL,
   `needs_deal` varchar(3000) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `needs_percent` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -290,8 +290,8 @@ CREATE TABLE `needs_project` (
   `needs_status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `needs_date` datetime NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `IDX_45E804EED69769D2` (`needs_perfil_id`),
-  CONSTRAINT `FK_45E804EED69769D2` FOREIGN KEY (`needs_perfil_id`) REFERENCES `fsu_profiles` (`id`)
+  KEY `IDX_45E804EED69769D2` (`needs_Profile_id`),
+  CONSTRAINT `FK_45E804EED69769D2` FOREIGN KEY (`needs_Profile_id`) REFERENCES `fsu_profiles` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 

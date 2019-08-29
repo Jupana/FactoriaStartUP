@@ -20,7 +20,7 @@ class ProjectType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('project_name',TextType::class, ['label' => 'Nombre del proyecto *', 'required'=>true])
+            ->add('project_name',TextType::class, ['label' => 'Nombre del project *', 'required'=>true])
             ->add('project_sector',EntityType::class,[
                 'class' => Sector::class,
                 'placeholder' => 'Selecciona un sector',

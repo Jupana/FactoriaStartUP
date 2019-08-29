@@ -63,7 +63,7 @@ class AppFixtures extends Fixture
         $user->setProvince('Madrid');
         $user->setCountry('España');
         $user->setTeamSearch('0');
-        $user->setProyectSearch('1');
+        $user->setProjectSearch('1');
         $user->setPhoneNumber('999 999 999');
         $user->setInscriptionDate(new \Datetime(2019-03-12));
 
@@ -190,7 +190,7 @@ class AppFixtures extends Fixture
         $ProfileUser -> setUser($this->getReference('liviu'));
         $ProfileUser -> setProfil($this->getReference(3));
         $ProfileUser -> setSector($this->getReference(1));
-        $ProfileUser->setDescription('Primer Proyecto');
+        $ProfileUser->setDescription('Primer project');
         $ProfileUser->setProfileDate(new \Datetime(2019-03-15));
         $manager->persist($ProfileUser);
         
@@ -198,7 +198,7 @@ class AppFixtures extends Fixture
         $ProfileUser -> setUser($this->getReference('liviu'));
         $ProfileUser -> setProfil($this->getReference(4));        
         $ProfileUser -> setSector($this->getReference(2));
-        $ProfileUser->setDescription('Segundo Proyecto');
+        $ProfileUser->setDescription('Segundo project');
         $ProfileUser->setProfileDate(new \Datetime(2019-03-15));
                    
         $manager->persist($ProfileUser);

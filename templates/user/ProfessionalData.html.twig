@@ -1,4 +1,4 @@
-{% extends 'user_views/index_vista.html.twig' %}
+{% extends 'user/index.html.twig' %}
 
 {% block vista %}
     <script type="text/javascript">
@@ -20,12 +20,12 @@
             </div>
             <div class="col-md-5  ver_color">
                 <div class="form-check form-check-inline cuadro border bgGris p-l-15 p-r-15">
-                    <label class="form-check-label  p-r-10 fs-20" for="inlineCheckbox1">Busco Proyecto</label>
+                    <label class="form-check-label  p-r-10 fs-20" for="inlineCheckbox1">Busco project</label>
                     {{ form_row(form.profesionalSearchProject) }}
                 </div> 
             </div> 
             <div class="afos col-md-7  fs-15">
-                <p class="">¿Quieres participar en proyectos interesantes donde aportar tu experiencia, contactos y demás?</p>
+                <p class="">¿Quieres participar en projects interesantes donde aportar tu experiencia, contactos y demás?</p>
             </div>
         </div>            
     </div>
@@ -47,11 +47,11 @@
             <div class="col-md-2 p-t-60">
                 {% if profiles|length <= 3 %}
                 <a class="btn btn-primary text-white add-profil" data-toggle="modal" data-target="#modalForm">
-                             Añade Perfil
+                             Añade Profile
                 </a>
                 {% else %}
-                <p class="btn btn-primary ">Añade Perfil</p>
-                 <span class="info">Has llegado al maximos de 4 perfiles</span>
+                <p class="btn btn-primary ">Añade Profile</p>
+                 <span class="info">Has llegado al maximos de 4 Profilees</span>
                 {% endif %}
                  
                 
@@ -60,7 +60,7 @@
                 <table class="table">
                     <thead class="bgGris">
                         <tr>
-                            <th>Perfil</th>
+                            <th>Profile</th>
                             <th>Sector</th>
                             <th>Descripción</th>
                         </tr>
@@ -74,7 +74,7 @@
                                 <td>
                                     <p>{{profile.sector}}</p>    
                                 <td>
-                                    <a data-toggle="modal" data-target="#modalForm" data-profil="{{profile.profil.name}}" data-sector="{{profile.sector}}" data-id="{{profile.id}}" class="ver_color select_perfil" 
+                                    <a data-toggle="modal" data-target="#modalForm" data-profil="{{profile.profil.name}}" data-sector="{{profile.sector}}" data-id="{{profile.id}}" class="ver_color select_Profile" 
                                     href="#{{ profile.id  }}"><p>Ver</p></a> 
                                               
                             </tr>

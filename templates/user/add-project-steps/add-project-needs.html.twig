@@ -1,17 +1,17 @@
 
 
-{% extends 'user_views/index_vista.html.twig' %}
+{% extends 'user/index.html.twig' %}
 
 {% block vista %}
  <div class="row">
                     <ul class="js-pagination u-carousel-indicators-v30 g-pos-abs g-top-0">
             <li class="">
 
-                <a href="{{ path('add_proyecto', {'id':app.request.get('id')}) }}">
+                <a href="{{ path('add-project', {'id':app.request.get('id')}) }}">
                     <i class="u-dot-line-v1 g-brd-gray-light-v2--before g-brd-gray-light-v2--after g-mb-15--sm">
                         <span class="u-dot-line-v1__inner g-bg-white g-bg-primary--before g-brd-gray-light-v2 g-brd-primary--hover g-brd-primary--active g-transition--ease-in g-transition-0_2"></span>
                     </i>
-                    <span class="g-hidden-sm-down g-color-black g-font-size-15">Información Proyecto</span>
+                    <span class="g-hidden-sm-down g-color-black g-font-size-15">Información project</span>
                 </a>
 
             </li>
@@ -21,15 +21,15 @@
                     <i class="u-dot-line-v1 g-brd-gray-light-v2--before g-brd-gray-light-v2--after g-mb-15--sm">
                         <span class="u-dot-line-v1__inner g-bg-white g-bg-primary--before g-brd-gray-light-v2 g-brd-primary--hover g-brd-primary--active g-transition--ease-in g-transition-0_2"></span>
                     </i>
-                    <span class="g-hidden-sm-down g-color-black g-font-size-15">Fase Proyecto</span>
+                    <span class="g-hidden-sm-down g-color-black g-font-size-15">Fase project</span>
                 </a>
             </li>
             <li class="">
-               <a href="{{ path('addPerfilToProyect', {'id':app.request.get('id')}) }}">
+               <a href="{{ path('add-Profile-to-project', {'id':app.request.get('id')}) }}">
                     <i class="u-dot-line-v1 g-brd-gray-light-v2--before g-brd-gray-light-v2--after g-mb-15--sm">
                         <span class="u-dot-line-v1__inner g-bg-white g-bg-primary--before g-brd-gray-light-v2 g-brd-primary--hover g-brd-primary--active g-transition--ease-in g-transition-0_2"></span>
                     </i>
-                    <span class="g-hidden-sm-down g-color-black g-font-size-15">Aportación en el Proyecto</span>
+                    <span class="g-hidden-sm-down g-color-black g-font-size-15">Aportación en el project</span>
                 </a>
             </li>
             <li class="slick-active">
@@ -37,7 +37,7 @@
                 <i class="u-dot-line-v1 g-brd-gray-light-v2--before g-brd-gray-light-v2--after g-mb-15--sm">
                     <span class="u-dot-line-v1__inner g-bg-white g-bg-primary--before g-brd-gray-light-v2 g-brd-primary--hover g-brd-primary--active g-transition--ease-in g-transition-0_2"></span>
                 </i>
-                <span class="g-hidden-sm-down g-color-black g-font-size-15 ">Necesidades Proyecto</span>
+                <span class="g-hidden-sm-down g-color-black g-font-size-15 ">Necesidades project</span>
 
             </li>
         </ul>
@@ -45,15 +45,15 @@
 
               
                 <div class="col-md-12 text-center m-t-10  modal-title">
-                    <h4 class="par" id="myModalLabel">Necesidades Proyecto</h4>  
+                    <h4 class="par" id="myModalLabel">Necesidades project</h4>  
                 </div>    
                 <!-- Modal Body -->
                 <div class="modal-body">                   
                     <div class="row">
                         <div class="mobil col-md-3 border m-l-20 m-r-10 p-t-10">
-                            <p><span class="bgAzul2 text-white p-l-5 p-r-5 p-t-2 p-b-2">1</span><b> Selecciona perfil:</b></p>
+                            <p><span class="bgAzul2 text-white p-l-5 p-r-5 p-t-2 p-b-2">1</span><b> Selecciona Profile:</b></p>
                             <hr/>
-                            <p class="">Busca el perfil que mejor se adapte a las necesidades que tienes que cubrir en tu proyecto</p>
+                            <p class="">Busca el Profile que mejor se adapte a las necesidades que tienes que cubrir en tu project</p>
                         </div>
                         <div class="mobil col-md-5 border m-r-10 p-t-10">
                             <p><span class="bgAzul2 text-white p-l-5 p-r-5 p-t-2 p-b-2">2</span><b> Propón que ofreces:</b></p>
@@ -72,42 +72,46 @@
                         </div>
                     </div> 
                     <div class="col-md-12 m-t-25">
-                        <p>&#9679; Trata de ser justo y coherente, si no la gente no le interesa trabajar en tu proyecto.</p>
+                        <p>&#9679; Trata de ser justo y coherente, si no la gente no le interesa trabajar en tu project.</p>
                         <P>&#9679; Esto sirve para crear la bases de un futuro trabajo en equipo. Pero la verdadera negociación se hace cara a cara</P>                
                     </div> 
                     <div class="col-md-12 text-center">
                         <button class="btn-primary  " data-toggle="modal" data-target="#modalForm-add-needs">
-                            Añadir Perfil Necesitado
+                            Añadir Profile Necesitado
                         </button>
                     </div> 
                     <div class="col-md-12 m-t-20">
                         <table class="table border par1 ">
                             <thead>
                                 <tr>
-                                    <th>Perfil</th>
+                                    <th>Profile</th>
                                     <th>Acuerdo</th>
                                     <th>Descripción</th>
                                 </tr>
                             </thead>
                             <tbody>
-                            {% for needProyect in needsProyect %}                            
+                            {% for needProject in needsProject %}                            
                                 <tr>
                                     <td>
-                                        <p>{{needProyect.NeedsPerfil.name}}</p>
+                                        <p>
+                                            {% if needProject.NeedsProfile is not null %}    
+                                                {{needProject.NeedsProfile.name}}
+                                            {% endif %}
+                                        </p>
                                     </td>
                                     <td>
                                         <p>
-                                            {% if needProyect.needsPercent is not null %}    
-                                                {{needProyect.needsPercent}}
+                                            {% if needProject.needsPercent is not null %}    
+                                                {{needProject.needsPercent}}
                                             {% endif %}
-                                            {{needProyect.NeedsDeal}}
+                                            {{needProject.NeedsDeal}}
                                         
                                         </p>                                                                              
                                     </td>
                                     <td>                                        
                                         
-                                        <a class="ver_color par1 modal-edit-needs-project" data-toggle="modal" data-target="#modal-form-needs-{{needProyect.id}}" data-id="{{needProyect.id}}" href="#"><p>ver</p></a>
-                                        {% include 'modals/editNeedsProyecto.html.twig' with {'id':needProyect.id} %}  
+                                        <a class="ver_color par1 modal-edit-needs-project" data-toggle="modal" data-target="#modal-form-needs-{{needProject.id}}" data-id="{{needProject.id}}" href="#"><p>ver</p></a>
+                                        {% include 'modals/editNeedsProject.html.twig' with {'id':needProject.id} %}  
                                     </td>
                                 </tr>
                             {% endfor %}
@@ -115,7 +119,7 @@
                         </table>
                     </div>
                 </div>                     
- {% include 'modals/addNeedsProyecto.html.twig' %} 
+ {% include 'modals/addNeedsProject.html.twig' %} 
  {% endblock %}            
       
 

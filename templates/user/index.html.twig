@@ -1,53 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Vista_Usuario{% endblock %}
+{% block title %}{{app.user.name}}{% endblock %}
 
 {% block content %}
 <!--Contenido Vista-Usuario--> 
-<div>
-	<!--<nav class="navbar navbar-light">
-         <div class="row">
-           <div class="col-md-1">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu" aria-controls="menu"  aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-            </div>
-            <div class="col-md-11 col-12">       
-                <form class="form-inline"id="menu">
-                    <div class="row no-gutters">
-                        <div class="col-md-2 col-12">
-                            <a href="{{ path('datos_personales') }}" id="op0"class="nav-link  text-center " type="submit">
-                                Datos Personales						
-                            </a>
-                        </div>
-                        <div class="col-md-2 col-12">
-                            <a href="{{ path('datos_profesionales') }}" id="op1" class="nav-link  text-center" type="submit">
-                                Datos Profesionales						
-                            </a>
-                        </div>
-                        <div class="col-md-2 col-12">
-                            <a href="{{ path('datos_proyectos') }}" id="op2"  class="nav-link text-center" type="submit">
-                                Mis Proyectos				
-                            </a>
-                        </div>
-                        <div class="col-md-2 col-12">
-                            <a class="nav-link  text-center"  href="{{ path('datos_propuestas') }}" id="op3"  type="submit">
-                                Mis Propuestas
-                            </a>
-                        </div>                        
-                    </div> 
-                </form> 
-            </div>    
-        </div>                             
-    </nav>  -->          
+<div>        
     {% block vista %}
     <div class="vistaPredefinida">
         <div class="row">
             <div class="col-md-6 col-12">
-                <p class="par ver_color fs-20 m-b-25 "><b>Informacion Perfil</b></p>
+                <p class="par ver_color fs-20 m-b-25 "><b>Informacion Profile</b></p>
                 <div class="row ">
                     <div class="col-md-4 col-4 shadow_box p-3">
-                        <div ><img src ="{{ asset('build/img/uploads/users_perfil/' ~ user.getPerfilImg) }}"/></div>
+                        <div ><img src ="{{ asset('build/img/uploads/users_Profile/' ~ user.getProfileImg) }}"/></div>
                     </div> 
                     <div class="col-md-8 col-8 shadow_box text-center p-5">
                         <div class="row">
@@ -72,7 +37,7 @@
         </div>
         <!--<div class="row  margin_top "> 
             <div class="col-md-12">
-                <p class=" par fs-17 ">Estos son los perfiles profesionales y los sectores en los que tienes experiencia:</p>
+                <p class=" par fs-17 ">Estos son los Profilees profesionales y los sectores en los que tienes experiencia:</p>
             </div>
         </div>   
         <div class="row m-t-10  par1">
@@ -82,10 +47,10 @@
             </div>
         </div> -->
        
-        <div class="proyect_box p-t-20 ">
+        <div class="Project_box p-t-20 ">
             <div class="row ">
                 <div class="col-md-12 par">
-                    <p class="fs-20 ver_color par p-b-20"><b>Tienes los siguentes proyectos publicados:</b></p> 
+                    <p class="fs-20 ver_color par p-b-20"><b>Tienes los siguentes projects publicados:</b></p> 
                 </div>
                  {% for project in userProjects %}
                     <div class="col-md-3 p-t-10 ">
@@ -105,16 +70,16 @@
                             <tbody>
                                 <tr >
                                     <td>
-                                        <a data-toggle="modal" data-target="#modalForm_info_proyecto" class="ver_color par" href="#"><p>Ver</p></a>                                       </td>
+                                        <a data-toggle="modal" data-target="#modalForm_info_project" class="ver_color par" href="#"><p>Ver</p></a>                                       </td>
                                     <td>
-                                        <a data-toggle="modal" data-target="#modalForm_fase_proyecto" class="ver_color par" href="#"><p>Idea</p></a>                                       </td>
+                                        <a data-toggle="modal" data-target="#modalForm_fase_project" class="ver_color par" href="#"><p>Idea</p></a>                                       </td>
                                     <td>
                                         <p>Diseño</p><p>Legal</p> 
-                                        <a data-toggle="modal" data-target="#modalForm_aporto_proyecto" class="ver_color par" href="#"><p>Nuevo</p></a>
+                                        <a data-toggle="modal" data-target="#modalForm_aporto_project" class="ver_color par" href="#"><p>Nuevo</p></a>
                                     </td>
                                     <td>
                                         <p>Marketing 3 /Obra y Servicio</p><p>Legal 3% Ventas</p>
-                                        <a data-toggle="modal" data-target="#modalForm_necesito_proyecto"class="ver_color par" href="#"><p>Nuevo</p></a>
+                                        <a data-toggle="modal" data-target="#modalForm_necesito_project"class="ver_color par" href="#"><p>Nuevo</p></a>
                                     </td>
                                 </tr>
                             </tbody>     

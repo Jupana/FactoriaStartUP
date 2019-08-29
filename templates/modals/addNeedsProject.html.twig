@@ -10,23 +10,23 @@
                     </button>
                 </div>
                 <div class="col-md-12 text-center m-t-10  modal-title">
-                    <h4 class="par" id="myModalLabel">Nuevo Perfil Necesitado </h4>  
+                    <h4 class="par" id="myModalLabel">Nuevo Profile Necesitado </h4>  
                 </div>    
                 <!-- Modal Body -->
                 <div class="modal-body">                   
-                            {{ form_start (form_New_Proyect_Needs, { 'attr' : { 'id': 'project_needs' } }) }}
-                                    {{ form_widget  (form_New_Proyect_Needs.needs_perfil) }}
-                                     {{ form_widget  (form_New_Proyect_Needs.needs_deal) }}
-                                     {% if needsProyectNew.NeedsDeal in ['% Empresa','% Ventas'] %}
-                                                {{ form_widget (form_New_Proyect_Needs.needs_percent)}}
+                            {{ form_start (form_New_Project_Needs, { 'attr' : { 'id': 'project_needs' } }) }}
+                                    {{ form_widget  (form_New_Project_Needs.needs_Profile) }}
+                                     {{ form_widget  (form_New_Project_Needs.needs_deal) }}
+                                     {% if needsProjectNew.NeedsDeal in ['% Empresa','% Ventas'] %}
+                                                {{ form_widget (form_New_Project_Needs.needs_percent)}}
                                     {% else %}
-                                            {{ form_row (form_New_Proyect_Needs.needs_percent,{ 'attr' : { 'class': 'hide-e' } })}}
+                                            {{ form_row (form_New_Project_Needs.needs_percent,{ 'attr' : { 'class': 'hide-e' } })}}
                                     {% endif %}  
 
-                                    {#{ form_row (form_New_Proyect_Needs.needs_percent) }#}  
-                                    {{ form_row (form_New_Proyect_Needs.needs_description) }}                                             
+                                    {#{ form_row (form_New_Project_Needs.needs_percent) }#}  
+                                    {{ form_row (form_New_Project_Needs.needs_description) }}                                             
                                      <input type="submit" id="submit-form-add" class="btn-primary float-l" style="display:none"/>  
-                            {{ form_end (form_New_Proyect_Needs) }}
+                            {{ form_end (form_New_Project_Needs) }}
                                     
 
                 </div>

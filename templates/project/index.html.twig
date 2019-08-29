@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Proyectos{% endblock %}
+{% block title %}projects{% endblock %}
 
 {% block content %}
 {% for message in app.flashes('notice') %}
@@ -8,18 +8,18 @@
         {{ message }}
     </div>
 {% endfor %}
-<!--Proyectos-->
+<!--projects-->
     <div class="bgWhite">
-        <h1 class="col-md-12 text-center search-title p-t-20">Buscar TU Proyecto de Interes</h1>
-        <form class="m-b-50 m-l-20 m-r-20 form-filter-proyects ">
+        <h1 class="col-md-12 text-center search-title p-t-20">Buscar TU project de Interes</h1>
+        <form class="m-b-50 m-l-20 m-r-20 form-filter-Projects ">
             <div class="row">
                 <div class="col-12 col-md-4 col-lg-3">
                     <div class="form-group">
-                        <select class="custom-select form-control-search " id="select-perfil">
-                            <option selected>Elije Perfil...</option>
-                                {% for perfil in opciones_perfil %}             
+                        <select class="custom-select form-control-search " id="select-Profile">
+                            <option selected>Elije Profile...</option>
+                                {% for Profile in opciones_Profile %}             
                                     <option>
-                                        {{ perfil.name }}</li>
+                                        {{ Profile.name }}</li>
                                     </option>                 
                                 {% endfor %}
                             
@@ -40,12 +40,12 @@
                 </div>
                 <div class="col-12 col-md-4 col-lg-3">
                     <div class="form-group">            
-                        <input type="number" name="km" class="proyect-km form-control-search " placeholder="Distancia en KM">
+                        <input type="number" name="km" class="Project-km form-control-search " placeholder="Distancia en KM">
                     </div>
                 </div>
                 <div class="col-12 col-md-4 col-lg-3">
                     <div class="form-group">        
-                        <button type="button" class="btn btn-primary filter-proyects">Buscar</button>
+                        <button type="button" class="btn btn-primary filter-Projects">Buscar</button>
                     </div>
                 </div>
             </div>             
@@ -59,7 +59,7 @@
                     {% if project.getProjectImg is not empty  %}
                         <img src ="{{ asset('build/img/uploads/projects_img/' ~ project.getProjectImg) }}"/>
                     {% else %}
-                        <img src ="{{ asset('build/img/proyecto-fsu.png') }}">
+                        <img src ="{{ asset('build/img/project-fsu.png') }}">
                     {% endif %}    
                 </div>                
                 <div class="mainCard p-3">        
@@ -67,7 +67,7 @@
                     <div class="d-flex align-items-top justify-content-between">  
                         <p >{{ project.ProjectDate|date("d/m/y")}}</p> 
                         <p>
-                            <a href="{{ path("detalle_proyecto",{"id": project.id }) }}">
+                            <a href="{{ path("project",{"id": project.id }) }}">
                                 <img class="click" src ="{{ asset('build/img/click.png') }}">
                             </a>    
                         </p>  

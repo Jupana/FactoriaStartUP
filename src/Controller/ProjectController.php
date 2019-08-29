@@ -22,7 +22,7 @@ use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Repository\UserRepository;
-use App\Services\GetProyects;
+use App\Services\GetProjects;
 use App\Services\SendMailInterest;
 
 
@@ -100,86 +100,39 @@ class ProjectController extends AbstractController
         $this->interestProject = $interestProject;
     }
 
-    public function edit(Project $project, Request $request)
-    {
-        
-        $form = $this->formFactory->create(ProjectType::class,$project);
-        $form->handleRequest($request);
-        $project->setProjectDate(new \DateTime());
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->entityManager->persist($project);
-            $this->entityManager->flush();
-            return $this->redirectToRoute('proyectos');
-        }
-        return new Response(
-            $this->twig->render(
-                'project/add.html.twig',
-                ['form'=>$form->createView()]
-            )
-        );
-    }
-
-    public function add(Request $request)
-    {
-        $project = new Project();
-        $project->setProjectDate(new \DateTime());
-        $user=$this->getUser();
-        $project->setUser($user);
-
-
-        $form = $this->formFactory->create(ProjectType::class,$project);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-
-            $this->entityManager->persist($project);
-            $this->entityManager->flush();
-
-            return $this->redirectToRoute('proyectos');
-
-
-        }
-        return new Response(
-            $this->twig->render(
-                'project/add.html.twig',
-                ['form'=>$form->createView()]
-            )
-        );
-    }
     public function project( Request $request, $id, SendMailInterest $sendMailProjectInterest)
     {
         $project = $this->projectRepository->find($id);
         $contributeProject = $this->contributeRepository->findBy(['contribute_project'=>$id]);
         $needProject = $this->needsProjectRepository->findBy(['needs_project'=>$id]);
-        dump($project);
+       
 
         if($this->getuser()){
-            $interestProyect = new InterestProject;
-            $interestProyect->setInterestDate(new \DateTime());
-            $interestProyect->setInterestIdUser($this->getUser());
-            $interestProyect->setInterestProjectOwnerID($project->getUser());
-            $interestProyect->setInterestIdProject($project);            
-            $interestProyect->setInterestStatusContribute(true);
-            $interestProyect->setInterestStatusOwner(false);
+            $interestProject = new InterestProject;
+            $interestProject->setInterestDate(new \DateTime());
+            $interestProject->setInterestIdUser($this->getUser());
+            $interestProject->setInterestProjectOwnerID($project->getUser());
+            $interestProject->setInterestIdProject($project);            
+            $interestProject->setInterestStatusContribute(true);
+            $interestProject->setInterestStatusOwner(false);
             
-            $formAddInterestProyect = $this->formFactory->create(InterestProjectType::class, $interestProyect);
-            $formAddInterestProyect->handleRequest($request);
+            $formAddInterestProject = $this->formFactory->create(InterestProjectType::class, $interestProject);
+            $formAddInterestProject->handleRequest($request);
     
-            if ($formAddInterestProyect->isSubmitted() && $formAddInterestProyect->isValid()) {
-                $interestDeal = $formAddInterestProyect->get('interest_deal')->getData();
-                $interestPercent = $formAddInterestProyect->get('interest_percent')->getData();
-                $interestDes = $formAddInterestProyect->get('extra_profile_des')->getData();
+            if ($formAddInterestProject->isSubmitted() && $formAddInterestProject->isValid()) {
+                $interestDeal = $formAddInterestProject->get('interest_deal')->getData();
+                $interestPercent = $formAddInterestProject->get('interest_percent')->getData();
+                $interestDes = $formAddInterestProject->get('extra_profile_des')->getData();
 
-                $interestProyect->setInterestDeal($interestDeal);
-                $interestProyect->setInterestPercent($interestPercent);
-                $interestProyect->setInterestDescription($interestDes);
+                $interestProject->setInterestDeal($interestDeal);
+                $interestProject->setInterestPercent($interestPercent);
+                $interestProject->setInterestDescription($interestDes);
                 /*We create here also a new profile if the user want to add it from MeInteresa you have to REFACTOR this this*/
                                 
-                if ($interestProyect->getInterestSector()){
-                    $sectorId = $this->sectorRepository ->findBy(['name'=>$interestProyect->getInterestSector()]);
-                    $profileId = $this->profilRepository ->findBy(['name'=>$interestProyect->getInterestProfil()->getName()]);
-                    dump($sectorId,$interestProyect->getInterestProfil(),$profileId);
+                if ($interestProject->getInterestSector()){
+                    $sectorId = $this->sectorRepository ->findBy(['name'=>$interestProject->getInterestSector()]);
+                    $profileId = $this->profilRepository ->findBy(['name'=>$interestProject->getInterestProfil()->getName()]);
+                    dump($sectorId,$interestProject->getInterestProfil(),$profileId);
                     //Here we add new Profile for User if he don't has it
                     $profileUser = new ProfileUser();
                     $profileUser->setUser($this->getuser());
@@ -196,8 +149,8 @@ class ProjectController extends AbstractController
                      'ownerName'=>$project->getUser()->getUsername(),
                      'ownerMail' =>$project->getUser()->getEmail(),
                      'projectName' =>$project->getProjectName(),
-                     'sectorInterest'=>$interestProyect->getInterestSector(),
-                     'perfilInterest'=>$interestProyect->getInterestProfil(),
+                     'sectorInterest'=>$interestProject->getInterestSector(),
+                     'ProfileInterest'=>$interestProject->getInterestProfil(),
                      'dealInterest'=>$interestDeal,
                      'percentInterest'=>$interestPercent,
                      'descriptionInterest'=>$interestDes,
@@ -206,7 +159,7 @@ class ProjectController extends AbstractController
                 
                 $sendMailProjectInterest->sendMailProject($mailInterestProject);                
 
-                $this->entityManager->persist($interestProyect);
+                $this->entityManager->persist($interestProject);
                 $this->entityManager->flush();   
                 
                 $this->flashBag->add('notice', 'Mensaje Enviado');
@@ -219,7 +172,7 @@ class ProjectController extends AbstractController
             dump('InterestProject',$this->getUser()->getInterestProjectId()->getValues());
             
             
-            $matchInterestProject = $this->getInterestProyectBefore($this->getUser()->getInterestProjectId()->getValues(),$id);            
+            $matchInterestProject = $this->getInterestProjectBefore($this->getUser()->getInterestProjectId()->getValues(),$id);            
             
             return new Response(
                 $this->twig->render(
@@ -228,7 +181,7 @@ class ProjectController extends AbstractController
                         'project' => $project,
                         'contributeProject' => $contributeProject,
                         'needsProject' =>$needProject,
-                        'formInterstProject' =>$formAddInterestProyect->createView(),
+                        'formInterstProject' =>$formAddInterestProject->createView(),
                         'matchInterestProject'=>$matchInterestProject
                         
                     ]
@@ -250,29 +203,29 @@ class ProjectController extends AbstractController
        
     }
 
-    public function indexProject(GetProyects $projects)
+    public function indexProject(GetProjects $projects)
     {           
-            $projects = $projects->listProyects($this->getUser());
+            $projects = $projects->listProjects($this->getUser());
             $html = $this->twig->render('project/index.html.twig', [
                 'projects' => $projects,
                 'opciones_sectores' => $this->sectorRepository->findAll(),
-                'opciones_perfil' => $this->profilRepository->findAll() 
+                'opciones_Profile' => $this->profilRepository->findAll() 
             ]);
             return new Response($html);
     } 
     
-    public function indexProjectFilter(GetProyects $projects, $sector, $km,$lat,$long)
+    public function indexProjectFilter(GetProjects $projects, $sector, $km,$lat,$long)
     {           
-            $projects = $projects->listProyects($this->getUser(),$sector,$km,$lat,$long);
+            $projects = $projects->listProjects($this->getUser(),$sector,$km,$lat,$long);
             $html = $this->twig->render('project/index.html.twig', [
                 'projects' => $projects,
                 'opciones_sectores' => $this->sectorRepository->findAll(),
-                'opciones_perfil' => $this->profilRepository->findAll() 
+                'opciones_Profile' => $this->profilRepository->findAll() 
             ]);
             return new Response($html);
     }
     
-    public function getInterestProyectBefore($interestProjects, $projectid){
+    public function getInterestProjectBefore($interestProjects, $projectid){
         $match = false;
         if(!empty($interestProjects)){
             foreach($interestProjects as $project){

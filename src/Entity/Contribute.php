@@ -33,7 +33,7 @@ class Contribute
     private $contribute_project;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Profil", inversedBy="contribute_perfil")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Profil", inversedBy="contribute_Profile")
      * @ORM\JoinColumn(nullable=true)
      */
     private $contribute_profile;

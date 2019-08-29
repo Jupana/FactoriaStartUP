@@ -117,14 +117,14 @@ class UserPersonalInfoType extends AbstractType
                     ]
                 )
                 //https://stackoverflow.com/questions/41488108/symfony-file-upload-in-edit-form   
-            ->add('perfil_img',FileType::class, 
+            ->add('Profile_img',FileType::class, 
                     [
                         'label' => false,
                         'data_class' => null
                     ]
                 )
             //->add('team_search')  Liviu estos tiene que ponerlos en otro form
-            //->add('proyect_search')
+            //->add('Project_search')
            // ->add('phone_number',NumberType::class, ['label' => 'Telefono'])
            // ->add('inscription_date',)  LIVIU estos no tiene que verse pero si que tiene que meterlos.
             ->add('latitud')

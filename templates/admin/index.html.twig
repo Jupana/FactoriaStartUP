@@ -2,11 +2,11 @@
 
 {% block contentAdmin %}
 
-<!--Admin Proyectos-->
+<!--Admin projects-->
 {% if is_granted('ROLE_USER') and (app.user.username == 'admin') %} 
     <div class="form-group row">
             <div class="col-md-10 col-9">
-                <input class="form-control " placeholder="Buscar Proyecto" type="search" style="height:100%;">            
+                <input class="form-control " placeholder="Buscar project" type="search" style="height:100%;">            
             </div>             
             <button type="search" class="btn-md bgGris ">Buscar</button>                           
         </div>
@@ -15,7 +15,7 @@
         <thead>
             <tr>
             <th scope="col">#</th>
-            <th scope="col">Proyect</th>
+            <th scope="col">Project</th>
             <th scope="col">Usuario</th>
             <th scope="col">Fecha Alta</th>
             <th scope="col">Estado</th>
@@ -25,7 +25,7 @@
             {% for id ,project in projects %}  
                 <tr>
                     <th scope="row">{{id}}</th>
-                    <td><a href="/proyectos/{{project.id}}">{{project.ProjectName}}</a></td>
+                    <td><a href="/projects/{{project.id}}">{{project.ProjectName}}</a></td>
                     <td>{{project.user.name}}</td>
                     <td>{{ project.ProjectDate|date("d/m/y")}}</td>
                     <td>Si</td>

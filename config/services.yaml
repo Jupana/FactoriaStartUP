@@ -5,7 +5,7 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: 'en'
-    imgUsers: '%kernel.project_dir%/assets/img/uploads/users_perfil'
+    imgUsers: '%kernel.project_dir%/assets/img/uploads/users_Profile'
     imgProjects: '%kernel.project_dir%/assets/img/uploads/projects_img'
 
 

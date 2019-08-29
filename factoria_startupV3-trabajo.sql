@@ -96,7 +96,7 @@ CREATE TABLE `fsu_profiles_users` (
 
 LOCK TABLES `fsu_profiles_users` WRITE;
 /*!40000 ALTER TABLE `fsu_profiles_users` DISABLE KEYS */;
-INSERT INTO `fsu_profiles_users` VALUES (11,1,4,3,'Aqui esta la descripcion profesional sobre el perfil grabado de prueba','2019-04-02 20:01:00'),(12,1,3,2,'Aqui esta la descripcion profesional sobre el perfil grabado de prueba','2019-04-02 20:01:00'),(13,1,1,1,'dyjudty','2019-04-09 15:58:51'),(14,1,1,1,'dyjudty','2019-04-09 16:01:06'),(15,1,1,1,'dyjudty','2019-04-09 16:02:16'),(16,1,4,3,'Google Examen','2019-04-09 16:04:22'),(17,1,2,2,'hdhg','2019-04-09 17:24:34'),(18,1,2,2,'hdhg','2019-04-09 17:24:52');
+INSERT INTO `fsu_profiles_users` VALUES (11,1,4,3,'Aqui esta la descripcion profesional sobre el Profile grabado de prueba','2019-04-02 20:01:00'),(12,1,3,2,'Aqui esta la descripcion profesional sobre el Profile grabado de prueba','2019-04-02 20:01:00'),(13,1,1,1,'dyjudty','2019-04-09 15:58:51'),(14,1,1,1,'dyjudty','2019-04-09 16:01:06'),(15,1,1,1,'dyjudty','2019-04-09 16:02:16'),(16,1,4,3,'Google Examen','2019-04-09 16:04:22'),(17,1,2,2,'hdhg','2019-04-09 17:24:34'),(18,1,2,2,'hdhg','2019-04-09 17:24:52');
 /*!40000 ALTER TABLE `fsu_profiles_users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -195,9 +195,9 @@ CREATE TABLE `fsu_users` (
   `user_postal_code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `user_provincie` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `user_country` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `user_perfil_img` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_Profile_img` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `user_team_search` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `user_proyect_search` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_Project_search` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `user_phone_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `user_inscription_date` datetime DEFAULT NULL,
   `user_latitud` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,

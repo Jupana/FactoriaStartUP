@@ -5,15 +5,15 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
-class ForoController extends AbstractController
+class MessageController extends AbstractController
 {
     /**
-     * @Route("/foro", name="foro")
+     * @Route("/user/message", name="message_user")
      */
     public function index()
     {
-        return $this->render('foro/index.html.twig', [
-            'controller_name' => 'ForoController',
+        return $this->render('message/user.html.twig', [
+            'controller_name' => 'MessageController',
         ]);
     }
 }

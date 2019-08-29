@@ -1,4 +1,4 @@
-{% extends 'user_views/index_vista.html.twig' %}
+{% extends 'user/index.html.twig' %}
 
 {% block vista %} 
   <script type="text/javascript">
@@ -9,8 +9,8 @@
     </script> 
     <div class="row">
         <div class="col-md-12  m-b-20">
-            <h4 class="page-head-line">Añadir Proyecto</h4>
-                <p>&#9679; Esto no es un plan de negocios, se trata de mostrar que has  hechos los deberes y que grado de compromiso tienes con tu proyecto.</p> 
+            <h4 class="page-head-line">Añadir project</h4>
+                <p>&#9679; Esto no es un plan de negocios, se trata de mostrar que has  hechos los deberes y que grado de compromiso tienes con tu project.</p> 
                 <p>&#9679; Recuerda entrar y completar lo que falte para que sea cada vez más atractiva para los demás.</p>
         </div>
     </div> 
@@ -22,7 +22,7 @@
                     <i class="u-dot-line-v1 g-brd-gray-light-v2--before g-brd-gray-light-v2--after g-mb-15--sm">
                         <span class="u-dot-line-v1__inner g-bg-white g-bg-primary--before g-brd-gray-light-v2 g-brd-primary--hover g-brd-primary--active g-transition--ease-in g-transition-0_2"></span>
                     </i>
-                    <span class="g-hidden-sm-down g-color-black g-font-size-15 ">Información Proyecto</span>
+                    <span class="g-hidden-sm-down g-color-black g-font-size-15 ">Información project</span>
                 </a>
 
             </li>
@@ -32,23 +32,23 @@
                     <i class="u-dot-line-v1 g-brd-gray-light-v2--before g-brd-gray-light-v2--after g-mb-15--sm">
                         <span class="u-dot-line-v1__inner g-bg-white g-bg-primary--before g-brd-gray-light-v2 g-brd-primary--hover g-brd-primary--active g-transition--ease-in g-transition-0_2"></span>
                     </i>
-                    <span class="g-hidden-sm-down g-color-black g-font-size-15">Fase Proyecto</span>
+                    <span class="g-hidden-sm-down g-color-black g-font-size-15">Fase project</span>
                 </a>
             </li>
             <li class=" disabled">
-                <a href="{{ path('addPerfilToProyect', {'id':app.request.get('id')}) }}">
+                <a href="{{ path('add-Profile-to-project', {'id':app.request.get('id')}) }}">
                     <i class="u-dot-line-v1 g-brd-gray-light-v2--before g-brd-gray-light-v2--after g-mb-15--sm">
                         <span class="u-dot-line-v1__inner g-bg-white g-bg-primary--before g-brd-gray-light-v2 g-brd-primary--hover g-brd-primary--active g-transition--ease-in g-transition-0_2"></span>
                     </i>
-                    <span class="g-hidden-sm-down g-color-black g-font-size-15">Aportación en el Proyecto</span>
+                    <span class="g-hidden-sm-down g-color-black g-font-size-15">Aportación en el project</span>
                 </a>
             </li>
             <li class="">
-                <a href="{{ path('proyectNeeds', {'id':app.request.get('id')}) }}">
+                <a href="{{ path('project-needs', {'id':app.request.get('id')}) }}">
                     <i class="u-dot-line-v1 g-brd-gray-light-v2--before g-brd-gray-light-v2--after g-mb-15--sm">
                         <span class="u-dot-line-v1__inner g-bg-white g-bg-primary--before g-brd-gray-light-v2 g-brd-primary--hover g-brd-primary--active g-transition--ease-in g-transition-0_2"></span>
                     </i>
-                    <span class="g-hidden-sm-down g-color-black g-font-size-15 ">Necesidades Proyecto</span>
+                    <span class="g-hidden-sm-down g-color-black g-font-size-15 ">Necesidades project</span>
                 </a>
             </li>
         </ul>
@@ -60,9 +60,9 @@
             <div class="tab-multi-form"> 
                         <!-- Step Form Header -->                
                         <div class="col-md-12 text-center m-t-10  modal-title">
-                            <h4 class="par colorAzul2" id="myModalLabel">Información Proyecto</h4>  
+                            <h4 class="par colorAzul2" id="myModalLabel">Información project</h4>  
                         </div>  
-            <div class="nuevo_proyecto  m-t-20">
+            <div class="nuevo_project  m-t-20">
                     <div class="row">
                       {{form_start (formProfile , { 'attr' : { 'id': 'project_form'} }) }}
                             <div  class="col-2">
@@ -130,21 +130,21 @@
                 <div class="modal-dialog">      
                     <div class="modal-content">  
                         <div id="ayuda" class="col-md-12 m-b-20  border par" id="modalHelp" >
-                            <h4 class="bgAzul text-white par">¿ Cómo rellenar un Proyecto?</h4>
-                            <p>Esto no es plan de negocio, es un resumen de puntos básicos que debes de mostrar si  quieres que alguien se interese en tu proyecto</p>
+                            <h4 class="bgAzul text-white par">¿ Cómo rellenar un project?</h4>
+                            <p>Esto no es plan de negocio, es un resumen de puntos básicos que debes de mostrar si  quieres que alguien se interese en tu project</p>
                             <p>Trata de despertar el interés sin desvelar información sobre tu modelo de negocio, tu estrategia, tu política de precio o tu mercado. Eso dejalo para cuando encuentres a tu equipo.</p>
-                            <p>&#9679;  <b>Nombre del Proyecto:</b> si lo tienes pensado y no lo has registrado no lo pongas, y si no tienes nada pensado inventatelo y vete pensando uno.</p>
+                            <p>&#9679;  <b>Nombre del project:</b> si lo tienes pensado y no lo has registrado no lo pongas, y si no tienes nada pensado inventatelo y vete pensando uno.</p>
                             <p>&#9679;  <b>Definirlo en una línea: </b> Cuenta de forma rápida y precisa en qué consiste tu negocio.</p>  
-                            <p>Los siguientes puntos son importantes si quieres que la gente demuestre interés, son puntos necesarios de un estudio de mercado para ver la viabilidad del proyecto.</p>
+                            <p>Los siguientes puntos son importantes si quieres que la gente demuestre interés, son puntos necesarios de un estudio de mercado para ver la viabilidad del project.</p>
                             <p>Si inicialmente no lo sabes, no pasa nada, pero poco a poco vete completandolo</p>
                             <p>&#9679; <b>Facturación estimada:</b> Cuantifica cuánto vas a vender en los próximo 3 años, pon cifras lógicas y basadas en números que que tengan sentido.</p>
                             <p>&#9679; <b>Clientes Potenciales: </b> son los que van a pagar por tu producto o servicio.</p>
-                            <p>Según el tipo de proyecto, pueden existir 2 tipos de clientes:</p>
+                            <p>Según el tipo de project, pueden existir 2 tipos de clientes:</p>
                             <p>Usuarios:</p><p>Ejemplo</p><p>Empresas:</p><p>Ejemplo</p>
                             <p>&#9679; <b>Competencia: </b>Enumera quien es tu competencia, ya tendrás tiempo de analizar.</p>
                             <p><b>Mini-Resumen ejecutivo:</b></p>
-                            <p>Aquí puede cualificar los anteriores. el objetivo es demostrar a los futuromiembros que todo tiene un ¿porque?, una base sólida que permite confiar tanto en el proyecto como en ti y tu equipo</p>
-                            <p>Recuerda que tienes que demostrar que es un proyecto serio, y con pespectivas, pero nuestro consejo es que no desveles etratejias </p>
+                            <p>Aquí puede cualificar los anteriores. el objetivo es demostrar a los futuromiembros que todo tiene un ¿porque?, una base sólida que permite confiar tanto en el project como en ti y tu equipo</p>
+                            <p>Recuerda que tienes que demostrar que es un project serio, y con pespectivas, pero nuestro consejo es que no desveles etratejias </p>
                             <p>La idea.</p><p>La idea.</p><p>El estado en el que encuentra</p><p>La prevision de crecimiento</p><p>La prevision.</p><p>El equipo.</p>
                         </div>
                     </div>  
@@ -159,10 +159,10 @@
                 <div class="modal-header">
                 </div>
                 <div class="col-md-12 text-center m-t-10  modal-title">
-                    <h4 class="par colorAzul2" id="myModalLabel">Fase Proyecto</h4>  
+                    <h4 class="par colorAzul2" id="myModalLabel">Fase project</h4>  
                 </div>     
     <div class="col-md-12 m-t-20 par">
-        <p><b>¿Como de avanzado se encuentra tu proyecto?</b></p>
+        <p><b>¿Como de avanzado se encuentra tu project?</b></p>
     </div>
      <div class="col-md-10">
         <div class="form-check form-check-inline">
@@ -200,7 +200,7 @@
     <div class="col-md-10">
         <div class="form-check form-check-inline">
             {{form_row (formProfile.phase_productoMV)}}
-            <label class="form-check-label par1" for="inlineCheckbox2 "> <b>Producto mínimo viable </b> Tienes un prototipo que funciona, pero te falta complementarlo con mas perfiles.</label>
+            <label class="form-check-label par1" for="inlineCheckbox2 "> <b>Producto mínimo viable </b> Tienes un prototipo que funciona, pero te falta complementarlo con mas Profilees.</label>
         </div> 
     </div>
       <div class="col-md-2">

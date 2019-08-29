@@ -93,9 +93,9 @@ class SingelProfile extends AbstractController
         if ($formAddProfile->isSubmitted() && $formAddProfile->isValid()) {
             $this->entityManager->persist($profileUser);
             $this->entityManager->flush();
-            return $this->redirectToRoute('datos_profesionales');
+            return $this->redirectToRoute('user/professional-info');
         }
-        return $this->render('modals/FormPerfil.html.twig',
+        return $this->render('modals/FormProfile.html.twig',
             [
                 'formProfile' =>$formAddProfile->createView(),
                 'profileUser' =>$profileUser
@@ -119,7 +119,7 @@ class SingelProfile extends AbstractController
         $formEditProfile = $this->formFactory->create(ProfileUserType::class, $profileUser);
         $formEditProfile->handleRequest($request);
 
-        return $this->render('modals/FormPerfil.html.twig',
+        return $this->render('modals/FormProfile.html.twig',
             [
                 'formProfile' =>$formEditProfile->createView(),
                 'profileUser'=>$profileUser
@@ -178,8 +178,8 @@ class SingelProfile extends AbstractController
         $this->entityManager->remove($profileUser);
         $this->entityManager->flush();
 
-        $this->flashBag->add('notice', 'El perfil ha sido eliminado');
+        $this->flashBag->add('notice', 'El Profile ha sido eliminado');
         
-        return $this->redirectToRoute('datos_profesionales');
+        return $this->redirectToRoute('user/professional-info');
     }
 }

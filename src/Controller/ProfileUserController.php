@@ -129,7 +129,7 @@ class ProfileUserController extends AbstractController
             $html = $this->twig->render('profile/index.html.twig', [
                 'profiles' => $profiles,
                 'opciones_sectores' => $this->sectorRepository->findAll(),
-                'opciones_perfil' => $this->profilRepository->findAll()
+                'opciones_Profile' => $this->profilRepository->findAll()
             ]);
             return new Response($html); 
        
@@ -141,7 +141,7 @@ class ProfileUserController extends AbstractController
             $html = $this->twig->render('profile/index.html.twig', [
                 'profiles' => $listProfiles,
                 'opciones_sectores' => $this->sectorRepository->findAll(),
-                'opciones_perfil' => $this->profilRepository->findAll() 
+                'opciones_Profile' => $this->profilRepository->findAll() 
             ]);
             return new Response($html);
     } 
@@ -187,7 +187,7 @@ class ProfileUserController extends AbstractController
                 $newProfileAddFromMatch = new NeedsProject();
                 $newProfileAddFromMatch->setUser($this->getuser());
                 $newProfileAddFromMatch->setNeedsIdProject($interestProfile->getInterestProject());
-                $newProfileAddFromMatch->setNeedsPerfil($interestProfile->getInterestProfile());
+                $newProfileAddFromMatch->setNeedsProfile($interestProfile->getInterestProfile());
                 
                 $newProfileAddFromMatch->setNeedsDescription($interestProfile->getInterestDescription() );
                 $newProfileAddFromMatch->setNeedsDeal($dealToAdd);
@@ -261,18 +261,6 @@ class ProfileUserController extends AbstractController
         }
        
     }
-    
-    public function delete(ProfileUser $ProfileUser)
-    {
-        $this->entityManager->remove($ProfileUser);
-        $this->entityManager->flush();
-
-        $this->flashBag->add('notice', 'El perfil ha sido eliminado');
-        
-        return $this->redirectToRoute('profiles');
-    }
-   
-
 
     private function distance($lat1, $lon1, $lat2, $lon2) {
 

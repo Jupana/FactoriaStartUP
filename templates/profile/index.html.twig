@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 
-{% block title %}Perfiles{% endblock %}
+{% block title %}Profilees{% endblock %}
 
 {% block content %}
 {% for message in app.flashes('notice') %}
@@ -11,16 +11,16 @@
 {% endfor %}
 <!--Equipos-->
 <div class="bgWhite">
-    <h1 class="col-md-12 text-center search-title p-t-20">Buscar Equipo para TU Proyecto</h1>
+    <h1 class="col-md-12 text-center search-title p-t-20">Buscar Equipo para TU project</h1>
     <form class="m-b-50 m-l-20 m-r-20 form-filter-profiles">
          <div class="row">
                 <div class="col-12 col-md-4 col-lg-3">
                     <div class="form-group">
                         <select class="custom-select form-control-search" id="select-profiles">
-                            <option selected>Elije Perfil...</option>
-                            {% for perfil in opciones_perfil %}
-                                <option value={{perfil.id}}>
-                                    {{ perfil.name }}</li>
+                            <option selected>Elije Profile...</option>
+                            {% for Profile in opciones_Profile %}
+                                <option value={{Profile.id}}>
+                                    {{ Profile.name }}</li>
                                 </option>    
                             {% endfor %}
                         </select>
@@ -41,7 +41,7 @@
                 </div>         
                 <div class="col-12 col-md-4 col-lg-3">
                     <div class="form-group">  
-                        <input type="number" name="km" class="proyect-km form-control-search" placeholder="Distancia en KM">
+                        <input type="number" name="km" class="Project-km form-control-search" placeholder="Distancia en KM">
                     </div>
                 </div>
                  <div class="col-12 col-md-4 col-lg-3">
@@ -57,7 +57,7 @@
         <div class="col-md-3 m-b-15"> 
             <div class="cardBlock shadow_box" >         
                 <div class="imageCard p-3">
-                     <img  class="card-img-top" src ="{{ asset('build/img/uploads/users_perfil/' ~ profile.user_img) }}" alt="image"/>                  
+                     <img  class="card-img-top" src ="{{ asset('build/img/uploads/users_Profile/' ~ profile.user_img) }}" alt="image"/>                  
                 </div>                    
                 <div class="mainCard p-3">  
                     <div class="d-flex align-items-top justify-content-between">  
@@ -72,16 +72,16 @@
                             <table class="table table-responsive tableCard border" id="style-scroll">
                                 <thead class="bgAzul text-white">
                                     <tr>
-                                        <th>Perfil</th>
+                                        <th>Profile</th>
                                         <th>Sector</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {% set i = 0 %}
-                                    {% for userperfil in profile.perfiles %}
+                                    {% for userProfile in profile.Profilees %}
                                     <tr>                       
                                         <td>                                         
-                                            <p>{{ userperfil.name}}</p>                                 
+                                            <p>{{ userProfile.name}}</p>                                 
                                         </td>
                                         <td>
                                             <p>{{ profile.sectors[i]}}</p> 

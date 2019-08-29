@@ -127,7 +127,7 @@ class UserController extends AbstractController
         $userProjects = $this->projectsUserRepository->findBy(['user' => $user->getId()]);
         return new Response(
             $this->twig->render(
-                'user_views/index_vista.html.twig',
+                'user/index.html.twig',
                 [
                     'user' => $user,
                     'profesionalProfile' =>$userProfesionalProfile,
@@ -137,7 +137,7 @@ class UserController extends AbstractController
         );
     }
   
-    public function datos_personales(Request $request, GoogleMapsFactory $geoCodingProvider): Response
+    public function personalInfo(Request $request, GoogleMapsFactory $geoCodingProvider): Response
     {
         $user = $this->getUser();
         
@@ -147,7 +147,7 @@ class UserController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
           
-            $file = $user->getPerfilImg();
+            $file = $user->getProfileImg();
             $fileName = $user->getUsername().'-'.$this->generateUniqueFileName().'.'.$file->guessExtension();
 
             try {
@@ -159,7 +159,7 @@ class UserController extends AbstractController
                 dump($e);
             }
 
-            $user->setPerfilImg($fileName);
+            $user->setProfileImg($fileName);
 
             $config = []; 
             $config['api_key'] = 'AIzaSyDmQm7vyUCKhZ_rxCyM8kTtxSN4YfDNc3M'; 
@@ -184,17 +184,17 @@ class UserController extends AbstractController
 
             $this->entityManager->persist($user);
             $this->entityManager->flush();
-            return $this->redirectToRoute('datos_personales');
+            return $this->redirectToRoute('personal-info');
 
         }
-        return $this->render('user_views/PersonalData.html.twig',
+        return $this->render('user/PersonalData.html.twig',
             ['user' =>$user,
             'form' =>$form->createView()
             ]);
 
     }
     
-    public function datosProfesionales(Request $request): Response
+    public function professionalInfo(Request $request): Response
     {       
         $profesionalProfile = $this->profesionalProfilRespository;
         $user = $this->getUser();
@@ -216,10 +216,10 @@ class UserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->entityManager->persist($profesionalProfile);
             $this->entityManager->flush();
-            return $this->redirectToRoute('datos_profesionales');
+            return $this->redirectToRoute('user/professional-info');
         }
         
-        return $this->render('user_views/ProfessionalData.html.twig',
+        return $this->render('user/ProfessionalData.html.twig',
             [
                 'profesionalProfile' =>$profesionalProfile,
                 'form' =>$form->createView(),
@@ -229,7 +229,7 @@ class UserController extends AbstractController
         
     }
     
-    public function datosProyectos(Request $request): Response
+    public function projectsInfo(Request $request): Response
     {
         $newProject = new Project();
         $user = $this->getUser();
@@ -249,10 +249,10 @@ class UserController extends AbstractController
             $this->entityManager->persist($newProject);
             $this->entityManager->flush();
 
-            return $this->redirectToRoute('add_proyecto',['id'=>$newProject->getid()]);
+            return $this->redirectToRoute('add-project',['id'=>$newProject->getid()]);
         }        
         
-        return $this->render('user_views/datos_Proyectos.html.twig',
+        return $this->render('user/projects-info.html.twig',
                     [
                         'formAddProject' =>$formNewProject->createView(),
                         'userProjects' =>$userProjects,
@@ -264,7 +264,7 @@ class UserController extends AbstractController
     }
     
     
-    public function datos_propuestas(Request $request): Response
+    public function proposalsInfo(): Response
     {
         
         $searchprofiles = $this->interestProfileRepository->findBy(['user'=>$this->getUser()->getId()]);
@@ -291,8 +291,8 @@ class UserController extends AbstractController
 
             if($searchprofile->getInterestProject()){
                 $userSearchProject =$this->projectsUserRepository->find($searchprofile->getInterestProject()->getId());
-                $usersSearchData[$i]['proyect']['id'] =$userSearchProject->getId();
-                $usersSearchData[$i]['proyect']['proyectName']=$userSearchProject->getProjectName();
+                $usersSearchData[$i]['Project']['id'] =$userSearchProject->getId();
+                $usersSearchData[$i]['Project']['ProjectName']=$userSearchProject->getProjectName();
             }
             
             $i++;       
@@ -303,8 +303,8 @@ class UserController extends AbstractController
         foreach($searchProjects as $serachProject){
             $wantSearchProject =  $this->projectsUserRepository->find($serachProject->getInterestIdProject());
             
-            $usersSearchProjectData[$n]['proyect']['id'] =$wantSearchProject->getId();
-            $usersSearchProjectData[$n]['proyect']['proyectName']=$wantSearchProject->getProjectName();
+            $usersSearchProjectData[$n]['Project']['id'] =$wantSearchProject->getId();
+            $usersSearchProjectData[$n]['Project']['ProjectName']=$wantSearchProject->getProjectName();
             
             $n++;       
         }
@@ -318,8 +318,8 @@ class UserController extends AbstractController
             $userProjectsToColaborate[$k]['userData']['userName'] = $userSearch->getUsername();
             
             $userSearchProjectToColaborate =$this->projectsUserRepository->find($searchProjectToColaborate->getInterestIdProject());
-            $userProjectsToColaborate[$k]['proyect']['id'] =$userSearchProjectToColaborate->getId();
-            $userProjectsToColaborate[$k]['proyect']['proyectName']=$userSearchProjectToColaborate->getProjectName();
+            $userProjectsToColaborate[$k]['Project']['id'] =$userSearchProjectToColaborate->getId();
+            $userProjectsToColaborate[$k]['Project']['ProjectName']=$userSearchProjectToColaborate->getProjectName();
             
             $k++;
         }
@@ -339,12 +339,12 @@ class UserController extends AbstractController
         
             $userSearchProject =$this->projectsUserRepository->find($searchprofile->getInterestProject());
 
-            $usersProfileForPartner[$x]['proyect']['id'] =$userSearchProject->getId();
-            $usersProfileForPartner[$x]['proyect']['proyectName']=$userSearchProject->getProjectName();
+            $usersProfileForPartner[$x]['Project']['id'] =$userSearchProject->getId();
+            $usersProfileForPartner[$x]['Project']['ProjectName']=$userSearchProject->getProjectName();
             
             $x++;       
         }        
-        return $this->render('user_views/datosPropuestas.html.twig',
+        return $this->render('user/datosPropuestas.html.twig',
             [
                 'searchprofiles'=>$searchprofiles,
                 'usersSearchData' =>$usersSearchData,                
@@ -359,7 +359,7 @@ class UserController extends AbstractController
         );
     }
 
-    public function deleteProyect(Project $project)    
+    public function deleteProject(Project $project)    
     {
         
         $needProjects = $this->needsProjectRepository->findBy(['needs_project'=>$project->getId()]);
@@ -375,7 +375,7 @@ class UserController extends AbstractController
         $this->entityManager->remove($project);
         $this->entityManager->flush();
         
-        return $this->redirectToRoute('datos_proyectos');
+        return $this->redirectToRoute('projects-info');
     }
 
     public function deleteProjectInterest(InterestProject $id){        
@@ -383,7 +383,7 @@ class UserController extends AbstractController
         $this->entityManager->remove($id);
         $this->entityManager->flush();
         
-        return $this->redirectToRoute('datos_propuestas');
+        return $this->redirectToRoute('proposals-info');
     }
 
     public function deleteProfileInterest(InterestProfile $id){        
@@ -391,7 +391,7 @@ class UserController extends AbstractController
         $this->entityManager->remove($id);
         $this->entityManager->flush();
         
-        return $this->redirectToRoute('datos_propuestas');
+        return $this->redirectToRoute('proposals-info');
     }
 
     /**

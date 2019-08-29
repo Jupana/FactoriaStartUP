@@ -105,9 +105,9 @@ CREATE TABLE `fsu_users` (
   `user_postal_code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `user_provincie` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `user_country` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `user_perfil_img` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_Profile_img` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `user_team_search` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `user_proyect_search` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_Project_search` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `user_phone_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `user_inscription_date` datetime DEFAULT NULL,
   `user_latitud` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -160,7 +160,7 @@ CREATE TABLE `fsu_projects` (
 # Data for table "fsu_projects"
 #
 
-INSERT INTO `fsu_projects` VALUES (56,28,'Project de Prueba',NULL,'Some text 58',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-03-21 20:04:00',NULL,0,0,0,0),(57,28,'Project de Prueba',NULL,'Some text 41',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-03-21 20:04:00',NULL,0,0,0,0),(58,28,'Project de Prueba',NULL,'Some text 3',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-03-21 20:04:00',NULL,0,0,0,0),(59,28,'Project de Prueba',NULL,'Some text 78',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-03-21 20:04:00',NULL,0,0,0,0),(60,28,'Project de Prueba',NULL,'Some text 45',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-03-21 20:04:00',NULL,0,0,0,0),(61,28,'Marketing Web','fshbsr','gdrdg','Adultos','Web Marketing','22222','5000','1000','rgs',NULL,NULL,'2019-03-21 15:22:59',NULL,1,0,0,0),(62,29,'Proyecto Minimo Viable','Proyecto FinalProyecto FinalProyecto Final','Proyecto FinalProyecto FinalProyecto FinalProyecto FinalProyecto FinalProyecto','Adultos','Web Marketing','22222','5555','200000','Marketing',NULL,NULL,'2019-03-21 15:58:49',NULL,0,0,1,0);
+INSERT INTO `fsu_projects` VALUES (56,28,'Project de Prueba',NULL,'Some text 58',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-03-21 20:04:00',NULL,0,0,0,0),(57,28,'Project de Prueba',NULL,'Some text 41',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-03-21 20:04:00',NULL,0,0,0,0),(58,28,'Project de Prueba',NULL,'Some text 3',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-03-21 20:04:00',NULL,0,0,0,0),(59,28,'Project de Prueba',NULL,'Some text 78',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-03-21 20:04:00',NULL,0,0,0,0),(60,28,'Project de Prueba',NULL,'Some text 45',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-03-21 20:04:00',NULL,0,0,0,0),(61,28,'Marketing Web','fshbsr','gdrdg','Adultos','Web Marketing','22222','5000','1000','rgs',NULL,NULL,'2019-03-21 15:22:59',NULL,1,0,0,0),(62,29,'project Minimo Viable','project Finalproject Finalproject Final','project Finalproject Finalproject Finalproject Finalproject Finalproject','Adultos','Web Marketing','22222','5555','200000','Marketing',NULL,NULL,'2019-03-21 15:58:49',NULL,0,0,1,0);
 
 #
 # Structure for table "migration_versions"

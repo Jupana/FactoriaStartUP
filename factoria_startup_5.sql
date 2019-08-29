@@ -46,7 +46,7 @@ DROP TABLE IF EXISTS `fsu_needs_project`;
 CREATE TABLE `fsu_needs_project` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `needs_project_id` int(11) DEFAULT NULL,
-  `needs_perfil_id` int(11) DEFAULT NULL,
+  `needs_Profile_id` int(11) DEFAULT NULL,
   `needs_deal` varchar(3000) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `needs_percent` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `needs_description` varchar(3000) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -54,8 +54,8 @@ CREATE TABLE `fsu_needs_project` (
   `needs_date` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_E5484F70F809791` (`needs_project_id`),
-  KEY `IDX_E5484F70D69769D2` (`needs_perfil_id`),
-  CONSTRAINT `FK_E5484F70D69769D2` FOREIGN KEY (`needs_perfil_id`) REFERENCES `fsu_profiles` (`id`),
+  KEY `IDX_E5484F70D69769D2` (`needs_Profile_id`),
+  CONSTRAINT `FK_E5484F70D69769D2` FOREIGN KEY (`needs_Profile_id`) REFERENCES `fsu_profiles` (`id`),
   CONSTRAINT `FK_E5484F70F809791` FOREIGN KEY (`needs_project_id`) REFERENCES `fsu_projects` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -191,9 +191,9 @@ CREATE TABLE `fsu_users` (
   `user_postal_code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `user_provincie` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `user_country` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `user_perfil_img` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_Profile_img` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `user_team_search` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `user_proyect_search` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_Project_search` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `user_phone_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `user_inscription_date` datetime DEFAULT NULL,
   `user_latitud` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,

@@ -121,11 +121,11 @@ class User implements UserInterface,\Serializable
     private $country;
 
     /**
-     * @ORM\Column(type="string", nullable=true,name="user_perfil_img")
+     * @ORM\Column(type="string", nullable=true,name="user_profile_img")
      * @Assert\Image
      * @Assert\File(maxSize = "2M")
      */
-    private $perfil_img;
+    private $profile_img;
 
     /**
      * @ORM\Column(type="string", nullable=true,name="user_team_search")
@@ -133,9 +133,9 @@ class User implements UserInterface,\Serializable
     private $team_search;
 
     /**
-     * @ORM\Column(type="string", nullable=true,name="user_proyect_search")
+     * @ORM\Column(type="string", nullable=true,name="user_project_search")
      */
-    private $proyect_search;
+    private $project_search;
 
     /**
      * @ORM\Column(type="string", nullable=true,name="user_phone_number")
@@ -469,14 +469,14 @@ class User implements UserInterface,\Serializable
         return $this;
     }
 
-    public function getPerfilImg()
+    public function getProfileImg()
     {
-        return $this->perfil_img;
+        return $this->profile_img;
     }
 
-    public function setPerfilImg($file)
+    public function setProfileImg($file)
     {
-        $this->perfil_img = $file;
+        $this->profile_img = $file;
 
         return $this;
     }
@@ -493,14 +493,14 @@ class User implements UserInterface,\Serializable
         return $this;
     }
 
-    public function getProyectSearch(): ?string
+    public function getProjectSearch(): ?string
     {
-        return $this->proyect_search;
+        return $this->project_search;
     }
 
-    public function setProyectSearch(string $proyect_search): self
+    public function setProjectSearch(string $Project_search): self
     {
-        $this->proyect_search = $proyect_search;
+        $this->project_search = $project_search;
 
         return $this;
     }

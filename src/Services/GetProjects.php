@@ -5,7 +5,7 @@ namespace App\Services;
 use App\Repository\UserRepository;
 use App\Repository\ProjectRepository;
 
-class GetProyects{
+class GetProjects{
 
     /**
      * 
@@ -25,7 +25,7 @@ class GetProyects{
         $this->userRepository =$userRepository;
     }
 
-    public function listProyects($user,$sector=0, $km = null, $lat=0, $long=0){
+    public function listProjects($user,$sector=0, $km = null, $lat=0, $long=0){
         
         if($user){
             

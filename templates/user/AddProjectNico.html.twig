@@ -1,4 +1,4 @@
-{% extends 'user_views/index_vista.html.twig' %}
+{% extends 'user/index.html.twig' %}
 
 {% block vista %} 
   <script type="text/javascript">
@@ -8,31 +8,31 @@
     </script> 
     <div class="row">
         <div class="col-md-12  m-l-20  m-t-20 m-b-20">
-            <h4 class="page-head-line">Añadir Proyecto</h4>
-                <p>&#9679; Esto no es un plan de negocios, se trata de mostrar que has  hechos los deberes y que grado de compromiso tienes con tu proyecto.</p> 
+            <h4 class="page-head-line">Añadir project</h4>
+                <p>&#9679; Esto no es un plan de negocios, se trata de mostrar que has  hechos los deberes y que grado de compromiso tienes con tu project.</p> 
                 <p>&#9679; Recuerda entrar y completar lo que falte para que sea cada vez más atractiva para los demás.</p>
         </div>
     </div> 
      <div class="row">
                     <div class="mobil col-md-3 border p-t-10">
-                        <p><span class="btn-info p-l-5 p-r-5 p-t-2 p-b-2">1</span><b>Información Proyecto</b></p>
+                        <p><span class="btn-info p-l-5 p-r-5 p-t-2 p-b-2">1</span><b>Información project</b></p>
                         <hr/>        
                     </div>
                     <div class="mobil col-md-3 border p-t-10">
-                        <p><span class="btn-light p-l-5 p-r-5 p-t-2 p-b-2">2</span><b> Fase Proyecto</b></p>
+                        <p><span class="btn-light p-l-5 p-r-5 p-t-2 p-b-2">2</span><b> Fase project</b></p>
                         <hr/>
                     </div>
                     <div class="mobil col-md-3 border p-t-10">
-                        <p><span class="btn-light p-l-5 p-r-5 p-t-2 p-b-2">3</span><b> Aportación en el Proyecto</b></p>
+                        <p><span class="btn-light p-l-5 p-r-5 p-t-2 p-b-2">3</span><b> Aportación en el project</b></p>
                         <hr/>
                     </div>
                     <div class="mobil col-md-3 border p-t-10">
-                        <p><span class="btn-light p-l-5 p-r-5 p-t-2 p-b-2">4</span><b> Necesidades Proyecto</b></p>
+                        <p><span class="btn-light p-l-5 p-r-5 p-t-2 p-b-2">4</span><b> Necesidades project</b></p>
                         <hr/>
                     </div>
     </div> 
   
-    <div class="nuevo_proyecto m-l-20 m-r-20 m-t-20">
+    <div class="nuevo_project m-l-20 m-r-20 m-t-20">
         <div class="row">
             <div class="mobil col-md-3">
                 <img src="{{ asset('img.png','img') }}" alt="Symfony!"/>
@@ -45,9 +45,9 @@
             <div class="col-md-9">
                 <form class="formulario">
                     <div class="form-group row">
-                        <label for="inputNombre_Proyecto" class="col-4 col-form-label par1">Nombre del proyecto*</label>
+                        <label for="inputNombre_project" class="col-4 col-form-label par1">Nombre del project*</label>
                         <div class="col-8 p-l-0 p-b-5">
-                            <input type="nombre" class="form-control" id="inputNombre_Proyecto" >
+                            <input type="nombre" class="form-control" id="inputNombre_project" >
                         </div>
                         <label for="" class="col-4 col-form-label par1">Definelo en una linea*</label>
                         <div class="col-8 p-l-0 p-b-5">
@@ -95,21 +95,21 @@
                 <a  id="ver"href="#ayuda" value="Mostrar" onclick="mostrar()"><img src="{{ asset('circulo.png','circulo') }}" alt="Symfony!"/></a>
             </div>
             <div id="ayuda" class="col-md-12 m-b-20  border par " style="display:none">
-                <h4 class="bgAzul text-white par">¿ Cómo rellenar un Proyecto?</h4>
-                <p>Esto no es plan de negocio, es un resumen de puntos básicos que debes de mostrar si  quieres que alguien se interese en tu proyecto</p>
+                <h4 class="bgAzul text-white par">¿ Cómo rellenar un project?</h4>
+                <p>Esto no es plan de negocio, es un resumen de puntos básicos que debes de mostrar si  quieres que alguien se interese en tu project</p>
                 <p>Trata de despertar el interés sin desvelar información sobre tu modelo de negocio, tu estrategia, tu política de precio o tu mercado. Eso dejalo para cuando encuentres a tu equipo.</p>
-                <p>&#9679;  <b>Nombre del Proyecto:</b> si lo tienes pensado y no lo has registrado no lo pongas, y si no tienes nada pensado inventatelo y vete pensando uno.</p>
+                <p>&#9679;  <b>Nombre del project:</b> si lo tienes pensado y no lo has registrado no lo pongas, y si no tienes nada pensado inventatelo y vete pensando uno.</p>
                 <p>&#9679;  <b>Definirlo en una línea: </b> Cuenta de forma rápida y precisa en qué consiste tu negocio.</p>  
-                <p>Los siguientes puntos son importantes si quieres que la gente demuestre interés, son puntos necesarios de un estudio de mercado para ver la viabilidad del proyecto.</p>
+                <p>Los siguientes puntos son importantes si quieres que la gente demuestre interés, son puntos necesarios de un estudio de mercado para ver la viabilidad del project.</p>
                 <p>Si inicialmente no lo sabes, no pasa nada, pero poco a poco vete completandolo</p>
                 <p>&#9679; <b>Facturación estimada:</b> Cuantifica cuánto vas a vender en los próximo 3 años, pon cifras lógicas y basadas en números que que tengan sentido.</p>
                 <p>&#9679; <b>Clientes Potenciales: </b> son los que van a pagar por tu producto o servicio.</p>
-                <p>Según el tipo de proyecto, pueden existir 2 tipos de clientes:</p>
+                <p>Según el tipo de project, pueden existir 2 tipos de clientes:</p>
                 <p>Usuarios:</p><p>Ejemplo</p><p>Empresas:</p><p>Ejemplo</p>
                 <p>&#9679; <b>Competencia: </b>Enumera quien es tu competencia, ya tendrás tiempo de analizar.</p>
                 <p><b>Mini-Resumen ejecutivo:</b></p>
-                <p>Aquí puede cualificar los anteriores. el objetivo es demostrar a los futuromiembros que todo tiene un ¿porque?, una base sólida que permite confiar tanto en el proyecto como en ti y tu equipo</p>
-                <p>Recuerda que tienes que demostrar que es un proyecto serio, y con pespectivas, pero nuestro consejo es que no desveles etratejias </p>
+                <p>Aquí puede cualificar los anteriores. el objetivo es demostrar a los futuromiembros que todo tiene un ¿porque?, una base sólida que permite confiar tanto en el project como en ti y tu equipo</p>
+                <p>Recuerda que tienes que demostrar que es un project serio, y con pespectivas, pero nuestro consejo es que no desveles etratejias </p>
                 <p>La idea.</p><p>La idea.</p><p>El estado en el que encuentra</p><p>La prevision de crecimiento</p><p>La prevision.</p><p>El equipo.</p>
                 <a href="#ayuda" value="Ocultar" onclick="ocultar()" class="ver_color float-r par" >Ocultar Ayuda</a>
             </div>
@@ -118,7 +118,7 @@
                 <textarea  name="Description" class="form-control par1" rows="3" required="" maxlength="300" placeholder="Descríbete con un máximo de 300 caracteres..."></textarea>
             </div>
             <div class="col-md-12 m-t-20 par">
-                <p><b>¿Como de avanzado se encuentra tu proyecto?</b></p>
+                <p><b>¿Como de avanzado se encuentra tu project?</b></p>
             </div>
             <div class="col-md-2">
                 <img src="{{ asset('bumb.png','bumb') }}" alt="Symfony!"/>
@@ -144,7 +144,7 @@
             <div class="col-md-10">
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                    <label class="form-check-label par1" for="inlineCheckbox2 "> <b>Producto mínimo viable </b> Tienes un prototipo que funciona, pero te falta complementarlo con mas perfiles.</label>
+                    <label class="form-check-label par1" for="inlineCheckbox2 "> <b>Producto mínimo viable </b> Tienes un prototipo que funciona, pero te falta complementarlo con mas Profilees.</label>
                 </div> 
             </div>
               <div class="col-md-2">
@@ -161,7 +161,7 @@
             </div>
             <div id="que_aporto" class="col-md-12 m-b-20  par " style="display:none">
                 <div class="col-md-12 m-t-20">
-                    <p>Para atraer el interés cuenta tu experiencia, contactos, clientes, equipo, espacio de trabajo, etc. Intenta que la gente a parte de confiar en tu proyecto, confíe en ti.</p>
+                    <p>Para atraer el interés cuenta tu experiencia, contactos, clientes, equipo, espacio de trabajo, etc. Intenta que la gente a parte de confiar en tu project, confíe en ti.</p>
                 </div>
                 <div class="col-md-12">
                     <p><b>¿Tienes equipo?</b></p>
@@ -173,20 +173,20 @@
                     </div> 
                 </div>
                 <div class="col-md-12">
-                    <p>&#9679; Tanto si estás solo como si tienes equipo, cuéntanos qué perfiles están cubiertos en tu proyecto</p>
+                    <p>&#9679; Tanto si estás solo como si tienes equipo, cuéntanos qué Profilees están cubiertos en tu project</p>
                     <p>&#9679; Marca de forma general que se cubre y luego explica si hay alguna especialidad: Lenguajes de programación, tipo de marketing, especialización jurídica, etc</p>
-                    <p>&#9679; Recuerda que una persona puede cubrir distintos perfiles y varias personas un único perfil</p>
+                    <p>&#9679; Recuerda que una persona puede cubrir distintos Profilees y varias personas un único Profile</p>
                 </div>
                 <div class="col-md-12 text-center">
                     <button class="btn-info p-r-10 p-l-10 p-t-5 p-b-5 " data-toggle="modal" data-target="#modalForm">
-                        Añadir Perfil Aportado
+                        Añadir Profile Aportado
                     </button>
                 </div> 
                 <div class="col-md-12 col-10 col-10 m-t-20 ">
                     <table class="table border  ">
                         <thead>
                             <tr>
-                                <th>Perfil</th>
+                                <th>Profile</th>
                                 <th>Sector</th>
                                 <th>Descripción</th>
                             </tr>
@@ -208,9 +208,9 @@
                 </div>
                 <div class="row">
                     <div class="mobil col-md-3 border m-l-20  p-t-10">
-                        <p><span class="btn-info p-l-5 p-r-5 p-t-2 p-b-2">1</span><b> Selecciona perfil:</b></p>
+                        <p><span class="btn-info p-l-5 p-r-5 p-t-2 p-b-2">1</span><b> Selecciona Profile:</b></p>
                         <hr/>
-                        <p class="">Busca el perfil que mejor se adapte a las necesidades que tienes que cubrir en tu proyecto</p>
+                        <p class="">Busca el Profile que mejor se adapte a las necesidades que tienes que cubrir en tu project</p>
                     </div>
                     <div class="mobil col-md-5 border m-l-20 p-t-10">
                         <p><span class="btn-info p-l-5 p-r-5 p-t-2 p-b-2">2</span><b> Propón que ofreces:</b></p>
@@ -229,19 +229,19 @@
                     </div>
                 </div> 
                 <div class="col-md-12 m-t-25">
-                    <p>&#9679; Trata de ser justo y coherente, si no la gente no le interesa trabajar en tu proyecto.</p>
+                    <p>&#9679; Trata de ser justo y coherente, si no la gente no le interesa trabajar en tu project.</p>
                     <P>&#9679; Esto sirve para crear la bases de un futuro trabajo en equipo. Pero la verdadera negociación se hace cara a cara</P>                
                 </div> 
                  <div class="col-md-12 text-center">
                     <button class="btn-info p-r-10 p-l-10 p-t-5 p-b-5 " data-toggle="modal" data-target="#modalForm_necesito">
-                        Añadir Perfil Necesitado
+                        Añadir Profile Necesitado
                     </button>
                 </div> 
                 <div class="col-md-12 table-responsive m-t-20">
                     <table class="table border ">
                         <thead>
                             <tr>
-                                <th>Perfil</th>
+                                <th>Profile</th>
                                 <th>Acuerdo</th>
                                 <th>Descripción</th>
                             </tr>
@@ -269,10 +269,10 @@
     </div>
    
     <div class="col-md-12">   
-        <buton type="submit" class="btn btn-info btn-block m-t-30 m-b-20 par">Guardar Proyecto</button>
+        <buton type="submit" class="btn btn-info btn-block m-t-30 m-b-20 par">Guardar project</button>
     </div> 
-    {#% include 'modals/Añadir_perfil.html.twig' %#}
-    {% include 'modals/Anadir_perfil_necesitado.html.twig' %}  
+    {#% include 'modals/Añadir_Profile.html.twig' %#}
+    {% include 'modals/Anadir_Profile_necesitado.html.twig' %}  
 {% endblock %} 
 {% block javascripts %}
 	<script type="text/javascript">

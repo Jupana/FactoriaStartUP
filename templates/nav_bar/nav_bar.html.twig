@@ -22,47 +22,35 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="{{ path('proyectos') }}">Proyectos</a>
+                    <a class="nav-link" href="{{ path('projects') }}">projects</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link " href="{{ path('profiles') }}">Perfiles</a>
+                    <a class="nav-link " href="{{ path('profiles') }}">Profilees</a>
                 </li>
                 
                 {% if is_granted('ROLE_USER') %}
               
                 <li class="nav-item active  border-left">
-                    <a class="nav-link " id="op0" href="{{ path('datos_personales') }}">Datos Personales</a>
+                    <a class="nav-link " id="op0" href="{{ path('personal-info') }}">Datos Personales</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" id="op1" href="{{ path('datos_profesionales') }}">Datos Profesionales</a>
+                    <a class="nav-link" id="op1" href="{{ path('professional-info') }}">Datos Profesionales</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" id="op2" href="{{ path('datos_proyectos') }}">Mis Proyectos</a>
+                    <a class="nav-link" id="op2" href="{{ path('projects-info') }}">Mis projects</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" id="op3"href="{{ path('datos_propuestas') }}">Mis Propuestas</a>
+                    <a class="nav-link" id="op3"href="{{ path('proposals-info') }}">Mis Propuestas</a>
                 </li>
-                {% endif %}
-                <!--<li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Blog
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <!--<a class="dropdown-item" href="{{ path('noticias') }}">Noticias</a>
-                        <a class="dropdown-item" href="{{ path('foro') }}">Foro</a>
-                        <a class="dropdown-item" href="{{ path('herramientas') }}">Herramientas</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                </li>-->                
+                {% endif %}                           
             </ul>
             <form class="form-inline my-2 my-lg-0">
                      
                 {% if is_granted('ROLE_USER') %}                 
-                    <a class="fs-18 fsu-username" href="{{ path('vista_usuario') }}" data-fsu-username="{{app.user.id}}">{{ app.user.username}}</a> 
+                    <a class="fs-18 fsu-username" href="{{ path('user') }}" data-fsu-username="{{app.user.id}}">{{ app.user.username}}</a> 
                     <a tabindex="0" role="button" rel="popover" data-placement="bottom" data-toggle="popover" href="#" >
                        <div class="icono-notification">
-                            <img class="notification rounded-circle" src ="{{ asset('build/img/uploads/users_perfil/' ~ app.user.getPerfilImg) }}"/>
+                            <img class="notification rounded-circle" src ="{{ asset('build/img/uploads/users_Profile/' ~ app.user.getProfileImg) }}"/>
                             <div class="icono-encima bg-danger text-white fs-10 not-count"></div>
                         </div>
                     </a>       
@@ -83,7 +71,7 @@
                 <div class="activity_item ">
                     <div class="row">
                         <div class="col-md-3">
-                             <img class="rounded-circle" src ="{{ asset('build/img/uploads/users_perfil/' ~ app.user.getPerfilImg) }}"/>
+                             <img class="rounded-circle" src ="{{ asset('build/img/uploads/users_Profile/' ~ app.user.getProfileImg) }}"/>
                         </div>
                         <div class="col-md-9">
                             <div class="d-flex align-items-top justify-content-between">
@@ -111,7 +99,7 @@
                  <div class="activity_item ">
                     <div class="row">
                         <div class="col-md-3">
-                            <img class="rounded-circle" src ="{{ asset('build/img/uploads/users_perfil/' ~ app.user.getPerfilImg) }}"/>
+                            <img class="rounded-circle" src ="{{ asset('build/img/uploads/users_Profile/' ~ app.user.getProfileImg) }}"/>
                         </div>
                         <div class="col-md-9">
                             <div class="d-flex align-items-top justify-content-between">
@@ -137,7 +125,7 @@
                     </div><hr/>                  
                 </div>
                 <div class="col-md-12 ">
-                    <div class="colorAzul text-center fs-15 p-3"><a href="{{ path('foro') }}">Ver Todo</a></div>
+                    <div class="colorAzul text-center fs-15 p-3"><a href="{{ path('user-message') }}">Ver Todo</a></div>
                 </div>
             </div>                                    
         </div>         

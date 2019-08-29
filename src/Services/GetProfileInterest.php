@@ -35,9 +35,9 @@ class GetProfileInterest{
         $arrNeedsProfileProject =[];
         $arrNeedsProfileProjectDeal=[];
         foreach( $needsProject as $profileNeeds){            
-            array_push($arrNeedsProfileProject,$profileNeeds->getNeedsPerfil());
-            $arrNeedsProfileProjectDeal[$profileNeeds->getNeedsPerfil()]['deal'] = $profileNeeds->getNeedsDeal();
-            $arrNeedsProfileProjectDeal[$profileNeeds->getNeedsPerfil()]['percent']= $profileNeeds->getNeedsPercent();
+            array_push($arrNeedsProfileProject,$profileNeeds->getNeedsProfile());
+            $arrNeedsProfileProjectDeal[$profileNeeds->getNeedsProfile()]['deal'] = $profileNeeds->getNeedsDeal();
+            $arrNeedsProfileProjectDeal[$profileNeeds->getNeedsProfile()]['percent']= $profileNeeds->getNeedsPercent();
         }        
        
         $arrUserProfile =[];
@@ -45,16 +45,16 @@ class GetProfileInterest{
             array_push($arrUserProfile,$profileUser->getProfil());
         }
         
-        $arrMatchPerfile=[];
+        $arrMatchProfilee=[];
         foreach($arrUserProfile as $userProfile){
             if(in_array($userProfile,$arrNeedsProfileProject)){
-                array_push($arrMatchPerfile,$userProfile);
+                array_push($arrMatchProfilee,$userProfile);
             }
         }
         $arrResult['needsProfileProject'] = $arrNeedsProfileProject;
         $arrResult['profileProjectDeal'] = $arrNeedsProfileProjectDeal;
         $arrResult['usersProfiles'] = $arrUserProfile;
-        $arrResult['matchProfile'] = $arrMatchPerfile;
+        $arrResult['matchProfile'] = $arrMatchProfilee;
        
         return $arrResult;
 

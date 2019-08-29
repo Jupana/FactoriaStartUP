@@ -54,7 +54,7 @@ DROP TABLE IF EXISTS `fsu_needs_project`;
 CREATE TABLE `fsu_needs_project` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `needs_project_id` int(11) DEFAULT NULL,
-  `needs_perfil` varchar(3000) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `needs_Profile` varchar(3000) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `needs_deal` varchar(3000) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `needs_percent` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `needs_description` varchar(3000) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -156,7 +156,7 @@ CREATE TABLE `fsu_profiles_users` (
 
 LOCK TABLES `fsu_profiles_users` WRITE;
 /*!40000 ALTER TABLE `fsu_profiles_users` DISABLE KEYS */;
-INSERT INTO `fsu_profiles_users` VALUES (1,1,1,1,'Primer Proyecto','2019-05-17 20:01:00'),(2,1,2,2,'Segundo Proyecto','2019-05-17 20:01:00');
+INSERT INTO `fsu_profiles_users` VALUES (1,1,1,1,'Primer project','2019-05-17 20:01:00'),(2,1,2,2,'Segundo project','2019-05-17 20:01:00');
 /*!40000 ALTER TABLE `fsu_profiles_users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -202,7 +202,7 @@ CREATE TABLE `fsu_projects` (
 
 LOCK TABLES `fsu_projects` WRITE;
 /*!40000 ALTER TABLE `fsu_projects` DISABLE KEYS */;
-INSERT INTO `fsu_projects` VALUES (1,1,NULL,'Project de Prueba',NULL,'Some text 95',0,0,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,'2019-05-17 20:04:00'),(2,1,NULL,'Project de Prueba',NULL,'Some text 70',0,0,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,'2019-05-17 20:04:00'),(3,1,NULL,'Project de Prueba',NULL,'Some text 96',0,0,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,'2019-05-17 20:04:00'),(4,1,NULL,'Project de Prueba',NULL,'Some text 1',0,0,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,'2019-05-17 20:04:00'),(5,1,NULL,'Project de Prueba',NULL,'Some text 71',0,0,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,'2019-05-17 20:04:00'),(6,1,NULL,'PROYECTO CAFE','Lo definimos en una linea','Rezmen ejecutivo',0,0,0,1,NULL,'1000','5','10','15','20','3',NULL,1,NULL),(7,1,NULL,'Another one','Texto','fdsag',0,0,0,1,NULL,'123','2','10','18','25','3',NULL,1,NULL);
+INSERT INTO `fsu_projects` VALUES (1,1,NULL,'Project de Prueba',NULL,'Some text 95',0,0,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,'2019-05-17 20:04:00'),(2,1,NULL,'Project de Prueba',NULL,'Some text 70',0,0,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,'2019-05-17 20:04:00'),(3,1,NULL,'Project de Prueba',NULL,'Some text 96',0,0,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,'2019-05-17 20:04:00'),(4,1,NULL,'Project de Prueba',NULL,'Some text 1',0,0,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,'2019-05-17 20:04:00'),(5,1,NULL,'Project de Prueba',NULL,'Some text 71',0,0,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,'2019-05-17 20:04:00'),(6,1,NULL,'project CAFE','Lo definimos en una linea','Rezmen ejecutivo',0,0,0,1,NULL,'1000','5','10','15','20','3',NULL,1,NULL),(7,1,NULL,'Another one','Texto','fdsag',0,0,0,1,NULL,'123','2','10','18','25','3',NULL,1,NULL);
 /*!40000 ALTER TABLE `fsu_projects` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -256,9 +256,9 @@ CREATE TABLE `fsu_users` (
   `user_postal_code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `user_provincie` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `user_country` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `user_perfil_img` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_Profile_img` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `user_team_search` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `user_proyect_search` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_Project_search` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `user_phone_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `user_inscription_date` datetime DEFAULT NULL,
   `user_latitud` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,

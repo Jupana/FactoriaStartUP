@@ -16,12 +16,12 @@ class SendMailInterest{
         
         
         /** SEND USER MAIL */
-        $message = (new \Swift_Message('Factoria Start Up: A '.ucfirst($mailInterestProject['userName'].' le interesa tu proyecto '.ucfirst($mailInterestProject['projectName']))))
+        $message = (new \Swift_Message('Factoria Start Up: A '.ucfirst($mailInterestProject['userName'].' le interesa tu project '.ucfirst($mailInterestProject['projectName']))))
         ->setFrom('liviuromania@gmail.com')
         ->setTo($mailInterestProject['ownerMail'])
         ->setBody(
             $this->templating->render(                
-                'email/mailInterestProyect.html.twig',
+                'email/mailInterestProject.html.twig',
                 ['dataMail' => $mailInterestProject]),
                 'text/html'               
         );
@@ -32,7 +32,7 @@ class SendMailInterest{
         
         
         /** SEND USER MAIL */
-        $message = (new \Swift_Message('Factoria Start Up: A '.ucfirst($mailInterestProfil['userName'].' le interesa tu perfil '.ucfirst($mailInterestProfil['profileName']->getName() ))))
+        $message = (new \Swift_Message('Factoria Start Up: A '.ucfirst($mailInterestProfil['userName'].' le interesa tu Profile '.ucfirst($mailInterestProfil['profileName']->getName() ))))
         ->setFrom('liviuromania@gmail.com')
         ->setTo($mailInterestProfil['ownerMail'])
         ->setBody(

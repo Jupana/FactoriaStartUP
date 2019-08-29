@@ -1,186 +1,163 @@
 index:
     path: /
     controller: App\Controller\DefaultController::index 
-vista_usuario:
-    path: /vista_usuario
-    controller: App\Controller\UserController::index_vista    
-
-addProfil:
-    path: /addProfil
-    controller: App\Controller\SingelProfileController::addProfileUser
-    options:
-        expose: true
-
-editProfileUser:
-    path: /addProfileUser/{id}
-    controller: App\Controller\SingelProfileController::editProfileUser
-    options:
-        expose: true
-
-editProfilUserUpdate:
-    path: /editProfilUserUpdate/{id}
-    controller: App\Controller\SingelProfileController::editProfilUserUpdate
-    methods:  [GET,POST]
-    options:
-        expose: true
-
-deleteUserProfile:
-    path: /deleteUserProfile/{id}
-    controller: App\Controller\SingelProfileController::deleteUserProfile
-    options:
-        expose: true
-        
-detalle_profile:
-    path: /profiles/{id}
-    controller: App\Controller\ProfileUserController::profile 
-
-editar_profile:
-    path: /profiles/modificar/{id}
-    controller: App\Controller\ProfileUserController::editProfile  
-eliminar_profile:
-    path: /profiles/eliminar/{id}
-    controller: App\Controller\ProfileUserController::delete
-
-count_notification:
-    path: /count_notification/{id}
-    controller: App\Controller\ProfileUserController::notificationCount
-
-
-
-proyectos:
-    path: /proyectos
-    controller: App\Controller\ProjectController::indexProject
-proyectos_filter:
-    path: /proyectos/{sector}/{km}/{lat}/{long}
-    controller: App\Controller\ProjectController::indexProjectFilter
-    methods:  [GET,POST]
-    options:
-        expose: true
-
-profiles:
-    path: /profiles
-    controller: App\Controller\ProfileUserController::indexProfile
-profiles_filter:
-    path: /profiles/{profiles}/{km}/{lat}/{long}
-    controller: App\Controller\ProfileUserController::indexProfileFilter
-    methods:  [GET,POST]
-    options:
-        expose: true
-
-add_project:
-    path: /proyectos/add
-    controller: App\Controller\ProjectController::add              
-detalle_proyecto:
-    path: /proyectos/{id}
-    controller: App\Controller\ProjectController::project
-editar_proyecto:
-    path: /proyectos/modificar/{id}
-    controller: App\Controller\ProjectController::edit  
-eliminar_proyecto:
-    path: /proyectos/eliminar/{id}
-    controller: App\Controller\ProjectController::delete 
-
-
-add_proyecto:
-    path: /vista_usuario/add_proyecto/{id}
-    controller: App\Controller\UserProjectController::add_proyecto
-
-deleteProyect:
-    path: /delete-proyecto/{id}
-    controller: App\Controller\UserController::deleteProyect
-    methods:  [GET,POST]
-    options:
-        expose: true
-        
-deleteProfileInterest:
-    path: /delete-profile-interest/{id}
-    controller: App\Controller\UserController::deleteProfileInterest
-    methods:  [GET,POST]
-    options:
-        expose: true
-deleteProjectInterest:
-    path: /delete-project-interest/{id}
-    controller: App\Controller\UserController::deleteProjectInterest
-    methods:  [GET,POST]
-    options:
-        expose: true        
-
-addPerfilToProyect:   
-    path: /vista_usuario/add_proyecto/step_2/{id}
-    controller: App\Controller\UserProjectController::addPerfilToProyect
-    methods:  [GET,POST]
-    options:
-        expose: true 
-        
-deleteProfileProyect:        
-    path: /vista_usuario/delete_perfil_proyecto/step_2/{id}
-    controller: App\Controller\UserProjectController::deleteProfileProyect
-    methods:  [GET,POST]
-    options:
-        expose: true 
-    
-proyectNeeds:
-    path: /vista_usuario/add_proyecto/step_3/{id}
-    controller: App\Controller\UserProjectController::proyectNeeds
-    methods:  [GET,POST]
-
-deleteProfileNeeds:
-    path: /vista_usuario/delete_perfil_needs/step_3/{id}
-    controller: App\Controller\UserProjectController::deleteProfileNeeds
-    methods:  [GET,POST]
-    options:
-        expose: true
-
-datos_personales:
-    path: /datos_personales
-    controller: App\Controller\UserController::datos_personales 
-datos_profesionales:
-    path: /datos_profesionales
-    controller: App\Controller\UserController::datosProfesionales
-datos_proyectos:
-    path: /vista_usuario/datos_proyectos
-    controller: App\Controller\UserController::datosProyectos        
-
-
-datos_propuestas:
-    path: /vista_usuario/datos_propuestas
-    controller: App\Controller\UserController::datos_propuestas  
-
-interestSelectPerfil:
-    path: /proyect/{id}/interest-profile-select
-    controller: App\Controller\ProjectController::interestSelectPerfil
-    methods:  [GET,POST]
-    options:
-        expose: true
-
-MatchProject:
-    path: /match/{userid}/{projectid}
-    controller: App\Controller\MatchProjectController::getMatch
-    options:
-        expose: true
-
-    
-
-herramientas:
-    path: /herramientas
-    controller: App\Controller\HerramientasController::index 
-foro:
-    path: /foro
-    controller: App\Controller\ForoController::index 
-noticias:
-    path: /noticias
-    controller: App\Controller\NoticiasController::index  
-noticia:
-    path: /noticias/id_noticia
-    controller: App\Controller\NoticiasController::noticias
-
    
 admin_projects:
     path: /admin_projects
     controller: App\Controller\AdminProjectsController::index
 admin_coworker:
     path: /admin_projects/admin_coworker
-    controller: App\Controller\AdminProjectsController::index_coworker    
+    controller: App\Controller\AdminProjectsController::index_coworker 
+
+user:
+    path: /user
+    controller: App\Controller\UserController::index_vista    
+
+add-profile:
+    path: /user/add-profile
+    controller: App\Controller\SingelProfileController::addProfileUser
+    options:
+        expose: true
+
+edit-profile:
+    path: /user/edit-profile/{id}
+    controller: App\Controller\SingelProfileController::editProfileUser
+    options:
+        expose: true
+
+update-profile:
+    path: /user/update-update/{id}
+    controller: App\Controller\SingelProfileController::editProfilUserUpdate
+    methods:  [GET,POST]
+    options:
+        expose: true
+
+delete-profile:
+    path: /user/delete-profile/{id}
+    controller: App\Controller\SingelProfileController::deleteUserProfile
+    options:
+        expose: true
+
+add-project:
+    path: /user/add-project/{id}
+    controller: App\Controller\UserProjectController::addProject
+
+delete-project:
+    path: /user/delete-project/{id}
+    controller: App\Controller\UserController::deleteProject
+    methods:  [GET,POST]
+    options:
+        expose: true
+        
+delete-profile-Interest:
+    path: /user/delete-profile-interest/{id}
+    controller: App\Controller\UserController::deleteProfileInterest
+    methods:  [GET,POST]
+    options:
+        expose: true
+delete-project-interest:
+    path: /user/delete-project-interest/{id}
+    controller: App\Controller\UserController::deleteProjectInterest
+    methods:  [GET,POST]
+    options:
+        expose: true        
+
+add-Profile-to-project:   
+    path: /user/add-project/profile/{id}
+    controller: App\Controller\UserProjectController::addProfileToProject
+    methods:  [GET,POST]
+    options:
+        expose: true 
+        
+delete-profile-project:        
+    path: /user/delete-Profile-project/profile/{id}
+    controller: App\Controller\UserProjectController::deleteProfileProject
+    methods:  [GET,POST]
+    options:
+        expose: true 
+    
+project-needs:
+    path: /user/add-project/project-needs/{id}
+    controller: App\Controller\UserProjectController::ProjectNeeds
+    methods:  [GET,POST]
+
+delete-profile-needs:
+    path: /user/delete_Profile_needs/step_3/{id}
+    controller: App\Controller\UserProjectController::deleteProfileNeeds
+    methods:  [GET,POST]
+    options:
+        expose: true
+
+personal-info:
+    path: /user/personal-info
+    controller: App\Controller\UserController::personalInfo 
+professional-info:
+    path: /user/professional-info
+    controller: App\Controller\UserController::professionalInfo
+projects-info:
+    path: /user/projects-info
+    controller: App\Controller\UserController::projectsInfo  
+proposals-info:
+    path: /user/proposals-info
+    controller: App\Controller\UserController::proposalsInfo  
+
+interest-select-profile:
+    path: /project/{id}/interest-profile-select
+    controller: App\Controller\ProjectController::interestSelectProfile
+    methods:  [GET,POST]
+    options:
+        expose: true
+
+projects:
+    path: /projects
+    controller: App\Controller\ProjectController::indexProject
+projects-filter:
+    path: /projects/{sector}/{km}/{lat}/{long}
+    controller: App\Controller\ProjectController::indexProjectFilter
+    methods:  [GET,POST]
+    options:
+        expose: true              
+project:
+    path: /projects/{id}
+    controller: App\Controller\ProjectController::project
+
+profiles:
+    path: /profiles
+    controller: App\Controller\ProfileUserController::indexProfile
+profile:
+    path: /profiles/{id}
+    controller: App\Controller\ProfileUserController::profile 
+profiles-filter:
+    path: /profiles/{profiles}/{km}/{lat}/{long}
+    controller: App\Controller\ProfileUserController::indexProfileFilter
+    methods:  [GET,POST]
+    options:
+        expose: true   
+
+match-project:
+    path: /match/{userid}/{projectid}
+    controller: App\Controller\MatchProjectController::getMatch
+    options:
+        expose: true
+
+count_notification:
+    path: /count_notification/{id}
+    controller: App\Controller\ProfileUserController::notificationCount
+        
+
+#NOT IN USE    
+herramientas:
+    path: /herramientas
+    controller: App\Controller\HerramientasController::index 
+user-message:
+    path: /user/message
+    controller: App\Controller\MessageController::index 
+noticias:
+    path: /noticias
+    controller: App\Controller\NoticiasController::index  
+noticia:
+    path: /noticias/id_noticia
+    controller: App\Controller\NoticiasController::noticias
 
 _liip_imagine:
     resource: "@LiipImagineBundle/Resources/config/routing.yaml"

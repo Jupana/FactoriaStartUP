@@ -20,7 +20,7 @@ class ProfilRepository extends ServiceEntityRepository
     }
 
     // /**
-    //  * @return Perfiles[] Returns an array of Perfiles objects
+    //  * @return Profilees[] Returns an array of Profilees objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class ProfilRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Perfiles
+    public function findOneBySomeField($value): ?Profilees
     {
         return $this->createQueryBuilder('p')
             ->andWhere('p.exampleField = :val')

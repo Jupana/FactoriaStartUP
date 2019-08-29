@@ -10,14 +10,7 @@ use Symfony\Component\BrowserKit\Request;
 use App\Entity\Contribute;
 
 
-
-
 class ContributeController extends AbstractController{
-
-    /**
-     * @var ContributeRepository;
-     */
-    private $contributeRepo;
 
     /**
      * @var FormFactoryInterface
@@ -43,20 +36,19 @@ class ContributeController extends AbstractController{
 
     public function addContribute(Request $request)
     {
-        $contribute = new Contribute();
-        $user =$this->getUser();
+        $contribute = new Contribute();        
 
-        $formAddContibuite = $this->formFactory->create(ContributeType::class,$contribute);
-        $formAddContibuite = handleRequest($request);
+        $formAddContribute = $this->formFactory->create(ContributeType::class,$contribute);
+        $formAddContribute = handleRequest($request);
 
-        if($formAddContibuite->isSubmitted() && $formAddContibuite->isValid()){
+        if($formAddContribute->isSubmitted() && $formAddContribute->isValid()){
             $this->entityManager->persist($contribute);
             $this->entityManager->flush($contribute);
         }
 
-        return $this->render('modals/FormPerfil.html.twig',
+        return $this->render('modals/formProfile.html.twig',
             [
-                'formAddContibuite' =>$formAddContibuite->createView(),
+                'formAddContribute' =>$formAddContribute->createView(),
             
             ]
         );

@@ -1,25 +1,25 @@
-****** PROYECTS *****
+****** ProjectS *****
 
 
  'match':{
-            'headerText':'Quieres participar en el proyecto <b>'+projectName+'</b>,que necesita el perfil de <b>'+profil+'</b> con un acuerdo de <b>'+percent+deal+'</b> expone su propuesta:',
+            'headerText':'Quieres participar en el project <b>'+projectName+'</b>,que necesita el Profile de <b>'+profil+'</b> con un acuerdo de <b>'+percent+deal+'</b> expone su propuesta:',
             'descriptionText':'Esto es una propuesta cerrada, pero no la negociación física.<br/> Recuerda, esto establece unas bases para negociar, se coherente con lo que vas a pedir porque puede llevar a malos entendidos y pérdidas de tiempo.'
             },
-        'noMatchProfilProject':{//Cuando el Proyecto no busca el perfil pero el user lo tiene
-            'headerText':'El proyecto no busca <b>'+profil+'</b>, ¿Quieres ofrecer tu propuesta de todos modos?',
+        'noMatchProfilProject':{//Cuando el project no busca el Profile pero el user lo tiene
+            'headerText':'El project no busca <b>'+profil+'</b>, ¿Quieres ofrecer tu propuesta de todos modos?',
             'descriptionText':'Esto es una propuesta cerrada, pero no la negociación física, Recuerda, esto establece unas bases para negociar, se coherente con lo que vas a pedir porque puede llevar a malos entendidos y pérdidas de tiempo.'
             },
-        'noMatchProjectProfil':{//Cuando el Proyecto busca el perfil y el user no lo tiene
-            'headerText':'Quieres participar en el proyecto <b>'+projectName+'</b> que necesita el perfil <b>'+profil+'</b>',
+        'noMatchProjectProfil':{//Cuando el project busca el Profile y el user no lo tiene
+            'headerText':'Quieres participar en el project <b>'+projectName+'</b> que necesita el Profile <b>'+profil+'</b>',
             'descriptionText':'Esto es una propuesta cerrada, pero no la negociación física, Recuerda, esto establece unas bases para negociar, se coherente con lo que vas a pedir porque puede llevar a malos entendidos y pérdidas de tiempo.'
         },
         'subscribeAlready':{
-            'headerText':'Ya te has interesado por este proyecto con este mismo perfil, así que no enviaremos tu interes por este proyecto.<br/>Pero puedes intentarlo con otro perfil si lo deseas.',
+            'headerText':'Ya te has interesado por este project con este mismo Profile, así que no enviaremos tu interes por este project.<br/>Pero puedes intentarlo con otro Profile si lo deseas.',
             'descriptionText':''
         },
-        'noMatch':{ //Ni el use no tiene el perfil ni el proyecto lo necesita
-            'headerText':' Este Proyecto no busca ninguno de tus perfiles ni tampoco busca <b>'+profil+'</b>',
-            'descriptionText':'Puedes ir a datos profesoniales y dar de alta algun perfil que el proyecto demande o puedes intersarte por algun perfil que el proyecto demande'
+        'noMatch':{ //Ni el use no tiene el Profile ni el project lo necesita
+            'headerText':' Este project no busca ninguno de tus Profilees ni tampoco busca <b>'+profil+'</b>',
+            'descriptionText':'Puedes ir a datos profesoniales y dar de alta algun Profile que el project demande o puedes intersarte por algun Profile que el project demande'
         }
 
 ***** PROFILES ******
@@ -28,8 +28,8 @@
             'headerText':'Quieres contactar a este usuario para su futura tarea en +'profil,
             'descriptionText':'Esto es una propuesta cerrada, pero no la negociación física, Recuerda, esto establece unas bases para negociar, se coherente con lo que vas a pedir porque puede llevar a malos entendidos y pérdidas de tiempo.'
             },
-        'noMatchProfilProject':{//Cuando el Proyecto no busca el perfil pero el user lo tiene
-            'headerText':'Tu proyecto no busca '+profil+', ¿Quieres ofrecer tu propuesta de todos modos?',
+        'noMatchProfilProject':{//Cuando el project no busca el Profile pero el user lo tiene
+            'headerText':'Tu project no busca '+profil+', ¿Quieres ofrecer tu propuesta de todos modos?',
             'descriptionText':'Esto es una propuesta cerrada, pero no la negociación física, Recuerda, esto establece unas bases para negociar, se coherente con lo que vas a pedir porque puede llevar a malos entendidos y pérdidas de tiempo.'
             },
         

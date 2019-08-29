@@ -114,14 +114,14 @@ $(function(){
         $(thisAlert).removeClass('alert-validate');
     }
 
-    /* START FILTER PROYECTS*/
+    /* START FILTER ProjectS*/
      
-     $('.filter-proyects').click(function(){
+     $('.filter-Projects').click(function(){
         var sector = $( "select#select-sector" ).val();
-        var km =$(".proyect-km").val();
+        var km =$(".Project-km").val();
         var lat = 0;
         var long = 0;
-        var urlProyectFilter='';        
+        var urlProjectFilter='';        
         let notBlocked= false;
       
         sector = isNaN(sector) ? 0:sector;
@@ -132,8 +132,8 @@ $(function(){
                 navigator.geolocation.getCurrentPosition(function(position) {
                    let lat = position.coords.latitude ? position.coords.latitude : lat
                    let long = position.coords.longitude ? position.coords.longitude :long
-                   urlProyectFilter = Routing.generate('proyectos_filter',{sector:sector,km:km,lat:lat,long:long})
-                   window.location.replace(urlProyectFilter)               
+                   urlProjectFilter = Routing.generate('projects-filter',{sector:sector,km:km,lat:lat,long:long})
+                   window.location.replace(urlProjectFilter)               
                 });
               } else {
                 // Browser doesn't support Geolocation
@@ -141,21 +141,21 @@ $(function(){
               }
         }else{
             km=0;
-            urlProyectFilter = Routing.generate('proyectos_filter',{sector:sector,km:km,lat:lat,long:long})
-            window.location.replace(urlProyectFilter)  
+            urlProjectFilter = Routing.generate('projects-filter',{sector:sector,km:km,lat:lat,long:long})
+            window.location.replace(urlProjectFilter)  
         }
     })
 
-    /*Fin FILTER PROYECTS*/
+    /*Fin FILTER ProjectS*/
 
     /* START FILTER PROFILES*/
      
     $('.filter-profiles').click(function(){
         var profiles = $( "select#select-profiles" ).val();
-        var km =$(".proyect-km").val();
+        var km =$(".Project-km").val();
         var lat = 0;
         var long = 0;
-        var urlProyectFilter='';        
+        var urlProjectFilter='';        
         profiles = isNaN(profiles) ? 0:profiles;
         console.log(km);
       
@@ -165,8 +165,8 @@ $(function(){
                 navigator.geolocation.getCurrentPosition(function(position) {
                    let lat = position.coords.latitude ? position.coords.latitude : lat
                    let long = position.coords.longitude ? position.coords.longitude :long
-                   urlProyectFilter = Routing.generate('profiles_filter',{profiles:profiles,km:km,lat:lat,long:long})
-                   window.location.replace(urlProyectFilter)               
+                   urlProjectFilter = Routing.generate('profiles-filter',{profiles:profiles,km:km,lat:lat,long:long})
+                   window.location.replace(urlProjectFilter)               
                 });
               } else {
                 // Browser doesn't support Geolocation
@@ -174,8 +174,8 @@ $(function(){
               }
         }else{
             km=0;
-            urlProyectFilter = Routing.generate('profiles_filter',{profiles:profiles,km:km,lat:lat,long:long})
-            window.location.replace(urlProyectFilter)  
+            urlProjectFilter = Routing.generate('profiles-filter',{profiles:profiles,km:km,lat:lat,long:long})
+            window.location.replace(urlProjectFilter)  
         }
     })
 
@@ -188,7 +188,7 @@ $(function(){
   
 
         $('.add-profil').click(function () {
-            let urlAddProfil = Routing.generate('addProfil');
+            let urlAddProfil = Routing.generate('add-profile');
             $.get(urlAddProfil, function(data){
                 $('.modal-content').html(data);
                 let formAddProfil = document.getElementById('profile_user');
@@ -201,7 +201,7 @@ $(function(){
                             xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest')
                             xhr.send(formData)
                             xhr.onload = function () {
-                                window.location.replace('/datos_profesionales')
+                                window.location.replace('/user/professional-info')
                             };
                     }) //FIN SUBMIT EVENT
             })
@@ -209,7 +209,7 @@ $(function(){
     /* FIN AddProfil user --!> */
     
     /* <!-- START PASSING DATA TO MODAL for the Update User Profile */
-    $('.select_perfil').click(function (){
+    $('.select_Profile').click(function (){
         var profilId= $(this).data("id");
         var profil=$(this).data("profil");
         var sector =$(this).data("sector");
@@ -222,13 +222,13 @@ $(function(){
         $("#profile_user_sector option:contains(" + sector +")").attr("selected", true);
         
 
-        let url = Routing.generate('editProfileUser',{id:profilId})
+        let url = Routing.generate('edit-profile',{id:profilId})
         $.get(url, function (data) {
             $(".modal-content").html(data);
                 //Liviu, Nico we send the data here avter we bind the DATA to Modal Content
 
                  /*Remove selected first ToDo
-                 This is hack into html Liviu, Nico you have to fixed into modal/Addperfil.html {value:'perfil.sector'} no is not working
+                 This is hack into html Liviu, Nico you have to fixed into modal/AddProfile.html {value:'Profile.sector'} no is not working
                  */
                 $("#profile_user_profil option").prop("selected", false);
                 $("#profile_user_sector option").prop("selected", false)
@@ -240,7 +240,7 @@ $(function(){
                 let formProfileUserUpdate = document.getElementById('profile_user');
                 formProfileUserUpdate.addEventListener('submit', function (event) {
             
-                    let urlUpdate = Routing.generate('editProfilUserUpdate',{id:profilId})
+                    let urlUpdate = Routing.generate('profil-update',{id:profilId})
                     
                         // XXX: make a post ajax request
                         event.preventDefault()
@@ -262,7 +262,7 @@ $(function(){
                             xhr.send(formData)
                         }) // end of the promise
                             .then((data) => {
-                                window.location.replace('/datos_profesionales')
+                                window.location.replace('/user/professional-info')
                             })
                             .catch((error) => {
                                 console.error(error)
@@ -271,11 +271,11 @@ $(function(){
                     /*<!--START deleteProfilUser  */
                     $('.profile_user_delete').click(function (){
                         var deleteId = $(this).data('id');
-                        let urlDeleteProfilUser = Routing.generate("deleteUserProfile",{id:deleteId});
+                        let urlDeleteProfilUser = Routing.generate("delete-profile",{id:deleteId});
                         let xhr = new XMLHttpRequest();
                         xhr.open('GET', urlDeleteProfilUser, true);
                         xhr.onload = function () {
-                            window.location.replace('/datos_profesionales')
+                            window.location.replace('/user/professional-info')
                         };
                         xhr.send(null);
                     })
@@ -284,42 +284,42 @@ $(function(){
         })
         /* FINISH PASSING DATA TO MODAL for the Update User Profile --> */
 
-         /*<!--START deleteProyect  */
-         $('.delete-proyect').click(function (){
+         /*<!--START deleteProject  */
+         $('.delete-Project').click(function (){
             var deleteId = $(this).data('id');
-            let urlDeleteProyect = Routing.generate("deleteProyect",{id:deleteId});
+            let urlDeleteProject = Routing.generate("delete-project",{id:deleteId});
             let xhr = new XMLHttpRequest();
-            xhr.open('GET', urlDeleteProyect, true);
+            xhr.open('GET', urlDeleteProject, true);
             xhr.onload = function () {
-                window.location.replace('/vista_usuario/datos_proyectos')
+                window.location.replace('/user/projects-info')
             };
             xhr.send(null);
         })
         /* FIN deleteUser--> */
 
-        /*<!--START deleteProfilProyect  */
-        $('.profile_proyect_delete').click(function (){
+        /*<!--START deleteProfilProject  */
+        $('.profile_Project_delete').click(function (){
             var deleteId = $(this).data('id');
-            var proyectId = $(this).data('proyect-id');
-            let urlDeleteProfilProyect = Routing.generate("deleteProfileProyect",{id:deleteId});
+            var ProjectId = $(this).data('Project-id');
+            let urlDeleteProfilProject = Routing.generate("delete-profile-project",{id:deleteId});
             let xhr = new XMLHttpRequest();
-            xhr.open('GET', urlDeleteProfilProyect, true);
+            xhr.open('GET', urlDeleteProfilProject, true);
             xhr.onload = function () {
-                window.location.replace('/vista_usuario/add_proyecto/step_2/'+proyectId)
+                window.location.replace('/user/add-project/profile/'+ProjectId)
             };
             xhr.send(null);
         })
-        /* FIN deleteProfilProyect--> */
+        /* FIN deleteProfilProject--> */
         
         /*<!--START deleteNeedsProfil  */
         $('.needs-profile-delete').click(function (){
             var deleteId = $(this).data('id');
-            var proyectId = $(this).data('proyect-id');
-            let urlDeleteNeedsProfil = Routing.generate("deleteProfileNeeds",{id:deleteId});
+            var ProjectId = $(this).data('Project-id');
+            let urlDeleteNeedsProfil = Routing.generate("delete-profile-needs",{id:deleteId});
             let xhr = new XMLHttpRequest();
             xhr.open('GET', urlDeleteNeedsProfil, true);
             xhr.onload = function () {
-                window.location.replace('/vista_usuario/add_proyecto/step_3/'+proyectId)
+                window.location.replace('/user/add-project/project-needs/'+ProjectId)
             };
             xhr.send(null);
         })
@@ -347,14 +347,14 @@ $(function(){
         /*<!--START showhide Deal  */
         $('.modal-edit-needs-project').click(function(){
             let needId = $(this).data('id');                        
-            $('select#proyects_form_'+needId+'_needs_deal').change(function() {
+            $('select#Projects_form_'+needId+'_needs_deal').change(function() {
                 var arrOption = ['% Empresa','% Ventas'];
                 var showPecent =arrOption.indexOf($(this).val());
                 
                 if(showPecent != -1){
-                    $('#proyects_form_'+needId+'_needs_percent').removeClass('hide-e');
+                    $('#Projects_form_'+needId+'_needs_percent').removeClass('hide-e');
                 }else{
-                    $('#proyects_form_'+needId+'_needs_percent').addClass('hide-e');
+                    $('#Projects_form_'+needId+'_needs_percent').addClass('hide-e');
                 }
                 
             })
@@ -373,27 +373,27 @@ function  arrMatchTxt (profil,dealArr, projectName){
     var percent = dealArr.percent != undefined ? dealArr.percent:''; //Check if Percent is 0
     var matchText = {
         'match':{
-            'headerTextDeal':'Quieres participar en el proyecto <b>'+projectName+'</b>,con tu perfil de <b>'+profil+'</b> con un acuerdo de <b>'+percent+deal+'</b> y exponen en su propuesta:',
-            'headerText':'Quieres participar en el proyecto <b>'+projectName+'</b>,que necesita el perfil de <b>'+profil+'</b>',
+            'headerTextDeal':'Quieres participar en el project <b>'+projectName+'</b>,con tu Profile de <b>'+profil+'</b> con un acuerdo de <b>'+percent+deal+'</b> y exponen en su propuesta:',
+            'headerText':'Quieres participar en el project <b>'+projectName+'</b>,que necesita el Profile de <b>'+profil+'</b>',
             'descriptionText':'Esto es una propuesta cerrada, pero no la negociación física.<br/> Recuerda, esto establece unas bases para negociar, se coherente con lo que vas a pedir porque puede llevar a malos entendidos y pérdidas de tiempo.'
             },
-        'noMatchProfilProject':{//Cuando el Proyecto no busca el perfil pero el user lo tiene
-            'headerText':'El proyecto no busca <b>'+profil+'</b>, ¿Quieres ofrecer tu propuesta de todos modos?',
+        'noMatchProfilProject':{//Cuando el project no busca el Profile pero el user lo tiene
+            'headerText':'El project no busca <b>'+profil+'</b>, ¿Quieres ofrecer tu propuesta de todos modos?',
             'descriptionText':'Esto es una propuesta cerrada, pero no la negociación física, Recuerda, esto establece unas bases para negociar, se coherente con lo que vas a pedir porque puede llevar a malos entendidos y pérdidas de tiempo.'
             },
-        'noMatchProjectProfil':{//Cuando el Proyecto busca el perfil y el user no lo tiene
-            'headerText':'El perfil <b>'+profil+'</b> no lo tienes activo no hay problema, hazlo ahora y se te guardará en datos profesionales.',
-            'headerTextDeal':'El perfil <b>'+profil+'</b> no lo tienes activo no hay problema, hazlo ahora y se te guardará en datos profesionales.',
-            'headerTextMax':'El perfil <b>'+profil+'</b> no lo tienes activo.',
-            'descriptionTextMax':'Lo sentimos pero has llegado al maximo de <b>4 perfiles</b>.Ve a <a href="/datos_profesionales" class="ver_color">Datos Profesionales</a> y revisa tus perfiles.'
+        'noMatchProjectProfil':{//Cuando el project busca el Profile y el user no lo tiene
+            'headerText':'El Profile <b>'+profil+'</b> no lo tienes activo no hay problema, hazlo ahora y se te guardará en datos profesionales.',
+            'headerTextDeal':'El Profile <b>'+profil+'</b> no lo tienes activo no hay problema, hazlo ahora y se te guardará en datos profesionales.',
+            'headerTextMax':'El Profile <b>'+profil+'</b> no lo tienes activo.',
+            'descriptionTextMax':'Lo sentimos pero has llegado al maximo de <b>4 Profilees</b>.Ve a <a href="/user/professional-info" class="ver_color">Datos Profesionales</a> y revisa tus Profilees.'
         },
         'subscribeAlready':{
-            'headerText':'Ya te has interesado por este proyecto con este mismo perfil, así que no enviaremos tu interes por este proyecto.<br/>Pero puedes intentarlo con otro perfil si lo deseas.',
+            'headerText':'Ya te has interesado por este project con este mismo Profile, así que no enviaremos tu interes por este project.<br/>Pero puedes intentarlo con otro Profile si lo deseas.',
             'descriptionText':''
         },
-        'noMatch':{ //Ni el use no tiene el perfil ni el proyecto lo necesita
-            'headerText':' Este Proyecto no busca ninguno de tus perfiles ni tampoco busca <b>'+profil+'</b>',
-            'descriptionText':'Puedes ir a datos profesoniales y dar de alta algun perfil que el proyecto demande o puedes intersarte por algun perfil que el proyecto demande'
+        'noMatch':{ //Ni el use no tiene el Profile ni el project lo necesita
+            'headerText':' Este project no busca ninguno de tus Profilees ni tampoco busca <b>'+profil+'</b>',
+            'descriptionText':'Puedes ir a datos profesoniales y dar de alta algun Profile que el project demande o puedes intersarte por algun Profile que el project demande'
         }
     }
     return matchText;
@@ -432,7 +432,7 @@ var projectInterestDescriptionToAdd='';
 var userid = $('.interestdata').data('userid');
 var projectid = $('.interestdata').data('projectid');
 
-//We change the dropdown for Perfil into Project Interes , better do it on the contreler when you will have time
+//We change the dropdown for Profile into Project Interes , better do it on the contreler when you will have time
 var projectProfilDropdown= [];//array
 var arrProfile ={
     'Marketing':1,
@@ -445,7 +445,7 @@ var arrProfile ={
 	'Financiación':8
 }
 $('.projectInterstMe').click(function(){
-    let urlDeleteNeedsProfil = Routing.generate("MatchProject",{userid:userid,projectid:projectid});
+    let urlDeleteNeedsProfil = Routing.generate("match-project",{userid:userid,projectid:projectid});
          
             new Promise(function (resolve, reject) {
                 let xhr = new XMLHttpRequest()
@@ -470,7 +470,7 @@ $('.projectInterstMe').click(function(){
                     projectProfilDropdown = Array.from(new Set(projectProfilDropdown));
 
                     $("select#interest_project_interest_profil option").remove();
-                    $("select#interest_project_interest_profil").append('<option value="100">Selecciona un perfil</option>');
+                    $("select#interest_project_interest_profil").append('<option value="100">Selecciona un Profile</option>');
                     for (var i=0;i<projectProfilDropdown.length;i++){
                         $("select#interest_project_interest_profil").append('<option value="'+arrProfile[projectProfilDropdown[i]]+'">'+projectProfilDropdown[i]+'</option>');
                      }
@@ -486,7 +486,7 @@ $('select#interest_project_interest_profil').change(function(){
             var profileSelected = $(this).find("option:selected").text();
             //console.log($(this).find("option:selected").text());
            
-            let urlDeleteNeedsProfil = Routing.generate("MatchProject",{userid:userid,projectid:projectid});
+            let urlDeleteNeedsProfil = Routing.generate("match-project",{userid:userid,projectid:projectid});
             new Promise(function (resolve, reject) {
                 let xhr = new XMLHttpRequest()
                 // third argument specifies if it's an async request or a sync
@@ -652,8 +652,8 @@ function  arrProfileMatchTxt (profil,sector,project,usrProfileName,dealArr){
             'headerText':'Quieres contactar con el usuario <b>'+usrProfileName+'</b>, por su experiencia en <b>'+profil+'</b> en el sector de <b>'+sector+'</b> '+ percent +' '+deal +' y expones en tu propuesta:',
             'descriptionText':''
             },
-        'noMatchProfilProject':{//Cuando el Proyecto no busca el perfil pero el user lo tiene
-            'headerText':'Para tu proyecto <b>'+project+'</b> no demandas el perfil <b>'+profil+'</b>, pero no hay problema, hazlo ahora y se guardará en el perfil del proyecto.',
+        'noMatchProfilProject':{//Cuando el project no busca el Profile pero el user lo tiene
+            'headerText':'Para tu project <b>'+project+'</b> no demandas el Profile <b>'+profil+'</b>, pero no hay problema, hazlo ahora y se guardará en el Profile del project.',
             'descriptionText':''
             },
     }
@@ -684,7 +684,7 @@ $('.profile_interest_1').click(function() {
 
     var projectSelectedId = $('#interest_profile_interest_project option:selected').val();
     var profileSelectedId = $('#interest_profile_interest_profile option:selected').val();
-    var userId =$('.interestdata').data('usrperfilid');
+    var userId =$('.interestdata').data('usrProfileid');
     
     console.log('Project', projectSelected);
     console.log('Profile', profileSelected);
@@ -773,7 +773,7 @@ $('.profile_interest_1').click(function() {
 
 /* FIN Modal Form Script -->*/
 
-/* <!-- START function for Multi Step Form into addProyect*/
+/* <!-- START function for Multi Step Form into addProject*/
 
         var currentTab = 0; // Current tab is set to be the first tab (0)
         showTab(currentTab); // Display the current tab
@@ -827,7 +827,7 @@ $('.profile_interest_1').click(function() {
         x[n].className += " active";
         }
 
-/* FIN function for Multi Step Form into addProyect -->*/
+/* FIN function for Multi Step Form into addProject -->*/
 
 
 

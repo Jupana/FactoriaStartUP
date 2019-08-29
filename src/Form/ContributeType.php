@@ -19,7 +19,7 @@ class ContributeType extends AbstractType
             ->add('contribute_profile',EntityType::class,[
                 'class' => Profil::class,
                 
-                'placeholder' => 'Selecciona un perfil',                
+                'placeholder' => 'Selecciona un Profile',                
                 'choice_label' => function($profil){
                         return $profil->getName(); 
                     },

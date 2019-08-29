@@ -14,12 +14,12 @@
                     {{ form_start   (formInterestProfile) }}
                         <!-- Step 1 -->
                     <div id="interest-step-1">
-                        <div class="col-md-12 text-center m-t-10  modal-title interestdata " data-usrperfilid={{app.user.id}}>                            
+                        <div class="col-md-12 text-center m-t-10  modal-title interestdata " data-usrProfileid={{app.user.id}}>                            
                             <h4 class="par" id="myModalLabel">Quieres contactar con el usuario <b>{{profile.0.user.username}}</b> </h4>  
                         </div>
-                            ¿Con que perfil?
+                            ¿Con que Profile?
                             {{ form_row (formInterestProfile.interest_profile,{'attr' : { 'class': 'profile_user' }}) }}
-                            Para tu proyecto
+                            Para tu project
                             {{ form_row (formInterestProfile.interest_project,{'attr' : { 'class': 'projects_user' }} )}}
                             
                             <span class="btn-primary btn float-r profile_interest_1 btnEndInterest1 " >Siguiente</span>
@@ -28,7 +28,7 @@
                     <!-- Step 2 -->
                     <div id="interest-step-2" class="hide-e">
                         <div class="col-md-12 text-center m-t-10  modal-title interest-profile-title">
-                            <h4 class="par" id="myModalLabel">Participa en el proyecto</h4> 
+                            <h4 class="par" id="myModalLabel">Participa en el project</h4> 
                              
                         </div>                                                      
                             {{ form_row (formInterestProfile.extra_profil_deal_add ,{ 'attr' : { 'class': 'hide-e'}} ) }}

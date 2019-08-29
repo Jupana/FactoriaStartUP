@@ -19,7 +19,7 @@
     <!--[if !mso]><!-->
 	<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i" rel="stylesheet" />
     <!--<![endif]-->
-	<title>Nuevo interesado en tu Proyecto</title>
+	<title>Nuevo interesado en tu project</title>
 	<!--[if gte mso 9]>
 	<style type="text/css" media="all">
 		sup { font-size: 100% !important; }
@@ -149,7 +149,7 @@
 													<table width="100%" border="0" cellspacing="0" cellpadding="0">
 														<tr>
 															<td class="h3 pb10" style="color:#000000; font-family:'Playfair Display', Georgia, serif; font-size:22px; line-height:32px; text-align:left; padding-bottom:10px;">
-                                                                <multiline>Hola <b>{{dataMail.ownerName}}</b> , el usuario <b>{{dataMail.userName|capitalize}}</b> te hizo una propuesta para el proyecto <b>{{dataMail.projectName|capitalize}}</b>. </multiline>
+                                                                <multiline>Hola <b>{{dataMail.ownerName}}</b> , el usuario <b>{{dataMail.userName|capitalize}}</b> te hizo una propuesta para el project <b>{{dataMail.projectName|capitalize}}</b>. </multiline>
                                                             </td>
 														</tr>
 														<tr>
@@ -162,8 +162,8 @@
                                                                             {% if dataMail.sectorInterest == true %}
                                                                                 <b>Sector:</b> {{dataMail.sectorInterest}}<br/>
                                                                             {% endif %}
-                                                                            {% if dataMail.perfilInterest == true %}
-                                                                                <b>Profil:</b> {{dataMail.perfilInterest.name}}<br/>
+                                                                            {% if dataMail.ProfileInterest == true %}
+                                                                                <b>Profil:</b> {{dataMail.ProfileInterest.name}}<br/>
                                                                             {% endif %} 
                                                                             {% if dataMail.dealInterest == true %}
                                                                                 <b>Tipó de Acuerdo:</b> {{dataMail.dealInterest}}<br/>

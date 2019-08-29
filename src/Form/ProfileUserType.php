@@ -26,13 +26,13 @@ class ProfileUserType extends AbstractType
             ]) 
             ->add('profil',EntityType::class,[
                 'class' => Profil::class,
-                'placeholder' => 'Selecciona un perfil',
+                'placeholder' => 'Selecciona un Profile',
                 'choice_label' => function($profil){
                     return $profil->getName(); 
                 }
             ])    
             ->add('description',TextareaType::class)  
-            ->add('submit', SubmitType::class,['label' => 'Guardar Perfil'])
+            ->add('submit', SubmitType::class,['label' => 'Guardar Profile'])
         ;
     }
 

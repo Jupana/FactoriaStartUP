@@ -14,7 +14,7 @@ class ProjectNameType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('project_name',TextType::class, ['label' => 'Nombre del proyecto *', 'required'=>true])
+            ->add('project_name',TextType::class, ['label' => 'Nombre del project *', 'required'=>true])
             ->add('submit', SubmitType::class,['label'=>'Guardar'])
         ;
     }

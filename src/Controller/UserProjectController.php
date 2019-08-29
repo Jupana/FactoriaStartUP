@@ -4,7 +4,6 @@ namespace App\Controller;
 use App\Entity\ProfileUser;
 use App\Entity\Contribute;
 use App\Entity\NeedsProject;
-use App\Entity\Project;
 use App\Form\ProjectType;
 use App\Form\ContributeType;
 use App\Form\NeedsProjectType;
@@ -20,7 +19,6 @@ use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
-use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
 
 class UserProjectController extends AbstractController
@@ -72,7 +70,7 @@ class UserProjectController extends AbstractController
         }
     
     // Fomr by Steps https://stackoverflow.com/questions/21254733/how-to-split-long-symfony-form-in-multiple-pages
-    public function add_proyecto(Request $request, int $id)
+    public function addProject(Request $request, int $id)
     {
         $newProject = $this->projectRepository ->find($id);
         $user=$this->getUser();
@@ -91,9 +89,9 @@ class UserProjectController extends AbstractController
                 $this->entityManager->persist($newProject);
                 $this->entityManager->flush(); 
 
-                return $this->redirect('/vista_usuario/add_proyecto/step_2/'.$id); 
+                return $this->redirect('/user/add-project/profile/'.$id); 
         }
-        return $this->render('user_views/AddProject.html.twig',
+        return $this->render('user/AddProject.html.twig',
             [
                 'formProfile' =>$formNewProject->createView(),
                 'project'=>$newProject
@@ -101,7 +99,7 @@ class UserProjectController extends AbstractController
         );
     }
 
-    public function addPerfilToProyect (Request $request, int $id=null){
+    public function addProfileToProject (Request $request, int $id=null){
        
         $newContribute = new Contribute();
         $user = $this->getUser();
@@ -125,7 +123,7 @@ class UserProjectController extends AbstractController
             if($formsProfiles[$profile->getId()]->isSubmitted() && $formsProfiles[$profile->getId()]->isValid()){   
                 $this->entityManager->persist($profile);
                 $this->entityManager->flush();
-                return $this->redirectToRoute('addPerfilToProyect',['id'=>$id]);
+                return $this->redirectToRoute('add-profile-to-project',['id'=>$id]);
             }
 
         }
@@ -136,10 +134,10 @@ class UserProjectController extends AbstractController
         if($formNewContribute->isSubmitted() && $formNewContribute->isValid()){   
             $this->entityManager->persist($contributeProject);
             $this->entityManager->flush();
-            return $this->redirectToRoute('proyectNeeds',['id'=>$id]);
+            return $this->redirectToRoute('project-needs',['id'=>$id]);
         }
         
-        return $this->render('user_views/addProject_steps/_step3.html.twig',
+        return $this->render('user/add-project-steps/add-profile-to-project.html.twig',
             [
                 'form_New_Contribute' =>$formNewContribute->createView(),
                 'contributeProject' => $contributeExist,
@@ -150,62 +148,62 @@ class UserProjectController extends AbstractController
         );
     }
 
-    public function deleteProfileProyect(int $id)
+    public function deleteProfileProject(int $id)
     {
-        $profileProyect = $this->contributeRepository->find($id);
-        $this->entityManager->remove($profileProyect);
+        $profileProject = $this->contributeRepository->find($id);
+        $this->entityManager->remove($profileProject);
         $this->entityManager->flush();
         
-        return $this->redirectToRoute('addPerfilToProyect',['id'=>$id]);
+        return $this->redirectToRoute('add-profile-to-project',['id'=>$id]);
     }
 
-    public function proyectNeeds(Request $request, int $id=null){
+    public function ProjectNeeds(Request $request, int $id=null){
 
-        $newProyectNeeds = new NeedsProject();
+        $newProjectNeeds = new NeedsProject();
         $user= $this->getUser();
 
         $project = $this->projectRepository->find($id);
-        $needsProyectExist   = $this->needsProjectRepository->findBy(["needs_project" => $id]);
+        $needsProjectExist   = $this->needsProjectRepository->findBy(["needs_project" => $id]);
                 
-        $newProyectNeeds->setNeedsIdProject($project);
-        $newProyectNeeds->setNeedsDate(new \DateTime());
-        $newProyectNeeds->setUser($user);
+        $newProjectNeeds->setNeedsIdProject($project);
+        $newProjectNeeds->setNeedsDate(new \DateTime());
+        $newProjectNeeds->setUser($user);
                
-        if($needsProyectExist){            
-          // $newProyectNeeds =$needsProyectExist[0];
-          // $newProyectNeeds->setNeedsIdProject($needsProyectExist[0]->getNeedsIdProject());
+        if($needsProjectExist){            
+          // $newProjectNeeds =$needsProjectExist[0];
+          // $newProjectNeeds->setNeedsIdProject($needsProjectExist[0]->getNeedsIdProject());
         }else{
-            $newProyectNeeds = $newProyectNeeds;
+            $newProjectNeeds = $newProjectNeeds;
         }
 
-        $formsProyects =[];
-        foreach($needsProyectExist  as $proyects){            
-            $formsProyects[$proyects->getId()] =$this->formFactory->createNamed('proyects_form_'.$proyects->getId(),NeedsProjectType::class,$proyects);
-            $formsProyects[$proyects->getId()]->handleRequest($request);
-            if($formsProyects[$proyects->getId()]->isSubmitted() && $formsProyects[$proyects->getId()]->isValid()){   
-                $this->entityManager->persist($proyects);
+        $formsProjects =[];
+        foreach($needsProjectExist  as $Projects){            
+            $formsProjects[$Projects->getId()] =$this->formFactory->createNamed('Projects_form_'.$Projects->getId(),NeedsProjectType::class,$Projects);
+            $formsProjects[$Projects->getId()]->handleRequest($request);
+            if($formsProjects[$Projects->getId()]->isSubmitted() && $formsProjects[$Projects->getId()]->isValid()){   
+                $this->entityManager->persist($Projects);
                 $this->entityManager->flush();
-                return $this->redirectToRoute('proyectNeeds',['id'=>$id]);
+                return $this->redirectToRoute('ProjectNeeds',['id'=>$id]);
             }
         }
         
-        $formNewProyectNeeds = $this->formFactory->create(NeedsProjectType::class, $newProyectNeeds);
-        $formNewProyectNeeds->handleRequest($request);
+        $formNewProjectNeeds = $this->formFactory->create(NeedsProjectType::class, $newProjectNeeds);
+        $formNewProjectNeeds->handleRequest($request);
         
-        if($formNewProyectNeeds->isSubmitted() && $formNewProyectNeeds->isValid()){   
-            $this->entityManager->persist($newProyectNeeds);
+        if($formNewProjectNeeds->isSubmitted() && $formNewProjectNeeds->isValid()){   
+            $this->entityManager->persist($newProjectNeeds);
             $this->entityManager->flush();
-            return $this->redirectToRoute('datos_proyectos');
+            return $this->redirectToRoute('projects-info');
         }
        
-        return $this->render('user_views/addProject_steps/_step4.html.twig',
+        return $this->render('user/add-project-steps/add-project-needs.html.twig',
         [
-            'form_New_Proyect_Needs' =>$formNewProyectNeeds->createView(),
-            'needsProyect' =>$needsProyectExist,
-            'needsProyectNew' =>$newProyectNeeds,
-            'formsProyects' => array_map ( function ($formsProyects) {
-                return $formsProyects->createView();
-            }, $formsProyects),
+            'form_New_Project_Needs' =>$formNewProjectNeeds->createView(),
+            'needsProject' =>$needsProjectExist,
+            'needsProjectNew' =>$newProjectNeeds,
+            'formsProjects' => array_map ( function ($formsProjects) {
+                return $formsProjects->createView();
+            }, $formsProjects),
         ]
         );
     }
@@ -217,7 +215,7 @@ class UserProjectController extends AbstractController
         $this->entityManager->remove($needsProfile);
         $this->entityManager->flush();
         
-        return $this->redirectToRoute('proyectNeeds',['id'=>$id]);
+        return $this->redirectToRoute('ProjectNeeds',['id'=>$id]);
     }
 
     /**
@@ -234,7 +232,7 @@ class UserProjectController extends AbstractController
         $formEditProfile = $this->formFactory->create(ProfileUserType::class, $profileUser);
         $formEditProfile->handleRequest($request);
 
-        return $this->render('modals/FormPerfil.html.twig',
+        return $this->render('modals/FormProfile.html.twig',
             [
                 'formProfile' =>$formEditProfile->createView(),
                 'profileUser'=>$profileUser

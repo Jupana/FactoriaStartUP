@@ -1,4 +1,4 @@
-{% extends 'user_views/index_vista.html.twig' %}
+{% extends 'user/index.html.twig' %}
 
 {% block vista %}
     <script type="text/javascript">
@@ -27,7 +27,7 @@
                 <div class="busco">
                     <div class="row">
                         <div class="col-md-12 ">
-                            <p class=""><b>Usuarios que “yo busco a mis proyectos".</b></p>           
+                            <p class=""><b>Usuarios que “yo busco a mis projects".</b></p>           
                         </div>
                         <div class="col-md-12 table-responsive">
                             <table class="table ">
@@ -35,8 +35,8 @@
                                     <tr>
                                         <th>Fecha</th>
                                         <th>Usuario</th>
-                                        <th>Perfil</th>
-                                        <th>Proyecto</th>
+                                        <th>Profile</th>
+                                        <th>project</th>
                                         <th>Negociacion</th>
                                         <th>Estado</th>
                                         <th>Eliminar</th>
@@ -56,7 +56,7 @@
                                             <p>{{usersSearchData[i].userProfile.profileName}}</p>                                          
                                         </td>
                                         <td>
-                                            <a class="ver_color " href="#"><p>{{usersSearchData[i].proyect.proyectName}}</p></a>                                                                                  
+                                            <a class="ver_color " href="#"><p>{{usersSearchData[i].Project.ProjectName}}</p></a>                                                                                  
                                         </td>
                                         <td>
                                             <p>{{searchprofile.InterestDescription}}</p>
@@ -69,7 +69,7 @@
                                              {% endif %}
                                         </td>
                                         <td>
-                                           <a class="delete" href="{{path('deleteProfileInterest', {'id':searchprofile.id})}}">
+                                           <a class="delete" href="{{path('delete-profile-Interest', {'id':searchprofile.id})}}">
                                                 <img class="sizeDelete" src="{{ asset('icons/delete.png','img') }}" alt="Eliminar!"/>
                                            </a>                              
                                         </td>
@@ -80,15 +80,15 @@
                             </table> 
                         </div>
                         <div class="col-md-12 ">
-                            <p  class="par1"><b>Proyectos en los que “yo quiero participar".</b></p>           
+                            <p  class="par1"><b>projects en los que “yo quiero participar".</b></p>           
                         </div>
                         <div class="col-md-12 table-responsive">
                             <table class="table   ">
                                 <thead class="bgGris">
                                     <tr>
                                         <th>Fecha</th>
-                                        <th>Proyecto</th>
-                                        <th>Perfil</th>                                     
+                                        <th>project</th>
+                                        <th>Profile</th>                                     
                                         <th>Negociacion</th>
                                         <th>Estado</th>
                                         <th>Eliminar</th>
@@ -102,7 +102,7 @@
                                             <p>{{searchProject.InterestDate|date('d/m/Y')}}
                                         </td>
                                          <td>
-                                            <a  class="ver_color " href="/proyectos/{{usersSearchProjectData[n].proyect.id}}"><p>{{usersSearchProjectData[n].proyect.proyectName}}</p></a>                                                                                  
+                                            <a  class="ver_color " href="/projects/{{usersSearchProjectData[n].Project.id}}"><p>{{usersSearchProjectData[n].Project.ProjectName}}</p></a>                                                                                  
                                         </td>
                                         <td>
                                             <p>{{searchProject.InterestProfil.name}}</p>                                          
@@ -120,7 +120,7 @@
                                              {% endif %}      
                                         </td>
                                         <td>  
-                                          <a class="delete" href="{{path('deleteProjectInterest', {'id':searchProject.id})}}">
+                                          <a class="delete" href="{{path('delete-project-interest', {'id':searchProject.id})}}">
                                                 <img class="sizeDelete" src="{{ asset('icons/delete.png','img') }}" alt="Eliminar!"/>
                                            </a>                               
                                         </td>                                
@@ -142,7 +142,7 @@
                 <div class="me_buscan">
                     <div class="row">
                         <div class="col-md-12 ">
-                            <p  class="par1"><b>Usuarios que Quieren participar en mis proyectos</b></p>           
+                            <p  class="par1"><b>Usuarios que Quieren participar en mis projects</b></p>           
                         </div>
                         <div class="col-md-12 table-responsive">
                             <table class="table  ">
@@ -150,8 +150,8 @@
                                     <tr>
                                         <th>Fecha</th>
                                         <th>Usuario</th>
-                                        <th>Proyecto</th>
-                                        <th>Perfil</th>                                     
+                                        <th>project</th>
+                                        <th>Profile</th>                                     
                                         <th>Negociacion</th>
                                          <th>Estado</th>
                                     </tr>
@@ -168,7 +168,7 @@
                                                 <a  class="ver_color " href="/profiles/{{userProjectsToColaborate[k].userData.id}}"><p>@{{userProjectsToColaborate[k].userData.userName}}</p></a>                                            
                                             </td>
                                             <td>
-                                                <a  class="ver_color " href="/proyectos/{{userProjectsToColaborate[k].proyect.id}}"><p>{{userProjectsToColaborate[k].proyect.proyectName}}</p></a>
+                                                <a  class="ver_color " href="/projects/{{userProjectsToColaborate[k].Project.id}}"><p>{{userProjectsToColaborate[k].Project.ProjectName}}</p></a>
                                             </td> 
                                             <td>
                                                 <p>{{searchProjectToColaborate.InterestProfil.name}}</p>
@@ -192,15 +192,15 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12 ">
-                            <p  class="par1"><b>Proyectos que Quieren que participe</b></p>           
+                            <p  class="par1"><b>projects que Quieren que participe</b></p>           
                         </div>
                         <div class="col-md-12 table-responsive">
                             <table class="table   ">
                                 <thead class="bgGris">
                                     <tr>
                                         <th>Fecha</th>
-                                        <th>Proyecto</th>
-                                        <th>Perfil</th>                                     
+                                        <th>project</th>
+                                        <th>Profile</th>                                     
                                         <th>Negociacion</th>
                                         <th>Estado</th>
                                     </tr>
@@ -213,7 +213,7 @@
                                             <p>{{searchProfilePartner.InterestDate|date('d/m/Y')}}
                                         </td>
                                          <td>
-                                            <a  class="ver_color " href="/proyectos/{{usersProfileForPartner[x].proyect.id}}"><p>{{usersProfileForPartner[x].proyect.proyectName}}</p></a>                                                                                  
+                                            <a  class="ver_color " href="/projects/{{usersProfileForPartner[x].Project.id}}"><p>{{usersProfileForPartner[x].Project.ProjectName}}</p></a>                                                                                  
                                         </td>
                                         <td>
                                             <p>{{usersProfileForPartner[x].userProfile.profileName}}</p>                                      

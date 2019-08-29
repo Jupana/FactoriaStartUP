@@ -29,10 +29,10 @@ class NeedsProject
     private $needs_project;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Profil", inversedBy="needs_perfil")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Profil", inversedBy="needs_Profile")
      * @ORM\JoinColumn(nullable=true)
      */
-    private $needs_perfil;
+    private $needs_Profile;
 
     /**
      * @ORM\Column(type="string", length=3000, nullable=true)
@@ -91,14 +91,14 @@ class NeedsProject
         return $this;
     }
 
-    public function getNeedsPerfil()
+    public function getNeedsProfile()
     {
-        return $this->needs_perfil;
+        return $this->needs_Profile;
     }
 
-    public function setNeedsPerfil(Profil $needs_perfil): self
+    public function setNeedsProfile(Profil $needs_Profile): self
     {
-        $this->needs_perfil = $needs_perfil;
+        $this->needs_Profile = $needs_Profile;
         return $this;
     }
 
