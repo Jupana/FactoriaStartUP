@@ -39,6 +39,18 @@ class Notification
     private $seen;
 
     /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\InterestProfile", inversedBy="notifications")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $interestProfile;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\InterestProject", inversedBy="notifications")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $interestProject;
+
+    /**
      * @ORM\Column(type="datetime")
      */
     private $time;
@@ -92,6 +104,30 @@ class Notification
     public function setSeen(bool $seen): self
     {
         $this->seen = $seen;
+
+        return $this;
+    }
+
+    public function getInterestProfile()
+    {
+        return $this->interestProfile;
+    }
+
+    public function setInterestProfile(InterestProfile $interestProfile): self
+    {
+        $this->interestProfile = $interestProfile;
+
+        return $this;
+    }
+
+    public function getInterestProject()
+    {
+        return $this->interestProject;
+    }
+
+    public function setInterestProject(InterestProject $interestProject): self
+    {
+        $this->interestProject = $interestProject;
 
         return $this;
     }

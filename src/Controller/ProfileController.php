@@ -15,7 +15,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
 
-class SingelProfileController extends AbstractController
+class ProfileController extends AbstractController
 {
         /**
     * @var \Twig_Environment

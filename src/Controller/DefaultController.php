@@ -23,6 +23,6 @@ class DefaultController extends Controller
             'projects' => $projects,            
         ]);
 
-        return new Response($html);
+        return new Response($html->getContent());
     }
 }

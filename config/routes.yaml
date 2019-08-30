@@ -15,26 +15,26 @@ user:
 
 add-profile:
     path: /user/add-profile
-    controller: App\Controller\SingelProfileController::addProfileUser
+    controller: App\Controller\ProfileController::addProfileUser
     options:
         expose: true
 
 edit-profile:
     path: /user/edit-profile/{id}
-    controller: App\Controller\SingelProfileController::editProfileUser
+    controller: App\Controller\ProfileController::editProfileUser
     options:
         expose: true
 
 update-profile:
     path: /user/update-update/{id}
-    controller: App\Controller\SingelProfileController::editProfilUserUpdate
+    controller: App\Controller\ProfileController::editProfilUserUpdate
     methods:  [GET,POST]
     options:
         expose: true
 
 delete-profile:
     path: /user/delete-profile/{id}
-    controller: App\Controller\SingelProfileController::deleteUserProfile
+    controller: App\Controller\ProfileController::deleteUserProfile
     options:
         expose: true
 

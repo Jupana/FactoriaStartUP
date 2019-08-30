@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 
-{% block title %}Profilees{% endblock %}
+{% block title %}FSU - Perfiles.{% endblock %}
 
 {% block content %}
 {% for message in app.flashes('notice') %}
@@ -57,7 +57,7 @@
         <div class="col-md-3 m-b-15"> 
             <div class="cardBlock shadow_box" >         
                 <div class="imageCard p-3">
-                     <img  class="card-img-top" src ="{{ asset('build/img/uploads/users_Profile/' ~ profile.user_img) }}" alt="image"/>                  
+                     <img  class="card-img-top" src ="{{ asset('build/img/uploads/users_profile/' ~ profile.user_img) }}" alt="image"/>                  
                 </div>                    
                 <div class="mainCard p-3">  
                     <div class="d-flex align-items-top justify-content-between">  

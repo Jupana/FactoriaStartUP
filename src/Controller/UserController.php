@@ -125,6 +125,9 @@ class UserController extends AbstractController
         $user = $this->getUser();
         $userProfesionalProfile = $this->profesionalProfilRespository->findOneBy(['profesionalIdUser' => $user->getId()]);        
         $userProjects = $this->projectsUserRepository->findBy(['user' => $user->getId()]);
+        $user->getNotifications()->count();
+        
+        
         return new Response(
             $this->twig->render(
                 'user/index.html.twig',

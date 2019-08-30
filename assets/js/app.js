@@ -39,18 +39,19 @@ $(document).ready(function() {
        // autoplaySpeed: 2000,        
       }); 
       var fsuId = $('.fsu-username').data("fsu-username");
-      console.log(fsuId);
-      $.get("/count_notification/"+fsuId)
-      .done(function(response) {
-        var data = JSON.parse(response);
-        if(data.not_count !== '0'){
-            $('.not-count').text(data.not_count);
-        }
-      })
-  .fail(function(response) {
-      console.log('Fallo Count Notification')
-  });  
-
+      if(fsuId !== undefined){
+        $.get("/count_notification/"+fsuId)
+            .done(function(response) {
+                var data = JSON.parse(response);
+                console.log(data);
+                if(data.not_count !== '0'){
+                $('.not-count').text(data.not_count);
+                }
+            })
+            .fail(function(response) {
+                console.log('Fallo Count Notification')
+            });
+      }
 });
 require('bootstrap/js/dist/util.js')
 
