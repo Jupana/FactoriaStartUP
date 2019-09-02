@@ -24,7 +24,7 @@
                         <textarea>Pon tu Comentario</textarea>              
                     </th>
                  </tr>
-                <tr>    
+                <tr>
                     <td>Sector :</td>
                     <td><b>{{project.ProjectSector}}</b></td>
                       <th scope="col">
@@ -97,6 +97,23 @@
                         <button class="text-white bgAzul2 p-3">Envia comnetarios/OK del proyecto</button>                      
                     </th>
                 </tr>
+
+                {% for needProject in needsProject %}
+                    <tr>    
+                    <td>Contacto :</td>
+                    <td><b>
+                        <span>Perfil: <b>{{needProject.needsProfile.name}}</b></span><br/>
+                     
+                    </b>
+                    </td>
+                    <th scope="col">
+                        <button class="text-white bgAzul2 p-3">Envia comnetarios/OK del proyecto</button>                      
+                    </th>
+                </tr>
+                {% endfor %}
+
+                 {{dump(needsProject)}} 
+                  {{dump(contributeProjects)}} 
 
         </tbody>
     </table>
