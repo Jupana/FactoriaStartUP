@@ -8,8 +8,9 @@
         {% block stylesheets %}{% endblock %}
     </head>
     <body>  
-		<header>                                   
-            {% include 'nav_bar/nav_bar.html.twig' %}
+		<header> 
+        {{ render (controller ('App\\Controller\\NotificationController::showNotification')) }}                                  
+            {#% include 'nav_bar/nav_bar.html.twig' %#}
         </header> 		   
         <div class="container  margin-mobil-container m-t-190">
             <div class="row">

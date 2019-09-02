@@ -4,7 +4,6 @@ namespace App\Controller;
 
 
 use App\Entity\NeedsProject;
-use App\Entity\ProfileUser;
 use App\Entity\InterestProfile;
 use App\Form\InterestProfileType;
 use App\Entity\Notification;
@@ -216,16 +215,16 @@ class ProfileUserController extends AbstractController
                $interestProfile->setInterestProfile($interestProfile->getInterestProfile());
                $interestProfile->setInterestDescription($interestProfile->getInterestDescription());
 
-               $createNotifiation =  new Notification();
-               $createNotifiation->setUser($userProfileOwner);
-               $createNotifiation->setType('profile_interest');
-               $createNotifiation->setEntity($interestProfile->getInterestProfile()->getId());
-               $createNotifiation->setInterestProfile($interestProfile);
-               $createNotifiation->setSeen(false);
-               $createNotifiation->setTime(new \DateTime());
+               $createNotification =  new Notification();
+               $createNotification->setUser($userProfileOwner);
+               $createNotification->setType('profile_interest');
+               $createNotification->setEntity($interestProfile->getInterestProfile()->getId());
+               $createNotification->setInterestProfile($interestProfile);
+               $createNotification->setSeen(false);
+               $createNotification->setTime(new \DateTime());
 
                 $this->entityManager->persist($interestProfile);
-                $this->entityManager->persist($createNotifiation);
+                $this->entityManager->persist($createNotification);
                 $this->entityManager->flush();   
                 
                 $this->flashBag->add('notice', 'Mensaje Enviado');
@@ -273,38 +272,6 @@ class ProfileUserController extends AbstractController
         $km  = $miles * 1.609344;
 
         return round( number_format ($km,2) , 1, PHP_ROUND_HALF_UP );
-    }
-    
-    
-    public function notificationCount($id){
-        $user = $this->userRepository->find(['id'=>$id]);        
-        $allNotifications = $user->getNotifications()->getValues();
-        
-        foreach($allNotifications as $notification){
-            $result['values'][$notification->getId()]['id'] = $notification->getId();
-            $result['values'][$notification->getId()]['type'] = $notification->getType();
-            $result['values'][$notification->getId()]['entity'] = $notification->getEntity();
-            $result['values'][$notification->getId()]['seen'] = $notification->getSeen();
-            $result['values'][$notification->getId()]['time'] = $notification->getTime()->format('H:i:s');
-            if($notification->getInterestProfile() !== null){
-                $profile = $notification->getInterestProfile();
-                $idP=$profile->getId();
-                $result['values'][$notification->getId()]['profile_interest'][$idP]['id'] = $idP;
-                $result['values'][$notification->getId()]['profile_interest'][$idP]['user']=$profile->getUser()->getName();
-                $result['values'][$notification->getId()]['profile_interest'][$idP]['interest_description']=$profile->getInterestDescription();
-                $result['values'][$notification->getId()]['profile_interest'][$idP]['interest_profile']=$profile->getInterestProfile()->getName();
-                $result['values'][$notification->getId()]['profile_interest'][$idP]['interest_project']=$profile->getInterestProject()->getProjectName();
-
-            }
-
-            
-        }
-        
-        $result['not_count'] = $user->getNotifications()->count();
-
-
-        return new Response(json_encode($result));
-        
     }
  
 }

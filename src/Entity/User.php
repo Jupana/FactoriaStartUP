@@ -199,7 +199,6 @@ class User implements UserInterface,\Serializable
      * @ORM\OneToMany(targetEntity="App\Entity\Contribute", mappedBy="user", orphanRemoval=true)
      */
     private $contribute;
-
     
 
 
@@ -506,7 +505,7 @@ class User implements UserInterface,\Serializable
         return $this->project_search;
     }
 
-    public function setProjectSearch(string $Project_search): self
+    public function setProjectSearch(string $project_search): self
     {
         $this->project_search = $project_search;
 
@@ -698,6 +697,18 @@ class User implements UserInterface,\Serializable
                 $notification->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUser(): ?Message
+    {
+        return $this->user;
+    }
+
+    public function setUser(?Message $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

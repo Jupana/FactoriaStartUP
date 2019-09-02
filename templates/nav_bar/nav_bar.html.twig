@@ -51,7 +51,9 @@
                     <a tabindex="0" role="button" rel="popover" data-placement="bottom" data-toggle="popover" href="#" >
                        <div class="icono-notification">
                             <img class="notification rounded-circle" src ="{{ asset('build/img/uploads/users_profile/' ~ app.user.getProfileImg) }}"/>
-                            <div class="icono-encima bg-danger text-white fs-10 not-count"></div>
+                            {% if results.count_notify > 0 %}
+                                <div class="icono-encima bg-danger text-white fs-10 not-count">{{results.count_notify}}</div>
+                            {% endif %}    
                         </div>
                     </a>       
                     <a class="btn btn-outline-secondary my-2 my-sm-0" href="{{ path('security_logout') }}">Deconectate</a>       
@@ -68,62 +70,40 @@
     <div class="data-content" >  
         <div class="container-fluid"> 
             <div class="row m-t-15">
-                <div class="activity_item ">
-                    <div class="row">
-                        <div class="col-md-3">
-                             <img class="rounded-circle" src ="{{ asset('build/img/uploads/users_profile/' ~ app.user.getProfileImg) }}"/>
-                        </div>
-                        <div class="col-md-9">
-                            <div class="d-flex align-items-top justify-content-between">
-                                <span>Nicol</span>
-                                <span>20/07/19</span>        
-                            </div>
-                            <span class="text-muted">Algo de mensaje...</spaN>
-                        </div>               
-                    </div><hr/>                  
-                </div> 
-                  <div class="activity_item ">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <img class="rounded-circle" src ="{{ asset('build/img/liviu.png') }}"/>
-                        </div>
-                        <div class="col-md-9">
-                            <div class="d-flex align-items-top justify-content-between">
-                                <span>Liviu</span>
-                                <span>05/07/19</span>        
-                            </div>
-                            <span class="text-muted">Algo de mensaje...</spaN>
-                        </div>               
-                    </div><hr/>                  
-                </div>
-                 <div class="activity_item ">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <img class="rounded-circle" src ="{{ asset('build/img/uploads/users_profile/' ~ app.user.getProfileImg) }}"/>
-                        </div>
-                        <div class="col-md-9">
-                            <div class="d-flex align-items-top justify-content-between">
-                                <span>Nicol</span>
-                                <span>20/07/19</span>        
-                            </div>
-                            <span class="text-muted">Algo de mensaje...</spaN>
-                        </div>               
-                    </div><hr/>                  
-                </div> 
-                  <div class="activity_item ">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <img class="rounded-circle" src ="{{ asset('build/img/liviu.png') }}"/>
-                        </div>
-                        <div class="col-md-9">
-                            <div class="d-flex align-items-top justify-content-between">
-                                <span>Liviu</span>
-                                <span>05/07/19</span>        
-                            </div>
-                            <span class="text-muted">Algo de mensaje...</spaN>
-                        </div>               
-                    </div><hr/>                  
-                </div>
+                <!--Start Content Notify  -->
+               {% if results.values is defined%}
+                    {% for result in results.values %}
+                    {% set notify_type  = result.type %}                
+                        {% if attribute (result,notify_type) is defined %}                        
+                            {% for user in attribute(result,notify_type) %}                            
+                                <div class="activity_item ">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <img class="rounded-circle" src ="{{ asset('build/img/uploads/users_profile/' ~ user.user_image) }}"/>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <div class="d-flex align-items-top justify-content-between">
+                                                <span>{{user.user}}</span>
+                                                <span>{{user.time}}</span>
+                                            </div>
+                                            <p class="text-muted">Perfil:
+                                                {% if user.interest_profile is defined %}
+                                                    {{user.interest_profile}}
+                                                {% elseif user.interest_project is defined %}
+                                                    {{user.interest_project}}
+                                                {% endif %}
+                                            
+                                            </p><br/>
+                                            
+                                            <p class="text-muted">{{user.interest_description}}</p>
+                                        </div>               
+                                    </div><hr/>                  
+                                </div>
+                            {% endfor %}    
+                        {% endif %}                    
+                    {% endfor %}
+                {% endif %}        
+                <!--Fin Content Notify  -->                
                 <div class="col-md-12 ">
                     <div class="colorAzul text-center fs-15 p-3"><a href="{{ path('user-message') }}">Ver Todo</a></div>
                 </div>

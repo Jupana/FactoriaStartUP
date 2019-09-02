@@ -60,6 +60,11 @@ class InterestProfile
      */
     private $interest_date;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Message", inversedBy="interest_profil")
+     */
+    private $message;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -145,6 +150,18 @@ class InterestProfile
     public function setInterestDate(\DateTimeInterface $interest_date): self
     {
         $this->interest_date = $interest_date;
+
+        return $this;
+    }
+
+    public function getMessage(): ?Message
+    {
+        return $this->message;
+    }
+
+    public function setMessage(?Message $message): self
+    {
+        $this->message = $message;
 
         return $this;
     }

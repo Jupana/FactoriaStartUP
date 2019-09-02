@@ -140,9 +140,6 @@ match-project:
     options:
         expose: true
 
-count_notification:
-    path: /count_notification/{id}
-    controller: App\Controller\ProfileUserController::notificationCount
         
 
 #NOT IN USE    

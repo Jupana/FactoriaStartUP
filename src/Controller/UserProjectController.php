@@ -196,6 +196,7 @@ class UserProjectController extends AbstractController
             return $this->redirectToRoute('projects-info');
         }
        
+        dump($formsProjects);
         return $this->render('user/add-project-steps/add-project-needs.html.twig',
         [
             'form_New_Project_Needs' =>$formNewProjectNeeds->createView(),

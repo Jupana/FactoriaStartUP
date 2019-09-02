@@ -22,19 +22,19 @@ class NotificationRepository extends ServiceEntityRepository
     // /**
     //  * @return Notification[] Returns an array of Notification objects
     //  */
-    /*
-    public function findByExampleField($value)
+    /**/
+    public function countNotify($userId)
     {
-        return $this->createQueryBuilder('n')
-            ->andWhere('n.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('n.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        $qb= $this->createQueryBuilder('n');
+        $qb ->select($qb->expr()->count('n'))
+            ->andWhere('n.user = :userid')
+            ->andWhere('n.seen = 0')
+            ->setParameter('userid', $userId);
+
+        $qb =$qb->getQuery();
+        return $qb->getSingleScalarResult();
     }
-    */
+    
 
     /*
     public function findOneBySomeField($value): ?Notification

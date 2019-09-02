@@ -155,11 +155,20 @@ class ProjectController extends AbstractController
                      'percentInterest'=>$interestPercent,
                      'descriptionInterest'=>$interestDes,
 
-                 ];                         
+                 ];
+                 
+                 $createNotification =  new Notification();
+                 $createNotification->setUser($project->getUser());
+                 $createNotification->setType('project_interest');
+                 $createNotification->setEntity(1);
+                 $createNotification->setInterestProject($interestProject);
+                 $createNotification->setSeen(false);
+                 $createNotification->setTime(new \DateTime()); 
                 
                 $sendMailProjectInterest->sendMailProject($mailInterestProject);                
 
                 $this->entityManager->persist($interestProject);
+                $this->entityManager->persist($createNotification);
                 $this->entityManager->flush();   
                 
                 $this->flashBag->add('notice', 'Mensaje Enviado');
