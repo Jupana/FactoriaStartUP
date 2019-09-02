@@ -1,7 +1,6 @@
 {% extends 'admin/view-admin.html.twig' %}
 
 {% block contentAdmin %}
-
 <!--Admin projects-->
 {% if is_granted('ROLE_ADMIN') and (app.user.username == 'admin') %} 
     <div class="form-group row">
@@ -25,7 +24,7 @@
             {% for id ,project in projects %}  
                 <tr>
                     <th scope="row">{{id}}</th>
-                    <td><a href="/projects/{{project.id}}">{{project.ProjectName}}</a></td>
+                    <td><a href="{{ path("admin-projects-project",{"id": project.id }) }}">{{project.ProjectName}}</a></td>
                     <td>{{project.user.name}}</td>
                     <td>{{ project.ProjectDate|date("d/m/y")}}</td>
                     <td>Si</td>

@@ -9,6 +9,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 
 
 class AdminProjectsController extends AbstractController
@@ -60,6 +61,20 @@ class AdminProjectsController extends AbstractController
                 ]
             )
         );       
+    }
+
+    public function project($id)
+    { 
+        
+        $project = $this->projectRepository ->find($id);
+        return new Response(
+            $this->twig->render(
+                'admin/project.html.twig',
+                [
+                    'project' => $project                        
+                ]
+            )
+        ); 
     }
 
     public function index_coworker()
