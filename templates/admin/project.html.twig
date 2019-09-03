@@ -15,7 +15,7 @@
         <tbody>     
                 <tr>
                     <td>Nombre del Proyecto:</td>
-                    <td><b>{{project.ProjectName}}</b></td>
+                    <td><span class="ver_color">{{project.ProjectName}}</span></td>
                     <th scope="col">
                         <div class="form-check">
                             <input type="checkbox" class="form-check-input" id="exampleCheck1">
@@ -26,7 +26,7 @@
                  </tr>
                 <tr>
                     <td>Sector :</td>
-                    <td><b>{{project.ProjectSector}}</b></td>
+                    <td><span class="ver_color">{{project.ProjectSector}}</span></td>
                       <th scope="col">
                         <div class="form-check">
                             <input type="checkbox" class="form-check-input" id="exampleCheck1">
@@ -37,7 +37,7 @@
                 </tr>
                 <tr>    
                     <td>Descripcion :</td>
-                    <td><b>{{project.ProjectDescription}}</b></td>
+                    <td><span class="ver_color">{{project.ProjectDescription}}</span></td>
                     <th scope="col">
                         <div class="form-check">
                             <input type="checkbox" class="form-check-input" id="exampleCheck1">
@@ -48,11 +48,11 @@
                 </tr>
                 <tr>    
                     <td>Facturacion Estimada :</td>
-                    <td><b>        
-                        <span>año1:<span class="fs-20"> {{ project.ProjectAproxFacturation1}}€</span></span> ,
-                        <span>año2: <span class="fs-20">{{ project.ProjectAproxFacturation2}}€</span></span> ,
-                        <span>año3: <span class="fs-20">{{ project.ProjectAproxFacturation3}}€</span></span>
-                    </b></td>
+                    <td>      
+                        <span>año1:<span class=" ver_color fs-17"> {{ project.ProjectAproxFacturation1}}€</span></span> ,
+                        <span>año2: <span class="ver_color fs-17">{{ project.ProjectAproxFacturation2}}€</span></span> ,
+                        <span>año3: <span class="ver_color fs-17">{{ project.ProjectAproxFacturation3}}€</span></span>
+                    </td>
                     <th scope="col">
                         <div class="form-check">
                             <input type="checkbox" class="form-check-input" id="exampleCheck1">
@@ -63,10 +63,10 @@
                 </tr>
                 <tr>    
                     <td>Clientes Potenciales :</td>
-                    <td><b>
-                        <span>Usarios: <span class="fs-20">{{ project.ProjectPotentialyUsers}}</span></span><br/> 
-                        <span>Empresas: <span class="fs-20">{{ project.ProjectPotentialyCompanies}}</span></span>
-                    </b></td>
+                    <td>
+                        <span>Usarios: <span class=" ver_color fs-17">{{ project.ProjectPotentialyUsers}}</span></span><br/> 
+                        <span>Empresas: <span class="ver_color fs-17">{{ project.ProjectPotentialyCompanies}}</span></span>
+                    </td>
                     <th scope="col">
                         <div class="form-check">
                             <input type="checkbox" class="form-check-input" id="exampleCheck1">
@@ -77,7 +77,7 @@
                 </tr>
                 <tr>    
                     <td>Competencia :</td>
-                    <td><b>{{ project.ProjectCompetitors}}</b></td>
+                    <td><span class="ver_color">{{ project.ProjectCompetitors}}</span></td>
                     <th scope="col">
                         <div class="form-check">
                             <input type="checkbox" class="form-check-input" id="exampleCheck1">
@@ -86,35 +86,55 @@
                         <textarea>Pon tu Comentario</textarea>              
                     </th>
                 </tr>
+                <tr>
+                    <td>Aportacion:</td>
+                    <td>
+                         {% for contribute in contributeProjects %}
+                            {% if contribute.ContributeProfile %}<span class="ver_color">{{contribute.ContributeProfile.name}}</span>
+                            {% endif %}:
+                                {{contribute.ContributeDescription}}</br> 
+                        {% endfor %} 
+                    </td>
+                        <th scope="col">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <label class="form-check-label" for="exampleCheck1">Dar OK</label>
+                        </div>
+                        <textarea>Pon tu Comentario</textarea>              
+                    </th>
+                </tr>  
+                <tr>    
+                    <td>Necesidades y Propuestas de colaboracion:</td>                           
+                    <td>
+                        {% for needProject in needsProject %}      
+                            {% if needProject.NeedsProfile %}
+                                <span class="ver_color">{{needProject.NeedsProfile.name}}</span>
+                            {% endif %} :      
+                            {% if needProject.NeedsPercent != 0 %}
+                                <span>{{needProject.NeedsPercent}}</span>
+                            {% endif %}
+                            <span>{{needProject.NeedsDeal}}:<br/>{{needProject.NeedsDescription}}<br/><span>                                        
+                    {% endfor %}
+                    </td>
+                    <th scope="col">
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                <label class="form-check-label" for="exampleCheck1">Dar OK</label>
+                            </div>
+                            <textarea >Pon tu Comentario</textarea>              
+                    </th>
+                </tr>            
                 <tr>    
                     <td>Contacto :</td>
-                    <td><b>
-                        <span>Usuario: <b>{{project.user.username}}</b></span>, Nombre: <b>{{project.user.name}}</b></span><br/>
-                        <span>Email: <b>{{project.user.email}}</b></span><br/>
-                        <span>Telefono: <b>{{project.user.phoneNumber}}</b></span><br/>
-                    </b></td>
-                    <th scope="col">
-                        <button class="text-white bgAzul2 p-3">Envia comnetarios/OK del proyecto</button>                      
-                    </th>
-                </tr>
-
-                {% for needProject in needsProject %}
-                    <tr>    
-                    <td>Contacto :</td>
-                    <td><b>
-                        <span>Perfil: <b>{{needProject.needsProfile.name}}</b></span><br/>
-                     
-                    </b>
+                    <td>
+                        <span>Usuario: <span class="ver_color">{{project.user.username}}</span></span>, Nombre: <span class="ver_color">{{project.user.name}}</span></span><br/>
+                        <span>Email: <span class="ver_color">{{project.user.email}}</span></span><br/>
+                        <span>Telefono: <span class="ver_color">{{project.user.phoneNumber}}</span></span><br/>
                     </td>
                     <th scope="col">
                         <button class="text-white bgAzul2 p-3">Envia comnetarios/OK del proyecto</button>                      
                     </th>
                 </tr>
-                {% endfor %}
-
-                 {{dump(needsProject)}} 
-                  {{dump(contributeProjects)}} 
-
         </tbody>
     </table>
     </div>

@@ -9,22 +9,22 @@
     <div class="vistaPredefinida">
         <div class="row">
             <div class="col-md-6 col-12">
-                <p class="par ver_color fs-20 m-b-25 "><b>Informacion Profile</b></p>
+                <p class="par ver_color fs-20 m-b-25 ">Informacion Profile</p>
                 <div class="row ">
                     <div class="col-md-4 col-4 shadow_box p-3">
                         <div ><img src ="{{ asset('build/img/uploads/users_perfil/' ~ user.getProfileImg) }}"/></div>
                     </div> 
                     <div class="col-md-8 col-8 shadow_box text-center p-5">
                         <div class="row">
-                            <div class="col-12 "> Nombre :<b>{{ app.user.name }}</b></div>
-                            <div class="col-12"> Email: <b>{{ app.user.email }}</b></div>
-                            <div class="col-12"> Telefono: <b>{{ app.user.phoneNumber }}</b></div>
+                            <div class="col-12 "> Nombre :<span class="ver_color">{{ app.user.name }}</span></div>
+                            <div class="col-12"> Email: <span class="ver_color">{{ app.user.email }}</span></div>
+                            <div class="col-12"> Telefono: <span class="ver_color">{{ app.user.phoneNumber }}</span></div>
                         </div>    
                     </div> 
                 </div>
             </div>
             <div class="col-md-6">
-                <p class="ver_color par fs-20 "><b>Datos profesionales</b></p>
+                <p class="ver_color par fs-20 ">Datos profesionales</p>
                 <span class=" par fs-15 ">Te defines como:</span>
                 <div  class="border p-3 par1 h-auto w-100" >
                 
@@ -50,7 +50,7 @@
         <div class="Project_box p-t-20 ">
             <div class="row ">
                 <div class="col-md-12 par">
-                    <p class="fs-20 ver_color par p-b-20"><b>Tienes los siguentes projects publicados:</b></p> 
+                    <p class="fs-20 ver_color par p-b-20">Tienes los siguentes projects publicados:</p> 
                 </div>
                  {% for project in userProjects %}
                     <div class="col-md-3 p-t-10 ">
