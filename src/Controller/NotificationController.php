@@ -32,7 +32,6 @@ class NotificationController extends AbstractController
             $countNotify = $this->repoNotification->countNotify($user->getId());
             $allNotifications = $user->getNotifications()->getValues();
 
-            dump($allNotifications);
             
             foreach($allNotifications as $notification){
                 $results['values'][$notification->getId()]['id'] = $notification->getId();
@@ -53,7 +52,7 @@ class NotificationController extends AbstractController
 
                 if($notification->getInterestProject() !== null){
                     $project = $notification->getInterestProject();
-                    dump($project);
+    
                     $idP=$project->getId();
                     $results['values'][$notification->getId()]['project_interest'][$idP]['id'] = $idP;
                     $results['values'][$notification->getId()]['project_interest'][$idP]['user']=$project->getInterestIdUser()->getName();

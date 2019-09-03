@@ -2,18 +2,37 @@
 
 namespace App\Controller;
 
+use App\Form\MessageType;
+use App\Repository\MessageRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
 class MessageController extends AbstractController
 {
-    /**
-     * @Route("/user/message", name="message_user")
-     */
-    public function index()
+    
+
+    private $messageRepository;
+
+    public function __construct(Messagerepository $messageRepository)
     {
-        return $this->render('message/user.html.twig', [
-            'controller_name' => 'MessageController',
+        $this->messageRepository = $messageRepository;
+    }
+    
+   
+    public function listMessages()
+    {   
+        $userMessages = $this->messageRepository->findMessage($this->getUser()->getId());
+        return $this->render('messages/list.html.twig', [
+            'userMessages' => $userMessages,
+        ]);
+    }
+
+  
+    public function message($id)
+    {   
+        $message = $this->messageRepository->findBy(['conversation_id' =>$id]);
+        return $this->render('messages/message.html.twig', [
+            'message' => $message,
         ]);
     }
 }

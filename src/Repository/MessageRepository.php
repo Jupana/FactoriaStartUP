@@ -47,4 +47,15 @@ class MessageRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function findMessage($userId)
+    {
+        $qb= $this->createQueryBuilder('m');
+        $qb ->andWhere('m.user_sender = :userid')
+            ->orWhere('m.user_recipient = :userid')
+            ->setParameter('userid', $userId);
+
+        $qb =$qb->getQuery();
+        return $qb->getResult();
+    }
 }

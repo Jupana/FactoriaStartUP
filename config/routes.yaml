@@ -140,15 +140,19 @@ match-project:
     options:
         expose: true
 
-        
+ #Messages
+list-messages:
+    path: /user/messages
+    controller: App\Controller\MessageController::listMessages
+
+message:
+    path: /user/messages/{id}
+    controller: App\Controller\MessageController::message 
 
 #NOT IN USE    
 herramientas:
     path: /herramientas
     controller: App\Controller\HerramientasController::index 
-user-message:
-    path: /user/message
-    controller: App\Controller\MessageController::index 
 noticias:
     path: /noticias
     controller: App\Controller\NoticiasController::index  

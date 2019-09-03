@@ -20,7 +20,7 @@ class Message
     private $id;
 
     /**
-     * @ORM\Column(type="integer", nullable=false)
+     * @ORM\Column(type="text", nullable=false)
      */
     private $conversation_id;
 
@@ -139,7 +139,7 @@ class Message
      *
      * @return  self
      */ 
-    public function setInterestProject(InteretsProject $interest_project):self
+    public function setInterestProject(InterestProject $interest_project):self
     {
         $this->interest_project = $interest_project;
 
@@ -205,7 +205,7 @@ class Message
      *
      * @return  self
      */ 
-    public function setConversationId($conversation_id)
+    public function setConversationId(string $conversation_id)
     {
         $this->conversation_id = $conversation_id;
 

@@ -2,10 +2,10 @@
 
 namespace App\Controller;
 
-use App\Entity\Project;
 use App\Entity\InterestProject;
 use App\Entity\Notification;
 use App\Entity\ProfileUser;
+use App\Entity\Message;
 use App\Form\InterestProjectType;
 use App\Repository\ProjectRepository;
 use App\Repository\ProfileUserRepository;
@@ -14,7 +14,6 @@ use App\Repository\SectorRepository;
 use App\Repository\ContributeRepository;
 use App\Repository\NeedsProjectRepository;
 use App\Repository\InterestProjectRepository;
-use App\Form\ProjectType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -164,11 +163,26 @@ class ProjectController extends AbstractController
                  $createNotification->setInterestProject($interestProject);
                  $createNotification->setSeen(false);
                  $createNotification->setTime(new \DateTime()); 
+
+                 $userSenderId =$this->getUser()->getId();
+                 $userRecipientId=$project->getUser()->getId();
+                 $idConv = $userSenderId.'-'.$userRecipientId.'-'.rand(1000,10000000);
+               
+                 
+                 $message = new Message();
+                 $message->setUserSender($this->getUser());
+                 $message->setUserRecipient($project->getUser());
+                 $message->setInterestProject($interestProject);
+                 $message->setType('project_interest');
+                 $message->setTime(new \DateTime());
+                 $message->setText('Tienes que ver por que no te salen la descripcion interestDes');
+                 $message->setConversationId($idConv);
                 
                 $sendMailProjectInterest->sendMailProject($mailInterestProject);                
 
                 $this->entityManager->persist($interestProject);
                 $this->entityManager->persist($createNotification);
+                $this->entityManager->persist($message);
                 $this->entityManager->flush();   
                 
                 $this->flashBag->add('notice', 'Mensaje Enviado');

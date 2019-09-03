@@ -15,13 +15,14 @@
         </div>
         <div class="col-4">
         {% if is_granted('ROLE_USER') %}
+                    <a href="#" data-toggle="modal" data-target="#modalForm_MeInteresa"><p class="btn btn-primary  fs-20 text-center projectInterstMe float-right">Me Interesa</p></a>
+                        {% include 'modals/interest-project.html.twig' %}  
                     
-                    {% if matchInterestProject %}
+                    {#ESTO ES PARA CUANDO YA TE HAS INTERESADO % if matchInterestProject %}
                         <a href="{{ path('proposals-info')}}" ><p class="btn btn-outline-secondary  fs-20 text-center projectInterstMe float-right">Ver Conversaciones</p></a>
                     {% else %}
-                        <a href="#" data-toggle="modal" data-target="#modalForm_MeInteresa"><p class="btn btn-primary  fs-20 text-center projectInterstMe float-right">Me Interesa</p></a>
-                        {% include 'modals/interest-project.html.twig' %}                            
-                    {% endif %}                    
+                                                  
+                    {% endif %#}                    
                 {% else %}
                     <a href="{{ path('security_login') }}"><p class="btn btn-primary  fs-20 text-center  projectInterstMe float-right">Me Interesa</p></a>   
         {% endif %}                                             
