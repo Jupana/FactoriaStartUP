@@ -22,16 +22,20 @@ class MessageController extends AbstractController
     public function listMessages()
     {   
         $userMessages = $this->messageRepository->findMessage($this->getUser()->getId());
+        $message = $this->messageRepository->findAll();
         return $this->render('messages/list.html.twig', [
             'userMessages' => $userMessages,
+            'message' => $message
         ]);
     }
 
   
     public function message($id)
     {   
+        $userMessages = $this->messageRepository->findMessage($this->getUser()->getId());
         $message = $this->messageRepository->findBy(['conversation_id' =>$id]);
         return $this->render('messages/message.html.twig', [
+            'userMessages' => $userMessages,
             'message' => $message,
         ]);
     }
