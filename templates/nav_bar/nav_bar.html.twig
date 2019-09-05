@@ -50,10 +50,12 @@
                     <a class="fs-18 fsu-username" href="{{ path('user') }}" data-fsu-username="{{app.user.id}}">{{ app.user.username}}</a> 
                     <a tabindex="0" role="button" rel="popover" data-placement="bottom" data-toggle="popover" href="#" >
                        <div class="icono-notification">
+
                             <img class="notification rounded-circle" src ="{{ asset('build/img/uploads/users_profile/' ~ app.user.getProfileImg) }}"/>
                             {% if results.count_notify > 0 %}
                                 <div class="icono-encima bg-danger text-white fs-10 not-count">{{results.count_notify}}</div>
                             {% endif %}    
+
                         </div>
                     </a>       
                     <a class="btn btn-outline-secondary my-2 my-sm-0" href="{{ path('security_logout') }}">Deconectate</a>       
@@ -70,7 +72,7 @@
     <div class="data-content" >  
         <div class="container-fluid"> 
             <div class="row m-t-15">
-<<<<<<< HEAD
+
                 <!--Start Content Notify  -->
                {% if results.values is defined%}
                     {% for result in results.values %}

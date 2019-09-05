@@ -44,7 +44,7 @@
             </div>
         </div>
     </div>
-    <div class="Project_box">
+    <div class="Project_box py-3">
         <div class="row ">
         {% for project in userProjects %}
             <div class="col-md-3 p-t-10 ">
@@ -95,7 +95,7 @@
                             </td>
                             <td>
                                 <a class="delete" href="{{path('delete-project', {'id':project.id})}}">
-                                    <img class="sizeDelete" src="{{ asset('build/img/icons/delete.png','img') }}" alt="Symfony!"/>
+                                    <img class="sizeDelete" src="{{ asset('build/img/icons/delete.png') }}" alt="Symfony!"/>
                                 </a>
                             </td>
                         </tr>

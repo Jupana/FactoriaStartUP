@@ -10,7 +10,7 @@
     {% endfor %}
     <div class="row m-t-20">
         <div class="col-md-9 col-8">
-            <p class="ver_color fs-20 "><b>Informacion Profile</b></p>
+            <p class="ver_color fs-20 ">Informacion Profile</p>
         </div>
         <div class="col-md-3 col-4">
              {% if is_granted('ROLE_USER') %}
@@ -28,22 +28,22 @@
                     <img  class="card-img-top" src ="{{ asset('build/img/uploads/users_perfil/' ~ profile.0.user.getProfileImg) }}" alt="image"/>
                 </div> 
                 <div class="col-md-8 col-8 shadow_box p-3 ">
-                    <span class="profiluserId" data-profiluserId={{profile.0.user.id}} data-profilusername={{profile.0.user.Username}}>Usuario :<b>{{profile.0.user.Username}}</b></span><br/>
-                    <span>Nombre: <b>{{profile.0.user.name}}</b></span><br/>
+                    <span class="profiluserId" data-profiluserId={{profile.0.user.id}} data-profilusername={{profile.0.user.Username}}>Usuario: <span class="ver_color">{{profile.0.user.Username}}</span></span><br/>
+                    <span>Nombre: <span class="ver_color">{{profile.0.user.name}}</span></span><br/>
 
                     {% if is_granted('ROLE_USER') %}
-                    <span>Proximidad: <b>{{distanceUsers}} km</b></span><br/>
-                    <span>Email: <b>{{profile.0.user.email}}</b></span><br/>
-                    <span>Telefono: <b>{{profile.0.user.phoneNumber}}</b></span><br/>
+                    <span>Proximidad: <span class="ver_color">{{distanceUsers}} km</span></span><br/>
+                    <span>Email: <span class="ver_color">{{profile.0.user.email}}</span></span><br/>
+                    <span>Telefono: <span class="ver_color">{{profile.0.user.phoneNumber}}</span></span><br/>
                      {% endif %}
                 </div> 
             </div>
         </div>
         <div class="col-md-5 col-12 p-l-40">
-            <span class="bgGris shadow_box p-3"><b>Tiene los siguientes projects</b>:</span>
+            <span class="bgGris shadow_box p-3">Tiene los siguientes projects:</span>
             <div class="p-t-10 shadow_box p-3">
                 {% for project in projects %}
-                    <a href="{{ path("project",{"id": project.id }) }}" class=" ver_color"><b>{{project.ProjectName}}</b></br></a>               
+                    <a href="{{ path("project",{"id": project.id }) }}" class=" ver_color">{{project.ProjectName}}</br></a>               
                 {% endfor %}
             </div>            
         </div>
@@ -52,12 +52,12 @@
     
     <div class="row m-t-20 margin_top "> 
         <div class="col-md-12">
-            <p class=" ver_color par fs-20 "><b>Datos profesionales</b></p>
+            <p class=" ver_color par fs-20 ">Datos profesionales</p>
         </div>
     </div> 
     <div class="row m-t-20 margin_top "> 
         <div class="col-md-12 ">
-            <p class=" par fs-20 "><b>Se define como:</b></p>
+            <p class=" par fs-20 ">Se define como:</p>
         </div>
         <div class="col-md-12 ">
             <div  class="bgWhite shadow_box p-3 m-t-20 " >
@@ -71,18 +71,17 @@
     </div> 
     <div class="row m-t-20 margin_top "> 
         <div class="col-md-12">
-            <p class=" par fs-20 "><b>Estos son los Profilees profesionales y los sectores en los que tiene experiencia:</b></p>
+            <p class=" par fs-20 ">Estos son los Profilees profesionales y los sectores en los que tiene experiencia:</p>
              {% if is_granted('ROLE_USER') %}
             <div class="row m-t-20 col-md-12">
                 <p>Tu has contactado con el para los siguientes Profilee:
                     
                     {% for profileInterest in profilesInterest %}                        
-                        <b>{{ profileInterest.interestProfile.name }} </b>/                     
+                        {{ profileInterest.interestProfile.name }}                    
                     {% endfor %}
                 
-                </p>
-                
-                <p> El ha contactado contigo:<b>No</b></p>
+                </p>             
+                <p> El ha contactado contigo:No</p>
         </div> 
     {% endif %} 
         </div>
@@ -92,9 +91,9 @@
         <div class="col-md-12 " >
             <div class="shadow_box bgGris p-3">
             {% for profil in profile %}                        
-            <p>Profile:<b>{{ profil.profil.name}}</b></strong></p>
-            <p class='profile-sector' data-{{profil.profil.name}}="{{ profil.Sector}}">Sector:<b>{{ profil.Sector}}</b></strong></p> 
-             <p>Detalle:<b>{{ profil.Description}}</b></strong></p>        
+            <p>Perfil:<span class="ver_color">{{ profil.profil.name}}</span></p>
+            <p class='profile-sector' data-{{profil.profil.name}}="{{ profil.Sector}}">Sector:{{ profil.Sector}}</p> 
+             <p>Detalle:{{ profil.Description}}</p>        
             <hr/>
             {% endfor %}
             </div>
@@ -103,15 +102,15 @@
     
     <div class="row m-t-20 m-b-20 p-r-20"> 
         <div class="col-md-12">
-            <p class="ver_color par fs-20 "><b>Contactos previos</b></p>
+            <p class="ver_color par fs-20 ">Contactos previos</p>
         </div>
         <div class="col-md-12">
-            <p><b>Tu has contactado con el :<a href="#"class="ver_color par1">Si</a></b></p><br/>  
+            <p>Tu has contactado con el :<a href="#"class="ver_color par1">Si</a></p><br/>  
             <div class="col-md-12"><span class="p-t-10">El 19/02/2016 por su Profile como programador para tu project mongolog</span></div>
             <div class="col-md-12 border"style="height:80px;"></div>   
             <div class="col-md-12"><span class="p-t-10">El 19/02/2016 por su Profile como programador para tu project mongolog</span></div>
             <div class="col-md-12 border"style="height:80px;"></div>                
-            <p class="p-t-20"><b>El ha contactado contigo:<a href="#"class="ver_color  par1">Si</a></b></p><br/>
+            <p class="p-t-20">El ha contactado contigo:<a href="#"class="ver_color  par1">Si</a></p><br/>
             <div class="col-md-12"><span class="p-t-10">El 19/02/2016 por su Profile como programador para tu project mongolog</span></div>
             <div class="col-md-12 border"style="height:80px;"></div>
         </div>    

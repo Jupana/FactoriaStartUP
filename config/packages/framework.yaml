@@ -24,15 +24,7 @@ framework:
             img:
                 base_path: 'img'    
             circulo:
-                base_path: 'img' 
-            bumb:
-                base_path: 'img'
-            caja:
-                base_path: 'img'
-            cuaderno:
-                base_path: 'img'
-            final:
-                base_path: 'img' 
+                base_path: 'img'      
             MeInteresa1:
                 base_path: 'img'
             MeInteresa2:

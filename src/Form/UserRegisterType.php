@@ -19,17 +19,17 @@ class UserRegisterType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('username', TextType::class)
-            ->add('email', EmailType::class)
+            ->add('username', TextType::class, array ('label' => 'Usuario'))
+            ->add('email', EmailType::class, array ('label' => 'Mail'))
             ->add('plainpassword', RepeatedType::class, array(
                 'type' => PasswordType::class,
-                'first_options'  => array('label' => 'Password'),
-                'second_options' => array('label' => 'Repeated Password'),
+                'first_options'  => array('label' => 'Contraseña'),
+                'second_options' => array('label' => 'Repite Contraseña'),
             ))
             ->add('termsAgreed', CheckboxType::class, array(
                 'mapped' => false,
                 'constraints' => new IsTrue(),
-                'label' => 'I agree to the terms of service'
+                'label' => 'Estoy de acuerdo con la politica de privacidad'
             ))
             ->add('Register', SubmitType::class);
         
