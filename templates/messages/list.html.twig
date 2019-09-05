@@ -3,31 +3,36 @@
 {% block title %}Mensajes{% endblock %}
 
 {% block content %}
+
     <!--Vista Notificaciones-Mensajes-->
+        
      <div class="view-msg  shadow_box bgGris p-3 m-b-25">
         <div class="container">
             <div class="row">
                 <div class="col-md-4 ">
                     <h4>Mensajes</h4>
                     <hr/>
-                     {% for userMessage in userMessages %}               
-                        <a href="{{ path('message',{"id": userMessage.getConversationId }) }}">
-                            <div class="user_mensaje">
-                                <div class="row">
-                                    <div class="col-md-3"> 
-                                        <img class="img-msg" src ="{{ asset('build/img/uploads/users_perfil/' ~ userMessage.getUserSender.getProfileImg) }}"/> 
-                                    </div>
-                                    <div class="col-md-9">
-                                        <span class="fs-18">{{ userMessage.getUserSender.name}}</span>
-                                        <p>
-                                            <span class="float-left fs-12">{{ userMessage.time|date("d/M/y")}}</span>
-                                            <span class="float-right fs-12">{{ userMessage.time|date("H:i")}}</span>
-                                        </p>
+                     {% for userMessage in userMessages  %}
+                         <a href="{{ path('message',{"id": userMessage.getConversationId }) }}">
+                                <div class="user_mensaje ">
+                                    <div class="row">
+                                        <div class="col-md-3"> 
+                                            <img class="img-msg" src ="{{ asset('build/img/uploads/users_perfil/' ~ userMessage.getUserSender.getProfileImg) }}"/> 
+                                        </div>
+                                        <div class="col-md-9">
+                                            <span class="fs-18">{{ userMessage.getUserSender.name}}</span>
+                                            <p>
+                                            <span>Interes en el proyecto:<span class="ver_color"> {{ userMessage.getInterestProject.getInterestIdProject.getProjectName}}</span></span>
+                                            </p>
+                                            <p>
+                                                <span class="float-left fs-12">{{ userMessage.time|date("d/M/y")}}</span>
+                                                <span class="float-right fs-12">{{ userMessage.time|date("H:i")}}</span>
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <hr/>
-                        </a>
+                                <hr/>
+                            </a> 
                     {% endfor %}  
                 </div>
                 <div class="col-md-8 border-left">           

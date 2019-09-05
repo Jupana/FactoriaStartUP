@@ -3,7 +3,7 @@
 {% block message %}
 <!--Vista-Mensaje-->
 <div class="container">
-    <div class="msg_detail"> 
+    <div class="msg_detail py-3"> 
     {% for messageid in message %}                   
         <div class="row">
             <div class="col-md-2">
@@ -13,17 +13,23 @@
                 <span class="fs-18">{{ messageid.getUserSender.name}}</span>
                 <span class="fs-12">{{ messageid.time|date("d/m/y H:i")}}</span>
                 <p class="p-t-15">{{messageid.text}}</p>  
-                <p class="p-t-15">{{messageid.getInterestProject.getInterestDescription}}</p>           
+                <!--<p class="p-t-15">{{messageid.getInterestProject.getInterestDescription}}</p> -->         
             </div>
         </div>
+        <span class="float-right fs-12">Para proyecto:<span class="ver_color"> {{ messageid.getInterestProject.getInterestIdProject.getProjectName}}</span></span>
         <hr/>
     {% endfor %}
     </div>
-    <div class="input-group">
-        <input type="text" class="form-control py-3" placeholder="Escribe un mensaje..." aria-label="Recipient's username" aria-describedby="basic-addon2">
+ </div>
+ <div class="container">   
+    <!--<div class="input-group">
+        <!--<input type="text" class="form-control py-3" placeholder="Escribe un mensaje..." aria-label="Recipient's username" aria-describedby="basic-addon2">
         <div class="input-group-append">
-            <button class="bt-home text-white" type="button">Enviar</button>
-        </div>
-    </div>   
+            <button class="bt-home text-white" type="button">Enviar</button>      
+        </div></div>--> 
+    {{ form_start(form) }} 
+        {{form_widget(form)}}   
+    {{ form_end(form) }}  
+         
 </div>          
 {% endblock %} 
