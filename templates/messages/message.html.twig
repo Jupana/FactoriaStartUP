@@ -7,7 +7,7 @@
     {% for messageid in message %}                   
         <div class="row">
             <div class="col-md-2">
-                <img class="img-msg float-right" src ="{{ asset('build/img/uploads/users_perfil/' ~ messageid.getUserSender.getProfileImg) }}"/>                                       
+                <img class="img-msg float-right" src ="{{ asset('build/img/uploads/users_profile/' ~ messageid.getUserSender.getProfileImg) }}"/>                                       
             </div>
             <div class="col-md-10">
                 <span class="fs-18">{{ messageid.getUserSender.name}}</span>

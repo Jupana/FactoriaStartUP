@@ -50,7 +50,7 @@
                     <a class="fs-18 fsu-username" href="{{ path('user') }}" data-fsu-username="{{app.user.id}}">{{ app.user.username}}</a> 
                     <a tabindex="0" role="button" rel="popover" data-placement="bottom" data-toggle="popover" href="#" >
                        <div class="icono-notification">
-                            <img class="notification rounded-circle" src ="{{ asset('build/img/uploads/users_perfil/' ~ app.user.getProfileImg) }}"/>
+                            <img class="notification rounded-circle" src ="{{ asset('build/img/uploads/users_profile/' ~ app.user.getProfileImg) }}"/>
                             {% if results.count_notify > 0 %}
                                 <div class="icono-encima bg-danger text-white fs-10 not-count">{{results.count_notify}}</div>
                             {% endif %}    
@@ -79,7 +79,7 @@
                                 <div class="activity_item ">
                                     <div class="row">
                                         <div class="col-md-3">
-                                            <img class="rounded" src ="{{ asset('build/img/uploads/users_perfil/' ~ user.user_image) }}"/>
+                                            <img class="rounded" src ="{{ asset('build/img/uploads/users_profile/' ~ user.user_image) }}"/>
                                         </div>
                                         <div class="col-md-9">
                                             <div class="d-flex align-items-top justify-content-between">
