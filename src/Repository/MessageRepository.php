@@ -53,9 +53,12 @@ class MessageRepository extends ServiceEntityRepository
         $qb= $this->createQueryBuilder('m');
         $qb ->andWhere('m.user_sender = :userid')
             ->orWhere('m.user_recipient = :userid')
+            ->groupBy('m.conversation_id')
             ->setParameter('userid', $userId);
 
         $qb =$qb->getQuery();
         return $qb->getResult();
     }
+
+    
 }

@@ -3,14 +3,14 @@
     <!-- COMMENT FOR WORK ...DONT PRINT LOGOWORK-->
     <div class="flex-row justify-content-around border-bottom border-secondary">
         <div class="col-2  col-xl-4"> 
-            <!-- Logo working 
+         <!-- COMMENT FOR WORK ...DONT PRINT LOGOWORK
             <a href="/">
                 <img class="img-fluid float-left" alt="Responsive image" src ="{{ asset('build/img/logo.png') }}"> 
-            </a>
-         </div>               
+            </a>-->
+         </div>             
         <div class="col-7 col-md-10 col-xl-8">                        
-            <!-- Banner working                     
-            <img class="img-fluid float-right" alt="Responsive image" src ="{{ asset('build/img/banner.png') }}">   -->        
+         <!-- COMMENT FOR WORK ...DONT PRINT banner                  
+            <img class="img-fluid float-right" alt="Responsive image" src ="{{ asset('build/img/banner.png') }}"> -->        
         </div> 
     </div>
     <nav class="navbar navbar-expand-lg navbar-light">
@@ -50,7 +50,7 @@
                     <a class="fs-18 fsu-username" href="{{ path('user') }}" data-fsu-username="{{app.user.id}}">{{ app.user.username}}</a> 
                     <a tabindex="0" role="button" rel="popover" data-placement="bottom" data-toggle="popover" href="#" >
                        <div class="icono-notification">
-                            <img class="notification rounded-circle" src ="{{ asset('build/img/uploads/users_profile/' ~ app.user.getProfileImg) }}"/>
+                            <img class="notification rounded-circle" src ="{{ asset('build/img/uploads/users_perfil/' ~ app.user.getProfileImg) }}"/>
                             {% if results.count_notify > 0 %}
                                 <div class="icono-encima bg-danger text-white fs-10 not-count">{{results.count_notify}}</div>
                             {% endif %}    
@@ -79,23 +79,22 @@
                                 <div class="activity_item ">
                                     <div class="row">
                                         <div class="col-md-3">
-                                            <img class="rounded-circle" src ="{{ asset('build/img/uploads/users_profile/' ~ user.user_image) }}"/>
+                                            <img class="rounded" src ="{{ asset('build/img/uploads/users_perfil/' ~ user.user_image) }}"/>
                                         </div>
                                         <div class="col-md-9">
                                             <div class="d-flex align-items-top justify-content-between">
                                                 <span>{{user.user}}</span>
                                                 <span>{{user.time}}</span>
                                             </div>
-                                            <p class="text-muted">Perfil:
+                                            <span class="text-muted">Perfil:
                                                 {% if user.interest_profile is defined %}
                                                     {{user.interest_profile}}
                                                 {% elseif user.interest_project is defined %}
                                                     {{user.interest_project}}
                                                 {% endif %}
                                             
-                                            </p><br/>
-                                            
-                                            <p class="text-muted">{{user.interest_description}}</p>
+                                            </span><br/>                                         
+                                            <!--<span class="text-muted">{{user.interest_description}}</span>-->
                                         </div>               
                                     </div><hr/>                  
                                 </div>

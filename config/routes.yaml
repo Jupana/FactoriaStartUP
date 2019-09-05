@@ -148,6 +148,7 @@ list-messages:
 message:
     path: /user/messages/{id}
     controller: App\Controller\MessageController::message 
+    
 
 #Notes
 list-notes:

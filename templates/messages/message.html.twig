@@ -1,179 +1,35 @@
-{% extends 'base.html.twig' %}
+{% extends 'messages/list.html.twig' %}
 
-{% block title %}Herramientas{% endblock %}
-
-{% block content %}
-   <!-- Foro
-    <div class="row p-t-10">
-        <div class="col-md-3 col-12">
-            <p class="bgAzul m-b-2 text-white text-center ">Todos</p>
-            <p class="bgAzul m-b-2 text-white text-center ">Marketing</p>
-            <p class="bgAzul m-b-2 text-white text-center ">Programacion</p>
-            <p class="bgAzul m-b-2 text-white text-center ">Diseño</p>
-            <p class="bgAzul  m-b-2 text-white text-center ">Comercial/<br/>Contactos</p>
-            <p class="bgAzul m-b-2 text-white text-center ">Legal</p>
-            <p class="bgAzul m-b-2 text-white text-center ">Contable</p>
-            <p class="bgAzul m-b-2 text-white text-center ">Financiacion</p>
-            <p class="bgAzul m-b-2 text-white text-center ">Espacio Fisico</p>
-            <p class="bgAzul m-b-10 text-white text-center ">Telecomunicacion</p>
-        </div>
-        <div class="col-md-9 col-12">
-            <div class="form-group row">
-                <div class="col-md-10 col-9">
-                    <input class="form-control " placeholder="Buscar en Foro" type="search" style="height:100%;">            
-                </div>             
-                <button type="search" class="btn-md bgGris ">Buscar</button>                           
+{% block message %}
+<!--Vista-Mensaje-->
+<div class="container">
+    <div class="msg_detail py-3"> 
+    {% for messageid in message %}                   
+        <div class="row">
+            <div class="col-md-2">
+                <img class="img-msg float-right" src ="{{ asset('build/img/uploads/users_perfil/' ~ messageid.getUserSender.getProfileImg) }}"/>                                       
             </div>
-            <div class="row border p-t-10 m-r-2 m-l-2 border-info">
-                <div class="col-md-7">
-                    <p class="bgAzul text-white text-center ">Marketing</p>
-                    <p class=" ">Encuentra soluciones para analizar la viabilidad de tu project</p>
-                </div>
-                <div class="col-md-5 col-12">
-                    <div class="row m-b-10">
-                        <div class="col-md-6 col-4">
-                            <p class=" ">Moderador <a href="#" class="ver_color par1">Sadow</a></p>
-                           
-                        </div>
-                        <div class="col-md-4 col-4 border p-r-20">
-                            Foto
-                        </div>
-                    </div>            
-                </div>
-            
-            </div> 
-            <div class="row border m-t-10 p-t-10 m-r-2 m-l-2 border-info">
-                <div class="col-md-9">
-                    <p class=" ">Dudas,consejo y consultar para temas de Marketing</p>
-                    <p class=" ver_color">1 voto/3 Comentarios/Marposita</p>
-                </div>
-                <div class="col-md-3">
-                    <p class=" ">19/12/1974 13:01</p>     
-                </div>        
-            </div>
-            <div class="row border m-t-10 p-t-10 m-r-2 m-l-2 m-b-10 border-info">
-                <div class="col-md-9">
-                    <p class=" ">¿Buscas informacion sobre BBDD de Madrid?</p>
-                    <p class=" ver_color">1 voto/3 Comentarios/Marposita</p>
-                </div>
-                <div class="col-md-3">
-                    <p class=" ">19/12/1974 13:01</p>     
-                </div>        
+            <div class="col-md-10">
+                <span class="fs-18">{{ messageid.getUserSender.name}}</span>
+                <span class="fs-12">{{ messageid.time|date("d/m/y H:i")}}</span>
+                <p class="p-t-15">{{messageid.text}}</p>  
+                <!--<p class="p-t-15">{{messageid.getInterestProject.getInterestDescription}}</p> -->         
             </div>
         </div>
-    </div>  -->
-
-    <!--Vista Notificaciones-Mensajes-->
-    {{dump(message)}}
-     <div class="vista_mensajes">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                        <h4 class="p-t-20 p-b-20 font-weight-bold">Mensajes</h4>
-                        <a href="#">
-                            <div class="user_mensaje shadow_box p-3 m-b-20">
-                                <div class="row mb-n3">
-                                    <div class="col-md-3"> 
-                                        <img class="rounded-circle" src ="{{ asset('build/img/uploads/users_profile/' ~ app.user.getProfileImg) }}"/>
-                                    </div>
-                                    <div class="col-md-9">
-                                        <h5>Micheal McCoy</h5>
-                                        <p><span class="map size_iconStar">Guadalupe</span></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="#"> 
-                            <div class="user_mensaje shadow_box p-3 m-b-20">
-                                <div class="row mb-n3">
-                                    <div class="col-md-3"> 
-                                        <img class="rounded-circle" src ="{{ asset('build/img/liviu.png') }}"/>
-                                    </div>
-                                    <div class="col-md-9">
-                                        <h5>Micheal McCoy</h5>
-                                        <p><span class="map size_iconStar">Guadalupe</span></p>
-                                    </div>
-                                </div>
-                            </div> 
-                        </a> 
-                           <a href="#">
-                            <div class="user_mensaje shadow_box p-3 m-b-20">
-                                <div class="row mb-n3">
-                                    <div class="col-md-3"> 
-                                        <img class="rounded-circle" src ="{{ asset('build/img/uploads/users_profile/' ~ app.user.getProfileImg) }}"/>
-                                    </div>
-                                    <div class="col-md-9">
-                                        <h5>Micheal McCoy</h5>
-                                        <p><span class="map size_iconStar">Guadalupe</span></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                        <a href="#"> 
-                            <div class="user_mensaje shadow_box p-3 m-b-20">
-                                <div class="row mb-n3">
-                                    <div class="col-md-3"> 
-                                        <img class="rounded-circle" src ="{{ asset('build/img/liviu.png') }}"/>
-                                    </div>
-                                    <div class="col-md-9">
-                                        <h5>Micheal McCoy</h5>
-                                        <p><span class="map size_iconStar">Guadalupe</span></p>
-                                    </div>
-                                </div>
-                            </div> 
-                        </a>   
-                </div>
-                <div class="col-md-7 border-left m-t-30 m-b-30">
-                    <div class="row">
-                        <div class="col-md-2">
-                            <img class="rounded-circle"  src ="{{ asset('build/img/project-fsu.png') }}">
-                        </div>
-                        <div class="col-md-10 p-t-20">
-                            <div class="fs-30 font-weight-bold"><span>project NAME o Mensaje TITULO</span></div>   
-                        </div>
-                    </div>     
-                 <!--Aqui habria que hacer un template para el mensaje a sacar a la vista-->
-                  <div class="mesgs text-dark fs-20">
-                    <div class="msg_history">
-                        <div class="incoming_msg">
-                            <div class="incoming_msg_img"> 
-                                <img class="rounded-circle" src="{{ asset('img/Captura18.png') }}" alt=""> 
-                            </div>
-                                <div class="received_msg ">
-                                    <div class="received_withd_msg">
-                                        <p>How many days do you think will take us to doscover Paris??</p>
-                                        <span class="time_date">10 min ago</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="outgoing_msg">
-                                <div class="sent_msg">
-                                    <p class="border font-weight-bold">OK,sounds great! I`ll start organising the flight tickets first.</p>
-                                    <span class="time_date">2 houres ago</span> 
-                                </div>
-                            </div>
-                            <div class="incoming_msg">
-                                <div class="incoming_msg_img"> 
-                                    <img class="rounded-circle" src="{{ asset('img/Captura18.png') }}" alt=""> 
-                                </div>
-                                <div class="received_msg">
-                                    <div class="received_withd_msg">
-                                        <p>ok,sounds good!!you`re amazing.I want to invite all my fiends!!!</p>
-                                        <span class="time_date">10 min ago</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="outgoing_msg">
-                                <div class="sent_msg">
-                                    <p class="border font-weight-bold">ok will go to doscover Paris </p>
-                                    <span class="time_date">10 min ago</span> 
-                                </div>
-                            </div>
-                        </div>
-                    </div>  
-                </div>
-            </div>  
-        </div>
+        <span class="float-right fs-12">Para proyecto:<span class="ver_color"> {{ messageid.getInterestProject.getInterestIdProject.getProjectName}}</span></span>
+        <hr/>
+    {% endfor %}
     </div>
-{% endblock %}
-
+ </div>
+ <div class="container">   
+    <!--<div class="input-group">
+        <!--<input type="text" class="form-control py-3" placeholder="Escribe un mensaje..." aria-label="Recipient's username" aria-describedby="basic-addon2">
+        <div class="input-group-append">
+            <button class="bt-home text-white" type="button">Enviar</button>      
+        </div></div>--> 
+    {{ form_start(form) }} 
+        {{form_widget(form)}}   
+    {{ form_end(form) }}  
+         
+</div>          
+{% endblock %} 
