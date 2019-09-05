@@ -1,0 +1,125 @@
+{% extends 'admin/view-admin.html.twig' %}
+
+{% block contentAdmin %}
+<!--Admin project-->
+{% if is_granted('ROLE_ADMIN') and (app.user.username == 'admin') %} 
+
+     <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Columna</th>
+                <th scope="col">Descripcion</th>
+                 <th scope="col">Evaluacion</th>
+            </tr>
+        </thead>
+        <tbody>     
+                <tr>
+                    <td>Nombre del Proyecto:</td>
+                    <td><b>{{project.ProjectName}}</b></td>
+                    <th scope="col">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <label class="form-check-label" for="exampleCheck1">Dar OK</label>
+                        </div>
+                        <textarea>Pon tu Comentario</textarea>              
+                    </th>
+                 </tr>
+                <tr>
+                    <td>Sector :</td>
+                    <td><b>{{project.ProjectSector}}</b></td>
+                      <th scope="col">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <label class="form-check-label" for="exampleCheck1">Dar OK</label>
+                        </div>
+                        <textarea>Pon tu Comentario</textarea>              
+                    </th>
+                </tr>
+                <tr>    
+                    <td>Descripcion :</td>
+                    <td><b>{{project.ProjectDescription}}</b></td>
+                    <th scope="col">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <label class="form-check-label" for="exampleCheck1">Dar OK</label>
+                        </div>
+                        <textarea>Pon tu Comentario</textarea>              
+                    </th>
+                </tr>
+                <tr>    
+                    <td>Facturacion Estimada :</td>
+                    <td><b>        
+                        <span>año1:<span class="fs-20"> {{ project.ProjectAproxFacturation1}}€</span></span> ,
+                        <span>año2: <span class="fs-20">{{ project.ProjectAproxFacturation2}}€</span></span> ,
+                        <span>año3: <span class="fs-20">{{ project.ProjectAproxFacturation3}}€</span></span>
+                    </b></td>
+                    <th scope="col">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <label class="form-check-label" for="exampleCheck1">Dar OK</label>
+                        </div>
+                        <textarea>Pon tu Comentario</textarea>              
+                    </th>
+                </tr>
+                <tr>    
+                    <td>Clientes Potenciales :</td>
+                    <td><b>
+                        <span>Usarios: <span class="fs-20">{{ project.ProjectPotentialyUsers}}</span></span><br/> 
+                        <span>Empresas: <span class="fs-20">{{ project.ProjectPotentialyCompanies}}</span></span>
+                    </b></td>
+                    <th scope="col">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <label class="form-check-label" for="exampleCheck1">Dar OK</label>
+                        </div>
+                        <textarea>Pon tu Comentario</textarea>              
+                    </th>
+                </tr>
+                <tr>    
+                    <td>Competencia :</td>
+                    <td><b>{{ project.ProjectCompetitors}}</b></td>
+                    <th scope="col">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <label class="form-check-label" for="exampleCheck1">Dar OK</label>
+                        </div>
+                        <textarea>Pon tu Comentario</textarea>              
+                    </th>
+                </tr>
+                <tr>    
+                    <td>Contacto :</td>
+                    <td><b>
+                        <span>Usuario: <b>{{project.user.username}}</b></span>, Nombre: <b>{{project.user.name}}</b></span><br/>
+                        <span>Email: <b>{{project.user.email}}</b></span><br/>
+                        <span>Telefono: <b>{{project.user.phoneNumber}}</b></span><br/>
+                    </b></td>
+                    <th scope="col">
+                        <button class="text-white bgAzul2 p-3">Envia comnetarios/OK del proyecto</button>                      
+                    </th>
+                </tr>
+
+                {% for needProject in needsProject %}
+                    <tr>    
+                    <td>Contacto :</td>
+                    <td><b>
+                        <span>Perfil: <b>{{needProject.needsProfile.name}}</b></span><br/>
+                     
+                    </b>
+                    </td>
+                    <th scope="col">
+                        <button class="text-white bgAzul2 p-3">Envia comnetarios/OK del proyecto</button>                      
+                    </th>
+                </tr>
+                {% endfor %}
+
+                 {{dump(needsProject)}} 
+                  {{dump(contributeProjects)}} 
+
+        </tbody>
+    </table>
+    </div>
+    {% else %}
+        <a href="{{ path('security_login') }}"><p class="btn btn-primary btn-block fs-20 text-center ">Inicia Sesion como administrator</p></a>   
+{% endif %}         
+{% endblock %}
+
