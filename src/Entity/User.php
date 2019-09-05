@@ -199,7 +199,11 @@ class User implements UserInterface,\Serializable
      * @ORM\OneToMany(targetEntity="App\Entity\Contribute", mappedBy="user", orphanRemoval=true)
      */
     private $contribute;
-    
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Notes", mappedBy="user", orphanRemoval=true)
+     */
+    private $notes;
 
 
     public function __construct()
@@ -209,6 +213,8 @@ class User implements UserInterface,\Serializable
         $this->profile_id = new ArrayCollection();
         $this->interest_profile_id = new ArrayCollection();
         $this->notifications = new ArrayCollection();
+        $this->interest_profile = new ArrayCollection();
+        $this->notes = new ArrayCollection();
     }
 
 
@@ -709,6 +715,68 @@ class User implements UserInterface,\Serializable
     public function setUser(?Message $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Notes[]
+     */
+    public function getInterestProfile(): Collection
+    {
+        return $this->interest_profile;
+    }
+
+    public function addInterestProfile(Notes $interestProfile): self
+    {
+        if (!$this->interest_profile->contains($interestProfile)) {
+            $this->interest_profile[] = $interestProfile;
+            $interestProfile->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeInterestProfile(Notes $interestProfile): self
+    {
+        if ($this->interest_profile->contains($interestProfile)) {
+            $this->interest_profile->removeElement($interestProfile);
+            // set the owning side to null (unless already changed)
+            if ($interestProfile->getUser() === $this) {
+                $interestProfile->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Notes[]
+     */
+    public function getNotes(): Collection
+    {
+        return $this->notes;
+    }
+
+    public function addNote(Notes $note): self
+    {
+        if (!$this->notes->contains($note)) {
+            $this->notes[] = $note;
+            $note->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeNote(Notes $note): self
+    {
+        if ($this->notes->contains($note)) {
+            $this->notes->removeElement($note);
+            // set the owning side to null (unless already changed)
+            if ($note->getUser() === $this) {
+                $note->setUser(null);
+            }
+        }
 
         return $this;
     }

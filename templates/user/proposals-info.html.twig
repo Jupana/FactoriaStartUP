@@ -39,6 +39,7 @@
                                         <th>project</th>
                                         <th>Negociacion</th>
                                         <th>Estado</th>
+                                        <th>Notas</th>
                                         <th>Eliminar</th>
                                     </tr>
                                 </thead>
@@ -67,6 +68,9 @@
                                              {% else %}
                                              <p>Reunido</p>
                                              {% endif %}
+                                        </td>
+                                        <td>
+                                            <a  class="ver_color " href="/user/notes/{{searchprofile.id}}"><p>Ver</p></a>
                                         </td>
                                         <td>
                                            <a class="delete" href="{{path('delete-profile-Interest', {'id':searchprofile.id})}}">

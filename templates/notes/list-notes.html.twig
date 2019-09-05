@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Notas -{{app.user.getName}} {% endblock %}
+
+{% block content %}
+    <!--Vista Notificaciones-Mensajes-->
+     <div class="view-msg  shadow_box bgGris p-3 m-b-25">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 ">
+                    <h4>Notas</h4>
+                    <hr/>
+                        {% if userNotes is empty%}
+                            <h5>No tienes Notas</h5>
+                        {% endif %}
+                        <a href="{{ path('message',{"id": 1 }) }}">
+                            <div class="user_mensaje">
+                                <div class="row">
+                                    <div class="col-md-3"> 
+                                        <img class="img-msg" src =""/> 
+                                    </div>
+                                    <div class="col-md-9">
+                                        <span class="fs-18"></span>
+                                        <p>
+                                            <span class="float-left fs-12">Time Date</span>
+                                            <span class="float-right fs-12">Ceas ore</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr/>
+                        </a>
+                     
+                </div>
+                <div class="col-md-8 border-left">           
+                    {% block note %}
+                           <div class="user_mensaje text-center py-5">
+                                <div class="row">
+                                    <div class="col-md-12"> 
+                                        <img class="img-msg" src ="{{ asset('build/img/uploads/users_perfil/' ~ app.user.getProfileImg) }}"/> 
+                                    </div>
+                                    <div class="col-md-12">
+                                        <h4 class="py-3">Hola </h4>
+                                        <h6 class="px-3">Aqui puedes ver tus mensajes de colaboracion ya enviados segun intereses o ir en busqueda de nuevos datos de tu interes:</h6>                                                                 
+                                    </div>
+                                </div>
+                            </div>
+                    {% endblock %}                
+                </div>
+            </div>  
+        </div>
+    </div>
+{% endblock %}
