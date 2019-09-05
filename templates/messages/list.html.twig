@@ -16,13 +16,32 @@
                          <a href="{{ path('message',{"id": userMessage.getConversationId }) }}">
                                 <div class="user_mensaje ">
                                     <div class="row">
+                                        
+                                        {% set imgPerfil = userMessage.getUserSender.getProfileImg %}
+                                        {% set userSendName = userMessage.getUserSender.name %}
+                                        {% set starter = false %}
+                                        {% set type = 'Interes en el perfil' %}
+                                        
+                                        {% if userMessage.getUserSender.id == app.user.id %}
+                                           {% set imgPerfil = userMessage.getUserRecipient.getProfileImg %}
+                                           {% set userSendName = userMessage.getUserRecipient.name %}
+                                           {% set starter = true %}     
+                                        {% endif %}
+
+                                         {% if userMessage.getType == 'project_interest' %}
+                                           {% set type = 'Interes en el proyecto' %}
+                                        {% endif %}
+
                                         <div class="col-md-3"> 
-                                            <img class="img-msg" src ="{{ asset('build/img/uploads/users_perfil/' ~ userMessage.getUserSender.getProfileImg) }}"/> 
+                                            <img class="img-msg" src ="{{ asset('build/img/uploads/users_perfil/' ~ imgPerfil) }}"/> 
                                         </div>
                                         <div class="col-md-9">
-                                            <span class="fs-18">{{ userMessage.getUserSender.name}}</span>
+                                            {% if starter %}
+                                                <span class="fs-18">*** Tu has inicado esta conversacion con </span>
+                                            {% endif %}
+                                            <span class="fs-18">{{ userSendName}}</span>
                                             <p>
-                                            <span>Interes en el proyecto:<span class="ver_color"> {{ userMessage.getInterestProject.getInterestIdProject.getProjectName}}</span></span>
+                                            <span>{{type}} :<span class="ver_color"> {{ userMessage.getInterestProject.getInterestIdProject.getProjectName}}</span></span>
                                             </p>
                                             <p>
                                                 <span class="float-left fs-12">{{ userMessage.time|date("d/M/y")}}</span>

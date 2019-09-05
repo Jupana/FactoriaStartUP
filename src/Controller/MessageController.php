@@ -37,7 +37,23 @@ class MessageController extends AbstractController
         $userMessages = $this->messageRepository->findMessage($this->getUser()->getId());
         $message = $this->messageRepository->findBy(['conversation_id' =>$id]);
 
+        $user = $this->getUser();
+        $userSender = $message[0]->getUserSender();
+        $userRecipient = $message[0]->getUserRecipient();
+
+        $userRecipient = $user->getId() == $userRecipient->getId() ? $userSender : $userRecipient;
+        
         $newMessage = new Message();
+        $newMessage-> setType($message[0]->getType());
+        $newMessage->setConversationId($message[0]->getConversationId());
+        $newMessage->setUserSender($user);
+        $newMessage->setUserRecipient($userRecipient);
+        
+        if($message[0]->getType() == "project_interest")
+            $newMessage->setInterestProject($message[0]->getInterestProject());
+        if($message[0]->getType() == "profile_interest")
+            $newMessage->setInterestProfil($message[0]->getInterestProfil());
+        
         $form = $this->createForm(
             MessageType::class,
             $newMessage
@@ -45,14 +61,8 @@ class MessageController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {        
-            $conversation_id = $newMessage->getConversationId();
-            $type = $newMessage->getType();
-            $text = $newMessage->getText();
-            $time = $newMessage->setTime(new \DateTime());
-            $user_sender = $newMessage->getUserSender();
-            $user_recipient = $newMessage->getUserRecipient();
-            $interest_project = $newMessage->getInterestProject();
-
+            $newMessage->setTime(new \DateTime());
+            
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($newMessage);
             $entityManager->flush();
