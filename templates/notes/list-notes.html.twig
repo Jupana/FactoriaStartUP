@@ -10,27 +10,32 @@
                 <div class="col-md-4 ">
                     <h4>Notas</h4>
                     <hr/>
-                        {% if userNotes is empty%}
-                            <h5>No tienes Notas</h5>
-                        {% endif %}
-                        <a href="{{ path('message',{"id": 1 }) }}">
-                            <div class="user_mensaje">
-                                <div class="row">
-                                    <div class="col-md-3"> 
-                                        <img class="img-msg" src =""/> 
-                                    </div>
-                                    <div class="col-md-9">
-                                        <span class="fs-18"></span>
-                                        <p>
-                                            <span class="float-left fs-12">Time Date</span>
-                                            <span class="float-right fs-12">Ceas ore</span>
-                                        </p>
+                    {% if userNotes is empty%}
+                        <h5>No tienes Notas</h5>
+                    {% else %}
+                    {% for userNote in userNotes  %}
+                        <a href="{{ path('note',{"id": userNote.getInterestProfile.id }) }}">
+                            <div class="user_mensaje ">
+                                <div class="row">                            
+                                        <div class="col-md-3"> 
+                                            <img class="img-msg" src ="{{ asset('build/img/uploads/users_profile/' ~ userNote.user.getProfileImg) }}"/> 
+                                        </div>
+                                        <div class="col-md-9">
+                                            <span class="fs-18">{{ userNote.getUser.name}}</span>
+                                            <span class="fs-12">Nota para proyecto:<span class="ver_color"> {{ userNote.getInterestProject.getInterestIdProject.getProjectName}}</span></span>
+                                            <p>
+                                            </p>
+                                            <p>
+                                                <span class="float-left fs-12">{{ userNote.getNotesDate|date("d/M/y")}}</span>
+                                                <span class="float-right fs-12">{{ userNote.getNotesDate|date("H:i")}}</span>
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <hr/>
-                        </a>
-                     
+                                <hr/>
+                            </a> 
+                    {% endfor %}
+                    {% endif %} 
                 </div>
                 <div class="col-md-8 border-left">           
                     {% block note %}
@@ -40,8 +45,8 @@
                                         <img class="img-msg" src ="{{ asset('build/img/uploads/users_profile/' ~ app.user.getProfileImg) }}"/> 
                                     </div>
                                     <div class="col-md-12">
-                                        <h4 class="py-3">Hola </h4>
-                                        <h6 class="px-3">Aqui puedes ver tus mensajes de colaboracion ya enviados segun intereses o ir en busqueda de nuevos datos de tu interes:</h6>                                                                 
+                                        <h4 class="py-3">Hola {{app.user.getName}} </h4>
+                                        <h6 class="px-3">Aqui puedes ver tus notas sobre cada contacto y colaboracion ya empezada segun reuniones y avanze de los mismos:</h6>                                                                 
                                     </div>
                                 </div>
                             </div>

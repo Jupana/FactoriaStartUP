@@ -4,26 +4,25 @@
 <!--Vista-Mensaje-->
 <div class="container">
     <div class="msg_detail"> 
-                   
+        {% for noteid in note %}           
         <div class="row">
             <div class="col-md-2">
-                <img class="img-msg float-right" src =""/>                                       
+                <img class="img-msg float-right" src ="{{ asset('build/img/uploads/users_profile/' ~ noteid.user.getProfileImg) }}"/>                                       
             </div>
             <div class="col-md-10">
-                <span class="fs-18"> messageid.getUserSender.name</span>
-                <span class="fs-12"> messageid.time|date("d/m/y H:i")</span>
-                <p class="p-t-15">messageid.text</p>  
-                <p class="p-t-15">messageid.getInterestProject.getInterestDescription</p>           
+                <span class="fs-18"> {{noteid.getUser.name}}</span>
+                <span class="fs-12"> {{noteid.getNotesDate|date("d/m/y H:i")}}</span>
+                <p class="p-t-15">{{noteid.notes}}</p>  
             </div>
         </div>
+        <span class="float-right fs-12"><span class="ver_color"> {{ noteid.getInterestProject.getInterestIdProject.getProjectName}}</span></span>
         <hr/>
-    
+        {% endfor %}  
     </div>
-    <div class="input-group">
-        <input type="text" class="form-control py-3" placeholder="Una nota..." aria-label="Recipient's username" aria-describedby="basic-addon2">
-        <div class="input-group-append">
-            <button class="bt-home text-white" type="button">Enviar</button>
-        </div>
-    </div>   
-</div>          
+</div>    
+ <div class="container">   
+    {{ form_start(form) }} 
+        {{form_widget(form)}}   
+    {{ form_end(form) }}          
+</div>            
 {% endblock %} 
