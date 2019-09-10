@@ -4,13 +4,24 @@
 <!--Vista-Mensaje-->
 <div class="container">
     <div class="msg_detail"> 
+        {% if note is empty %}
+                <div class="user_mensaje text-center py-5">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h4 class="py-3">Hola {{app.user.getName}} </h4>
+                                        <h6 class="px-3">Aqui puedes escribir tu primera nota para <b>{{dataFirstNote.userContact}}</b> 
+                                                        que contactaste para el proyecto <b>{{dataFirstNote.project}}</b> 
+                                                        con el perfil <b>{{dataFirstNote.profile}}</b></h6>                                                                 
+                                    </div>
+                                </div>
+                </div>
+        {% endif %}
+        
         {% for noteid in note %}           
         <div class="row">
-            <div class="col-md-2">
-                <img class="img-msg float-right" src ="{{ asset('build/img/uploads/users_profile/' ~ noteid.user.getProfileImg) }}"/>                                       
-            </div>
+            
             <div class="col-md-10">
-                <span class="fs-18"> {{noteid.getUser.name}}</span>
+                <span class="fs-18"> Nota</span>
                 <span class="fs-12"> {{noteid.getNotesDate|date("d/m/y H:i")}}</span>
                 <p class="p-t-15">{{noteid.notes}}</p>  
             </div>
@@ -23,9 +34,6 @@
             {% if noteid.getInterestProfile %}                
                 <span class="float-right fs-12"><span class="ver_color"> {{ noteid.getInterestProfile.getInterestProfile.getName}}</span></span>
             {% endif %}
-        
-        
-        
         <hr/>
         {% endfor %}  
     </div>

@@ -64,8 +64,9 @@ class NotesRepository extends ServiceEntityRepository
     public function findNotes($userId)
     {
         $qb= $this->createQueryBuilder('n');
-        $qb ->andWhere('n.user = :userid')            
+        $qb ->andWhere('n.user = :userid')           
             ->groupBy('n.notes_uniq_id')
+            ->orderBy('n.notes_date', 'DESC') 
             ->setParameter('userid', $userId);
 
         $qb =$qb->getQuery();

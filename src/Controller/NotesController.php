@@ -42,23 +42,29 @@ class NotesController extends AbstractController
     {   
         $user = $this->getUser();
         $userId =$this->getUser()->getId();
-        $userNotes = $this->notesRepository->findBy(['user' => $this->getUser()]);
-        $note = $this->notesRepository->findNote($id,$this->getUser()->getId());
-        dump($note);
-
+        $userNotes = $this->notesRepository->findNotes($userId);
+        $note = $this->notesRepository->findNote($id,$userId);
+        dump($userNotes);
         
         //Empesamos a crear aqui la nota y la vamos a rellenar con los campos que necesitamos dependiendo del tipo de interes
         $newNote = new Notes();
         $newNote->setUser($user);
         //Sacamos el tipo de interest y dependiendo del tipo que sea nos vamos al repo y sacamos el dato.
         
+        $dataFirstNote =[];
+
         if($type_interest == 'interest_profile'){            
             $interestProfile = $this->interestProfileRepository->findOneBy(['id'=>$id]);
             $profileId=$interestProfile->getId();
             $uniqueID = $userId.'-'.$profileId.'-'.rand(1000,10000000);
             
             $newNote->setInterestProfile($interestProfile);
-            $newNote->setNotes_uniq_id($uniqueID);            
+            $newNote->setProjectNotes($interestProfile->getInterestProject());
+            $newNote->setNotesUniqId($uniqueID); 
+            $dataFirstNote['userContact'] =$interestProfile->getUserProfileOwner()->getName();
+            $dataFirstNote['project'] =$interestProfile->getInterestProject()->getProjectName();
+            $dataFirstNote['profile'] =$interestProfile->getInterestProfile()->getName();
+                     
         }
         if($type_interest == 'interest_project'){            
             $interestProject = $this->interestProjectRepository->findOneBy(['id'=>$id]);
@@ -67,14 +73,15 @@ class NotesController extends AbstractController
             $uniqueID = $userId.'-'.$projectId.'-'.rand(1000,10000000);
 
             $newNote->setInterestProject($interestProject);
-            $newNote->setNotes_uniq_id($uniqueID);            
+            $newNote->setNotesUniqId($uniqueID);            
         }
+
 
 
         if(!empty($note)){
             $newNote->setInterestProfile($note[0]->getInterestProfile());
             $newNote->setInterestProject($note[0]->getInterestProject());
-            $newNote->setNotes_uniq_id($note[0]->getNotes_uniq_id());
+            $newNote->setNotesUniqId($note[0]->getNotesUniqId());
         }
         
 
@@ -98,7 +105,8 @@ class NotesController extends AbstractController
         return $this->render('notes/note.html.twig', [
             'note' => $note,
             'userNotes'=>$userNotes,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'dataFirstNote'=>$dataFirstNote
         ]);
     }
 }

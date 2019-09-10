@@ -47,6 +47,16 @@ class Notes
      * @ORM\Column(type="text", nullable=false)
      */
     private $notes_uniq_id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Project")
+     */
+    private $project_notes;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Profil")
+     */
+    private $profile_notes;
    
 
     public function getId(): ?int
@@ -118,7 +128,7 @@ class Notes
     /**
      * Get the value of notes_uniq_id
      */ 
-    public function getNotes_uniq_id()
+    public function getNotesUniqId()
     {
         return $this->notes_uniq_id;
     }
@@ -128,9 +138,49 @@ class Notes
      *
      * @return  self
      */ 
-    public function setNotes_uniq_id($notes_uniq_id)
+    public function setNotesUniqId($notes_uniq_id)
     {
         $this->notes_uniq_id = $notes_uniq_id;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of project_notes
+     */ 
+    public function getProjectNotes()
+    {
+        return $this->project_notes;
+    }
+
+    /**
+     * Set the value of project_notes
+     *
+     * @return  self
+     */ 
+    public function setProjectNotes($project_notes)
+    {
+        $this->project_notes = $project_notes;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of profile_notes
+     */ 
+    public function getProfileNotes()
+    {
+        return $this->profile_notes;
+    }
+
+    /**
+     * Set the value of profile_notes
+     *
+     * @return  self
+     */ 
+    public function setProfileNotes($profile_notes)
+    {
+        $this->profile_notes = $profile_notes;
 
         return $this;
     }
