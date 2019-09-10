@@ -159,7 +159,7 @@ list-notes:
     controller: App\Controller\NotesController::listNotes
 
 note:
-    path: /user/notes/{id}
+    path: /user/notes/{id}/{type_interest}
     controller: App\Controller\NotesController::note 
 
 

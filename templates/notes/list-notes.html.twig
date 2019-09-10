@@ -14,15 +14,39 @@
                         <h5>No tienes Notas</h5>
                     {% else %}
                     {% for userNote in userNotes  %}
-                        <a href="{{ path('note',{"id": userNote.getInterestProfile.id }) }}">
+                    {{dump(userNote)}}
+                        
+                        <a href="{{ path('note',{"id": userNote.getInterestProfile.id ,"type_interest":"interest_profile"} )}}">
                             <div class="user_mensaje ">
                                 <div class="row">                            
+                                        {#Aqui compruebo si es un Interest Project o un Interest Profile#}
+                                            {% if userNote.getInterestProject %}                                                
+                                                {% set proyectName = userNote.getInterestProject.getInterestIdProject.getProjectName %}
+                                                {% set imgUser = userNote.getInterestProject.getInterestIdProject.getInterestIdUser.getProfileImg %}                                                
+                                            {% endif %}
+
+                                            {% if userNote.getInterestProfile %}                                                
+                                                {% set profileName = userNote.getInterestProfile.getInterestProfile.getName %}
+                                                {% set imgUser = userNote.getInterestProfile.getUserProfileOwner.getProfileImg %}                                                
+                                            {% endif %}
+                                        
+                                        
+                                        
                                         <div class="col-md-3"> 
-                                            <img class="img-msg" src ="{{ asset('build/img/uploads/users_profile/' ~ userNote.user.getProfileImg) }}"/> 
+                                            <img class="img-msg" src ="{{ asset('build/img/uploads/users_profile/' ~ imgUser) }}"/> 
                                         </div>
+                                        
                                         <div class="col-md-9">
                                             <span class="fs-18">{{ userNote.getUser.name}}</span>
-                                            <span class="fs-12">Nota para proyecto:<span class="ver_color"> {{ userNote.getInterestProject.getInterestIdProject.getProjectName}}</span></span>
+
+                                            
+                                            {% if proyectName is defined %}                                                
+                                                <span class="fs-12">:<span class="ver_color"> {{ proyectName}}</span></span>
+                                            {% endif %}
+
+                                            {% if profileName is defined %}                                                
+                                                <span class="fs-12">Nota para perfil:<span class="ver_color"> {{ profileName}}</span></span>
+                                            {% endif %}
                                             <p>
                                             </p>
                                             <p>

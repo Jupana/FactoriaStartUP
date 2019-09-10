@@ -15,7 +15,17 @@
                 <p class="p-t-15">{{noteid.notes}}</p>  
             </div>
         </div>
-        <span class="float-right fs-12"><span class="ver_color"> {{ noteid.getInterestProject.getInterestIdProject.getProjectName}}</span></span>
+        
+         {#Aqui compruebo si es un Interest Project o un Interest Profile#}
+            {% if noteid.getInterestProject %}                
+                <span class="float-right fs-12"><span class="ver_color"> {{ noteid.getInterestProject.getInterestIdProject.getProjectName}}</span></span>
+            {% endif %}
+            {% if noteid.getInterestProfile %}                
+                <span class="float-right fs-12"><span class="ver_color"> {{ noteid.getInterestProfile.getInterestProfile.getName}}</span></span>
+            {% endif %}
+        
+        
+        
         <hr/>
         {% endfor %}  
     </div>

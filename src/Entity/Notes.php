@@ -42,6 +42,11 @@ class Notes
      * @ORM\Column(type="datetime")
      */
     private $notes_date;
+
+    /**
+     * @ORM\Column(type="text", nullable=false)
+     */
+    private $notes_uniq_id;
    
 
     public function getId(): ?int
@@ -109,4 +114,24 @@ class Notes
         return $this;
     }
     
+
+    /**
+     * Get the value of notes_uniq_id
+     */ 
+    public function getNotes_uniq_id()
+    {
+        return $this->notes_uniq_id;
+    }
+
+    /**
+     * Set the value of notes_uniq_id
+     *
+     * @return  self
+     */ 
+    public function setNotes_uniq_id($notes_uniq_id)
+    {
+        $this->notes_uniq_id = $notes_uniq_id;
+
+        return $this;
+    }
 }

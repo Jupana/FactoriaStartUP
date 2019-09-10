@@ -48,12 +48,25 @@ class NotesRepository extends ServiceEntityRepository
     }
     */
 
-    public function findNote($id)
+    public function findNote($id,$user)
     {
         $qb= $this->createQueryBuilder('n');
-        $qb ->andWhere('n.interest_profile = :id')
+        $qb ->andWhere('n.user = :user')
+            ->andWhere('n.interest_profile = :id')
             ->orWhere('n.interest_project = :id')
-            ->setParameter('id', $id);
+            ->setParameter('id', $id)
+            ->setParameter('user', $user);
+
+        $qb =$qb->getQuery();
+        return $qb->getResult();
+    }
+
+    public function findNotes($userId)
+    {
+        $qb= $this->createQueryBuilder('n');
+        $qb ->andWhere('n.user = :userid')            
+            ->groupBy('n.notes_uniq_id')
+            ->setParameter('userid', $userId);
 
         $qb =$qb->getQuery();
         return $qb->getResult();
