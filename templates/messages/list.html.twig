@@ -6,15 +6,27 @@
 
     <!--Vista Notificaciones-Mensajes-->
         
-     <div class="view-msg  shadow_box bgGris p-3 m-b-25">
+     <div class="view-msg  shadow_box bgGris m-b-25">
         <div class="container">
             <div class="row">
                 <div class="col-md-4 ">
-                    <h4>Mensajes</h4>
+                    <h4 class="p-t-10">Mensajes</h4>
                     <hr/>
+                    {% set segments = app.request.pathinfo|split('/') %}
+                  
                      {% for userMessage in userMessages  %}
-                         <a href="{{ path('message',{"id": userMessage.getConversationId }) }}">
-                                <div class="user_mensaje ">
+                        {% if segments|length > 3 %}
+                            {% if userMessage.getConversationId == segments[3] %}
+                                    <a class="active-message" href="{{ path('message',{"id": userMessage.getConversationId }) }}">
+                                        <div class="user_mensaje active-message p-3 ">
+                                 {% else %}
+                                     <a href="{{ path('message',{"id": userMessage.getConversationId }) }}">
+                                        <div class="user_mensaje ">
+                                {% endif %}    
+                            {% else %}
+                                 <a href="{{ path('message',{"id": userMessage.getConversationId }) }}">
+                                     <div class="user_mensaje ">
+                        {% endif %} 
                                     <div class="row">
                                         
                                         {% set imgPerfil = userMessage.getUserSender.getProfileImg %}

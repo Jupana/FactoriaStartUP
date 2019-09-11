@@ -3,8 +3,14 @@
 {% block title %}Notas -{{app.user.getName}} {% endblock %}
 
 {% block content %}
+   <script type="text/javascript">
+        window.onload = function() {
+            document.getElementById("op4").style.background="#0070C0";
+            document.getElementById("op4").style.color="#fff";
+        }
+    </script> 
     <!--Vista Notificaciones-Mensajes-->
-     <div class="view-msg  shadow_box bgGris p-3 m-b-25">
+     <div class="view-msg  shadow_box  p-3 m-b-25">
         <div class="container">
             <div class="row">
                 <div class="col-md-4 ">
@@ -12,6 +18,7 @@
                     <hr/>
                     {% if userNotes is empty%}
                         <h5>No tienes Notas</h5>
+                        <span>Ve en tus propuestas y añade una nota en el botton VER de tu proyecto o perfil de interes</span>
                     {% else %}
                     {% set segments = app.request.pathinfo|split('/') %}
                     
@@ -19,13 +26,15 @@
                         {% if segments|length > 3 %}
                                 {% if userNote.getInterestProfile.id == segments[3] %}
                                     <a class="active-notes" href="{{ path('note',{"id": userNote.getInterestProfile.id ,"type_interest":"interest_profile"} )}}">
+                                        <div class="user_mensaje active-notes p-3">
                                  {% else %}
                                     <a href="{{ path('note',{"id": userNote.getInterestProfile.id ,"type_interest":"interest_profile"} )}}">
+                                        <div class="user_mensaje  ">
                                 {% endif %}    
                             {% else %}
                                 <a href="{{ path('note',{"id": userNote.getInterestProfile.id ,"type_interest":"interest_profile"} )}}"> 
+                                    <div class="user_mensaje  ">
                         {% endif %}    
-                            <div class="user_mensaje ">
                                 <div class="row">                            
                                         {#Aqui compruebo si es un Interest Project o un Interest Profile#}
                                             {% if userNote.getInterestProject %}                                                
@@ -59,8 +68,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <hr/>
-                            </a> 
+                            </a>
+                            <hr/>                 
                     {% endfor %}
                     {% endif %} 
                 </div>
@@ -68,9 +77,6 @@
                     {% block note %}
                            <div class="user_mensaje text-center py-5">
                                 <div class="row">
-                                    <div class="col-md-12"> 
-                                        <img class="img-msg" src ="{{ asset('build/img/uploads/users_profile/' ~ app.user.getProfileImg) }}"/> 
-                                    </div>
                                     <div class="col-md-12">
                                         <h4 class="py-3">Hola {{app.user.getName}} </h4>
                                         <h6 class="px-3">Aqui puedes ver tus notas sobre cada contacto y colaboracion ya empezada segun reuniones y avanze de los mismos:</h6>                                                                 

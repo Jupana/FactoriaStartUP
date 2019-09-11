@@ -2,8 +2,8 @@
 
 {% block message %}
 <!--Vista-Mensaje-->
-<div class="container">
-    <div class="msg_detail py-3"> 
+<div class="container bgWhite p-5 my-3">
+    <div class="msg_detail"> 
     {% for messageid in message %}                   
         <div class="row">
             <div class="col-md-2">
@@ -19,9 +19,7 @@
         <span class="float-right fs-12">Para proyecto:<span class="ver_color"> {{ messageid.getInterestProject.getInterestIdProject.getProjectName}}</span></span>
         <hr/>
     {% endfor %}
-    </div>
- </div>
- <div class="container">   
+    </div>   
     {{ form_start(form) }} 
         {{form_widget(form)}}   
     {{ form_end(form) }}          
