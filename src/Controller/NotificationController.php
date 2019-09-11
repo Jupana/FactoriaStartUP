@@ -31,8 +31,7 @@ class NotificationController extends AbstractController
         if($user){
             $countNotify = $this->repoNotification->countNotify($user->getId());
             $allNotifications = $user->getNotifications()->getValues();
-
-            
+             
             foreach($allNotifications as $notification){
                 $results['values'][$notification->getId()]['id'] = $notification->getId();
                 $results['values'][$notification->getId()]['type'] = $notification->getType();
@@ -63,11 +62,12 @@ class NotificationController extends AbstractController
                 } 
             }
             
-            $results['count_notify'] = $countNotify;            
+            $results['count_notify'] = $countNotify; 
             
         }
         return $this->render('nav_bar/nav_bar.html.twig', [
             'results' => $results,
+            'allNotifications'=> $allNotifications[0]
         ]);
         
     }

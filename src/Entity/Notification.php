@@ -55,6 +55,13 @@ class Notification
      */
     private $time;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Message", inversedBy="notification")
+     * @ORM\JoinColumn(name="message_conv", referencedColumnName="conversation_id")
+     * @ORM\GeneratedValue()
+     */
+    private $message;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -140,6 +147,24 @@ class Notification
     public function setTime(\DateTimeInterface $time): self
     {
         $this->time = $time;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of message
+     */ 
+    public function getMessage()
+    {
+        return $this->message;
+    }
+
+    /**
+     * Set the value of message
+     */ 
+    public function setMessage($message)
+    {
+        $this->message = $message;
 
         return $this;
     }

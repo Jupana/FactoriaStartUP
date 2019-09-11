@@ -21,6 +21,7 @@ class Message
 
     /**
      * @ORM\Column(type="text", nullable=false)
+     * @ORM\GeneratedValue()
      */
     private $conversation_id;
 
@@ -49,6 +50,11 @@ class Message
      * @ORM\ManyToOne(targetEntity="App\Entity\InterestProject", inversedBy="message")
      */
     private $interest_project;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Notification", mappedBy="message")
+     */
+    private $notification;
 
     /**
      * @ORM\Column(type="text")
@@ -208,6 +214,26 @@ class Message
     public function setConversationId(string $conversation_id)
     {
         $this->conversation_id = $conversation_id;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of notification
+     */ 
+    public function getNotification()
+    {
+        return $this->notification;
+    }
+
+    /**
+     * Set the value of notification
+     *
+     * @return  self
+     */ 
+    public function setNotification($notification)
+    {
+        $this->notification = $notification;
 
         return $this;
     }

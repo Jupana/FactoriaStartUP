@@ -75,13 +75,13 @@
     <div class="data-content" >  
         <div class="container-fluid"> 
             <div class="row m-t-15">
-
                 <!--Start Content Notify  -->
                {% if results.values is defined%}
                     {% for result in results.values %}
                     {% set notify_type  = result.type %}                
                         {% if attribute (result,notify_type) is defined %}                        
                             {% for user in attribute(result,notify_type) %}                            
+                            <a href="{{ path('message',{"id": result.id}) }}" >    
                                 <div class="activity_item ">
                                     <div class="row">
                                         <div class="col-md-3">
@@ -104,6 +104,7 @@
                                         </div>               
                                     </div><hr/>                  
                                 </div>
+                             </a>   
                             {% endfor %}    
                         {% endif %}                    
                     {% endfor %}
