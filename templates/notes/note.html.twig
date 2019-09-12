@@ -3,8 +3,10 @@
 {% block note %}
 <!--Vista-Mensaje-->
 <div class="container">
-    <div class="msg_detail"> 
+    <div class="msg_detail">
+        {% set segments = app.request.pathinfo|split('/') %} 
         {% if note is empty %}
+            {% if segments[4] == 'interest_profile' %}
             <div class="user_mensaje text-center py-5">
                  <div class="row">
                     <div class="col-md-12">
@@ -15,6 +17,20 @@
                     </div>
                 </div>
             </div>
+            {% else %} 
+                {% if segments[4] == 'interest_project' %}
+                <div class="user_mensaje text-center py-5">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4 class="py-3">Hola {{app.user.getName}} </h4>
+                            <h6 class="px-3">Aqui puedes escribir tu primera nota  para el proyecto 
+                                        <b>{{dataFirstNote.project}}</b> 
+                                        con el perfil <b>{{dataFirstNote.profile}}</b></h6>                                                                 
+                        </div>
+                    </div>
+                </div> 
+                {% endif %}  
+                {% endif %}  
         {% endif %}      
         {% for noteid in note %}           
         <div class="row active-notes">         

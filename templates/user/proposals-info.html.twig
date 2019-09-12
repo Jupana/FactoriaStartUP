@@ -35,8 +35,8 @@
                                     <tr>
                                         <th>Fecha</th>
                                         <th>Usuario</th>
-                                        <th>Profile</th>
-                                        <th>project</th>
+                                        <th>Perfil</th>
+                                        <th>Proyecto</th>
                                         <th>Negociacion</th>
                                         <th>Estado</th>
                                         <th>Notas</th>
@@ -84,17 +84,18 @@
                             </table> 
                         </div>
                         <div class="col-md-12 ">
-                            <p  class="par1"><b>projects en los que “yo quiero participar".</b></p>           
+                            <p  class="par1"><b>Proyectos en los que “yo quiero participar".</b></p>           
                         </div>
                         <div class="col-md-12 table-responsive">
                             <table class="table   ">
                                 <thead class="bgGris">
                                     <tr>
                                         <th>Fecha</th>
-                                        <th>project</th>
-                                        <th>Profile</th>                                     
+                                        <th>Proyecto</th>
+                                        <th>Perfil</th>                                     
                                         <th>Negociacion</th>
                                         <th>Estado</th>
+                                        <th>Notas</th>
                                         <th>Eliminar</th>
                                     </tr>
                                 </thead>
@@ -123,6 +124,9 @@
                                                 <p>Reunido</p>
                                              {% endif %}      
                                         </td>
+                                        <td>
+                                            <a  class="ver_color " href="/user/notes/{{searchProject.id}}/interest_project"><p>Ver</p></a>
+                                        </td>
                                         <td>  
                                           <a class="delete" href="{{path('delete-project-interest', {'id':searchProject.id})}}">
                                                 <img class="sizeDelete" src="{{ asset('build/img/icons/delete.png') }}" alt="Eliminar!"/>
@@ -146,7 +150,7 @@
                 <div class="me_buscan">
                     <div class="row">
                         <div class="col-md-12 ">
-                            <p  class="par1"><b>Usuarios que Quieren participar en mis projects</b></p>           
+                            <p  class="par1"><b>Usuarios que Quieren participar en mis Proyectos.</b></p>           
                         </div>
                         <div class="col-md-12 table-responsive">
                             <table class="table  ">
@@ -154,10 +158,12 @@
                                     <tr>
                                         <th>Fecha</th>
                                         <th>Usuario</th>
-                                        <th>project</th>
-                                        <th>Profile</th>                                     
+                                        <th>Proyecto</th>
+                                        <th>Perfil</th>                                     
                                         <th>Negociacion</th>
-                                         <th>Estado</th>
+                                        <th>Estado</th>
+                                        <th>Notas</th>
+                                        <th>Eliminar</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -186,6 +192,14 @@
                                                     {% else %}
                                                         <p>Reunido</p>
                                                     {% endif %} 
+                                            </td>
+                                             <td>
+                                                <a  class="ver_color " href="/user/notes/{{ searchProjectToColaborate.id }}/interest_project"><p>Ver</p></a>
+                                            </td>
+                                            <td>  
+                                            <a class="delete" href="{{path('delete-project-interest', {'id':searchProjectToColaborate.id})}}">
+                                                    <img class="sizeDelete" src="{{ asset('build/img/icons/delete.png') }}" alt="Eliminar!"/>
+                                            </a>                               
                                             </td>                                  
                                         </tr>
                                         {% set k = k + 1 %}
@@ -196,17 +210,19 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12 ">
-                            <p  class="par1"><b>projects que Quieren que participe</b></p>           
+                            <p  class="par1"><b>Proyectos que Quieren que YO participe</b></p>           
                         </div>
                         <div class="col-md-12 table-responsive">
                             <table class="table   ">
                                 <thead class="bgGris">
                                     <tr>
                                         <th>Fecha</th>
-                                        <th>project</th>
-                                        <th>Profile</th>                                     
+                                        <th>Proyecto</th>
+                                        <th>Perfil</th>                                     
                                         <th>Negociacion</th>
                                         <th>Estado</th>
+                                        <th>Notas</th>
+                                        <th>Eliminar</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -232,6 +248,14 @@
                                              {% else %}
                                                 <p>Reunido</p>
                                              {% endif %}      
+                                        </td>
+                                         <td>
+                                            <a  class="ver_color " href="/user/notes/{{searchProfilePartner.id}}/interest_profile"><p>Ver</p></a>
+                                        </td>
+                                        <td>  
+                                          <a class="delete" href="{{path('delete-project-interest', {'id':searchProfilePartner.id})}}">
+                                                <img class="sizeDelete" src="{{ asset('build/img/icons/delete.png') }}" alt="Eliminar!"/>
+                                           </a>                               
                                         </td>                                
                                     </tr>
                                     {% set x = x + 1 %}

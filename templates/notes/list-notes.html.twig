@@ -10,7 +10,7 @@
         }
     </script> 
     <!--Vista Notificaciones-Mensajes-->
-     <div class="view-msg  shadow_box  p-3 m-b-25">
+     <div class="view-msg  shadow_box bgGris p-3 m-b-25">
         <div class="container">
             <div class="row">
                 <div class="col-md-4 ">
@@ -23,25 +23,43 @@
                     {% set segments = app.request.pathinfo|split('/') %}
                     
                     {% for userNote in userNotes  %}
-                        {% if segments|length > 3 %}
-                                {% if userNote.getInterestProfile.id == segments[3] %}
-                                    <a class="active-notes" href="{{ path('note',{"id": userNote.getInterestProfile.id ,"type_interest":"interest_profile"} )}}">
-                                        <div class="user_mensaje active-notes p-3">
-                                 {% else %}
+                        {% if userNote.getInterestProfile %} 
+                            {% if segments|length > 3 %}
+                                    {% if userNote.getInterestProfile.id == segments[3] %}
+                                        <a class="active-notes" href="{{ path('note',{"id": userNote.getInterestProfile.id ,"type_interest":"interest_profile"} )}}">
+                                            <div class="user_mensaje active-notes p-3">
+                                    {% else %}
+                                        <a href="{{ path('note',{"id": userNote.getInterestProfile.id ,"type_interest":"interest_profile"} )}}">
+                                            <div class="user_mensaje  ">
+                                    {% endif %}    
+                                {% else %}
                                     <a href="{{ path('note',{"id": userNote.getInterestProfile.id ,"type_interest":"interest_profile"} )}}">
-                                        <div class="user_mensaje  ">
-                                {% endif %}    
+                                            <div class="user_mensaje  ">
+                            {% endif %}
                             {% else %}
-                                <a href="{{ path('note',{"id": userNote.getInterestProfile.id ,"type_interest":"interest_profile"} )}}"> 
-                                    <div class="user_mensaje  ">
-                        {% endif %}    
+                            {% if userNote.getInterestProject %}
+                             {% if segments|length > 3 %}
+                                    {% if userNote.getInterestProject.id == segments[3] %}
+                                        <a class="active-notes" href="{{ path('note',{"id": userNote.getInterestProject.id ,"type_interest":"interest_project"} )}}">
+                                            <div class="user_mensaje active-notes p-3">
+                                    {% else %}
+                                        <a href="{{ path('note',{"id": userNote.getInterestProject.id ,"type_interest":"interest_project"} )}}">
+                                            <div class="user_mensaje  ">
+                                    {% endif %}    
+                                {% else %}
+                                    <a href="{{ path('note',{"id": userNote.getInterestProject.id ,"type_interest":"interest_project"} )}}">
+                                            <div class="user_mensaje  ">
+                            {% endif %}
+                            {% endif %}
+                        {% endif %}
+
                                 <div class="row">                            
                                         {#Aqui compruebo si es un Interest Project o un Interest Profile#}
                                             {% if userNote.getInterestProject %}                                                
                                                 {% set proyectName = userNote.getInterestProject.getInterestIdProject.getProjectName %}
                                                 {% set profileName = userNote.getProfileNotes.getName %}
-                                                {% set imgUser = userNote.getInterestProject.getInterestIdProject.getInterestIdUser.getProfileImg %}                                                
-                                                {% set userOwner = userNote.getInterestIdProject.getInterestIdUser.getName %}
+                                                {% set imgUser = userNote.getInterestProject.getInterestProjectOwnerID.getProfileImg %}                                                
+                                                {% set userOwner = userNote.getInterestProject.getInterestProjectOwnerID.getName %}
                                                 
                                             {% endif %}
 
@@ -79,7 +97,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <h4 class="py-3">Hola {{app.user.getName}} </h4>
-                                        <h6 class="px-3">Aqui puedes ver tus notas sobre cada contacto y colaboracion ya empezada segun reuniones y avanze de los mismos:</h6>                                                                 
+                                        <h6 class="px-3">Aqui puedes ver tus notas sobre cada contacto y proyecto de colaboracion ya empezada segun reuniones y avanze de los mismos:</h6>                                                                 
                                     </div>
                                 </div>
                             </div>
