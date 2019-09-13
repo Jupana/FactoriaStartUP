@@ -6,7 +6,7 @@
 /.env.test
 
 
-/public/bundles/
+/public/
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
