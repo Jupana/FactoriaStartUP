@@ -6,8 +6,8 @@ use App\Form\MessageType;
 use App\Entity\Message;
 use App\Entity\Notification;
 use App\Repository\MessageRepository;
+use App\Services\Utils;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 
 class MessageController extends AbstractController
@@ -37,40 +37,37 @@ class MessageController extends AbstractController
     {   
         $userMessages = $this->messageRepository->findMessage($this->getUser()->getId());
         $message = $this->messageRepository->findBy(['conversation_id' =>$id]);
+        $utils = new Utils($this->getDoctrine()->getManager());
 
         $user = $this->getUser();
         $userSender = $message[0]->getUserSender();
         $userRecipient = $message[0]->getUserRecipient();
 
         $userRecipient = $user->getId() == $userRecipient->getId() ? $userSender : $userRecipient;
-
-
-        $notify =  new Notification();
-        $notify->setUser($user);
-        $notify->setType($message[0]->getType());
-        $notify->setEntity(1);
-        if($message[0]->getType() == "project_interest")
-            $notify->setInterestProject($message[0]->getInterestProject());
-        if($message[0]->getType() == "profile_interest")
-            $notify->setInterestProfil($message[0]->getInterestProfil());
-        $notify->setSeen(false);
-        $notify->setTime(new \DateTime());
-
         
         $newMessage = new Message();
         $newMessage-> setType($message[0]->getType());
         $newMessage->setConversationId($message[0]->getConversationId());
         $newMessage->setUserSender($user);
-        $newMessage->setUserRecipient($userRecipient);
-        $newMessage->setNotification($notify->getId());
+        $newMessage->setUserRecipient($userRecipient);        
         
         if($message[0]->getType() == "project_interest")
             $newMessage->setInterestProject($message[0]->getInterestProject());
         if($message[0]->getType() == "profile_interest")
             $newMessage->setInterestProfil($message[0]->getInterestProfil());
         
-    
-        dump($notify);
+        
+        /*$notify =  new Notification();
+        $notify->setUser($user);
+        $notify->setType($message[0]->getType());
+        if($message[0]->getType() == "project_interest")
+            $notify->setInterestProject($message[0]->getInterestProject());
+        if($message[0]->getType() == "profile_interest")
+            $notify->setInterestProfil($message[0]->getInterestProfil());
+        $notify->setSeen(false);
+        $notify->setMessageConv($newMessage);
+        $notify->setTime(new \DateTime());*/
+
         $form = $this->createForm(
             MessageType::class,
             $newMessage
@@ -81,7 +78,7 @@ class MessageController extends AbstractController
             $newMessage->setTime(new \DateTime());
             
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($notify);
+            $entityManager->persist($utils->createNotify($user,$message[0],$newMessage));
             $entityManager->persist($newMessage);
             $entityManager->flush();
 

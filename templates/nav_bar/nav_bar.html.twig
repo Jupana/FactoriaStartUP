@@ -80,8 +80,8 @@
                     {% for result in results.values %}
                     {% set notify_type  = result.type %}                
                         {% if attribute (result,notify_type) is defined %}                        
-                            {% for user in attribute(result,notify_type) %}                            
-                            <a href="{{ path('message',{"id": result.id}) }}" >    
+                            {% for user in attribute(result,notify_type) %}                             
+                            <a href="{{ path('message',{"id": result.message_conv}) }}" class="notify" data-notify-id="{{result.id}}" data-message-conv="{{result.message_conv}}">    
                                 <div class="activity_item ">
                                     <div class="row">
                                         <div class="col-md-3">

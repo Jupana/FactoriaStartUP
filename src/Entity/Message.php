@@ -51,10 +51,6 @@ class Message
      */
     private $interest_project;
 
-    /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Notification", mappedBy="message")
-     */
-    private $notification;
 
     /**
      * @ORM\Column(type="text")
@@ -217,24 +213,5 @@ class Message
 
         return $this;
     }
-
-    /**
-     * Get the value of notification
-     */ 
-    public function getNotification()
-    {
-        return $this->notification;
-    }
-
-    /**
-     * Set the value of notification
-     *
-     * @return  self
-     */ 
-    public function setNotification($notification)
-    {
-        $this->notification = $notification;
-
-        return $this;
-    }
+   
 }

@@ -218,7 +218,6 @@ class ProfileUserController extends AbstractController
                $createNotification =  new Notification();
                $createNotification->setUser($userProfileOwner);
                $createNotification->setType('profile_interest');
-               $createNotification->setEntity($interestProfile->getInterestProfile()->getId());
                $createNotification->setInterestProfile($interestProfile);
                $createNotification->setSeen(false);
                $createNotification->setTime(new \DateTime());

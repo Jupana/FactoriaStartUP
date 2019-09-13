@@ -143,7 +143,16 @@ match-project:
     options:
         expose: true
 
- #Messages
+
+#Notification
+user-notification-update:
+    path: /user/notification-update/{id}
+    controller: App\Controller\NotificationController::upDateNotify
+    methods:  [POST]
+    options:
+        expose: true
+
+#Messages
 list-messages:
     path: /user/messages
     controller: App\Controller\MessageController::listMessages

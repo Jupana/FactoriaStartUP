@@ -21,14 +21,7 @@ require('@fortawesome/fontawesome-free/css/all.min.css');
 require('@fortawesome/fontawesome-free/js/all.js');
 
 $(document).ready(function() {
-    $('[rel=popover]').popover({ 
-        html : true ,
-        container: 'body',
-        content: function() {
-          return $('#popover_content').html();
-        }
-      });
-    
+       
     $('.slick-projects').slick({
         slidesToShow: 2,
         slidesToScroll: 1,
@@ -37,7 +30,8 @@ $(document).ready(function() {
         arrows : false,
        // autoplay: true,
        // autoplaySpeed: 2000,        
-      });       
+      }); 
+    
 });
 require('bootstrap/js/dist/util.js')
 
@@ -48,7 +42,7 @@ $(function(){
       content: function() {
         return $('#popover_content').html();
       }
-    });
+    });    
   });
 
     /*==================================================================
@@ -57,6 +51,20 @@ $(function(){
     (function ($) {
         "use strict";
     var input = $('.validate-input .input100');
+    
+    /* START NOTIFY UPDATE*/
+    $(document).on('click','.notify',function(){
+        var notifyID =$(this).data('notify-id');
+        $.post("/user/notification-update/"+notifyID )
+        .done(function(response) {            
+            console.log('Notify Update')            
+        })
+        .fail(function(response) {
+            console.log('Error - Notify Update')
+        });
+            
+    });
+    /* FIN NOTIFY UDDATE*/
 
     $('.validate-form').on('submit',function(){
         var check = true;

@@ -43,4 +43,36 @@ class SendMailInterest{
         );
         $this->mailer->send($message);
     }
+
+    /* ASTA E DIN DUETECH
+
+    Asi es como la defines:
+    
+    $query = new GeneralQueries($this->getDoctrine()->getManager());
+
+    Asa e cum o ceri :
+    
+    $portfolioByStatus = $query->getPortfolioByStatus($account->getId());
+
+     public function __construct($em)
+    {
+        $this->em = $em;
+    }
+ 
+    public function getPortfolioByStatus ($accountId) {        
+        try {            
+            $query = "SELECT count(1) total, IF(p.status = '', 'na', p.status) status
+                FROM property p
+                WHERE p.account_id = :accountid
+                GROUP BY p.status";            
+            $stmt = $this->em->getConnection()->prepare($query);
+            $stmt->bindParam('accountid', $accountId);
+            $stmt->execute();
+            $result = $stmt->fetchAll();
+        } catch (Exception $e) {
+            return 0;
+        }
+        
+        return $result;
+    }*/
 }

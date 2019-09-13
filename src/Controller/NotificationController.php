@@ -35,8 +35,8 @@ class NotificationController extends AbstractController
             foreach($allNotifications as $notification){
                 $results['values'][$notification->getId()]['id'] = $notification->getId();
                 $results['values'][$notification->getId()]['type'] = $notification->getType();
-                $results['values'][$notification->getId()]['entity'] = $notification->getEntity();
                 $results['values'][$notification->getId()]['seen'] = $notification->getSeen();
+                $results['values'][$notification->getId()]['message_conv'] = $notification->getMessageConv() != null ? $notification->getMessageConv()->getConversationId():3;
                 
                 if($notification->getInterestProfile() !== null){
                     $profile = $notification->getInterestProfile();
@@ -62,13 +62,24 @@ class NotificationController extends AbstractController
                 } 
             }
             
-            $results['count_notify'] = $countNotify; 
-            
+           $results['count_notify'] = $countNotify; 
+            return $this->render('nav_bar/nav_bar.html.twig', [
+                'results' => $results,
+                'allNotifications'=> $allNotifications
+            ]);            
         }
-        return $this->render('nav_bar/nav_bar.html.twig', [
-            'results' => $results,
-            'allNotifications'=> $allNotifications[0]
-        ]);
+        return $this->render('nav_bar/nav_bar.html.twig');
         
+    }
+
+    public function upDateNotify($id){
+        $notify = $this->repoNotification->findOneBy(['id'=>$id]);
+
+        $notify->setSeen(true);
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($notify);        
+        $entityManager->flush();
+        return new JsonResponse(['result' => 'OK']);
+
     }
 }

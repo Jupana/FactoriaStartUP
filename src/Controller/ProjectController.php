@@ -159,7 +159,6 @@ class ProjectController extends AbstractController
                  $createNotification =  new Notification();
                  $createNotification->setUser($project->getUser());
                  $createNotification->setType('project_interest');
-                 $createNotification->setEntity(1);
                  $createNotification->setInterestProject($interestProject);
                  $createNotification->setSeen(false);
                  $createNotification->setTime(new \DateTime()); 
