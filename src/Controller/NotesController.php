@@ -53,7 +53,7 @@ class NotesController extends AbstractController
         
         $dataFirstNote =[];
 
-        if($type_interest == 'interest_profile'){            
+        if( $type_interest == 'interest_profile'){            
             $interestProfile = $this->interestProfileRepository->findOneBy(['id'=>$id]);
             $profileId=$interestProfile->getId();
             $uniqueID = $userId.'-'.$profileId.'-'.rand(1000,10000000);
@@ -67,13 +67,16 @@ class NotesController extends AbstractController
                      
         }
         if($type_interest == 'interest_project'){            
-            $interestProject = $this->interestProjectRepository->findOneBy(['id'=>$id]);
-            
+            $interestProject = $this->interestProjectRepository->findOneBy(['id'=>$id]);       
             $projectId=$interestProject->getId();
             $uniqueID = $userId.'-'.$projectId.'-'.rand(1000,10000000);
 
             $newNote->setInterestProject($interestProject);
-            $newNote->setNotesUniqId($uniqueID);            
+            $newNote->setProfileNotes($interestProject->getInterestProfil());
+            $newNote->setNotesUniqId($uniqueID); 
+       
+            $dataFirstNote['project'] =$interestProject->getInterestIdProject()->getProjectName();
+            $dataFirstNote['profile'] =$interestProject->getInterestProfil()->getName();           
         }
 
 

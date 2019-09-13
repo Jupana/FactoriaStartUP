@@ -128,13 +128,9 @@ a {
     text-align: center;
     padding: 2px;
 }
-.active-notes{
-	cursor: pointer;
-	background-color: #f3f6f8;
-    box-shadow: 4px 0 0 #0073b1 inset, 0 -1px 0 #f3f6f8 inset;
-}
-.active-message{
-	cursor: pointer;
+
+.active-message,.active-notes{
+
 	background: $colorWhite;
     box-shadow: 4px 0 0 #0073b1 inset,$shadow;
 }
