@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\InterestProfile;
 use App\Repository\ProjectRepository;
 use App\Repository\ProfileUserRepository;
+use App\Repository\CoworkingRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -19,14 +20,17 @@ class InterestProfileType extends AbstractType
     
     private $projectRepository;
     private $profileUserRepository;
+    private $coworkingRepository;
     public function __construct(
           ProjectRepository $projectRepository,
-          ProfileUserRepository $profileUserRepository
+          ProfileUserRepository $profileUserRepository,
+          CoworkingRepository $coworkingRepository
       
         ) {
        
         $this->projectRepository = $projectRepository;
         $this->profileUserRepository = $profileUserRepository;
+        $this->coworkingRepository = $coworkingRepository;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -34,6 +38,7 @@ class InterestProfileType extends AbstractType
         
         $projects = $this->projectRepository-> findBy(['user' =>$options['userId']]);
         $profileUser =$this->profileUserRepository->findBy(['user' =>$options['profileUserId']]);
+        $coworkingList = $this->coworkingRepository->findAll();
         
         $projectDropDown =[];
         foreach($projects as $project){
@@ -45,6 +50,10 @@ class InterestProfileType extends AbstractType
             $profileDropDown[$profile->getProfil()->getName()]= $profile->getProfil();
         } 
 
+        $coworkingDropDown =[];
+        foreach($coworkingList as $coworking){            
+            $coworkingDropDown[$coworking->getName()]= $coworking->getId();
+        } 
         $builder          
             
             ->add('interest_profile',ChoiceType::class,[ 
@@ -61,22 +70,31 @@ class InterestProfileType extends AbstractType
                 ]) 
             ->add('submit', SubmitType::class,['label' => 'Enviar'])
             ->add('extra_profil_deal_add',ChoiceType::class,[ 
-                'choices' => [  'Tipo de acuerdo'=>'Tipo de acuerdo',
+                
+                'choices' => [  'Tipo de acuerdo'=>'placeholder',
                                 '% Empresa'=>'% Empresa',
                                 '% Ventas'=>'% Ventas',
                                 'Obra y Servicios'=>'Obra y Servicios',
-                                'Pacto a Futuro'=>'Pacto a Futuro'
+                                'Pacto a Futuro'=>'Pacto a Futuro',
                             ],
                 'mapped'=>false, 
                 'label' => false ,
-                'required'=>false,
+                'required'=>false,  
+                'placeholder' => false,            
                 ])
+                          
             ->add('extra_profil_percent_add',NumberType::class,[               
                 'required'=>false,
                 'label' => false,
                 'mapped'=>false
                 
-                ])     
+                ]) 
+            ->add('coworking',ChoiceType::class,[ 
+                    'choices' => $coworkingDropDown,
+                    'label' => false ,
+                    'placeholder' => 'Lista de Coworking', 
+                    'required'=>false,  
+                ])    
         ;
     }
 

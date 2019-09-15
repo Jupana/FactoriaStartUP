@@ -24,6 +24,7 @@
 /node_modules/
 /src/Migrations/
 /.env.test/
+/.env
 /.vscode/
 /phpunit.xml.dist
 /yarn-error.log 

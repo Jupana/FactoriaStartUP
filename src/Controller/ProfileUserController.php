@@ -16,6 +16,7 @@ use App\Repository\ProfesionalProfileRepository;
 use App\Repository\NeedsProjectRepository;
 use App\Repository\InterestProfileRepository;
 use App\Repository\NotificationRepository;
+use App\Repository\CoworkingRepository;
 use App\Services\GetProfile;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\FormFactoryInterface;
@@ -54,11 +55,6 @@ class ProfileUserController extends AbstractController
     * @var projectRepository
     */
     private $projectRepository;
-
-    /**
-    * @var profilUserRepository
-    */
-    private $profilUserRepository;
 
       /**
     * @var FormFactoryInterface
@@ -99,12 +95,15 @@ class ProfileUserController extends AbstractController
 
       private $notificationRepository;
      
-
+     /**
+    * @var CoworkingRepository
+    */
+    private $coworkingRepository;
 
     public function __construct(
         \Twig_Environment $twig, ProfileUserRepository $profileUserRepository, ProfilRepository $profilRepository, SectorRepository $sectorRepository,
         FormFactoryInterface $formFactory,EntityManagerInterface $entityManager,ProfesionalProfileRepository $profesionalProfileRepository,ProjectRepository $projectRepository,NeedsProjectRepository $projectNeedsRepo,
-        FlashBagInterface $flashBag,InterestProfileRepository $interestProfileRepository, UserRepository $userRepository, NotificationRepository $notificationRepository
+        FlashBagInterface $flashBag,InterestProfileRepository $interestProfileRepository, UserRepository $userRepository, NotificationRepository $notificationRepository,CoworkingRepository $coworkingRepository
         ) {
         $this->twig = $twig;
         $this->profileUserRepository = $profileUserRepository;
@@ -119,6 +118,7 @@ class ProfileUserController extends AbstractController
         $this->interestProfileRepository = $interestProfileRepository;
         $this->userRepository = $userRepository;
         $this->notificationRepository =$notificationRepository;
+        $this->coworkingRepository = $coworkingRepository;  
     }
 
 
@@ -179,7 +179,8 @@ class ProfileUserController extends AbstractController
            
                $dealToAdd = $formAddInterestProfile->get('extra_profil_deal_add')->getData();
                $percentToAdd = $formAddInterestProfile->get('extra_profil_percent_add')->getData();                              
-               $projectAllNeeds = $this->projectNeedsRepo->findBy(['needs_project'=>$interestProfile->getInterestProject()->getId()]);                
+               $projectAllNeeds = $this->projectNeedsRepo->findBy(['needs_project'=>$interestProfile->getInterestProject()->getId()]);    
+               $coworking = $this->coworkingRepository->findOneBy(['id'=>$formAddInterestProfile->get('coworking')->getData()]);            
                
                if($dealToAdd != NULL){                 
                 
@@ -214,6 +215,7 @@ class ProfileUserController extends AbstractController
                
                $interestProfile->setInterestProfile($interestProfile->getInterestProfile());
                $interestProfile->setInterestDescription($interestProfile->getInterestDescription());
+               $interestProfile->setCoworking($coworking);
 
                $createNotification =  new Notification();
                $createNotification->setUser($userProfileOwner);

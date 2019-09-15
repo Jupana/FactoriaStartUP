@@ -28,19 +28,36 @@
                     <!-- Step 2 -->
                     <div id="interest-step-2" class="hide-e">
                         <div class="col-md-12 text-center m-t-10  modal-title interest-profile-title">
-                            <h4 class="par" id="myModalLabel">Participa en el project</h4> 
-                             
+                            <h4 class="par" id="myModalLabel">Contacta el perfil deseado</h4> 
                         </div>                                                      
                             {{ form_row (formInterestProfile.extra_profil_deal_add ,{ 'attr' : { 'class': 'hide-e'}} ) }}
                             {{ form_row (formInterestProfile.extra_profil_percent_add,{ 'type':'number' ,'attr' : { 'class': 'needs-profile-add-percent hide-e','placeholder': '5' }}) }} 
                             {{ form_row (formInterestProfile.interest_description) }}
-                            {{ form_row (formInterestProfile.submit) }}
-                            <input type="submit" id="submit-form-add" class="btn-primary float-r" style="display:none"/>    
+                             
                             <span class="btn-primary btn float-l profile_interest_2 btnEndInterest1-Atras">Atras</span> 
-                                                                     
+                            <span class="btn-primary btn float-r profile_interest_3 btnEndInterest1 " >Siguiente</span>
                     </div>
-                    
-                    <!-- Fin Step 2 --> 
+                    <!-- Fin Step 2 -->
+                       <!-- Step 3 Coworking-->
+                    <div id="interest-step-3" class="hide-e">
+                        <div class="col-md-12 text-center m-t-10  modal-title interest-profile-title">
+                            <h4 class="par" id="myModalLabel">Elija un Coworking para quedar</h4> 
+                        </div>
+                            
+                            {{ form_row (formInterestProfile.coworking,{'attr' : { 'class': 'profile_user' }}) }}
+                            <!-- Coworking , we get the conten via app.js, KUNLABORI is HACKET to apper the first one-->
+                            <div class="coworking-popUp">
+                                <p class="co-name"></p>
+                                <p><i class="fas fa-map-marker-alt"></i>  <span class="co-address"> </span></p>
+                                <p><i class="fa fa-phone-square bigicon"></i> <span class="co-phone"></span></p>
+                                <p><i class="fa fa-pencil-square-o bigicon"></i>  <span class="co-description"> </span></p>
+                                <p><img class="co-img" src=""/></p>
+                            </div>
+                            <!-- Fin Coworking-->
+                            <span class="btn-primary btn float-l profile_interest_2_atras ">Atras</span> 
+                            {{ form_row (formInterestProfile.submit,{'attr' : { 'class': 'btn-primary float-r sendIn' }}) }}
+                    </div>
+                    <!-- Fin Step 3 --> 
                     {{ form_end     (formInterestProfile) }}  
                 </div>
                 <!-- Modal Footer -->

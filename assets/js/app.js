@@ -690,7 +690,7 @@ $('.profile_interest_1').click(function() {
     console.log('profilSector',profileSector);
     console.log('profileSelectedId',profileSelectedId);
 
-            let urlDeleteNeedsProfil = Routing.generate("MatchProject",{userid:userId,projectid:projectSelectedId});
+            let urlDeleteNeedsProfil = Routing.generate("match-project",{userid:userId,projectid:projectSelectedId});
             new Promise(function (resolve, reject) {
                 let xhr = new XMLHttpRequest()
                 // third argument specifies if it's an async request or a sync
@@ -745,10 +745,25 @@ $('.profile_interest_1').click(function() {
     
 })
 
+       
+
         $('.profile_interest_2').click(function(){
             $('#interest_profile_interest_description').val('');
             $('#interest_profile_interest_description').prop('disabled',false);
             $('#interest_profile_extra_profil_deal_add').addClass('hide-e');
+        })
+
+        $('.profile_interest_3').click(function(){
+            $('#interest-step-3').removeClass('hide-e');
+            $('#interest-step-2').addClass('hide-e');
+            $('.interstAppendHeader').addClass('hide-e');
+        })
+
+        $('.profile_interest_2_atras').click(function(){
+            $('#interest-step-3').addClass('hide-e');
+            $('#interest-step-1').addClass('hide-e');
+            $('#interest-step-2').removeClass('hide-e');
+            $('.interstAppendHeader').removeClass('hide-e')
         })
 
 
@@ -762,6 +777,43 @@ $('.profile_interest_1').click(function() {
             }
             
         })
+
+        //HACKER KUNLABORI FIRST COWORKING
+        $.get('/coworking/json/2')
+            .done(function(response) {
+                var data = $.parseJSON(response);
+                console.log(data)
+                $('.co-name').text(data.name);
+                $('.co-address').text(data.address);
+                $('.co-phone').text(data.phone);
+                $('.co-description').text(data.description);
+                $('.co-img').attr('src','/media/cache/coworking_thumb/build/img/uploads/coworking_img/'+data.img);
+
+            })
+            .fail(function(response) {
+                console.log('Failed',response)
+            });
+
+        $('select#interest_profile_coworking').change(function() {
+        
+            var coworkID =$(this).val();
+            $.get('/coworking/json/'+coworkID)
+            .done(function(response) {
+                var data = $.parseJSON(response);
+                console.log(data)
+                $('.co-name').text(data.name);
+                $('.co-address').text(data.address);
+                $('.co-phone').text(data.phone);
+                $('.co-description').text(data.description);
+                $('.co-img').attr('src','/media/cache/coworking_thumb/build/img/uploads/coworking_img/'+data.img);
+
+            })
+            .fail(function(response) {
+                console.log('Failed',response)
+            });
+            
+        })
+        
 
 /* FIN PROFILE INTEREST --> */
 

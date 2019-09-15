@@ -54,21 +54,33 @@
                         {% endif %}
 
                                 <div class="row">                            
-                                        {#Aqui compruebo si es un Interest Project o un Interest Profile#}
                                             {% if userNote.getInterestProject %}                                                
                                                 {% set proyectName = userNote.getInterestProject.getInterestIdProject.getProjectName %}
-                                                {% set profileName = userNote.getProfileNotes.getName %}
-                                                {% set imgUser = userNote.getInterestProject.getInterestProjectOwnerID.getProfileImg %}                                                
-                                                {% set userOwner = userNote.getInterestProject.getInterestProjectOwnerID.getName %}
-                                                
+                                                {% set profileName = userNote.getProfileNotes.getName %}                                                
+                                                {# WE check teh user to see if is ME BUSCA in order to change the image and name#}
+                                                {% if userNote.getInterestProject.getInterestProjectOwnerID.getId == userNote.user.id %}                                                
+                                                    {% set imgUser = userNote.getInterestProject.getInterestIdUser.getProfileImg %}                                                
+                                                    {% set userOwner = userNote.getInterestProject.getInterestIdUser.getName %}
+                                                {% else %}
+                                                    {% set imgUser = userNote.getInterestProject.getInterestProjectOwnerID.getProfileImg %}                                                
+                                                    {% set userOwner = userNote.getInterestProject.getInterestProjectOwnerID.getName %}
+                                                {% endif %}
+                                            
                                             {% endif %}
 
                                             {% if userNote.getInterestProfile %}                                                
                                                 {% set profileName = userNote.getInterestProfile.getInterestProfile.getName %}
                                                 {% set proyectName = userNote.getProjectNotes.getProjectName %}
-                                                {% set imgUser = userNote.getInterestProfile.getUserProfileOwner.getProfileImg %}                                                
-                                                {% set userOwner = userNote.getInterestProfile.getUserProfileOwner.getName %}
+                                                {# WE check teh user to see if is ME BUSCA in order to change the image and name#}
+                                                {% if userNote.getInterestProfile.getUserProfileOwner.getId == userNote.user.id %}                                                
+                                                    {% set imgUser = userNote.getInterestProfile.getUser.getProfileImg %}                                                
+                                                    {% set userOwner = userNote.getInterestProfile.getUser.getName %}
+                                                {% else %}
+                                                    {% set imgUser = userNote.getInterestProfile.getUserProfileOwner.getProfileImg %}                                                
+                                                    {% set userOwner = userNote.getInterestProfile.getUserProfileOwner.getName %}
+                                                {% endif %}
                                             {% endif %}
+                                            
                                         <div class="col-md-3"> 
                                             <img class="img-msg" src ="{{ asset('build/img/uploads/users_profile/' ~ imgUser) }}"/> 
                                         </div>

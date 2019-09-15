@@ -7,6 +7,7 @@ parameters:
     locale: 'en'
     imgUsers: '%kernel.project_dir%/assets/img/uploads/users_profile'
     imgProjects: '%kernel.project_dir%/assets/img/uploads/projects_img'
+    imgCoworking: '%kernel.project_dir%/assets/img/uploads/coworking_img'
 
 
 services:

@@ -8,9 +8,21 @@ admin-projects:
 admin-projects-project:
     path: /admin_projects/project/{id}
     controller: App\Controller\AdminProjectsController::project   
-admin-coworker:
-    path: /admin_projects/admin_coworker
-    controller: App\Controller\AdminProjectsController::index_coworker 
+admin-coworking-list:
+    path: /admin/coworking/
+    controller: App\Controller\AdminProjectsController::listCoworking
+
+admin-coworking-json:
+    path: /coworking/json/{id}
+    controller: App\Controller\AdminProjectsController::listCoworkingJson
+
+admin-coworking:
+    path: /admin/coworking/{id}
+    controller: App\Controller\AdminProjectsController::coworking
+
+admin-delete-coworking:    
+    path: /admin/coworking/delete/{id}
+    controller: App\Controller\AdminProjectsController::deleteCoworking    
 
 user:
     path: /user

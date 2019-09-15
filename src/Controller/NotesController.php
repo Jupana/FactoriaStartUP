@@ -79,8 +79,6 @@ class NotesController extends AbstractController
             $dataFirstNote['profile'] =$interestProject->getInterestProfil()->getName();           
         }
 
-
-
         if(!empty($note)){
             $newNote->setInterestProfile($note[0]->getInterestProfile());
             $newNote->setInterestProject($note[0]->getInterestProject());
@@ -101,7 +99,7 @@ class NotesController extends AbstractController
             $entityManager->persist($newNote);
             $entityManager->flush();
 
-            return $this->redirectToRoute('list-notes');
+            return $this->redirectToRoute('note',['id'=>$id,'type_interest'=>$type_interest]);
         }
 
 

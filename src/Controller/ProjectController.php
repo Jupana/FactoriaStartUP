@@ -131,7 +131,7 @@ class ProjectController extends AbstractController
                 if ($interestProject->getInterestSector()){
                     $sectorId = $this->sectorRepository ->findBy(['name'=>$interestProject->getInterestSector()]);
                     $profileId = $this->profilRepository ->findBy(['name'=>$interestProject->getInterestProfil()->getName()]);
-                    dump($sectorId,$interestProject->getInterestProfil(),$profileId);
+                    
                     //Here we add new Profile for User if he don't has it
                     $profileUser = new ProfileUser();
                     $profileUser->setUser($this->getuser());

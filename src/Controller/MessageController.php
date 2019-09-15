@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Form\MessageType;
 use App\Entity\Message;
-use App\Entity\Notification;
 use App\Repository\MessageRepository;
 use App\Services\Utils;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -55,19 +54,7 @@ class MessageController extends AbstractController
             $newMessage->setInterestProject($message[0]->getInterestProject());
         if($message[0]->getType() == "profile_interest")
             $newMessage->setInterestProfil($message[0]->getInterestProfil());
-        
-        
-        /*$notify =  new Notification();
-        $notify->setUser($user);
-        $notify->setType($message[0]->getType());
-        if($message[0]->getType() == "project_interest")
-            $notify->setInterestProject($message[0]->getInterestProject());
-        if($message[0]->getType() == "profile_interest")
-            $notify->setInterestProfil($message[0]->getInterestProfil());
-        $notify->setSeen(false);
-        $notify->setMessageConv($newMessage);
-        $notify->setTime(new \DateTime());*/
-
+    
         $form = $this->createForm(
             MessageType::class,
             $newMessage
