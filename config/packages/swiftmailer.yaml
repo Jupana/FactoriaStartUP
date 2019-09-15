@@ -1,7 +1,13 @@
 swiftmailer:
     url: '%env(MAILER_URL)%'
     #spool: { type: 'memory' }
-    transport: gmail
-    #sender_address: 'info@factoriastartup.es'
-    username:  liviuromania
-    password:  spania123
+    #transport: smtp
+    sender_address: info@factoriastartup.com
+    transport:  smtp
+    #encryption: tls
+    #auth_mode:  login
+    #host:       smtp.hostinger.es:587
+    #username:  info@factoriastartup.com
+    #password:  iliuta123
+    username:  liviuromania@gmail.com
+    password:  Zorilor098.
