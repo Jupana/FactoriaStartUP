@@ -7,6 +7,7 @@ use App\Entity\NeedsProject;
 use App\Entity\InterestProfile;
 use App\Form\InterestProfileType;
 use App\Entity\Notification;
+use App\Entity\Message;
 use App\Repository\UserRepository;
 use App\Repository\ProfileUserRepository;
 use App\Repository\ProfilRepository;
@@ -25,6 +26,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Services\SendMailInterest;
+
 
 
 
@@ -181,8 +183,8 @@ class ProfileUserController extends AbstractController
                $percentToAdd = $formAddInterestProfile->get('extra_profil_percent_add')->getData();                              
                $projectAllNeeds = $this->projectNeedsRepo->findBy(['needs_project'=>$interestProfile->getInterestProject()->getId()]);    
                $coworking = $this->coworkingRepository->findOneBy(['id'=>$formAddInterestProfile->get('coworking')->getData()]);            
-               
-               if($dealToAdd != NULL){                 
+              
+               if($dealToAdd != 'Tipo de acuerdo'){    //OTRA MERDA QUE TE VIENE DESDE EL DROP DOWN DEL PORFILE TYPE              
                 
                 $newProfileAddFromMatch = new NeedsProject();
                 $newProfileAddFromMatch->setUser($this->getuser());
@@ -196,9 +198,7 @@ class ProfileUserController extends AbstractController
                 $newProfileAddFromMatch->setNeedsDate(new \DateTime());
                 $this->entityManager->persist($newProfileAddFromMatch);                                
                }
-                    
                
-
                $mailInterestProfile =[
                 'userName'=>$this->getUser()->getUsername(),
                 'userMail' =>$this->getUser()->getEmail(),
@@ -206,9 +206,10 @@ class ProfileUserController extends AbstractController
                 'ownerMail' =>$profile[0]->getUser()->getEmail(),
                 'profileName' =>$interestProfile->getInterestProfile(),
                 'projectInterest'=>$interestProfile->getInterestProject(),
-                'dealInterest'=>$dealToAdd ?? $projectAllNeeds[0]->getNeedsDeal(),
+                'dealInterest'=>$dealToAdd != 'Tipo de acuerdo' ? $dealToAdd : $projectAllNeeds[0]->getNeedsDeal(),
                 'percentInterest'=>$percentToAdd ?? $projectAllNeeds[0]->getNeedsPercent(),                
                 'descriptionInterest'=>$interestProfile->getInterestDescription(),
+                'coworking' =>$coworking
                ];                
 
                $sendMailProfileInterest->sendMailProfil($mailInterestProfile);
@@ -217,14 +218,30 @@ class ProfileUserController extends AbstractController
                $interestProfile->setInterestDescription($interestProfile->getInterestDescription());
                $interestProfile->setCoworking($coworking);
 
+                $userSenderId =$this->getUser()->getId();
+                $userRecipientId=$profile[0]->getUser()->getId();
+                $idConv = $userSenderId.'-'.$userRecipientId.'-'.rand(1000,10000000);
+
+                $message = new Message();
+                $message->setUserSender($this->getUser());
+                $message->setUserRecipient($profile[0]->getUser());
+                $message->setInterestProfil($interestProfile);  
+                $message->setType('profile_interest');
+                $message->setTime(new \DateTime());
+                $message->setText($interestProfile->getInterestDescription());
+                $message->setConversationId($idConv);
+               
+               
                $createNotification =  new Notification();
                $createNotification->setUser($userProfileOwner);
                $createNotification->setType('profile_interest');
                $createNotification->setInterestProfile($interestProfile);
                $createNotification->setSeen(false);
                $createNotification->setTime(new \DateTime());
+               $createNotification->setMessageConv($message);
 
                 $this->entityManager->persist($interestProfile);
+                $this->entityManager->persist($message);
                 $this->entityManager->persist($createNotification);
                 $this->entityManager->flush();   
                 

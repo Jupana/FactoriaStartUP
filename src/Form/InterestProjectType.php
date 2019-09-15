@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Profil;
 use App\Entity\Sector;
 use App\Entity\InterestProject;
+use App\Repository\CoworkingRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -17,8 +18,23 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class InterestProjectType extends AbstractType
 {
+    
+    private $coworkingRepository;
+    public function __construct(
+          CoworkingRepository $coworkingRepository
+        ) {
+        $this->coworkingRepository = $coworkingRepository;
+    }
+    
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        
+        $coworkingList = $this->coworkingRepository->findAll();
+        $coworkingDropDown =[];
+        foreach($coworkingList as $coworking){            
+            $coworkingDropDown[$coworking->getName()]= $coworking->getId();
+        } 
+        
         $builder
             ->add('interest_sector',EntityType::class,[
                 'class' => Sector::class,
@@ -39,6 +55,7 @@ class InterestProjectType extends AbstractType
                             ], 
                 'label' => false ,
                 'required'=>false,
+                'placeholder' =>false
                 ])
             ->add('interest_percent',NumberType::class,[               
                 'required'=>false,
@@ -59,6 +76,12 @@ class InterestProjectType extends AbstractType
                 'mapped'=>false,
                 'required'=>false,
                 'label' => false 
+            ]) 
+            ->add('coworking',ChoiceType::class,[ 
+                'choices' => $coworkingDropDown,
+                'label' => false ,
+                'placeholder' => 'Lista de Coworking', 
+                'required'=>false,  
             ]) 
         ;
     }

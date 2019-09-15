@@ -3668,7 +3668,13 @@ li:last-child .u-dot-line-v1::after, li:last-child
 	  top: 0;
 	  z-index:1000;
 }
+/*Notification*/
 
+
+.popover-body{
+	height:400px;
+	overflow:scroll;
+}
 
 
 

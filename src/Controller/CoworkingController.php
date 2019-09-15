@@ -19,7 +19,7 @@ use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 
 
 
-class AdminProjectsController extends AbstractController
+class CoworkingController extends AbstractController
 {   
     /**
     * @var \Twig_Environment
@@ -83,36 +83,86 @@ class AdminProjectsController extends AbstractController
         $this->flashBag = $flashBag;  
     }
   
-    public function index()
+   
+    public function coworking($id, Request $request)
     {
-        $projects = $this->projectRepository->findAll();
+        
+        $newCoWorking = $id == 'new' ? new Coworking(): $this->coworkingRepository->findOneBy(['id'=>$id]);
+        
+        $formNewCoWorking = $this->formFactory->create(CoworkingType::class, $newCoWorking);
+        $formNewCoWorking->handleRequest($request);
+  
+        if ($formNewCoWorking->isSubmitted() && $formNewCoWorking->isValid()) {        
+            $newCoWorking->setDate(new \DateTime());
+            if($formNewCoWorking['img']->getData()){
+                $file = $formNewCoWorking['img']->getData();
+                $fileName = $formNewCoWorking['name']->getData().'-'.md5(uniqid()).'.'.$file->guessExtension();
+                $file->move($this->getParameter('imgCoworking'), $fileName);
+            $newCoWorking->setImg($fileName);
+            
+            }    
+                
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($newCoWorking);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('admin-coworking-list');
+        }
+
+        return $this->render('admin/coworking.html.twig',[
+            'form' => $formNewCoWorking->createView()
+        ]);
+
+    }
+
+
+    public function listCoworking()
+    {
+        $coworkingList = $this->coworkingRepository->findAll();
       
         return new Response(
             $this->twig->render(
-                'admin/index.html.twig',
+                'admin/coworking-list.html.twig',
                 [
-                    'projects' => $projects                        
-                ]
-            )
-        );       
-    }
-
-    public function project($id)
-    { 
-        
-        $project = $this->projectRepository ->find($id);
-        $needsProject = $this->needsRepository->findBy(['needs_project'=>$id]);
-        $contributeProjects = $this->contributeRepository->findBy(['contribute_project'=>$id]);
-        return new Response(
-            $this->twig->render(
-                'admin/project.html.twig',
-                [
-                    'project' => $project ,
-                    'needsProject'  =>$needsProject ,
-                    'contributeProjects' =>$contributeProjects                
+                    'coworkingList' => $coworkingList                        
                 ]
             )
         ); 
     }
 
+    public function listCoworkingJson($id)
+    {
+        $coworking = $this->coworkingRepository->find($id);
+       
+        $coworking = $this->get('serializer')->serialize($coworking, 'json');
+        return new Response($coworking );
+    }
+
+    public function deleteCoworking( int $id)
+    {
+        $coworking = $this->coworkingRepository->find($id);
+
+        
+        $this->entityManager->remove($coworking);
+        $this->entityManager->flush();
+
+        $this->flashBag->add('notice', 'El Coworking ha sido eliminado');
+        
+        return $this->redirectToRoute('admin-coworking-list');
+    }
+
+
+    public function listCoworkingFree()
+    {
+        $coworkingList = $this->coworkingRepository->findAll();
+      
+        return new Response(
+            $this->twig->render(
+                'coworking/index.html.twig',
+                [
+                    'coworkingList' => $coworkingList                        
+                ]
+            )
+        ); 
+    }
 }

@@ -35,56 +35,21 @@
                 </div>
             </div>
         </div>
-        <!--<div class="row  margin_top "> 
-            <div class="col-md-12">
-                <p class=" par fs-17 ">Estos son los Profilees profesionales y los sectores en los que tienes experiencia:</p>
-            </div>
-        </div>   
-        <div class="row m-t-10  par1">
-            <div class="col-md-2 col-3"><p class="p-t-10">Comercial/<br/>Contactos:<br/>Fereteria</p></div>
-            <div class="col-md-10 col-9  border">
-          
-            </div>
-        </div> -->
-       
-        <div class="Project_box p-t-20 ">
+        <div class="p-t-20 ">
             <div class="row ">
                 <div class="col-md-12 par">
                     <p class="fs-20 ver_color par p-b-20">Tienes los siguentes projects publicados:</p> 
                 </div>
                  {% for project in userProjects %}
-                    <div class="col-md-3 p-t-10 ">
+                    <div class="card col-md-3 p-t-10 m-t-10 m-r-5">
                         <h5 class="par">{{project.ProjectName}}</h5>
                          <img class="w-50" src ="{{ asset('build/img/uploads/projects_img/' ~ project.getProjectImg) }}"/>
+                        <div class="col-md-12">
+                            <a class="col-md-3" href="{{ path("project",{"id": project.id }) }}">Ver</a>
+                            <a class="col-md-3" href="{{ path("add-project",{"id": project.id }) }}">Editar</a>
+                        </div>
+
                     </div>
-                   <!-- <div class="col-md-9">
-                        <table class="table par ">
-                            <thead class="bgGris ">
-                                <tr>
-                                    <th>Informe</th>
-                                    <th>Fase</th>
-                                    <th>Aporto</th>
-                                    <th>Necesito/Ofrezo</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr >
-                                    <td>
-                                        <a data-toggle="modal" data-target="#modalForm_info_project" class="ver_color par" href="#"><p>Ver</p></a>                                       </td>
-                                    <td>
-                                        <a data-toggle="modal" data-target="#modalForm_fase_project" class="ver_color par" href="#"><p>Idea</p></a>                                       </td>
-                                    <td>
-                                        <p>Diseño</p><p>Legal</p> 
-                                        <a data-toggle="modal" data-target="#modalForm_aporto_project" class="ver_color par" href="#"><p>Nuevo</p></a>
-                                    </td>
-                                    <td>
-                                        <p>Marketing 3 /Obra y Servicio</p><p>Legal 3% Ventas</p>
-                                        <a data-toggle="modal" data-target="#modalForm_necesito_project"class="ver_color par" href="#"><p>Nuevo</p></a>
-                                    </td>
-                                </tr>
-                            </tbody>     
-                        </table> 
-                    </div>-->
                 {% endfor %}
                 
             </div>

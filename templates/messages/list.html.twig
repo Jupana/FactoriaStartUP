@@ -13,8 +13,7 @@
                     <h4 class="p-t-10">Mensajes</h4>
                     <hr/>
                     {% set segments = app.request.pathinfo|split('/') %}
-                  
-                     {% for userMessage in userMessages  %}
+                    {% for userMessage in userMessages  %}
                         {% if segments|length > 3 %}
                             {% if userMessage.getConversationId == segments[3] %}
                                     <a class="active-message" href="{{ path('message',{"id": userMessage.getConversationId }) }}">
@@ -42,6 +41,12 @@
 
                                          {% if userMessage.getType == 'project_interest' %}
                                            {% set type = 'Interes en el proyecto' %}
+                                           {% set projectName = userMessage.getInterestProject.getInterestIdProject.getProjectName %}
+                                        {% else %}
+                                            {% set projectName =  userMessage.getInterestProfil.getInterestProject.getProjectName ~ 
+                                                                ' para el perfil de ' ~ userMessage.getInterestProfil.getInterestProfile.getName
+                                            
+                                             %}
                                         {% endif %}
 
                                         <div class="col-md-3"> 
@@ -53,7 +58,7 @@
                                             {% endif %}
                                             <span class="fs-18">{{ userSendName}}</span>
                                             <p>
-                                            <span>{{type}} :<span class="ver_color"> {{ userMessage.getInterestProject.getInterestIdProject.getProjectName}}</span></span>
+                                            <span>{{type}} :<span > {{ projectName}}</span></span>
                                             </p>
                                             <p>
                                                 <span class="float-left fs-12">{{ userMessage.time|date("d/M/y")}}</span>
@@ -81,7 +86,7 @@
                                                 <button class="bt-home"><a class=""  href="{{ path('profiles') }}">Busco equipo</a></button>  
                                             </div>
                                             <div class="col-xs-6 home-item">
-                                                <button class="bt-home"><a class="" href="{{ path('projects') }}">Busco project</a></button>
+                                                <button class="bt-home"><a class="" href="{{ path('projects') }}">Busco proyecto</a></button>
                                             </div> 
                                         </div>                            
                                     </div>

@@ -31,7 +31,8 @@ class NotificationController extends AbstractController
         if($user){
             $countNotify = $this->repoNotification->countNotify($user->getId());
             $allNotifications = $user->getNotifications()->getValues();
-             
+            
+            rsort($allNotifications);//We resort this array to have the last notification like firrst one
             foreach($allNotifications as $notification){
                 $results['values'][$notification->getId()]['id'] = $notification->getId();
                 $results['values'][$notification->getId()]['type'] = $notification->getType();

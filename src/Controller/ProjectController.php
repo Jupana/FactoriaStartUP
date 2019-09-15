@@ -23,9 +23,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Repository\UserRepository;
 use App\Services\GetProjects;
 use App\Services\SendMailInterest;
-
-
-
+use App\Repository\CoworkingRepository;
 
 class ProjectController extends AbstractController
 {   
@@ -68,6 +66,10 @@ class ProjectController extends AbstractController
     * @var FlashBagInterface
     */
     private $flashBag;
+     /**
+    * @var CoworkingRepository
+    */
+    private $coworkingRepository;
 
 
 
@@ -83,7 +85,8 @@ class ProjectController extends AbstractController
         UserRepository $userRepository,
         ContributeRepository $contributeRepository,
         NeedsProjectRepository $needsProjectRepository,
-        InterestProjectRepository $interestProject
+        InterestProjectRepository $interestProject,
+        CoworkingRepository $coworkingRepository
         ) {
         $this->twig = $twig;
         $this->projectRepository = $projectRepository;
@@ -97,6 +100,7 @@ class ProjectController extends AbstractController
         $this->contributeRepository=$contributeRepository;
         $this->needsProjectRepository=$needsProjectRepository;
         $this->interestProject = $interestProject;
+        $this->coworkingRepository = $coworkingRepository; 
     }
 
     public function project( Request $request, $id, SendMailInterest $sendMailProjectInterest)
@@ -120,8 +124,9 @@ class ProjectController extends AbstractController
     
             if ($formAddInterestProject->isSubmitted() && $formAddInterestProject->isValid()) {
                 $interestDeal = $formAddInterestProject->get('interest_deal')->getData();
-                $interestPercent = $formAddInterestProject->get('interest_percent')->getData();
-                $interestDes = $formAddInterestProject->get('extra_profile_des')->getData();
+                $interestPercent = $formAddInterestProject->get('interest_percent')->getData();                
+                $interestDes = $formAddInterestProject->get('interest_description')->getData();
+                $coworking = $this->coworkingRepository->findOneBy(['id'=>$formAddInterestProject->get('coworking')->getData()]);
 
                 $interestProject->setInterestDeal($interestDeal);
                 $interestProject->setInterestPercent($interestPercent);
@@ -153,47 +158,43 @@ class ProjectController extends AbstractController
                      'dealInterest'=>$interestDeal,
                      'percentInterest'=>$interestPercent,
                      'descriptionInterest'=>$interestDes,
+                     'coworking' =>$coworking
 
                  ];
-                 
-                 $createNotification =  new Notification();
-                 $createNotification->setUser($project->getUser());
-                 $createNotification->setType('project_interest');
-                 $createNotification->setInterestProject($interestProject);
-                 $createNotification->setSeen(false);
-                 $createNotification->setTime(new \DateTime()); 
-
                  $userSenderId =$this->getUser()->getId();
                  $userRecipientId=$project->getUser()->getId();
                  $idConv = $userSenderId.'-'.$userRecipientId.'-'.rand(1000,10000000);
-               
-                 
+
                  $message = new Message();
                  $message->setUserSender($this->getUser());
                  $message->setUserRecipient($project->getUser());
                  $message->setInterestProject($interestProject);
                  $message->setType('project_interest');
                  $message->setTime(new \DateTime());
-                 $message->setText('Tienes que ver por que no te salen la descripcion interestDes');
+                 $message->setText($interestDes);
                  $message->setConversationId($idConv);
+                 
+                 $createNotification =  new Notification();
+                 $createNotification->setUser($project->getUser());
+                 $createNotification->setType('project_interest');
+                 $createNotification->setInterestProject($interestProject);
+                 $createNotification->setSeen(false);
+                 $createNotification->setTime(new \DateTime());
+                 $createNotification->setMessageConv($message);
+            
+                $sendMailProjectInterest->sendMailProject($mailInterestProject); 
                 
-                $sendMailProjectInterest->sendMailProject($mailInterestProject);                
+                $interestProject->setCoworking($coworking);
 
                 $this->entityManager->persist($interestProject);
-                $this->entityManager->persist($createNotification);
                 $this->entityManager->persist($message);
+                $this->entityManager->persist($createNotification);
+                
                 $this->entityManager->flush();   
                 
                 $this->flashBag->add('notice', 'Mensaje Enviado');
             }
-
-            dump($this->getUser());
-            dump('Contribute',$this->getUser()->getContribute()->getValues());
-            dump('Notifications',$this->getUser()->getNotifications()->getValues());
-            dump('InteresProfileID',$this->getUser()->getInterestProfileId()->getValues());
-            dump('InterestProject',$this->getUser()->getInterestProjectId()->getValues());
-            
-            
+   
             $matchInterestProject = $this->getInterestProjectBefore($this->getUser()->getInterestProjectId()->getValues(),$id);            
             
             return new Response(
@@ -205,7 +206,6 @@ class ProjectController extends AbstractController
                         'needsProject' =>$needProject,
                         'formInterstProject' =>$formAddInterestProject->createView(),
                         'matchInterestProject'=>$matchInterestProject
-                        
                     ]
                 )
             );
@@ -217,7 +217,6 @@ class ProjectController extends AbstractController
                         'project' => $project,
                         'contributeProject' => $contributeProject,
                         'needsProject' =>$needProject,
-                        
                     ]
                 )
             );
@@ -256,8 +255,6 @@ class ProjectController extends AbstractController
             }
         }
             
-         
-        
         return $match;
 
 

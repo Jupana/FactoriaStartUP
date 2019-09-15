@@ -71,7 +71,7 @@ class InterestProfileType extends AbstractType
             ->add('submit', SubmitType::class,['label' => 'Enviar'])
             ->add('extra_profil_deal_add',ChoiceType::class,[ 
                 
-                'choices' => [  'Tipo de acuerdo'=>'placeholder',
+                'choices' => [  'Tipo de acuerdo'=>'Tipo de acuerdo',
                                 '% Empresa'=>'% Empresa',
                                 '% Ventas'=>'% Ventas',
                                 'Obra y Servicios'=>'Obra y Servicios',

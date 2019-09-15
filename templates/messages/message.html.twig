@@ -13,10 +13,10 @@
                 <span class="fs-18">{{ messageid.getUserSender.name}}</span>
                 <span class="fs-12">{{ messageid.time|date("d/m/y H:i")}}</span>
                 <p class="p-t-15">{{messageid.text}}</p>  
-                <!--<p class="p-t-15">{{messageid.getInterestProject.getInterestDescription}}</p> -->         
+                <!--<p class="p-t-15">{#{messageid.getInterestProject.getInterestDescription}#}</p> -->         
             </div>
         </div>
-        <span class="float-right fs-12">Para proyecto:<span class="ver_color"> {{ messageid.getInterestProject.getInterestIdProject.getProjectName}}</span></span>
+        <span class="float-right fs-12">Para proyecto:<span class="ver_color"> {#{ messageid.getInterestProject.getInterestIdProject.getProjectName}#}</span></span>
         <hr/>
     {% endfor %}
     </div>   

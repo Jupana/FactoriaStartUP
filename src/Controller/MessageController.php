@@ -8,6 +8,7 @@ use App\Repository\MessageRepository;
 use App\Services\Utils;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use App\Services\SendMailInterest;
 
 class MessageController extends AbstractController
 {
@@ -25,6 +26,8 @@ class MessageController extends AbstractController
     {   
         $userMessages = $this->messageRepository->findMessage($this->getUser()->getId());
         $message = $this->messageRepository->findAll();
+        rsort($message);
+        rsort($userMessages);
         return $this->render('messages/list.html.twig', [
             'userMessages' => $userMessages,
             'message' => $message
@@ -32,11 +35,12 @@ class MessageController extends AbstractController
     }
 
   
-    public function message($id,Request $request)
+    public function message($id,Request $request,SendMailInterest $sendMailMessage)
     {   
         $userMessages = $this->messageRepository->findMessage($this->getUser()->getId());
         $message = $this->messageRepository->findBy(['conversation_id' =>$id]);
-        $utils = new Utils($this->getDoctrine()->getManager());
+        $utils = new Utils($this->getDoctrine()->getManager());        
+        rsort($userMessages);
 
         $user = $this->getUser();
         $userSender = $message[0]->getUserSender();
@@ -63,6 +67,18 @@ class MessageController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {        
             $newMessage->setTime(new \DateTime());
+
+            $mailMessage =[
+                'userName'=>$this->getUser()->getUsername(),
+                'userMail' =>$this->getUser()->getEmail(),
+                'ownerName'=>$userRecipient->getUsername(),
+                'ownerMail' =>$userRecipient->getEmail(),
+                'message'=>$newMessage->getText()
+               ];                
+
+            $sendMailMessage->sendMailMessage($mailMessage);
+
+
             
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($utils->createNotify($user,$message[0],$newMessage));

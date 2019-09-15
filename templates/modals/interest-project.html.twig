@@ -15,7 +15,7 @@
                         <!-- Step 1 -->
                     <div id="interest-step-1">
                         <div class="col-md-12 text-center m-t-10  modal-title interestdata" data-userid='{{app.user.id}}' data-projectid='{{project.id}}'>                     
-                            <h4 class="par" id="myModalLabel">Con que Profile quieres interesarte</h4> 
+                            <h4 class="par" id="myModalLabel">Con que Profile quieres interesarte Liviu</h4> 
                         </div>
                             {{ form_row (formInterstProject.interest_profil,{'attr' : { 'id': 'profile_user' }} )}}
                             <span class="btn-primary btn float-r profile_project_interest btnEndInterest1">Siguiente</span>
@@ -25,7 +25,6 @@
                     <div id="interest-step-2" class="hide-e">
                         <div class="col-md-12 text-center m-t-10  modal-title interest-title">
                             <h4 class="par" id="myModalLabel">Participa en el proyecto</h4> 
-                             
                         </div>
                                 <div class="add-profil-project hide-e">
                                     {{ form_row (formInterstProject.interest_sector,{'attr' : { 'class': 'needs_project_needs_sector hide-e' }}) }}
@@ -35,15 +34,31 @@
                                     <span class="btn-primary btn float-r profile_project_interest hide-e btnEndAddProfile">Siguiente</span> 
                                 </div>                                
                              {{ form_row (formInterstProject.interest_description,{'attr' : { 'placeholder': 'Cuenta tu propuesta y porque...' }}) }} 
-                             {{ form_row (formInterstProject.submit,{'attr' : { 'class': 'btn-primary float-r sendIn' }}) }} 
-
-                            
-                            <input type="submit" id="submit-form-add" class="btn-primary float-r" style="display:none"/>    
-                            <span class="btn-primary btn float-l profile_project_interest btnEndInterest1-Atras">Atras</span> 
-                                                                     
-                    </div>
+                                <span class="btn-primary btn float-l project_interest_2 btnEndInterest1-Atras">Atras</span> 
+                                <span class="btn-primary btn float-r project_interest_3 " >Siguiente</span>
+                         </div>
                     
-                    <!-- Fin Step 2 -->     
+                    <!-- Fin Step 2 -->       
+                       <!-- Step 3 Coworking-->
+                    <div id="interest-step-3" class="hide-e">
+                        <div class="col-md-12 text-center m-t-10  modal-title interest-profile-title">
+                            <h4 class="par" id="myModalLabel">Elija un Coworking para quedar</h4> 
+                        </div>
+                            
+                            {{ form_row (formInterstProject.coworking,{'attr' : { 'class': 'profile_user' }}) }}
+                            <!-- Coworking , we get the conten via app.js, KUNLABORI is HACKET to apper the first one-->
+                            <div class="coworking-popUp">
+                                <p class="co-name"></p>
+                                <p><i class="fas fa-map-marker-alt"></i>  <span class="co-address"> </span></p>
+                                <p><i class="fa fa-phone-square bigicon"></i> <span class="co-phone"></span></p>
+                                <p><i class="fa fa-pencil-square-o bigicon"></i>  <span class="co-description"> </span></p>
+                                <p><img class="co-img" src=""/></p>
+                            </div>
+                            <!-- Fin Coworking-->
+                            {{ form_row (formInterstProject.submit,{'attr' : { 'class': 'btn-primary float-r sendIn' }}) }} 
+                            <input type="submit" id="submit-form-add" class="btn-primary float-r" style="display:none"/>    
+                            <span class="btn-primary btn float-l project_interest_2_atras ">Atras</span> 
+                    </div>  
                     {{ form_end     (formInterstProject) }}  
                 </div>
                                         

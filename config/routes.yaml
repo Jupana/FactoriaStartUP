@@ -10,19 +10,24 @@ admin-projects-project:
     controller: App\Controller\AdminProjectsController::project   
 admin-coworking-list:
     path: /admin/coworking/
-    controller: App\Controller\AdminProjectsController::listCoworking
+    controller: App\Controller\CoworkingController::listCoworking
 
 admin-coworking-json:
     path: /coworking/json/{id}
-    controller: App\Controller\AdminProjectsController::listCoworkingJson
+    controller: App\Controller\CoworkingController::listCoworkingJson
 
 admin-coworking:
     path: /admin/coworking/{id}
-    controller: App\Controller\AdminProjectsController::coworking
+    controller: App\Controller\CoworkingController::coworking
 
 admin-delete-coworking:    
     path: /admin/coworking/delete/{id}
-    controller: App\Controller\AdminProjectsController::deleteCoworking    
+    controller: App\Controller\CoworkingController::deleteCoworking    
+
+coworking-list:
+    path: /coworking/
+    controller: App\Controller\CoworkingController::listCoworkingFree
+
 
 user:
     path: /user

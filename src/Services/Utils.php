@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\Entity\Notification;
-use App\Repository\NotificationRepository;
 
 class Utils{
 
@@ -19,7 +18,7 @@ class Utils{
         if($oldMessage->getType() == "project_interest")
             $notify->setInterestProject($oldMessage->getInterestProject());
         if($oldMessage->getType() == "profile_interest")
-            $notify->setInterestProfil($oldMessage->getInterestProfil());
+            $notify->setInterestProfile($oldMessage->getInterestProfil());
         $notify->setSeen(false);
         $notify->setMessageConv($newMessage);
         $notify->setTime(new \DateTime());

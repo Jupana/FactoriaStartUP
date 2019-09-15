@@ -19,7 +19,7 @@
     <!--[if !mso]><!-->
 	<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i" rel="stylesheet" />
     <!--<![endif]-->
-	<title>Nuevo interesado en tu Profile</title>
+	<title>Nuevo interesado en tu project</title>
 	<!--[if gte mso 9]>
 	<style type="text/css" media="all">
 		sup { font-size: 100% !important; }
@@ -149,41 +149,15 @@
 													<table width="100%" border="0" cellspacing="0" cellpadding="0">
 														<tr>
 															<td class="h3 pb10" style="color:#000000; font-family:'Playfair Display', Georgia, serif; font-size:22px; line-height:32px; text-align:left; padding-bottom:10px;">
-                                                                <multiline>Hola <b>{{dataMail.ownerName}}</b> , el usuario <b>{{dataMail.userName|capitalize}}</b> se intereso por tu perfil <b>{{dataMail.profileName.name|capitalize}}</b>. </multiline>
+                                                                <multiline>Hola <b>{{dataMail.ownerName}}</b> , el usuario <b>{{dataMail.userName|capitalize}}</b> te mando el siguiente mensaje. </multiline>
                                                             </td>
 														</tr>
 														<tr>
 															<td class="text" style="color:#999999; font-family:Arial, sans-serif; font-size:14px; line-height:26px; text-align:left;">
-                                                                <multiline>Aqui encuentras los detalles:<br/></multiline></td>
-														</tr>
-                                                        <tr>
-															<td class="text" style="color:#999999; font-family:Arial, sans-serif; font-size:14px; line-height:26px; text-align:left;">
                                                                 <multiline>
-                                                                            {% if dataMail.projectInterest == true %}
-                                                                                <b>Le necesita para el proyecto:</b> {{dataMail.projectInterest.ProjectName}}<br/>
-                                                                            {% endif %}                                                                         
-                                                                            {% if dataMail.dealInterest == true %}
-                                                                                <b>Tipó de Acuerdo:</b> {{dataMail.dealInterest}}<br/>
-                                                                            {% endif %}
-                                                                            {% if dataMail.percentInterest == true %}
-                                                                                <b>Procentaje:</b> {{dataMail.percentInterest}}%<br/>
-                                                                            {% endif %}
-                                                                            {% if dataMail.descriptionInterest == true %}
-                                                                                 {{dataMail.descriptionInterest}}<br/>
-                                                                            {% endif %}
-																			{% if dataMail.coworking == true %}
-                                                                                 <b>Propone como coworking :</b><br/>
-																				 {{dataMail.coworking.name}} en {{dataMail.coworking.address}}<br/>
-                                                                            {% endif %}
+                                                                                 {{dataMail.message}}
                                                                 </multiline>
-                                                            </td>
-															<td class="text" style="color:#999999; font-family:Arial, sans-serif; font-size:14px; line-height:26px; text-align:left;">
-                                                                <multiline>
-                                                                          <p>Ya podeis contactar y conoceros en persona, y si sois compatibles ,crecer en el proyecto</p>
-																		  <p>Si quieres, ponemos a tu disposición varios espacios amigos donde podrás reunirte de forma cómoda y tranquila <a href="http://localhost:8000/coworking/" target="_blank">ver espacios</a>
-</p>                                                                      <p>Recuerda que todos los perfiles se guardarán en tu agenda, donde podrás opinar sobre  cómo ha ido la reunion para poder consultarlo más adelante.</p>    
-                                                                </multiline>
-                                                            </td>
+                                                            </td>															
 														</tr>                                                                                                            
 													</table>
 												</td>
