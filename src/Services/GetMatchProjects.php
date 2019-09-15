@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Repository\ProfilRepository;
+
 use App\Repository\ProjectRepository;
 use App\Repository\ProfileUserRepository;
 use App\Repository\NeedsProjectRepository;
@@ -28,8 +28,12 @@ class GetMatchProjects{
 
     public function getMatch($userId, $projectId){        
         $profilesUser = $this->profileUserRepository->findBy(['user'=>$userId]);
-        $needsProject = $this->needsProjectRepository->findBy(['needs_project'=>$projectId]);      
-
+        //ESTO ES UNA MIERDA hABrA QUE HACERLO DE NUEVO
+        $projectByTxt= $this->projectRepository->findOneBy(['project_name'=>$projectId]);
+        
+        $needsProject = $this->needsProjectRepository->findBy(['needs_project'=>$projectId]);
+        $needsProject = $needsProject !=null ? $needsProject: $this->needsProjectRepository->findBy(['needs_project'=>$projectByTxt->getId()]);
+    
         $arrNeedsProfileProject =[];
         $arrNeedsProfileProjectDeal=[];        
         foreach( $needsProject as $profileNeeds){ 

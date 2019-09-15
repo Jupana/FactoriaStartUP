@@ -21,6 +21,7 @@ class Message
 
     /**
      * @ORM\Column(type="text", nullable=false)
+     * @ORM\GeneratedValue()
      */
     private $conversation_id;
 
@@ -49,6 +50,7 @@ class Message
      * @ORM\ManyToOne(targetEntity="App\Entity\InterestProject", inversedBy="message")
      */
     private $interest_project;
+
 
     /**
      * @ORM\Column(type="text")
@@ -211,4 +213,5 @@ class Message
 
         return $this;
     }
+   
 }

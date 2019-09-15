@@ -57,7 +57,7 @@
         <div class="col-md-3 m-b-15"> 
             <div class="cardBlock shadow_box" >         
                 <div class="imageCard p-3">
-                     <img  class="card-img-top w-100" src ="{{ asset('build/img/uploads/users_perfil/' ~ profile.user_img) }}" alt="image"/>                  
+                     <img  class="card-img-top w-100" src ="{{ asset('build/img/uploads/users_profile/' ~ profile.user_img) }}" alt="image"/>                  
                 </div>                    
                 <div class="mainCard p-3">  
                     <div class="d-flex align-items-top justify-content-between">  
@@ -78,7 +78,7 @@
                                 </thead>
                                 <tbody>
                                     {% set i = 0 %}
-                                    {% for userProfile in profile.Profilees %}
+                                    {% for userProfile in profile.perfiles %}
                                     <tr>                       
                                         <td>                                         
                                             <p>{{ userProfile.name}}</p>                                 

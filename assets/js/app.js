@@ -21,23 +21,17 @@ require('@fortawesome/fontawesome-free/css/all.min.css');
 require('@fortawesome/fontawesome-free/js/all.js');
 
 $(document).ready(function() {
-    $('[rel=popover]').popover({ 
-        html : true ,
-        container: 'body',
-        content: function() {
-          return $('#popover_content').html();
-        }
-      });
-    
+       
     $('.slick-projects').slick({
         slidesToShow: 2,
         slidesToScroll: 1,
         dots: true,
         variableWidth: true,
         arrows : false,
-       // autoplay: true,
-       // autoplaySpeed: 2000,        
-      });       
+        autoplay: true,
+        autoplaySpeed: 2000,        
+      }); 
+    
 });
 require('bootstrap/js/dist/util.js')
 
@@ -48,7 +42,7 @@ $(function(){
       content: function() {
         return $('#popover_content').html();
       }
-    });
+    });    
   });
 
     /*==================================================================
@@ -57,6 +51,20 @@ $(function(){
     (function ($) {
         "use strict";
     var input = $('.validate-input .input100');
+    
+    /* START NOTIFY UPDATE*/
+    $(document).on('click','.notify',function(){
+        var notifyID =$(this).data('notify-id');
+        $.post("/user/notification-update/"+notifyID )
+        .done(function(response) {            
+            console.log('Notify Update')            
+        })
+        .fail(function(response) {
+            console.log('Error - Notify Update')
+        });
+            
+    });
+    /* FIN NOTIFY UDDATE*/
 
     $('.validate-form').on('submit',function(){
         var check = true;
@@ -372,14 +380,14 @@ function  arrMatchTxt (profil,dealArr, projectName){
             'headerText':'El Profile <b>'+profil+'</b> no lo tienes activo no hay problema, hazlo ahora y se te guardará en datos profesionales.',
             'headerTextDeal':'El Profile <b>'+profil+'</b> no lo tienes activo no hay problema, hazlo ahora y se te guardará en datos profesionales.',
             'headerTextMax':'El Profile <b>'+profil+'</b> no lo tienes activo.',
-            'descriptionTextMax':'Lo sentimos pero has llegado al maximo de <b>4 Profilees</b>.Ve a <a href="/user/professional-info" class="ver_color">Datos Profesionales</a> y revisa tus Profilees.'
+            'descriptionTextMax':'Lo sentimos pero has llegado al maximo de <b>4 perfiles</b>.Ve a <a href="/user/professional-info" class="ver_color">Datos Profesionales</a> y revisa tus perfiles.'
         },
         'subscribeAlready':{
             'headerText':'Ya te has interesado por este project con este mismo Profile, así que no enviaremos tu interes por este project.<br/>Pero puedes intentarlo con otro Profile si lo deseas.',
             'descriptionText':''
         },
         'noMatch':{ //Ni el use no tiene el Profile ni el project lo necesita
-            'headerText':' Este project no busca ninguno de tus Profilees ni tampoco busca <b>'+profil+'</b>',
+            'headerText':' Este project no busca ninguno de tus perfiles ni tampoco busca <b>'+profil+'</b>',
             'descriptionText':'Puedes ir a datos profesoniales y dar de alta algun Profile que el project demande o puedes intersarte por algun Profile que el project demande'
         }
     }
@@ -566,7 +574,7 @@ $('select#interest_project_interest_profil').change(function(){
                             
                             $('.interest-title').append('<p class="interstAppendHeader">'+ headerToAddProject+'</p>');
                             $('textarea#interest_project_interest_description').after('<p class="interstAppendDescription">'+descriptionToAddProject+'</p>');
-                            $('#interest_project_interest_description').val(projectInterestDescriptionToAdd).prop('disabled',true);
+                            $('#interest_project_interest_description').val(projectInterestDescriptionToAdd);
                         })
                         projectInterestDescriptionToAdd=undefined; //We do this to give the oportunity to the user to add his descriptionin and to overwritet the projrct description
                     }
@@ -588,7 +596,7 @@ $('select#interest_project_interest_profil').change(function(){
         
         $('.btnEndInterest1').click(function(){
             if(projectInterestDescriptionToAdd !== undefined){
-                $('#interest_project_interest_description').val(projectInterestDescriptionToAdd).prop('disabled',true);
+                $('#interest_project_interest_description').val(projectInterestDescriptionToAdd);
             }
             $('.interest-title').append('<p class="interstAppendHeader">'+ headerToAddProject+'</p>');
             $('textarea#interest_project_interest_description').after('<p class="interstAppendDescription">'+descriptionToAddProject+'</p>');
@@ -619,6 +627,39 @@ $('select#interest_project_interest_profil').change(function(){
             }else{
                 $('.needs_project_needs_percent').addClass('hide-e');
             }
+            
+        })
+
+        $('.project_interest_3').click(function(){
+            $('#interest-step-3').removeClass('hide-e');
+            $('#interest-step-2').addClass('hide-e');
+            $('.interstAppendHeader').addClass('hide-e');
+        })
+
+        $('.project_interest_2_atras').click(function(){
+            $('#interest-step-3').addClass('hide-e');
+            $('#interest-step-1').addClass('hide-e');
+            $('#interest-step-2').removeClass('hide-e');
+            $('.interstAppendHeader').removeClass('hide-e')
+        })
+
+        $('select#interest_project_coworking').change(function() {
+        
+            var coworkID =$(this).val();
+            $.get('/coworking/json/'+coworkID)
+            .done(function(response) {
+                var data = $.parseJSON(response);
+                console.log(data)
+                $('.co-name').text(data.name);
+                $('.co-address').text(data.address);
+                $('.co-phone').text(data.phone);
+                $('.co-description').text(data.description);
+                $('.co-img').attr('src','/media/cache/coworking_thumb/build/img/uploads/coworking_img/'+data.img);
+
+            })
+            .fail(function(response) {
+                console.log('Failed',response)
+            });
             
         })
 
@@ -669,9 +710,9 @@ $('.profile_interest_1').click(function() {
     var profilUserId  =   $('.profiluserId').data('profiluserid');
     var profileSector =   $('.profile-sector').data(profileSelected.toLowerCase());
 
-    var projectSelectedId = $('#interest_profile_interest_project option:selected').val();
+    var projectSelectedId = $('#interest_profile_interest_project option:selected').text();
     var profileSelectedId = $('#interest_profile_interest_profile option:selected').val();
-    var userId =$('.interestdata').data('usrProfileid');
+    var userId =$('.interestdata').data('usrprofileid');
     
     console.log('Project', projectSelected);
     console.log('Profile', profileSelected);
@@ -682,7 +723,7 @@ $('.profile_interest_1').click(function() {
     console.log('profilSector',profileSector);
     console.log('profileSelectedId',profileSelectedId);
 
-            let urlDeleteNeedsProfil = Routing.generate("MatchProject",{userid:userId,projectid:projectSelectedId});
+            let urlDeleteNeedsProfil = Routing.generate("match-project",{userid:userId,projectid:projectSelectedId});
             new Promise(function (resolve, reject) {
                 let xhr = new XMLHttpRequest()
                 // third argument specifies if it's an async request or a sync
@@ -719,7 +760,7 @@ $('.profile_interest_1').click(function() {
                     if (responseType =='match'){
                         $('.interest-profile-title').append('<p class="interstAppendHeader">'+matchTxtProfile[responseType]['headerText']+'</p>');
                         $('textarea#interest_profile_interest_description').after('<p class="interstAppendDescription">'+matchTxtProfile[responseType]['descriptionText']+'</p>');                        
-                        $('#interest_profile_interest_description').val(deal.description).prop('disabled',true);
+                        $('#interest_profile_interest_description').val(deal.description);
                     
                     }else{
                         $('.interest-profile-title').append('<p class="interstAppendHeader">'+matchTxtProfile[responseType]['headerText']+'</p>');
@@ -737,10 +778,25 @@ $('.profile_interest_1').click(function() {
     
 })
 
+       
+
         $('.profile_interest_2').click(function(){
             $('#interest_profile_interest_description').val('');
             $('#interest_profile_interest_description').prop('disabled',false);
             $('#interest_profile_extra_profil_deal_add').addClass('hide-e');
+        })
+
+        $('.profile_interest_3').click(function(){
+            $('#interest-step-3').removeClass('hide-e');
+            $('#interest-step-2').addClass('hide-e');
+            $('.interstAppendHeader').addClass('hide-e');
+        })
+
+        $('.profile_interest_2_atras').click(function(){
+            $('#interest-step-3').addClass('hide-e');
+            $('#interest-step-1').addClass('hide-e');
+            $('#interest-step-2').removeClass('hide-e');
+            $('.interstAppendHeader').removeClass('hide-e')
         })
 
 
@@ -754,6 +810,42 @@ $('.profile_interest_1').click(function() {
             }
             
         })
+
+        //HACKER KUNLABORI FIRST COWORKING
+        $.get('/coworking/json/2')
+            .done(function(response) {
+                var data = $.parseJSON(response);
+                $('.co-name').text(data.name);
+                $('.co-address').text(data.address);
+                $('.co-phone').text(data.phone);
+                $('.co-description').text(data.description);
+                $('.co-img').attr('src','/media/cache/coworking_thumb/build/img/uploads/coworking_img/'+data.img);
+
+            })
+            .fail(function(response) {
+                console.log('Failed',response)
+            });
+
+        $('select#interest_profile_coworking').change(function() {
+        
+            var coworkID =$(this).val();
+            $.get('/coworking/json/'+coworkID)
+            .done(function(response) {
+                var data = $.parseJSON(response);
+                console.log(data)
+                $('.co-name').text(data.name);
+                $('.co-address').text(data.address);
+                $('.co-phone').text(data.phone);
+                $('.co-description').text(data.description);
+                $('.co-img').attr('src','/media/cache/coworking_thumb/build/img/uploads/coworking_img/'+data.img);
+
+            })
+            .fail(function(response) {
+                console.log('Failed',response)
+            });
+            
+        })
+        
 
 /* FIN PROFILE INTEREST --> */
 

@@ -3,16 +3,19 @@
     <!-- COMMENT FOR WORK ...DONT PRINT LOGOWORK-->
     <div class="flex-row justify-content-around border-bottom border-secondary">
         <div class="col-2  col-xl-4"> 
-         <!-- COMMENT FOR WORK ...DONT PRINT LOGOWORK -->
+         <!-- COMMENT FOR WORK ...DONT PRINT LOGOWORK-->
             <a href="/">
                 <img class="img-fluid float-left" alt="Responsive image" src ="{{ asset('build/img/logo.png') }}"> 
             </a>
+            <span class="slogan">... donde se crean los equipos.</span>
          </div>             
         <div class="col-7 col-md-10 col-xl-8">                        
-         <!-- COMMENT FOR WORK ...DONT PRINT banner   -->                
-            <img class="img-fluid float-right" alt="Responsive image" src ="{{ asset('build/img/banner.png') }}"> 
+         <!-- COMMENT FOR WORK ...DONT PRINT banner  -->                
+            <img class="img-fluid float-right" alt="Responsive image" src ="{{ asset('build/img/banner.png') }}">         
         </div> 
     </div>
+</div>
+<div class="sticky-menu bgWhite">
     <nav class="navbar navbar-expand-lg navbar-light">
         <a class="navbar-brand" href="#"> 
         </a>
@@ -26,6 +29,9 @@
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link " href="{{ path('profiles') }}">Perfiles</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link " href="{{ path('coworking-list') }}">CoWorking</a>
                 </li>
                 
                 {% if is_granted('ROLE_USER') %}
@@ -42,6 +48,9 @@
                 <li class="nav-item active">
                     <a class="nav-link" id="op3"href="{{ path('proposals-info') }}">Mis Propuestas</a>
                 </li>
+                 <li class="nav-item active">
+                    <a class="nav-link" id="op4"href="{{ path('list-notes') }}">Mis Notas</a>
+                </li>
                 {% endif %}                           
             </ul>
             <form class="form-inline my-2 my-lg-0">
@@ -51,7 +60,7 @@
                     <a tabindex="0" role="button" rel="popover" data-placement="bottom" data-toggle="popover" href="#" >
                        <div class="icono-notification">
 
-                            <img class="notification rounded-circle" src ="{{ asset('build/img/uploads/users_profile/' ~ app.user.getProfileImg) }}"/>
+                            <img class="notification rounded-circle" src ="{{ asset('build/img/uploads/users_profile/' ~ app.user.getProfileImg )| imagine_filter('user_round_profile') }}"/>
                             {% if results.count_notify > 0 %}
                                 <div class="icono-encima bg-danger text-white fs-10 not-count">{{results.count_notify}}</div>
                             {% endif %}    
@@ -64,21 +73,23 @@
                 {% endif %}
             </form>
         </div>
-    </nav>   
-</div> 
+    </nav> 
+</div>  
+ 
 {% if is_granted('ROLE_USER') %}
 <!-- Content for Popover  -->
 <div class="popover d-none" id="popover_content">
     <div class="data-content" >  
         <div class="container-fluid"> 
             <div class="row m-t-15">
-
                 <!--Start Content Notify  -->
+                
                {% if results.values is defined%}
                     {% for result in results.values %}
                     {% set notify_type  = result.type %}                
                         {% if attribute (result,notify_type) is defined %}                        
-                            {% for user in attribute(result,notify_type) %}                            
+                            {% for user in attribute(result,notify_type) %}                             
+                            <a href="{{ path('message',{"id": result.message_conv}) }}" class="notify" data-notify-id="{{result.id}}" data-message-conv="{{result.message_conv}}">    
                                 <div class="activity_item ">
                                     <div class="row">
                                         <div class="col-md-3">
@@ -101,13 +112,14 @@
                                         </div>               
                                     </div><hr/>                  
                                 </div>
+                             </a>   
                             {% endfor %}    
                         {% endif %}                    
                     {% endfor %}
                 {% endif %}        
                 <!--Fin Content Notify  -->                
                 <div class="col-md-12 ">
-                    <div class="colorAzul text-center fs-15 p-3"><a href="{{ path('list-messages') }}">Ver Todo</a></div>
+                    <div class="colorAzul text-center fs-15 p-3"><a href="{{ path('list-messages') }}">Ver Mensajes</a></div>
                 </div>
             </div>                                    
         </div>         

@@ -2,15 +2,20 @@
 
 namespace App\Controller;
 
-
+use App\Entity\Coworking;
+use App\Form\CoworkingType;
 use App\Repository\UserRepository;
 use App\Repository\ProjectRepository;
+use App\Repository\CoworkingRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\NeedsProjectRepository;
 use App\Repository\ContributeRepository;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
+
 
 
 
@@ -46,6 +51,16 @@ class AdminProjectsController extends AbstractController
     */
     private $contributeRepository;
 
+    /**
+    * @var CoworkingRepository
+    */
+    private $coworkingRepository;
+
+    /**
+    * @var FlashBagInterface
+    */
+    private $flashBag;
+
     public function __construct(
         \Twig_Environment $twig, 
         ProjectRepository $projectRepository,
@@ -53,7 +68,9 @@ class AdminProjectsController extends AbstractController
         EntityManagerInterface $entityManager,        
         UserRepository $userRepository,
         NeedsProjectRepository $needsRepository,
-        ContributeRepository $contributeRepository
+        ContributeRepository $contributeRepository,
+        CoworkingRepository $coworkingRepository,
+        FlashBagInterface $flashBag
         ) {
         $this->twig = $twig;
         $this->projectRepository = $projectRepository;
@@ -61,7 +78,9 @@ class AdminProjectsController extends AbstractController
         $this->formFactory = $formFactory;
         $this->entityManager = $entityManager;  
         $this->needsRepository = $needsRepository;  
-        $this->contributeRepository = $contributeRepository;    
+        $this->contributeRepository = $contributeRepository; 
+        $this->coworkingRepository = $coworkingRepository;  
+        $this->flashBag = $flashBag;  
     }
   
     public function index()
@@ -96,9 +115,4 @@ class AdminProjectsController extends AbstractController
         ); 
     }
 
-    public function index_coworker()
-    {
-            return $this->render('admin/coworker.html.twig');
-
-    }
 }

@@ -65,6 +65,11 @@ class InterestProfile
      */
     private $message;
 
+      /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Coworking", inversedBy="interest_profil")
+     */
+    private $coworking;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -162,6 +167,26 @@ class InterestProfile
     public function setMessage(?Message $message): self
     {
         $this->message = $message;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of coworking
+     */ 
+    public function getCoworking()
+    {
+        return $this->coworking;
+    }
+
+    /**
+     * Set the value of coworking
+     *
+     * @return  self
+     */ 
+    public function setCoworking($coworking)
+    {
+        $this->coworking = $coworking;
 
         return $this;
     }

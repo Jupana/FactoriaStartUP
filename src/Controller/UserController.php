@@ -278,16 +278,7 @@ class UserController extends AbstractController
               
         $usersSearchData=[];
         $i=0;
-
-        dump($this->getUser());
-
-        dump('Contribute',$this->getUser()->getContribute()->getValues());
-        dump('Notifications',$this->getUser()->getNotifications()->getValues());
-        dump('InteresProfileID',$this->getUser()->getInterestProfileId()->getValues());
-        dump('InterestProject',$this->getUser()->getInterestProjectId()->getValues());
-        dump('Notes',$this->getUser()->getNotes()->getValues());
-
-        foreach($searchprofiles as $searchprofile){
+       foreach($searchprofiles as $searchprofile){
             $userSearch =  $this->userRepository->findBy(['id'=>$searchprofile->getUserProfileOwner()]);
           
            if($userSearch){

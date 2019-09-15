@@ -7,6 +7,7 @@ use App\Entity\NeedsProject;
 use App\Entity\InterestProfile;
 use App\Form\InterestProfileType;
 use App\Entity\Notification;
+use App\Entity\Message;
 use App\Repository\UserRepository;
 use App\Repository\ProfileUserRepository;
 use App\Repository\ProfilRepository;
@@ -16,6 +17,7 @@ use App\Repository\ProfesionalProfileRepository;
 use App\Repository\NeedsProjectRepository;
 use App\Repository\InterestProfileRepository;
 use App\Repository\NotificationRepository;
+use App\Repository\CoworkingRepository;
 use App\Services\GetProfile;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\FormFactoryInterface;
@@ -24,6 +26,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Services\SendMailInterest;
+
 
 
 
@@ -54,11 +57,6 @@ class ProfileUserController extends AbstractController
     * @var projectRepository
     */
     private $projectRepository;
-
-    /**
-    * @var profilUserRepository
-    */
-    private $profilUserRepository;
 
       /**
     * @var FormFactoryInterface
@@ -99,12 +97,15 @@ class ProfileUserController extends AbstractController
 
       private $notificationRepository;
      
-
+     /**
+    * @var CoworkingRepository
+    */
+    private $coworkingRepository;
 
     public function __construct(
         \Twig_Environment $twig, ProfileUserRepository $profileUserRepository, ProfilRepository $profilRepository, SectorRepository $sectorRepository,
         FormFactoryInterface $formFactory,EntityManagerInterface $entityManager,ProfesionalProfileRepository $profesionalProfileRepository,ProjectRepository $projectRepository,NeedsProjectRepository $projectNeedsRepo,
-        FlashBagInterface $flashBag,InterestProfileRepository $interestProfileRepository, UserRepository $userRepository, NotificationRepository $notificationRepository
+        FlashBagInterface $flashBag,InterestProfileRepository $interestProfileRepository, UserRepository $userRepository, NotificationRepository $notificationRepository,CoworkingRepository $coworkingRepository
         ) {
         $this->twig = $twig;
         $this->profileUserRepository = $profileUserRepository;
@@ -119,6 +120,7 @@ class ProfileUserController extends AbstractController
         $this->interestProfileRepository = $interestProfileRepository;
         $this->userRepository = $userRepository;
         $this->notificationRepository =$notificationRepository;
+        $this->coworkingRepository = $coworkingRepository;  
     }
 
 
@@ -179,9 +181,10 @@ class ProfileUserController extends AbstractController
            
                $dealToAdd = $formAddInterestProfile->get('extra_profil_deal_add')->getData();
                $percentToAdd = $formAddInterestProfile->get('extra_profil_percent_add')->getData();                              
-               $projectAllNeeds = $this->projectNeedsRepo->findBy(['needs_project'=>$interestProfile->getInterestProject()->getId()]);                
-               
-               if($dealToAdd != NULL){                 
+               $projectAllNeeds = $this->projectNeedsRepo->findBy(['needs_project'=>$interestProfile->getInterestProject()->getId()]);    
+               $coworking = $this->coworkingRepository->findOneBy(['id'=>$formAddInterestProfile->get('coworking')->getData()]);            
+              
+               if($dealToAdd != 'Tipo de acuerdo'){    //OTRA MERDA QUE TE VIENE DESDE EL DROP DOWN DEL PORFILE TYPE              
                 
                 $newProfileAddFromMatch = new NeedsProject();
                 $newProfileAddFromMatch->setUser($this->getuser());
@@ -195,9 +198,7 @@ class ProfileUserController extends AbstractController
                 $newProfileAddFromMatch->setNeedsDate(new \DateTime());
                 $this->entityManager->persist($newProfileAddFromMatch);                                
                }
-                    
                
-
                $mailInterestProfile =[
                 'userName'=>$this->getUser()->getUsername(),
                 'userMail' =>$this->getUser()->getEmail(),
@@ -205,25 +206,42 @@ class ProfileUserController extends AbstractController
                 'ownerMail' =>$profile[0]->getUser()->getEmail(),
                 'profileName' =>$interestProfile->getInterestProfile(),
                 'projectInterest'=>$interestProfile->getInterestProject(),
-                'dealInterest'=>$dealToAdd ?? $projectAllNeeds[0]->getNeedsDeal(),
+                'dealInterest'=>$dealToAdd != 'Tipo de acuerdo' ? $dealToAdd : $projectAllNeeds[0]->getNeedsDeal(),
                 'percentInterest'=>$percentToAdd ?? $projectAllNeeds[0]->getNeedsPercent(),                
                 'descriptionInterest'=>$interestProfile->getInterestDescription(),
+                'coworking' =>$coworking
                ];                
 
                $sendMailProfileInterest->sendMailProfil($mailInterestProfile);
                
                $interestProfile->setInterestProfile($interestProfile->getInterestProfile());
                $interestProfile->setInterestDescription($interestProfile->getInterestDescription());
+               $interestProfile->setCoworking($coworking);
 
+                $userSenderId =$this->getUser()->getId();
+                $userRecipientId=$profile[0]->getUser()->getId();
+                $idConv = $userSenderId.'-'.$userRecipientId.'-'.rand(1000,10000000);
+
+                $message = new Message();
+                $message->setUserSender($this->getUser());
+                $message->setUserRecipient($profile[0]->getUser());
+                $message->setInterestProfil($interestProfile);  
+                $message->setType('profile_interest');
+                $message->setTime(new \DateTime());
+                $message->setText($interestProfile->getInterestDescription());
+                $message->setConversationId($idConv);
+               
+               
                $createNotification =  new Notification();
                $createNotification->setUser($userProfileOwner);
                $createNotification->setType('profile_interest');
-               $createNotification->setEntity($interestProfile->getInterestProfile()->getId());
                $createNotification->setInterestProfile($interestProfile);
                $createNotification->setSeen(false);
                $createNotification->setTime(new \DateTime());
+               $createNotification->setMessageConv($message);
 
                 $this->entityManager->persist($interestProfile);
+                $this->entityManager->persist($message);
                 $this->entityManager->persist($createNotification);
                 $this->entityManager->flush();   
                 

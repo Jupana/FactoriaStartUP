@@ -43,4 +43,18 @@ class SendMailInterest{
         );
         $this->mailer->send($message);
     }
+
+    public function sendMailMessage($mailMessage){
+        /** SEND USER MAIL */
+        $message = (new \Swift_Message('Factoria Start Up: Tienes un nuveo mensaje de  '.ucfirst($mailMessage['userName'])))
+        ->setFrom('liviuromania@gmail.com')
+        ->setTo($mailMessage['ownerMail'])
+        ->setBody(
+            $this->templating->render(                
+                'email/mail-message.html.twig',
+                ['dataMail' => $mailMessage]),
+                'text/html'               
+        );
+        $this->mailer->send($message);
+    }
 }

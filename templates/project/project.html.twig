@@ -32,7 +32,7 @@
         <div class="col-md-7 col-12">
             <div class="row">
                 <div class="col-md-4 col-4 shadow_box p-3 ">
-                    <div> <img  class="card-img-top w-100" src ="{{ asset('build/img/uploads/users_perfil/' ~ project.user.getProfileImg) }}" alt="image"/></div>
+                    <div> <img  class="card-img-top w-100" src ="{{ asset('build/img/uploads/users_profile/' ~ project.user.getProfileImg) }}" alt="image"/></div>
                 </div> 
                 <div class="col-md-8 col-8 shadow_box p-3">
                     <span>Usuario: <span  class="ver_color">{{project.user.username}}</span><br/>
@@ -130,7 +130,7 @@
                     </div>
                     <div class="col-md-10 col-8">                           
                         <label><span class="ver_color">Producto minimo viable</span><br/>
-                        Tienes un prototipo que funciona, pero te falta complementarlo con mas Profilees.</label>
+                        Tienes un prototipo que funciona, pero te falta complementarlo con mas perfiles.</label>
                     </div> 
                     {% else %}
                     {% if project.PhaseProductoFinal == true %}
@@ -155,7 +155,7 @@
             <span>El numero de miembros de este project es de : {{project.ProjectTeamNumber}}</span>
         </div>
         <div class="col-md-12">
-            <span>Aporta los siguentes Profilees :</span>
+            <span>Aporta los siguentes perfiles :</span>
         </div>
     </div>    
     {% for contribute in contributeProject %}

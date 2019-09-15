@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}FSU - Coworking.{% endblock %}
+
+{% block content %}
+
+<!-- Coworking -->
+    
+    <div class="row">
+         {% for coworking in coworkingList %}  
+        <div class="col-md-3 m-b-15"> 
+            <div class="card" >         
+                <div class="imageCard p-3">
+                    {% if coworking.img is not empty  %}
+                        <img src ="{{ asset('build/img/uploads/coworking_img//' ~ coworking.img) }}"/>
+                    {% else %}
+                        <img src ="{{ asset('build/img/project-fsu.png') }}">
+                    {% endif %}    
+                </div>                
+                <div class="mainCard p-3">        
+                    <div>
+                        <p class="co-list-name">{{ coworking.name }}</p>
+                        <p><i class="fas fa-map-marker-alt"></i>  <span class="co-list-address"> {{ coworking.address }}</span></p>
+                        <p><i class="fa fa-phone-square bigicon"></i> <span class="co-list-phone">{{ coworking.phone }}</span></p>
+                        <p><i class="fa fa-pencil-square-o bigicon"></i>  <span class="co-list-description"> {{ coworking.description }}</span></p>
+                    </div>
+                </div> 
+            </div>
+        </div>
+        {% endfor %} 
+    </div>         
+{% endblock %}
+

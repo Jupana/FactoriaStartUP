@@ -73,15 +73,14 @@ class UserProjectController extends AbstractController
     public function addProject(Request $request, int $id)
     {
         $newProject = $this->projectRepository ->find($id);
-        $user=$this->getUser();
         
         $formNewProject = $this->formFactory->create(ProjectType::class, $newProject);
         $formNewProject->handleRequest($request);
 
         if ($formNewProject->isSubmitted() && $formNewProject->isValid()) {
                 
-                $file = $formNewProject["project_img"]->getData();
-                $fileName = md5(uniqid()).'.'.$file->guessExtension();
+                $file = $formNewProject['project_img']->getData();
+                $fileName = $formNewProject['project_name']->getData().'-'.md5(uniqid()).'.'.$file->guessExtension();
                 $file->move($this->getParameter('imgProjects'), $fileName);
               
                 $newProject->setProjectImg($fileName);
@@ -196,7 +195,7 @@ class UserProjectController extends AbstractController
             return $this->redirectToRoute('projects-info');
         }
        
-        dump($formsProjects);
+      
         return $this->render('user/add-project-steps/add-project-needs.html.twig',
         [
             'form_New_Project_Needs' =>$formNewProjectNeeds->createView(),

@@ -160,7 +160,7 @@ class ProfileController extends AbstractController
     * @param Request $request 
     */
 
-    public function deleteUserProfile(ProfileUser $ProfileUser, int $id)
+    public function deleteUserProfile( int $id)
     {
         $profileUser = $this->profileUserRepository->find($id);
         $this->entityManager->remove($profileUser);

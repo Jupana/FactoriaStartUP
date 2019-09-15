@@ -8,9 +8,26 @@ admin-projects:
 admin-projects-project:
     path: /admin_projects/project/{id}
     controller: App\Controller\AdminProjectsController::project   
-admin-coworker:
-    path: /admin_projects/admin_coworker
-    controller: App\Controller\AdminProjectsController::index_coworker 
+admin-coworking-list:
+    path: /admin/coworking/
+    controller: App\Controller\CoworkingController::listCoworking
+
+admin-coworking-json:
+    path: /coworking/json/{id}
+    controller: App\Controller\CoworkingController::listCoworkingJson
+
+admin-coworking:
+    path: /admin/coworking/{id}
+    controller: App\Controller\CoworkingController::coworking
+
+admin-delete-coworking:    
+    path: /admin/coworking/delete/{id}
+    controller: App\Controller\CoworkingController::deleteCoworking    
+
+coworking-list:
+    path: /coworking/
+    controller: App\Controller\CoworkingController::listCoworkingFree
+
 
 user:
     path: /user
@@ -143,7 +160,16 @@ match-project:
     options:
         expose: true
 
- #Messages
+
+#Notification
+user-notification-update:
+    path: /user/notification-update/{id}
+    controller: App\Controller\NotificationController::upDateNotify
+    methods:  [POST]
+    options:
+        expose: true
+
+#Messages
 list-messages:
     path: /user/messages
     controller: App\Controller\MessageController::listMessages
@@ -159,7 +185,7 @@ list-notes:
     controller: App\Controller\NotesController::listNotes
 
 note:
-    path: /user/notes/{id}
+    path: /user/notes/{id}/{type_interest}
     controller: App\Controller\NotesController::note 
 
 

@@ -1,0 +1,36 @@
+{% extends 'admin/view-admin.html.twig' %}
+
+{% block contentAdmin %}
+
+<!--Admin projects-->
+{% if is_granted('ROLE_ADMIN') and (app.user.username == 'admin') %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="well well-sm">
+                
+               
+                        <legend class="p-3">Añadir nuevo espacio de trabajo</legend>
+                         {{ form_start(form) }} 
+                            <div class="col-md-8">
+                                {{form_row(form.name, {'attr': {'placeholder': 'Nombre CoWorking','class':'form-control'} }) }}
+                            
+                            {{form_row(form.address, {'attr': {'placeholder': 'Direccion CoWorking','class':'form-control'} }) }}
+                            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-phone-square bigicon"></i></span>
+                            {{form_row(form.phone, {'attr': {'placeholder': 'Teléfono CoWorking','class':'form-control'} }) }}
+                            {{form_row(form.img, {'attr': {'placeholder': 'Imagen o Logo','class':'form-control'} }) }}
+                              <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-pencil-square-o bigicon"></i></span>
+                            {{form_row(form.description, {'attr': {'placeholder': 'Añadir horario o cualquier coment sobre localizacion','class':'form-control'} }) }}
+                            </div>
+                            <div class="col-md-12">
+                                <button type="submit" class="btn-md btn-secondary p-2">Añadir Nuevo Spacio</button>
+                            </div>
+                        {{ form_end(form) }} 
+                
+            </div>
+        </div>
+    </div>
+   
+    {% else %}
+        <a href="{{ path('security_login') }}"><p class="btn btn-primary btn-block fs-20 text-center ">Inicia Sesion como administrator</p></a>   
+{% endif %}         
+{% endblock %}

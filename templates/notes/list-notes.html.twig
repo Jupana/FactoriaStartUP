@@ -3,45 +3,113 @@
 {% block title %}Notas -{{app.user.getName}} {% endblock %}
 
 {% block content %}
+   <script type="text/javascript">
+        window.onload = function() {
+            document.getElementById("op4").style.background="#0070C0";
+            document.getElementById("op4").style.color="#fff";
+        }
+    </script> 
     <!--Vista Notificaciones-Mensajes-->
      <div class="view-msg  shadow_box bgGris p-3 m-b-25">
         <div class="container">
             <div class="row">
                 <div class="col-md-4 ">
-                    <h4>Notas</h4>
+                    <h4>Listado notas</h4>
                     <hr/>
-                        {% if userNotes is empty%}
-                            <h5>No tienes Notas</h5>
+                    {% if userNotes is empty%}
+                        <h5>No tienes Notas</h5>
+                        <span>Ve en tus propuestas y añade una nota en el botton VER de tu proyecto o perfil de interes</span>
+                    {% else %}
+                    {% set segments = app.request.pathinfo|split('/') %}
+                    
+                    {% for userNote in userNotes  %}
+                        {% if userNote.getInterestProfile %} 
+                            {% if segments|length > 3 %}
+                                    {% if userNote.getInterestProfile.id == segments[3] %}
+                                        <a class="active-notes" href="{{ path('note',{"id": userNote.getInterestProfile.id ,"type_interest":"interest_profile"} )}}">
+                                            <div class="user_mensaje active-notes p-3">
+                                    {% else %}
+                                        <a href="{{ path('note',{"id": userNote.getInterestProfile.id ,"type_interest":"interest_profile"} )}}">
+                                            <div class="user_mensaje  ">
+                                    {% endif %}    
+                                {% else %}
+                                    <a href="{{ path('note',{"id": userNote.getInterestProfile.id ,"type_interest":"interest_profile"} )}}">
+                                            <div class="user_mensaje  ">
+                            {% endif %}
+                            {% else %}
+                            {% if userNote.getInterestProject %}
+                             {% if segments|length > 3 %}
+                                    {% if userNote.getInterestProject.id == segments[3] %}
+                                        <a class="active-notes" href="{{ path('note',{"id": userNote.getInterestProject.id ,"type_interest":"interest_project"} )}}">
+                                            <div class="user_mensaje active-notes p-3">
+                                    {% else %}
+                                        <a href="{{ path('note',{"id": userNote.getInterestProject.id ,"type_interest":"interest_project"} )}}">
+                                            <div class="user_mensaje  ">
+                                    {% endif %}    
+                                {% else %}
+                                    <a href="{{ path('note',{"id": userNote.getInterestProject.id ,"type_interest":"interest_project"} )}}">
+                                            <div class="user_mensaje  ">
+                            {% endif %}
+                            {% endif %}
                         {% endif %}
-                        <a href="{{ path('message',{"id": 1 }) }}">
-                            <div class="user_mensaje">
-                                <div class="row">
-                                    <div class="col-md-3"> 
-                                        <img class="img-msg" src =""/> 
-                                    </div>
-                                    <div class="col-md-9">
-                                        <span class="fs-18"></span>
-                                        <p>
-                                            <span class="float-left fs-12">Time Date</span>
-                                            <span class="float-right fs-12">Ceas ore</span>
-                                        </p>
+
+                                <div class="row">                            
+                                            {% if userNote.getInterestProject %}                                                
+                                                {% set proyectName = userNote.getInterestProject.getInterestIdProject.getProjectName %}
+                                                {% set profileName = userNote.getProfileNotes.getName %}                                                
+                                                {# WE check teh user to see if is ME BUSCA in order to change the image and name#}
+                                                {% if userNote.getInterestProject.getInterestProjectOwnerID.getId == userNote.user.id %}                                                
+                                                    {% set imgUser = userNote.getInterestProject.getInterestIdUser.getProfileImg %}                                                
+                                                    {% set userOwner = userNote.getInterestProject.getInterestIdUser.getName %}
+                                                {% else %}
+                                                    {% set imgUser = userNote.getInterestProject.getInterestProjectOwnerID.getProfileImg %}                                                
+                                                    {% set userOwner = userNote.getInterestProject.getInterestProjectOwnerID.getName %}
+                                                {% endif %}
+                                            
+                                            {% endif %}
+
+                                            {% if userNote.getInterestProfile %}                                                
+                                                {% set profileName = userNote.getInterestProfile.getInterestProfile.getName %}
+                                                {% set proyectName = userNote.getProjectNotes.getProjectName %}
+                                                {# WE check teh user to see if is ME BUSCA in order to change the image and name#}
+                                                {% if userNote.getInterestProfile.getUserProfileOwner.getId == userNote.user.id %}                                                
+                                                    {% set imgUser = userNote.getInterestProfile.getUser.getProfileImg %}                                                
+                                                    {% set userOwner = userNote.getInterestProfile.getUser.getName %}
+                                                {% else %}
+                                                    {% set imgUser = userNote.getInterestProfile.getUserProfileOwner.getProfileImg %}                                                
+                                                    {% set userOwner = userNote.getInterestProfile.getUserProfileOwner.getName %}
+                                                {% endif %}
+                                            {% endif %}
+                                            
+                                        <div class="col-md-3"> 
+                                            <img class="img-msg" src ="{{ asset('build/img/uploads/users_profile/' ~ imgUser) }}"/> 
+                                        </div>
+                                        
+                                        <div class="col-md-9">
+                                                    <p class="fs-18">Nota para:</p>
+                                                    <span class="fs-14">{{ userOwner}}</span><br/>
+                                                    <span >Proyecto: {{ proyectName}}</span><br/>
+                                                    <span >Profile: {{ profileName}}</span>
+                                                <p></p>
+                                            <p>
+                                                <span class="float-left fs-12">{{ userNote.getNotesDate|date("d/M/y")}}</span>
+                                                <span class="float-right fs-12">{{ userNote.getNotesDate|date("H:i")}}</span>
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <hr/>
-                        </a>
-                     
+                            </a>
+                            <hr/>                 
+                    {% endfor %}
+                    {% endif %} 
                 </div>
                 <div class="col-md-8 border-left">           
                     {% block note %}
                            <div class="user_mensaje text-center py-5">
                                 <div class="row">
-                                    <div class="col-md-12"> 
-                                        <img class="img-msg" src ="{{ asset('build/img/uploads/users_profile/' ~ app.user.getProfileImg) }}"/> 
-                                    </div>
                                     <div class="col-md-12">
-                                        <h4 class="py-3">Hola </h4>
-                                        <h6 class="px-3">Aqui puedes ver tus mensajes de colaboracion ya enviados segun intereses o ir en busqueda de nuevos datos de tu interes:</h6>                                                                 
+                                        <h4 class="py-3">Hola {{app.user.getName}} </h4>
+                                        <h6 class="px-3">Aqui puedes ver tus notas sobre cada contacto y proyecto de colaboracion ya empezada segun reuniones y avanze de los mismos:</h6>                                                                 
                                     </div>
                                 </div>
                             </div>

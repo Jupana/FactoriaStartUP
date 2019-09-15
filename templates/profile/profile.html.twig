@@ -25,7 +25,7 @@
         <div class="col-md-7 col-12 ">
             <div class="row marginUser">
                 <div class="col-md-4 col-4 shadow_box p-3 ">
-                    <img  class="card-img-top" src ="{{ asset('build/img/uploads/users_perfil/' ~ profile.0.user.getProfileImg) }}" alt="image"/>
+                    <img  class="card-img-top" src ="{{ asset('build/img/uploads/users_profile/' ~ profile.0.user.getProfileImg) }}" alt="image"/>
                 </div> 
                 <div class="col-md-8 col-8 shadow_box p-3 ">
                     <span class="profiluserId" data-profiluserId={{profile.0.user.id}} data-profilusername={{profile.0.user.Username}}>Usuario: <span class="ver_color">{{profile.0.user.Username}}</span></span><br/>
@@ -71,10 +71,10 @@
     </div> 
     <div class="row m-t-20 margin_top "> 
         <div class="col-md-12">
-            <p class=" par fs-20 ">Estos son los Profilees profesionales y los sectores en los que tiene experiencia:</p>
+            <p class=" par fs-20 ">Estos son los perfiles profesionales y los sectores en los que tiene experiencia:</p>
              {% if is_granted('ROLE_USER') %}
             <div class="row m-t-20 col-md-12">
-                <p>Tu has contactado con el para los siguientes Profilee:
+                <p>Tu has contactado con el para los siguientes perfiles:
                     
                     {% for profileInterest in profilesInterest %}                        
                         {{ profileInterest.interestProfile.name }}                    
@@ -100,7 +100,7 @@
         </div>
     </div> 
     
-    <div class="row m-t-20 m-b-20 p-r-20"> 
+    {# Cotantos PREVIOS POR SI LO QUIERE ANTONIO <div class="row m-t-20 m-b-20 p-r-20"> 
         <div class="col-md-12">
             <p class="ver_color par fs-20 ">Contactos previos</p>
         </div>
@@ -114,7 +114,7 @@
             <div class="col-md-12"><span class="p-t-10">El 19/02/2016 por su Profile como programador para tu project mongolog</span></div>
             <div class="col-md-12 border"style="height:80px;"></div>
         </div>    
-    </div>         
+    </div>  #}       
   
      {% include 'modals/interest-me.html.twig' %}    
 {% endblock %}

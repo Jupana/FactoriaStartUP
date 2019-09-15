@@ -29,11 +29,6 @@ class Notification
     private $user;
 
     /**
-     * @ORM\Column(type="integer",nullable=true)
-     */
-    private $entity;
-
-    /**
      * @ORM\Column(type="boolean")
      */
     private $seen;
@@ -54,6 +49,11 @@ class Notification
      * @ORM\Column(type="datetime")
      */
     private $time;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Message", inversedBy="notification")* 
+     */
+    private $message_conv;
 
     public function getId(): ?int
     {
@@ -80,18 +80,6 @@ class Notification
     public function setUser(?User $user): self
     {
         $this->user = $user;
-
-        return $this;
-    }
-
-    public function getEntity(): ?int
-    {
-        return $this->entity;
-    }
-
-    public function setEntity(int $entity): self
-    {
-        $this->entity = $entity;
 
         return $this;
     }
@@ -140,6 +128,28 @@ class Notification
     public function setTime(\DateTimeInterface $time): self
     {
         $this->time = $time;
+
+        return $this;
+    }
+
+   
+
+    /**
+     * Get the value of message_conv
+     */ 
+    public function getMessageConv()
+    {
+        return $this->message_conv;
+    }
+
+    /**
+     * Set the value of message_conv
+     *
+     * @return  self
+     */ 
+    public function setMessageConv($message_conv)
+    {
+        $this->message_conv = $message_conv;
 
         return $this;
     }
