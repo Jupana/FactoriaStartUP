@@ -3,16 +3,19 @@
     <!-- COMMENT FOR WORK ...DONT PRINT LOGOWORK-->
     <div class="flex-row justify-content-around border-bottom border-secondary">
         <div class="col-2  col-xl-4"> 
-         <!-- COMMENT FOR WORK ...DONT PRINT LOGOWORK
+         <!-- COMMENT FOR WORK ...DONT PRINT LOGOWORK-->
             <a href="/">
                 <img class="img-fluid float-left" alt="Responsive image" src ="{{ asset('build/img/logo.png') }}"> 
-            </a>-->
+            </a>
+            <span class="slogan">... donde se crean los equipos.</span>
          </div>             
         <div class="col-7 col-md-10 col-xl-8">                        
-         <!-- COMMENT FOR WORK ...DONT PRINT banner                  
-            <img class="img-fluid float-right" alt="Responsive image" src ="{{ asset('build/img/banner.png') }}"> -->        
+         <!-- COMMENT FOR WORK ...DONT PRINT banner  -->                
+            <img class="img-fluid float-right" alt="Responsive image" src ="{{ asset('build/img/banner.png') }}">         
         </div> 
     </div>
+</div>
+<div class="sticky-menu bgWhite">
     <nav class="navbar navbar-expand-lg navbar-light">
         <a class="navbar-brand" href="#"> 
         </a>
@@ -54,7 +57,7 @@
                     <a tabindex="0" role="button" rel="popover" data-placement="bottom" data-toggle="popover" href="#" >
                        <div class="icono-notification">
 
-                            <img class="notification rounded-circle" src ="{{ asset('build/img/uploads/users_profile/' ~ app.user.getProfileImg) }}"/>
+                            <img class="notification rounded-circle" src ="{{ asset('build/img/uploads/users_profile/' ~ app.user.getProfileImg )| imagine_filter('user_round_profile') }}"/>
                             {% if results.count_notify > 0 %}
                                 <div class="icono-encima bg-danger text-white fs-10 not-count">{{results.count_notify}}</div>
                             {% endif %}    
@@ -67,8 +70,9 @@
                 {% endif %}
             </form>
         </div>
-    </nav>   
-</div> 
+    </nav> 
+</div>  
+ 
 {% if is_granted('ROLE_USER') %}
 <!-- Content for Popover  -->
 <div class="popover d-none" id="popover_content">

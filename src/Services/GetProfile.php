@@ -4,7 +4,7 @@ namespace App\Services;
 
 use App\Repository\UserRepository;
 use App\Repository\ProfileUserRepository;
-use App\Entity\User;
+use App\Repository\ProfesionalProfileRepository;
 
 class GetProfile{
 
@@ -12,12 +12,15 @@ class GetProfile{
     private $profilRepository;
     
     private $userRepository;
+
+    private $profesionalRepository;
     
 
-    public function __construct(ProfileUserRepository $profilRepository, UserRepository $userRepository)
+    public function __construct(ProfileUserRepository $profilRepository, UserRepository $userRepository,ProfesionalProfileRepository $profesionalRepository)
     {    
         $this->profilRepository = $profilRepository;
         $this->userRepository =$userRepository;
+        $this->profesionalRepository =$profesionalRepository;
     }
 
     public function listProfile($user,$profile=null,$km = null, $lat=0, $long=0){
@@ -81,6 +84,10 @@ class GetProfile{
                                
                 $user = $item->getUser()->getId();
                 
+                $profDesc = $this->profesionalRepository->findOneBy(['profesionalIdUser'=>$user]);
+                
+                $profDesc = $profDesc != null ? substr($profDesc->getProfesionalDescription(),0,150): '';
+
                 if(isset($lastUser) && ($lastUser != $user)){                    
                     $i=0;
                 }
@@ -90,6 +97,7 @@ class GetProfile{
                 $prepareProfiles[$user]['user_img'] =$item->getUser()->getProfileImg();
                 $prepareProfiles[$user]['Profilees'][$i] =$item->getProfil();
                 $prepareProfiles[$user]['sectors'][$i] =$item->getSector();
+                $prepareProfiles[$user]['profesional'][$i] =$profDesc;
                 
                 $lastUser = $user;
 

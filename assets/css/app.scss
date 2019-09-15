@@ -44,7 +44,6 @@ body {
 }
 header {
 	width: 100%;
-	position: fixed;
 	z-index: 10;
 	top:0;
   }
@@ -610,11 +609,11 @@ li:last-child .u-dot-line-v1::after, li:last-child
 		position: relative;
 		z-index: 1;
 		min-width: 170px;
-		height: 50px;   
-		font-size: 14px;  
+		height: 35px;   
+		font-size: 12px;  
 		border-radius: 0;
-		line-height: 50px;
-		padding: 0 30px;
+		line-height: 30px;
+		padding: 0 20px;
 		text-transform: uppercase;
 	}
 	
@@ -3631,18 +3630,44 @@ li:last-child .u-dot-line-v1::after, li:last-child
 	 width:35%!important;
  }
 .card-img-top{
-	object-fit: cover;
-	width: auto;
-	margin:auto;
+	
+	position: relative;
+	display: block;
+	max-width: 100%;
+	height: auto;
+	line-height: 1;
+	max-height:150px;
+}
+.slide-home{
+	min-width:270px;
 }
 .img-container{
-	min-height: 100px;
+	height: 150px !important;
 }
 .co-name{
 	font-size: 16px;
 	font-weight: 600;
 }
- 
+.card-text{
+	min-height: 115px;
+}
+.card-title{
+	min-height: 60px;
+}
+.home-center-btn{
+	text-align:center;
+}
+
+.slogan{
+	position:absolute;
+	bottom:0;
+} 
+.sticky-menu{
+	position: -webkit-sticky;
+  	position: sticky;
+	  top: 0;
+	  z-index:1000;
+}
 
 
 
