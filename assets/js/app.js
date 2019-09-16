@@ -28,8 +28,8 @@ $(document).ready(function() {
         dots: true,
         variableWidth: true,
         arrows : false,
-        autoplay: true,
-        autoplaySpeed: 2000,        
+        //autoplay: true,
+        //autoplaySpeed: 2000,        
       }); 
     
 });
