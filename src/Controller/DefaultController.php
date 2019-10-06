@@ -29,4 +29,13 @@ class DefaultController extends Controller
 
         return new Response($html->getContent());
     }
+
+
+    public function politicaCookies(): Response
+    {
+            
+        return $this->render('default/politicas_cookies.html.twig') ;
+    }
+
+
 }

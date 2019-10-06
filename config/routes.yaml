@@ -202,3 +202,8 @@ noticia:
 
 _liip_imagine:
     resource: "@LiipImagineBundle/Resources/config/routing.yaml"
+
+#Legal
+politica_cookies:
+    path: /politica_de_cookies
+    controller: App\Controller\DefaultController::politicaCookies 
