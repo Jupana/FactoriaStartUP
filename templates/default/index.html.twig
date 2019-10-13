@@ -2,71 +2,39 @@
 
 {% block content %}
 <!--Contenido HOME-->
-    <div class="flex-row justify-content-around p-t-15">
-        <div class="col-xs-6 home-item">
-            <img  class="img-fluid ic-discover " src="{{ asset('build/img/icons/busco_proyectos.png') }}" />
-            <button class="btn btn-primary"><a class="" href="{{ path('projects') }}">Busco proyectos</a></button>
-        </div> 
-        <div class=" col-xs-6 home-item">
-         <img  class="img-fluid ic-discover " src="{{ asset('build/img/icons/busco_perfiles.png') }}" />
-            <button class="btn btn-primary"><a class=""  href="{{ path('profiles') }}">Busco perfiles</a></button>  
-        </div>
-    </div> 
-
-<!-- Carousel -->
-<div class="row">
-<!--PROJECT slide-->
-    <div class="col-md-6">  
-        <div class="row p-t-15 slick-projects slider">
-            {% for project in projects %}              
-            <div class="card slide-home">
-                    <div class="img-container">
-                        {% if project.getProjectImg is not empty  %}
-                            <img class="card-img-top" src ="{{ asset('build/img/uploads/projects_img/' ~ project.getProjectImg) | imagine_filter('slide_thumb') }}"/>
-                        {% else %}
-                            <img class="card-img-top" src ="{{ asset('build/img/uploads/projects_img/8bd59024872918f349f730b3e1d62bfc.jpeg') | imagine_filter('slide_thumb') }}">
-                        {% endif %} 
-                    </div>
-                    <div class="card-body">
-                        <h4 class="card-title">{{project.getProjectName}}</h4>
-                        <p class="card-text"><i class="fa fa-pencil-square-o bigicon"></i> {{project.getProjectShortDescription}}</p>
-                        <div class="home-center-btn">
-                            <a class="btn btn-primary" href="{{ path('project',{"id": project.id}) }}">Ver Proyecto</a>
-                        </div>
-                    </div>                         
-               
-            </div>           
-               {% endfor %} 
-        </div>  
+<div class="col-md-12">
+    <h2>¿Quieres montar una <span class="ver_color">Startup</span> ?</h2>
+</div>
+<div class="col-md-12 row">
+    <div class="col-md-1">
+        <img  class="img-fluid ic-discover " src="{{ asset('build/img/icons/ants/ant-hello.png') }}" />
     </div>
-    <!--PROFILE slide-->
-    <div class="col-md-6">    
-        <div class="row p-t-15 slick-projects slider">
+    <div class="col-md-11">
+        <h4><span class="ver_color">¿Buscas </span>Equipo </a><span class="ver_color">o </span> <a class="" href="{{ path('projects') }}">proyectos </a><span class="ver_color">interesantes en el que participar?</span></h4>
+        <p>&nbsp;</p>
         
-            {% for profile in profiles %}              
-         
-                <div class="card slide-home"> 
-                    <div class="img-container">
-                        {% if profile.user_img is not empty  %}
-                            <img class="card-img-top" src ="{{ asset('build/img/uploads/users_profile/' ~ profile.user_img) | imagine_filter('slide_thumb') }}"/>
-                        {% else %}
-                            <img class="card-img-top" src ="{{ asset('build/img/uploads/projects_img/8bd59024872918f349f730b3e1d62bfc.jpeg') | imagine_filter('slide_thumb') }}">
-                        {% endif %} 
-                    </div>
-                    <div class="card-body">
-                        <h4 class="card-title">{{profile.name}}</h4>
-                        <p class="card-text"><i class="fa fa-pencil-square-o bigicon"></i> {{profile.profesional.0}}</p>
-                        <div class="home-center-btn">
-                            <a class="btn btn-primary" href="{{ path('profile',{"id": profile.user_id}) }}">Ver Prerfil</a>
-                        </div>
-                    </div> 
-                </div>
-                    
-               {% endfor %} 
-        </div>  
+        <h4><span class="ver_color">Factoria Startup</span> es la nueva comunidad que pone en contacto <a class="ver_color home-link" href="{{ path('profiles') }}">Perfiles </a>con <a class="ver_color home-link" href="{{ path('projects') }}">Proyectos</a></h4>
+        <p>&nbsp;</p>
+        <h4>...Encuentra Socio, Co-fundador, Colaborador, nuevos miembros, etc<br/>
+            ...no importa la fase en la que se encuentre,<br/>
+            ...expon tu proyecto, tu perfil, que aportas,<br/>
+            que necesitas y que ofreses.<br/>   
+        </h4>
+        <p>&nbsp;</p>
     </div>
-</div><!-- Fin ROW-->
-<!-- Fin Carousel-->
-               
+    <div class="col-md-12">
+        <h4>¡¡Seguro que os estais buscando...<span class="ver_color">ahora os encontrareis!!</span></h4>
+            <img  class="img-fluid ic-discover " src="{{ asset('build/img/icons/ants/ant-1.png') }}" />
+            <img  class="img-fluid ic-discover " src="{{ asset('build/img/icons/ants/ant-2.png') }}" />
+            <img  class="img-fluid ic-discover " src="{{ asset('build/img/icons/ants/ant-3.png') }}" />
+            <img  class="img-fluid ic-discover " src="{{ asset('build/img/icons/ants/ant-4.png') }}" />
+            <img  class="img-fluid ic-discover " src="{{ asset('build/img/icons/ants/ant-5.png') }}" />
+            <img  class="img-fluid ic-discover " src="{{ asset('build/img/icons/ants/ant-6.png') }}" />
+            <img  class="img-fluid ic-discover " src="{{ asset('build/img/icons/ants/ant-7.png') }}" />
+            <img  class="img-fluid ic-discover " src="{{ asset('build/img/icons/ants/ant-8.png') }}" />
+    </div>   
+</div>
+   
+<!--Fin Contenido HOME-->               
 
 {% endblock %}
