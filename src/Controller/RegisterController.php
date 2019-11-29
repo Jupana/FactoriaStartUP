@@ -39,18 +39,18 @@ class RegisterController extends Controller
 
 
             /** SEND USER MAIL */
-            $message = (new \Swift_Message('Factoria Start Up - Bienvenido'))
-            ->setFrom('liviuromania@gmail.com')
-            ->setTo($email)
-            ->setBody(
-                    $this->renderView(
-                    // templates/emails/registration.html.twig
-                    'email/registration.html.twig',
-                    ['name' => $name]),
-                    'text/html'               
-            );
+        //     $message = (new \Swift_Message('Factoria Start Up - Bienvenido'))
+        //     ->setFrom('liviuromania@gmail.com')
+        //     ->setTo($email)
+        //     ->setBody(
+        //             $this->renderView(
+        //             // templates/emails/registration.html.twig
+        //             'email/registration.html.twig',
+        //             ['name' => $name]),
+        //             'text/html'               
+        //     );
 
-        $mailer->send($message);
+        // $mailer->send($message);
 
 
             return $this->redirectToRoute('security_login');

@@ -32,6 +32,8 @@ $(document).ready(function() {
         //autoplaySpeed: 2000,        
       }); 
     
+      $("#homeModal").modal('show');
+
 });
 require('bootstrap/js/dist/util.js')
 

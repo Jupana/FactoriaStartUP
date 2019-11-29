@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+<!--Contenido HOME-->
+<div class="col-md-12">
+    <h2>¿Quieres montar una <span class="ver_color">Startup</span> ?</h2>
+</div>
+<div class="col-md-12 row">
+    <div class="col-md-1">
+        <img  class="img-fluid ic-discover " src="{{ asset('build/img/icons/ants/ant-hello.png') }}" />
+    </div>
+    <div class="col-md-11">
+        <h4><span class="ver_color">¿Buscas </span>Equipo </a><span class="ver_color">o </span> proyectos <span class="ver_color">interesantes en el que participar?</span></h4>
+        <p>&nbsp;</p>
+        
+        <h4><span class="ver_color">Factoria Startup</span> es la nueva comunidad que pone en contacto <a class="ver_color home-link" href="{{ path('profiles') }}">Perfiles </a>con <a class="ver_color home-link" href="{{ path('projects') }}">Proyectos</a></h4>
+        <p>&nbsp;</p>
+        <h4>...Encuentra Socio, Co-fundador, Colaborador, nuevos miembros, etc<br/>
+            ...no importa la fase en la que se encuentre,<br/>
+            ...expon tu proyecto, tu perfil, que aportas,<br/>
+            que necesitas y que ofreses.<br/>   
+        </h4>
+        <p>&nbsp;</p>
+    </div>
+    <div class="col-md-12">
+        <h4>¡¡Seguro que os estais buscando...<span class="ver_color">ahora os encontrareis!!</span></h4>
+            <img  class="img-fluid ic-discover " src="{{ asset('build/img/icons/ants/ant-1.png') }}" />
+            <img  class="img-fluid ic-discover " src="{{ asset('build/img/icons/ants/ant-2.png') }}" />
+            <img  class="img-fluid ic-discover " src="{{ asset('build/img/icons/ants/ant-3.png') }}" />
+            <img  class="img-fluid ic-discover " src="{{ asset('build/img/icons/ants/ant-4.png') }}" />
+            <img  class="img-fluid ic-discover " src="{{ asset('build/img/icons/ants/ant-5.png') }}" />
+            <img  class="img-fluid ic-discover " src="{{ asset('build/img/icons/ants/ant-6.png') }}" />
+            <img  class="img-fluid ic-discover " src="{{ asset('build/img/icons/ants/ant-7.png') }}" />
+            <img  class="img-fluid ic-discover " src="{{ asset('build/img/icons/ants/ant-8.png') }}" />
+    </div>   
+</div>
+   
+<!--Fin Contenido HOME-->               
+
+{% endblock %}
